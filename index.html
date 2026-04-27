@@ -76,6 +76,27 @@
   .wordmark .dot {
     color: var(--accent);
   }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-left: 32px;
+    margin-right: auto;
+  }
+  .header-nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color .15s ease;
+    white-space: nowrap;
+  }
+  .header-nav a:hover,
+  .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+    .header-nav a.hide-on-mobile { display: none; }
+  }
   .btn {
     display: inline-flex;
     align-items: center;
@@ -341,6 +362,62 @@
     margin-right: auto;
   }
 
+  /* ── Free tools section ── */
+  .tools-section { text-align: center; }
+  .tools-section .section-title,
+  .tools-section .section-body {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 40px;
+    text-align: left;
+  }
+  .tool-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    color: inherit;
+  }
+  .tool-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--text);
+  }
+  .tool-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .tool-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 14px;
+    line-height: 1.55;
+    flex: 1;
+  }
+  .tool-card .tool-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tools-footer-line {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
   /* ── Founder note ── */
   .founder-card {
     background: var(--founder-card);
@@ -511,6 +588,9 @@
     .steps-grid {
       grid-template-columns: 1fr;
     }
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
     .uk-item:nth-child(2) { border-top: 1px solid var(--border); padding-top: 18px; }
     section { padding: 64px 0; }
     .founder-card { padding: 32px 24px; }
@@ -522,6 +602,7 @@
     .btn-lg { padding: 12px 20px; font-size: 14px; }
     .hero h1 { font-size: 34px; }
     .site-header .wrap { height: 58px; }
+    .tools-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -531,6 +612,10 @@
 <header class="site-header">
   <div class="wrap">
     <a href="#" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="/tools/">Tools</a>
+      <!-- Add more links here as the site grows, e.g. <a href="/faq/">FAQ</a> -->
+    </nav>
     <a href="/app" class="btn btn-primary">Launch Vault</a>
   </div>
 </header>
@@ -639,6 +724,93 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ── Section: Free Tools ── -->
+<section class="soft fade-in">
+  <div class="wrap tools-section">
+    <p class="section-eyebrow">Free tools</p>
+    <h2 class="section-title">Free UK Financial Calculators</h2>
+    <p class="section-body">A growing set of focused calculators and planners — free, private, no data collected, built for UK users. Real financial education shouldn't sit behind a paywall.</p>
+    <div class="tools-grid">
+
+      <a href="#" class="tool-card">
+        <h3>Budget Planner</h3>
+        <p>Map your income, outgoings, and savings to see exactly where your money is going each month.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Mortgage Repayment Calculator</h3>
+        <p>Work out your monthly mortgage payment, total interest paid, and the impact of rate or term changes.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Mortgage Affordability Calculator</h3>
+        <p>See how much a UK lender is likely to lend you, based on income, deposit, and outgoings.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Pension &amp; Retirement Calculator</h3>
+        <p>Project your pension pot at retirement and see how today's contributions shape tomorrow's income.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>FIRE Calculator</h3>
+        <p>Find out how close you are to financial independence, and what it would take to retire early.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Take Home Pay &amp; Salary Calculator</h3>
+        <p>See your real take-home pay after income tax, National Insurance, pension, and student loan deductions.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Savings Goal Calculator</h3>
+        <p>Set a target, see how long it'll take to get there, and the monthly amount you need to save.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Benefits &amp; Entitlements Checker</h3>
+        <p>Quickly check what UK benefits, tax credits, and support you may be entitled to.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Investment Returns Calculator</h3>
+        <p>Model how regular contributions, lump sums, and compounding could grow your investments over time.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Loan &amp; Credit Card Repayment Calculator</h3>
+        <p>Work out monthly payments, total cost, and the fastest way to clear a loan or card balance.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Debt Payoff Planner</h3>
+        <p>Choose snowball or avalanche, list your debts, and see exactly when each one clears.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+      <a href="#" class="tool-card">
+        <h3>Rent vs Buy Calculator</h3>
+        <p>Compare the long-term cost of renting against buying, factoring in mortgage, fees, and growth.</p>
+        <span class="tool-link">Open tool →</span>
+      </a>
+
+    </div>
+    <p class="tools-footer-line">
+      <a href="tools/" class="inline-link">See all free tools →</a>
+    </p>
   </div>
 </section>
 
