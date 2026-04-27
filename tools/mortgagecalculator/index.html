@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Mortgage Repayment Calculator 2026 — Monthly Payments &amp; Total Cost | Vault</title>
+<meta name="description" content="Calculate your monthly mortgage repayments and total interest for any UK mortgage. Free, private, no sign up. See exactly what your mortgage will cost you." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/mortgage-repayment-calculator" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Mortgage Repayment Calculator 2026 — Monthly Payments &amp; Total Cost" />
+<meta property="og:description" content="Calculate your monthly mortgage repayments and total interest for any UK mortgage. Free, private — no sign up, no data shared." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/mortgage-repayment-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  /* Hero */
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  /* Sections */
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  /* CTA */
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     MORTGAGE CALCULATOR EMBED — built from scratch (the app has
+     property/mortgage tracking but no standalone repayment calc).
+     Variables scoped to .mortgage-embed so the warm light palette
+     doesn't leak into the rest of the page.
+     ════════════════════════════════════════════════════════════════ */
+  .mortgage-embed {
+    --m-surface:  #fbfaf8;
+    --m-surface2: #eeebe8;
+    --m-surface3: #ebe7e0;
+    --m-border:   #e2ddd5;
+    --m-border2:  #ccc8be;
+    --m-text:     #221f1c;
+    --m-text2:    #7f756c;
+    --m-text3:    #a8a099;
+    --m-accent:   #298e5f;
+    --m-red:      #c83030;
+    --m-green:    #208050;
+    --m-radius: 12px;
+    --m-radius-sm: 8px;
+    --m-mono: 'DM Mono', monospace;
+    --m-sans: 'DM Sans', sans-serif;
+    --m-serif: 'DM Serif Display', serif;
+
+    font-family: var(--m-sans);
+    color: var(--m-text);
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 620px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .mortgage-embed input, .mortgage-embed select {
+    background: var(--m-surface2);
+    border: 1px solid var(--m-border);
+    color: var(--m-text);
+    padding: 8px 10px;
+    border-radius: var(--m-radius-sm);
+    font-family: var(--m-mono);
+    font-size: 13px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .mortgage-embed select {
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%237f756c' d='M0 0l5 6 5-6z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    font-family: var(--m-sans);
+  }
+  .mortgage-embed input:focus, .mortgage-embed select:focus {
+    outline: none; border-color: var(--m-accent);
+  }
+
+  .mortgage-embed .m-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--m-text3); margin: 0 0 8px;
+  }
+  .mortgage-embed .m-fields {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 14px; margin-bottom: 14px;
+  }
+  .mortgage-embed .m-field {
+    display: flex; flex-direction: column; gap: 5px;
+  }
+  .mortgage-embed .m-field-full { grid-column: 1 / -1; }
+  .mortgage-embed .m-label {
+    font-size: 11px; color: var(--m-text2);
+  }
+  .mortgage-embed .m-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--m-surface2); border: 1px solid var(--m-border);
+    border-radius: var(--m-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .mortgage-embed .m-input-wrap:focus-within { border-color: var(--m-accent); }
+  .mortgage-embed .m-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .mortgage-embed .m-input-prefix,
+  .mortgage-embed .m-input-suffix {
+    display: flex; align-items: center;
+    padding: 0 10px; font-size: 12px;
+    background: var(--m-surface3); color: var(--m-text3);
+    font-family: var(--m-mono);
+  }
+  .mortgage-embed .m-input-prefix { border-right: 1px solid var(--m-border); }
+  .mortgage-embed .m-input-suffix { border-left:  1px solid var(--m-border); }
+  .mortgage-embed .m-deposit-row { display: flex; gap: 4px; align-items: stretch; }
+  .mortgage-embed .m-deposit-row .m-input-wrap { flex: 1; }
+  .mortgage-embed .m-toggle {
+    display: flex; gap: 0; padding: 2px;
+    background: var(--m-surface3); border-radius: var(--m-radius-sm);
+    flex-shrink: 0;
+  }
+  .mortgage-embed .m-toggle button {
+    border: none; background: transparent;
+    color: var(--m-text3); font-family: var(--m-sans);
+    padding: 6px 10px; font-size: 11px; font-weight: 600;
+    cursor: pointer; border-radius: 5px; min-width: 36px;
+    transition: all 0.12s;
+  }
+  .mortgage-embed .m-toggle button.active {
+    background: var(--m-surface); color: var(--m-text);
+  }
+
+  .mortgage-embed .m-segment {
+    display: flex; gap: 0; padding: 2px;
+    background: var(--m-surface3); border-radius: var(--m-radius-sm);
+    margin-top: 4px;
+  }
+  .mortgage-embed .m-segment button {
+    flex: 1; border: none; background: transparent;
+    color: var(--m-text3); font-family: var(--m-sans);
+    padding: 8px 10px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border-radius: 5px;
+    transition: all 0.12s;
+  }
+  .mortgage-embed .m-segment button.active {
+    background: var(--m-surface); color: var(--m-text);
+  }
+
+  /* Results panel */
+  .mortgage-embed .m-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--m-border);
+  }
+  .mortgage-embed .m-hero {
+    background: var(--m-surface3); border: 1px solid var(--m-border2);
+    border-radius: var(--m-radius); padding: 18px 20px;
+    margin-bottom: 14px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    flex-wrap: wrap;
+  }
+  .mortgage-embed .m-hero-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--m-text3); margin-bottom: 4px;
+  }
+  .mortgage-embed .m-hero-val {
+    font-family: var(--m-serif); font-size: 30px;
+    color: var(--m-accent); line-height: 1;
+  }
+  .mortgage-embed .m-hero-sub {
+    font-size: 11px; color: var(--m-text3);
+    font-family: var(--m-mono); margin-top: 4px;
+  }
+  .mortgage-embed .m-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 16px;
+  }
+  .mortgage-embed .m-summary-cell {
+    background: var(--m-surface2); border: 1px solid var(--m-border);
+    border-radius: var(--m-radius-sm); padding: 12px 14px;
+  }
+  .mortgage-embed .m-summary-cell .m-cell-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--m-text3); margin-bottom: 4px;
+  }
+  .mortgage-embed .m-summary-cell .m-cell-val {
+    font-family: var(--m-mono); font-size: 16px; font-weight: 700;
+    color: var(--m-text);
+  }
+
+  /* Capital vs interest split bar */
+  .mortgage-embed .m-split {
+    background: var(--m-surface2); border: 1px solid var(--m-border);
+    border-radius: var(--m-radius-sm); padding: 14px;
+  }
+  .mortgage-embed .m-split-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--m-text); margin-bottom: 10px;
+  }
+  .mortgage-embed .m-split-bar {
+    height: 14px; border-radius: 7px; overflow: hidden;
+    background: var(--m-surface3); display: flex;
+    border: 1px solid var(--m-border);
+  }
+  .mortgage-embed .m-split-cap { background: var(--m-accent); transition: width 0.3s; }
+  .mortgage-embed .m-split-int { background: var(--m-red); opacity: 0.7; transition: width 0.3s; }
+  .mortgage-embed .m-split-legend {
+    display: flex; justify-content: space-between; gap: 12px;
+    margin-top: 10px; font-size: 11px; color: var(--m-text2);
+    font-family: var(--m-mono);
+  }
+  .mortgage-embed .m-split-legend strong { color: var(--m-text); font-weight: 700; }
+  .mortgage-embed .m-split-legend .swatch {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 6px; vertical-align: middle;
+  }
+  .mortgage-embed .m-split-legend .swatch.cap { background: var(--m-accent); }
+  .mortgage-embed .m-split-legend .swatch.int { background: var(--m-red); opacity: 0.7; }
+
+  .mortgage-embed .m-empty {
+    text-align: center; padding: 24px 0; font-size: 12px;
+    color: var(--m-text3);
+  }
+
+  .mortgage-embed .m-context-note {
+    font-size: 10px; color: var(--m-text3);
+    margin-top: 12px; line-height: 1.5;
+    padding: 10px 12px; background: var(--m-surface2);
+    border-radius: var(--m-radius-sm);
+    border-left: 3px solid rgba(41,142,95,0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .mortgage-embed { padding: 16px; }
+    .mortgage-embed .m-fields { grid-template-columns: 1fr; }
+    .mortgage-embed .m-summary-grid { grid-template-columns: 1fr; }
+    .mortgage-embed .m-hero { flex-direction: column; align-items: flex-start; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<!-- ════════════════════════════════════════════════════════════════
+     STRUCTURED DATA — FAQ schema (JSON-LD)
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much will my mortgage cost per month in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the loan amount, interest rate, and term. As a rough guide, on a £200,000 repayment mortgage at 5% over 25 years, you'd pay roughly £1,170 a month. At 4% the figure drops to about £1,055; at 6% it rises to £1,290. Use the calculator above to see your exact monthly payment for any combination of price, deposit, rate, and term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a UK mortgage repayment calculator work in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A repayment mortgage calculator uses the standard amortisation formula: M = P × r(1+r)^n / ((1+r)^n − 1), where P is the loan amount, r is the monthly interest rate, and n is the number of monthly payments. Each payment covers all the interest accrued that month plus a chunk of capital — so early payments are mostly interest, late payments mostly capital. The calculator above also models interest-only loans where you pay only the interest each month and the capital is settled at the end."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to get a 25 or 30 year mortgage in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 30-year term lowers your monthly payment but materially increases the total interest you'll pay. On a £250,000 mortgage at 5%, 25 years costs ~£439,000 in total; 30 years costs ~£483,000 — about £44,000 more. The 30-year term is more affordable each month but more expensive overall. Many UK borrowers compromise by taking a 30-year term for affordability, then overpaying when they can to clear it earlier without locking themselves into a higher monthly minimum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much interest will I pay on my UK mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total interest depends primarily on the term and the rate. For a £200,000 repayment mortgage at 5%: 25 years = ~£150,800 in interest; 30 years = ~£186,500; 20 years = ~£116,800. The calculator above shows total interest paid for your specific scenario, alongside the capital-vs-interest split for the full life of the loan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I overpay my mortgage in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most UK fixed-rate mortgages allow you to overpay up to 10% of the outstanding balance each year without an Early Repayment Charge (ERC). Overpayments come straight off the capital, so they reduce both your remaining balance and the interest you'll accrue going forward. An extra £100 a month on a £200,000 mortgage at 5% over 25 years can save roughly £30,000 in interest and clear the mortgage 4–5 years early. Always check your lender's overpayment limits before transferring large amounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between a fixed and variable rate mortgage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A fixed-rate mortgage locks your interest rate for a set period (usually 2, 3, 5, or 10 years), so your monthly payment is predictable. After the fix ends, you typically move onto the lender's Standard Variable Rate (SVR) unless you remortgage. A variable-rate mortgage (tracker, discount, or SVR) moves with the Bank of England base rate or the lender's discretion, so payments can rise and fall. Trackers are usually cheaper while base rates are low; fixed-rate deals are popular when rates are expected to rise. The calculator above models a single rate over the whole term — if you plan to remortgage, run it once with your initial fixed rate and then again with a likely future rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is loan-to-value (LTV) and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV is the size of your mortgage as a percentage of the property's value. A £200,000 mortgage on a £250,000 home is 80% LTV. Lenders charge lower rates at lower LTVs because the loan is safer for them — there's typically a step-down at 90%, 85%, 80%, 75%, and 60%. A 95% LTV mortgage might be 1–2 percentage points more expensive than a 60% LTV deal on the same property. Putting down a bigger deposit, or remortgaging once your equity grows, are the two main ways to drop into a cheaper LTV band."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is interest-only and when should I use it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On an interest-only mortgage, your monthly payments cover only the interest charged that month — the capital balance never reduces and must be repaid in full at the end of the term, usually from a separate investment, sale of the property, or a switch to a repayment mortgage. UK residential interest-only is now uncommon and typically requires a credible repayment vehicle. It's more common for buy-to-let mortgages, where the rent covers interest and the capital is repaid by selling the property later. The calculator above lets you compare monthly cost between repayment and interest-only for the same loan."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Mortgage Repayment Calculator",
+  "url": "https://thevaultapp.co.uk/tools/mortgage-repayment-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK mortgage repayment calculator. See your monthly payment, total cost, and capital-vs-interest split for any UK mortgage."
+}
+</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Mortgage calculator UK 2026</p>
+    <h1>UK Mortgage Repayment Calculator 2026 — See Your Monthly Payments</h1>
+    <p class="lede">Work out your monthly mortgage repayments and the total cost of your loan over its lifetime. Free, private, no sign up — built for UK homebuyers and homeowners. Nothing you enter ever leaves your device.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section class="calc-block">
+  <div class="wrap">
+    <div class="mortgage-embed" id="mortgage-calc">
+
+      <div class="m-section-label">Your mortgage</div>
+      <div class="m-fields">
+
+        <!-- Property price -->
+        <div class="m-field m-field-full">
+          <label class="m-label" for="m-price">Property price</label>
+          <div class="m-input-wrap">
+            <span class="m-input-prefix">£</span>
+            <input type="number" id="m-price" placeholder="300,000" inputmode="decimal" step="1000" />
+          </div>
+        </div>
+
+        <!-- Deposit (£ or %) -->
+        <div class="m-field m-field-full">
+          <label class="m-label" for="m-deposit">Deposit</label>
+          <div class="m-deposit-row">
+            <div class="m-input-wrap">
+              <span class="m-input-prefix" id="m-deposit-prefix">£</span>
+              <input type="number" id="m-deposit" placeholder="30,000" inputmode="decimal" step="100" />
+            </div>
+            <div class="m-toggle" role="tablist" aria-label="Deposit unit">
+              <button id="m-dep-pound" type="button" class="active" aria-pressed="true">£</button>
+              <button id="m-dep-pct" type="button" aria-pressed="false">%</button>
+            </div>
+          </div>
+          <div class="m-label" id="m-deposit-pct-hint" style="font-size:10px;color:var(--m-text3);margin-top:2px"></div>
+        </div>
+
+        <!-- Term -->
+        <div class="m-field">
+          <label class="m-label" for="m-term">Mortgage term</label>
+          <div class="m-input-wrap">
+            <input type="number" id="m-term" placeholder="25" inputmode="numeric" step="1" min="1" max="40" />
+            <span class="m-input-suffix">years</span>
+          </div>
+        </div>
+
+        <!-- Interest rate -->
+        <div class="m-field">
+          <label class="m-label" for="m-rate">Annual interest rate</label>
+          <div class="m-input-wrap">
+            <input type="number" id="m-rate" placeholder="4.5" inputmode="decimal" step="0.05" min="0" />
+            <span class="m-input-suffix">%</span>
+          </div>
+        </div>
+
+        <!-- Repayment type -->
+        <div class="m-field m-field-full">
+          <label class="m-label">Repayment type</label>
+          <div class="m-segment" role="tablist" aria-label="Repayment type">
+            <button id="m-type-repay" type="button" class="active" aria-pressed="true">Repayment</button>
+            <button id="m-type-io" type="button" aria-pressed="false">Interest only</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Results panel -->
+      <div class="m-results" id="m-results">
+        <div class="m-empty" id="m-empty">Enter a property price, deposit, term, and interest rate above to see your monthly repayment.</div>
+
+        <div id="m-output" style="display:none">
+          <div class="m-hero">
+            <div>
+              <div class="m-hero-label">Monthly payment</div>
+              <div class="m-hero-val" id="m-monthly">£—</div>
+              <div class="m-hero-sub" id="m-monthly-sub">on £— borrowed</div>
+            </div>
+            <div style="text-align:right">
+              <div class="m-hero-label">Loan-to-value</div>
+              <div class="m-hero-val" id="m-ltv" style="font-size:22px">—</div>
+              <div class="m-hero-sub" id="m-ltv-band"></div>
+            </div>
+          </div>
+
+          <div class="m-summary-grid">
+            <div class="m-summary-cell">
+              <div class="m-cell-label">Total repaid over term</div>
+              <div class="m-cell-val" id="m-total-repaid">£—</div>
+            </div>
+            <div class="m-summary-cell">
+              <div class="m-cell-label">Total interest paid</div>
+              <div class="m-cell-val" id="m-total-interest">£—</div>
+            </div>
+          </div>
+
+          <div class="m-split" id="m-split-card">
+            <div class="m-split-title">Capital vs interest over the term</div>
+            <div class="m-split-bar">
+              <div class="m-split-cap" id="m-bar-cap" style="width:0"></div>
+              <div class="m-split-int" id="m-bar-int" style="width:0"></div>
+            </div>
+            <div class="m-split-legend">
+              <span><span class="swatch cap"></span>Capital <strong id="m-leg-cap">£—</strong></span>
+              <span><span class="swatch int"></span>Interest <strong id="m-leg-int">£—</strong></span>
+            </div>
+          </div>
+
+          <div class="m-context-note" id="m-io-note" style="display:none">
+            On an interest-only mortgage, the capital balance does not reduce. The figure shown above is the interest you'd pay each month — the original loan amount must still be repaid at the end of the term, typically from a separate investment, sale of the property, or a switch to a repayment mortgage.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- How to use -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Four numbers, one monthly payment</h2>
+    <p class="section-body muted">The mortgage repayment calculator UK above runs the maths the moment you start typing. Here's how to get a useful number out of it.</p>
+
+    <ol>
+      <li><strong>Enter the property price.</strong> The full purchase price of the home you're buying or already own. If you're remortgaging, use the current property value.</li>
+      <li><strong>Add your deposit.</strong> Toggle between £ and % depending on what you know. The calculator shows the percentage equivalent so you can see which LTV band you're in (95%, 90%, 85%, 80%, 75%, 60%).</li>
+      <li><strong>Pick a term.</strong> Most UK mortgages are 25 or 30 years, but lenders go up to 40. Longer terms reduce the monthly payment but materially increase the total interest paid.</li>
+      <li><strong>Enter the annual interest rate.</strong> Use the rate quoted on your mortgage offer (or for a hypothetical, look at current best buys). The calculator assumes the rate runs for the full term — for a real mortgage, you'll typically fix for 2–10 years and remortgage onto a new rate after.</li>
+    </ol>
+
+    <p class="section-body">Below the inputs you'll see your monthly payment, total amount repaid over the term, total interest paid, and a visual capital-vs-interest split. Switch to "Interest only" to compare against a buy-to-let-style structure.</p>
+  </div>
+</section>
+
+<!-- Understanding your mortgage -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding your mortgage</p>
+    <h2 class="section-title">How a UK mortgage actually works</h2>
+    <p class="section-body muted">A monthly mortgage calculator is only useful if you understand what each line means. Here's the plain-English version.</p>
+
+    <div class="definition-card">
+      <h4>Repayment mortgage</h4>
+      <p>The standard UK option. Each monthly payment covers all the interest accrued that month plus a chunk of capital, so over time the balance shrinks and the home becomes yours. Early payments are mostly interest; late payments are mostly capital. The capital-vs-interest split bar above shows the lifetime ratio.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Interest only</h4>
+      <p>Your monthly payment covers only the interest. The capital balance never reduces, and must be repaid in full at the end of the term — usually via a separate investment, sale of the property, or by switching to a repayment mortgage. UK residential interest-only is now uncommon and lenders typically require a credible repayment vehicle. It's more common for buy-to-let mortgages, where the rent covers the interest and the capital is repaid by selling the property later.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why the term length matters so much</h4>
+      <p>Halving your monthly payment by extending the term sounds great until you see the total interest. On a £250,000 mortgage at 5%, the difference between 25 and 30 years is around £44,000 in extra interest. The longer you take to repay, the more compound interest the lender collects. A common UK strategy: take a 30-year term for affordability headroom, then overpay when you can to clear it sooner.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>How overpayments save thousands</h4>
+      <p>Most UK fixed-rate mortgages let you overpay up to 10% of the outstanding balance each year without an Early Repayment Charge. Overpayments come straight off the capital — so they reduce both your remaining balance and all the interest you'd have paid on it for the rest of the term. An extra £100 a month on a £200,000 mortgage at 5% over 25 years can save roughly £30,000 in interest and clear the mortgage 4–5 years early. Always check your lender's overpayment limits before transferring large amounts.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Loan-to-value (LTV)</h4>
+      <p>LTV is the size of your mortgage as a percentage of the property's value. £200,000 borrowed against a £250,000 home is 80% LTV. Lenders price by LTV band — typically 95%, 90%, 85%, 80%, 75%, and 60% — with a step down in rate at each threshold. A 60% LTV mortgage can be 1–2 percentage points cheaper than a 95% LTV deal on the same property. The calculator above shows your LTV automatically when you enter price and deposit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UK specifics -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK borrowers</h2>
+
+    <h3>Where UK mortgage rates sit today</h3>
+    <p class="section-body">UK mortgage rates have moved substantially with the Bank of England base rate cycle. Use this calculator with the rate quoted on your specific offer rather than an "average" — the spread between the cheapest and most expensive deal at the same LTV can be over a percentage point. Best-buy tables on Moneyfacts, Compare the Market, or directly through a broker are the fastest way to find a current rate. The calculator assumes a single rate runs for the entire term; in practice you'd typically fix for 2–10 years then remortgage.</p>
+
+    <h3>Fixed vs variable rates</h3>
+    <p class="section-body">A <strong>fixed-rate</strong> mortgage locks your rate for 2, 3, 5, or 10 years — your monthly payment is predictable, and after the fix ends you typically move onto the lender's Standard Variable Rate (SVR) unless you remortgage. A <strong>tracker</strong> moves with the Bank of England base rate plus a fixed margin. <strong>Discount</strong> mortgages sit a fixed amount below the lender's SVR. <strong>SVR</strong> itself moves at the lender's discretion. Trackers tend to be cheaper when rates are falling; fixed deals are popular when rates are expected to rise. To compare scenarios, run this calculator once at your initial fixed rate and again at a likely future rate.</p>
+
+    <h3>How LTV affects your rate</h3>
+    <p class="section-body">UK lenders offer materially cheaper rates at lower LTVs because the loan is safer to them. The big step-downs are typically at 90%, 85%, 80%, 75%, and 60%. Putting down an extra few thousand to slip from 91% LTV to 89% LTV can save more in interest over the term than the deposit increase costs. Once you own the home, equity built through repayments and price appreciation lets you remortgage into cheaper LTV bands at each renewal.</p>
+
+    <h3>Stamp Duty Land Tax (SDLT)</h3>
+    <p class="section-body">Stamp duty is a tax on the property purchase price — separate from the mortgage. As of 2025/26, you pay 0% on the first £125,000, 2% on £125,001–£250,000, 5% on £250,001–£925,000, 10% on £925,001–£1.5M, and 12% above £1.5M. First-time buyers get relief on properties up to £500,000. SDLT is paid in cash within 14 days of completion — it doesn't get added to the mortgage. Budget for it separately on top of your deposit.</p>
+
+    <h3>Early Repayment Charges (ERCs)</h3>
+    <p class="section-body">Most fixed-rate UK mortgages charge an ERC if you overpay more than the annual allowance (typically 10% of balance) or fully repay during the fix period. ERCs are usually 1–5% of the amount overpaid, often tiered down each year of the fix. Check your offer document for the exact figure. Tracker and SVR mortgages often have no ERCs — useful if you expect to remortgage or move soon.</p>
+
+    <h3>What this calculator doesn't model</h3>
+    <p class="section-body">This is a pure repayment calculator. It doesn't include arrangement/booking fees (often £999–£1,999 added to the loan or paid up front), valuation fees, legal fees, mortgage broker fees, or building/contents insurance. For a full all-in cost of borrowing, add those one-offs to the total interest figure. The calculator also assumes a single rate for the whole term — for a more realistic projection on a fixed-rate product, run it once at your fixed rate, then re-run once after the fix to see what a remortgage at a different rate would look like.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK mortgage repayments.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>How much will my mortgage cost per month UK?</summary>
+        <div class="faq-body">
+          <p>It depends on the loan amount, interest rate, and term. As a rough guide, on a £200,000 repayment mortgage at 5% over 25 years, you'd pay roughly <strong>£1,170 a month</strong>. At 4% the figure drops to about £1,055; at 6% it rises to £1,290.</p>
+          <p>Use the calculator above to see your exact monthly payment for any combination of price, deposit, rate, and term.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does a mortgage repayment calculator UK 2026 work?</summary>
+        <div class="faq-body">
+          <p>A repayment mortgage calculator uses the standard amortisation formula: <em>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</em>, where P is the loan amount, r is the monthly interest rate, and n is the number of monthly payments.</p>
+          <p>Each payment covers all the interest accrued that month plus a chunk of capital — early payments are mostly interest, late payments mostly capital. The calculator above also models interest-only loans where you pay only the interest each month and the capital is settled at the end.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is it better to get a 25 or 30 year mortgage UK?</summary>
+        <div class="faq-body">
+          <p>A 30-year term lowers your monthly payment but materially increases the total interest you'll pay. On a £250,000 mortgage at 5%, 25 years costs ~£439,000 in total; 30 years costs ~£483,000 — about <strong>£44,000 more</strong>.</p>
+          <p>The 30-year term is more affordable each month but more expensive overall. Many UK borrowers compromise by taking a 30-year term for affordability and then overpaying when they can — clearing it earlier without locking themselves into a higher monthly minimum.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much interest will I pay on my mortgage UK?</summary>
+        <div class="faq-body">
+          <p>Total interest depends primarily on the term and the rate. For a £200,000 repayment mortgage at 5%: 25 years ≈ £150,800 in interest; 30 years ≈ £186,500; 20 years ≈ £116,800.</p>
+          <p>The calculator above shows total interest paid for your specific scenario, alongside the capital-vs-interest split for the full life of the loan.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What happens if I overpay my mortgage UK?</summary>
+        <div class="faq-body">
+          <p>Most UK fixed-rate mortgages allow you to overpay up to <strong>10% of the outstanding balance each year</strong> without an Early Repayment Charge. Overpayments come straight off the capital, so they reduce both your remaining balance and the interest you'll accrue going forward.</p>
+          <p>An extra £100 a month on a £200,000 mortgage at 5% over 25 years can save roughly £30,000 in interest and clear the mortgage 4–5 years early. Always check your lender's overpayment limits before transferring large amounts.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the difference between fixed and variable rate mortgages?</summary>
+        <div class="faq-body">
+          <p>A <strong>fixed-rate</strong> mortgage locks your interest rate for a set period (usually 2, 3, 5, or 10 years), so your monthly payment is predictable. After the fix ends, you typically move onto the lender's Standard Variable Rate unless you remortgage.</p>
+          <p>A <strong>variable-rate</strong> mortgage (tracker, discount, or SVR) moves with the Bank of England base rate or the lender's discretion, so payments can rise and fall. Trackers are usually cheaper when base rates are low; fixed-rate deals are popular when rates are expected to rise.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is loan-to-value (LTV)?</summary>
+        <div class="faq-body">
+          <p>LTV is the size of your mortgage as a percentage of the property's value. A £200,000 mortgage on a £250,000 home is 80% LTV.</p>
+          <p>Lenders charge lower rates at lower LTVs because the loan is safer for them — there's typically a step-down at 90%, 85%, 80%, 75%, and 60%. A 95% LTV mortgage might be 1–2 percentage points more expensive than a 60% LTV deal on the same property.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is interest-only and when should I use it?</summary>
+        <div class="faq-body">
+          <p>On an interest-only mortgage, your monthly payments cover only the interest charged that month — the capital balance never reduces and must be repaid in full at the end of the term, usually from a separate investment, sale of the property, or a switch to a repayment mortgage.</p>
+          <p>UK residential interest-only is now uncommon and typically requires a credible repayment vehicle. It's more common for buy-to-let mortgages, where the rent covers interest and the capital is repaid by selling the property later. The calculator above lets you compare monthly cost between repayment and interest-only for the same loan.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your mortgage, equity and full net worth in one place?</h2>
+      <p>Vault is the home for everything this calculator hints at — your property value, mortgage balance, equity, and how it all fits into your full net worth. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     MORTGAGE CALCULATOR LOGIC — built from scratch.
+     The standard amortisation formula:
+       M = P · r(1+r)^n / ((1+r)^n − 1)
+     For interest-only: M = P · r (capital never reduces).
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// State
+let mState = {
+  price: null,
+  deposit: null,
+  depositUnit: 'pound',   // 'pound' or 'pct'
+  termYears: 25,
+  rate: null,
+  type: 'repayment',       // 'repayment' or 'io'
+};
+
+// ── Formatters ─────────────────────────────────────────────────────────────
+function mFmtMoney(n, dp) {
+  if (!isFinite(n)) return '£—';
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '-' : '';
+  const decimals = dp != null ? dp : 0;
+  return sign + '£' + abs.toLocaleString('en-GB', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+}
+
+function mFmtPct(n) {
+  if (!isFinite(n)) return '—';
+  return n.toFixed(1) + '%';
+}
+
+// ── Core maths ─────────────────────────────────────────────────────────────
+// Loan amount = price - deposit (deposit converted from % if needed).
+function mGetLoanAmount(s) {
+  if (!s.price || s.price <= 0) return 0;
+  let depAmt = 0;
+  if (s.deposit != null && s.deposit > 0) {
+    depAmt = s.depositUnit === 'pct'
+      ? s.price * (s.deposit / 100)
+      : s.deposit;
+  }
+  depAmt = Math.min(depAmt, s.price);
+  return Math.max(0, s.price - depAmt);
+}
+
+// Standard amortisation formula. r is annual rate in % (e.g. 4.5).
+// Returns monthly payment, capital — interest split over the full term.
+function mCalculate(s) {
+  const loan = mGetLoanAmount(s);
+  if (loan <= 0 || !s.termYears || s.termYears <= 0 || s.rate == null || s.rate < 0) {
+    return null;
+  }
+  const n = s.termYears * 12;            // total months
+  const r = (s.rate / 100) / 12;          // monthly rate as decimal
+
+  let monthly, totalRepaid, totalInterest;
+
+  if (s.type === 'io') {
+    // Interest-only: capital balance never reduces, monthly payment = interest only.
+    // Total repaid over the term = (interest × n) + capital owed at end.
+    monthly = loan * r;
+    totalInterest = monthly * n;
+    totalRepaid   = totalInterest + loan;
+  } else {
+    // Repayment.
+    if (r === 0) {
+      // 0% rate edge case: pure capital repayment.
+      monthly = loan / n;
+      totalRepaid = loan;
+      totalInterest = 0;
+    } else {
+      const factor = Math.pow(1 + r, n);
+      monthly = loan * r * factor / (factor - 1);
+      totalRepaid = monthly * n;
+      totalInterest = totalRepaid - loan;
+    }
+  }
+
+  const ltv = s.price > 0 ? (loan / s.price) * 100 : 0;
+  return {
+    loan, monthly, totalRepaid, totalInterest, ltv,
+    capital: s.type === 'io' ? loan : (totalRepaid - totalInterest),
+    n
+  };
+}
+
+// LTV band label — communicates roughly which lender pricing tier you're in.
+function mLtvBand(ltv) {
+  if (ltv <= 0) return '';
+  if (ltv > 95)  return 'Above 95% — very limited options';
+  if (ltv > 90)  return '90–95% band';
+  if (ltv > 85)  return '85–90% band';
+  if (ltv > 80)  return '80–85% band';
+  if (ltv > 75)  return '75–80% band';
+  if (ltv > 60)  return '60–75% band';
+  return '60% or lower — best rates';
+}
+
+// ── Render results ─────────────────────────────────────────────────────────
+function mRender() {
+  const r = mCalculate(mState);
+  const empty = document.getElementById('m-empty');
+  const out = document.getElementById('m-output');
+  if (!r) {
+    if (empty) empty.style.display = 'block';
+    if (out)   out.style.display = 'none';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  if (out)   out.style.display = 'block';
+
+  // Hero — monthly payment + LTV
+  document.getElementById('m-monthly').textContent = mFmtMoney(r.monthly, 2);
+  document.getElementById('m-monthly-sub').textContent = 'on ' + mFmtMoney(r.loan) + ' borrowed';
+  document.getElementById('m-ltv').textContent = mFmtPct(r.ltv);
+  document.getElementById('m-ltv-band').textContent = mLtvBand(r.ltv);
+
+  // Summary cells
+  document.getElementById('m-total-repaid').textContent   = mFmtMoney(r.totalRepaid);
+  document.getElementById('m-total-interest').textContent = mFmtMoney(r.totalInterest);
+
+  // Capital vs interest split bar
+  const capPct = r.totalRepaid > 0 ? (r.capital / r.totalRepaid) * 100 : 0;
+  const intPct = 100 - capPct;
+  document.getElementById('m-bar-cap').style.width = capPct.toFixed(2) + '%';
+  document.getElementById('m-bar-int').style.width = intPct.toFixed(2) + '%';
+  document.getElementById('m-leg-cap').textContent = mFmtMoney(r.capital);
+  document.getElementById('m-leg-int').textContent = mFmtMoney(r.totalInterest);
+
+  // Interest-only callout note
+  document.getElementById('m-io-note').style.display = mState.type === 'io' ? 'block' : 'none';
+
+  // Deposit % hint (when entering deposit in £)
+  const depHint = document.getElementById('m-deposit-pct-hint');
+  if (depHint) {
+    if (mState.price > 0 && mState.deposit > 0) {
+      const depAmt = mState.depositUnit === 'pct'
+        ? mState.price * (mState.deposit / 100)
+        : mState.deposit;
+      const depPct = (depAmt / mState.price) * 100;
+      depHint.textContent = mFmtMoney(depAmt) + ' deposit · ' + depPct.toFixed(1) + '% of price';
+    } else {
+      depHint.textContent = '';
+    }
+  }
+}
+
+// ── Input wiring ───────────────────────────────────────────────────────────
+function mParseNum(v) {
+  if (v === '' || v == null) return null;
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+
+function mOnInput() {
+  mState.price     = mParseNum(document.getElementById('m-price').value);
+  mState.deposit   = mParseNum(document.getElementById('m-deposit').value);
+  mState.termYears = mParseNum(document.getElementById('m-term').value)  || 0;
+  mState.rate      = mParseNum(document.getElementById('m-rate').value);
+  mRender();
+}
+
+function mSetDepositUnit(unit) {
+  mState.depositUnit = unit;
+  document.getElementById('m-dep-pound').classList.toggle('active', unit === 'pound');
+  document.getElementById('m-dep-pct').classList.toggle('active',   unit === 'pct');
+  document.getElementById('m-dep-pound').setAttribute('aria-pressed', unit === 'pound');
+  document.getElementById('m-dep-pct').setAttribute('aria-pressed',   unit === 'pct');
+  document.getElementById('m-deposit-prefix').textContent = unit === 'pct' ? '%' : '£';
+  mRender();
+}
+
+function mSetType(type) {
+  mState.type = type;
+  document.getElementById('m-type-repay').classList.toggle('active', type === 'repayment');
+  document.getElementById('m-type-io').classList.toggle('active',    type === 'io');
+  document.getElementById('m-type-repay').setAttribute('aria-pressed', type === 'repayment');
+  document.getElementById('m-type-io').setAttribute('aria-pressed',    type === 'io');
+  mRender();
+}
+
+function mInit() {
+  // Wire inputs
+  ['m-price', 'm-deposit', 'm-term', 'm-rate'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', mOnInput);
+  });
+  document.getElementById('m-dep-pound')?.addEventListener('click', () => mSetDepositUnit('pound'));
+  document.getElementById('m-dep-pct')?.addEventListener('click',   () => mSetDepositUnit('pct'));
+  document.getElementById('m-type-repay')?.addEventListener('click', () => mSetType('repayment'));
+  document.getElementById('m-type-io')?.addEventListener('click',    () => mSetType('io'));
+
+  // Default term shows useful starting hint
+  document.getElementById('m-term').value = '25';
+  mState.termYears = 25;
+  mRender();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mInit);
+} else {
+  mInit();
+}
+</script>
+
+</body>
+</html>
