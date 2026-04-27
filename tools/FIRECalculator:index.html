@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FIRE Calculator UK — Financial Independence Retire Early | Free | Vault</title>
+<meta name="description" content="Calculate your FIRE number and find out when you could retire early. Free, private UK FIRE calculator — no sign up, no data shared. Built for financial independence planning." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/fire-calculator" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FIRE Calculator UK — Financial Independence Retire Early" />
+<meta property="og:description" content="Calculate your FIRE number and find out when you could retire early. Free, private — no sign up, no data shared." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/fire-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  /* Hero */
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 640px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  /* Sections */
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body {
+    font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px;
+  }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px;
+  }
+  .narrow ol, .narrow ul {
+    padding-left: 22px; margin: 6px 0 14px; color: var(--text);
+  }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .definition-card p {
+    margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  /* CTA */
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     FIRE CALCULATOR EMBED — extracted from Vault_V.1.42.html.
+     Variables scoped to .fire-embed so the calculator carries the
+     app's light-theme look without leaking the warm palette into
+     the rest of the page.
+     ════════════════════════════════════════════════════════════════ */
+  .fire-embed {
+    --surface:  #fbfaf8;
+    --surface2: #eeebe8;
+    --surface3: #ebe7e0;
+    --border:   #e2ddd5;
+    --border2:  #ccc8be;
+    --text:     #221f1c;
+    --text2:    #7f756c;
+    --text3:    #a8a099;
+    --accent:   #298e5f;
+    --accent2:  #1878a0;
+    --accent4:  #b07830;
+    --red:      #c83030;
+    --green:    #208050;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --serif: 'DM Serif Display', serif;
+
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 620px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  /* Scoped form reset (mirrors app's global input rule). */
+  .fire-embed input, .fire-embed select, .fire-embed textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 12px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .fire-embed input:focus, .fire-embed select:focus { outline: none; border-color: var(--accent); }
+
+  /* ── FIRE Calculator (extracted from app lines ~3889–4236) ── */
+  .fire-embed .fire-info-btn {
+    background: none; border: 1px solid var(--border); color: var(--text3);
+    font-size: 10px; font-family: var(--mono);
+    padding: 4px 10px; border-radius: 100px;
+    cursor: pointer; white-space: nowrap; transition: all 0.15s;
+  }
+  .fire-embed .fire-info-btn:hover, .fire-embed .fire-info-btn.open { color: var(--accent); border-color: var(--accent); }
+  .fire-embed .fire-info-panel {
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 12px 14px; margin: 10px 0 4px;
+    font-size: 11px; color: var(--text2); line-height: 1.7;
+  }
+  .fire-embed .fire-info-panel p { margin: 0 0 8px; }
+  .fire-embed .fire-info-panel p:last-child { margin: 0; }
+  .fire-embed .fire-info-tiers {
+    display: flex; flex-direction: column; gap: 3px; margin-top: 8px;
+    padding: 8px 10px; background: var(--surface2); border-radius: var(--radius-sm);
+    font-size: 10px; color: var(--text3);
+  }
+  .fire-embed .fire-inputs { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+  .fire-embed .fire-inputs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px;
+    margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .fire-embed .fire-input-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .fire-embed .fire-input-row-full {
+    grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; margin-top: 4px;
+  }
+  .fire-embed .fire-label { font-size: 11px; color: var(--text2); line-height: 1.3; flex: 1; min-width: 0; }
+  .fire-embed .fire-input-wrap {
+    display: flex; align-items: center; background: var(--surface3);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 0 8px; width: 110px; flex-shrink: 0; transition: border-color 0.15s;
+  }
+  .fire-embed .fire-input-wrap:focus-within { border-color: var(--accent); }
+  .fire-embed .fire-prefix { font-size: 12px; color: var(--text3); flex-shrink: 0; }
+  .fire-embed .fire-input {
+    background: none; border: none; color: var(--text);
+    font-family: var(--mono); font-size: 13px;
+    padding: 8px 6px; width: 100%; outline: none;
+  }
+  .fire-embed .fire-growth-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 4px;
+  }
+  .fire-embed .fire-growth-card {
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 8px 10px; cursor: pointer;
+    transition: all 0.15s; position: relative;
+  }
+  .fire-embed .fire-growth-card:hover { border-color: var(--border2); }
+  .fire-embed .fire-growth-card.active {
+    background: rgba(41,142,95,0.10); border-color: var(--accent);
+  }
+  .fire-embed .fire-growth-card-name { font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 1px; }
+  .fire-embed .fire-growth-card.active .fire-growth-card-name { color: var(--accent); }
+  .fire-embed .fire-growth-card-rate {
+    font-size: 13px; font-family: var(--mono); font-weight: 700;
+    color: var(--accent); line-height: 1;
+  }
+  .fire-embed .fire-growth-card-tip {
+    font-size: 9px; color: var(--text3); margin-top: 3px; line-height: 1.4;
+  }
+  .fire-embed .fgc-info {
+    position: absolute; top: 6px; right: 7px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: rgba(24,120,160,0.12); border: 1px solid rgba(24,120,160,0.35);
+    font-size: 9px; font-style: normal; color: var(--accent2);
+    cursor: pointer; transition: background 0.15s, border-color 0.15s; z-index: 2;
+  }
+  .fire-embed .fgc-info:hover { background: rgba(24,120,160,0.28); border-color: var(--accent2); }
+  .fire-embed .fgc-info-popover {
+    display: none; position: absolute; bottom: calc(100% + 8px);
+    left: 50%; transform: translateX(-50%); width: 220px;
+    background: var(--surface); border: 1px solid rgba(24,120,160,0.5);
+    border-radius: var(--radius); padding: 9px 11px;
+    font-size: 11px; color: var(--text2); line-height: 1.5;
+    z-index: 200; box-shadow: 0 4px 20px rgba(18,17,15,0.15);
+    pointer-events: none; white-space: normal; text-align: left; font-weight: 400;
+  }
+  .fire-embed .fgc-info-popover::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent; border-top-color: rgba(24,120,160,0.5);
+  }
+  .fire-embed .fgc-info:hover .fgc-info-popover,
+  .fire-embed .fgc-info.open .fgc-info-popover { display: block; }
+  .fire-embed .fgc-info-popover.anchor-right { left: auto; right: 0; transform: none; }
+  .fire-embed .fgc-info-popover.anchor-right::after { left: auto; right: 6px; transform: none; }
+  .fire-embed .fgc-context-note {
+    font-size: 10px; color: var(--text3); margin-top: 6px; line-height: 1.5;
+  }
+  .fire-embed .fire-comfort-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 4px;
+  }
+  .fire-embed .fire-hero {
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); margin-top: 16px;
+    display: grid; grid-template-columns: 1fr 1fr; overflow: hidden;
+  }
+  .fire-embed .fire-hero-top { padding: 16px 14px; border-right: 1px solid var(--border); }
+  .fire-embed .fire-hero-number-label {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 4px;
+  }
+  .fire-embed .fire-hero-number {
+    font-family: var(--serif); font-size: 28px; color: var(--accent);
+    line-height: 1; margin-bottom: 2px;
+  }
+  .fire-embed .fire-hero-number-sub { font-size: 10px; color: var(--text3); font-family: var(--mono); }
+  .fire-embed .fire-hero-approach {
+    font-size: 9px; color: var(--text3); margin-top: 6px; font-style: italic; line-height: 1.3;
+  }
+  .fire-embed .fire-hero-freedom { padding: 16px 14px; }
+  .fire-embed .fire-freedom-label {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 4px;
+  }
+  .fire-embed .fire-freedom-value {
+    font-family: var(--serif); font-size: 18px; color: var(--accent);
+    line-height: 1.2; margin-bottom: 4px;
+  }
+  .fire-embed .fire-freedom-sub {
+    font-size: 10px; color: var(--text3); font-family: var(--mono); line-height: 1.4;
+  }
+  .fire-embed .fire-milestones {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 10px;
+  }
+  .fire-embed .fire-milestone {
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 10px 10px 8px;
+    text-align: center; transition: border-color 0.2s;
+  }
+  .fire-embed .fire-milestone.reached {
+    border-color: rgba(41,142,95,0.4); background: rgba(41,142,95,0.05);
+  }
+  .fire-embed .fire-milestone.progress {
+    border-color: rgba(24,120,160,0.4); background: rgba(24,120,160,0.04);
+  }
+  .fire-embed .fire-ms-badge {
+    font-size: 9px; font-family: var(--mono); text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 2px 7px; border-radius: 100px;
+    border: 1px solid var(--border); color: var(--text3);
+    display: inline-block; margin-bottom: 6px;
+  }
+  .fire-embed .fire-ms-badge.reached {
+    color: var(--accent); border-color: rgba(41,142,95,0.4); background: rgba(41,142,95,0.08);
+  }
+  .fire-embed .fire-ms-badge.progress {
+    color: var(--accent2); border-color: rgba(24,120,160,0.4); background: rgba(24,120,160,0.08);
+  }
+  .fire-embed .fire-ms-name { font-size: 10px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .fire-embed .fire-ms-desc { font-size: 9px; color: var(--text3); margin-bottom: 6px; line-height: 1.3; }
+  .fire-embed .fire-ms-num { font-family: var(--mono); font-size: 11px; color: var(--text2); }
+  .fire-embed .fire-whatif-label {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--text3); margin: 14px 0 6px;
+  }
+  .fire-embed .fire-whatif-strip { display: flex; flex-direction: column; gap: 5px; }
+  .fire-embed .fire-whatif-btn {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 9px 12px;
+    cursor: pointer; transition: all 0.15s; text-align: left; gap: 10px;
+    font-family: var(--sans);
+  }
+  .fire-embed .fire-whatif-btn:hover { border-color: var(--border2); }
+  .fire-embed .fire-whatif-btn.active {
+    border-color: var(--accent); background: rgba(41,142,95,0.06);
+  }
+  .fire-embed .fire-whatif-text { font-size: 11px; color: var(--text2); }
+  .fire-embed .fire-whatif-delta {
+    font-size: 10px; font-family: var(--mono); color: var(--accent);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .fire-embed .fire-whatif-delta.worse { color: var(--red); }
+
+  .fire-embed .plan-section-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+  }
+  .fire-embed .fill-prompt {
+    font-size: 10px; color: var(--text3); font-family: var(--sans); line-height: 1.5;
+    margin: 8px 0 4px; padding: 8px 12px;
+    background: var(--surface2); border-radius: var(--radius-sm);
+    border-left: 3px solid rgba(41,142,95,0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .fire-embed { padding: 16px; }
+    .fire-embed .fire-inputs-grid { grid-template-columns: 1fr; }
+    .fire-embed .fire-hero { grid-template-columns: 1fr; }
+    .fire-embed .fire-hero-top { border-right: none; border-bottom: 1px solid var(--border); }
+    .fire-embed .fire-milestones { grid-template-columns: 1fr; }
+    .fire-embed .fire-comfort-grid { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<!-- ════════════════════════════════════════════════════════════════
+     STRUCTURED DATA — FAQ schema (JSON-LD)
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much do I need to retire early in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard FIRE rule of thumb is 25× your annual spending — based on a 4% safe withdrawal rate. So if you spend £30,000 a year, your FIRE number is £750,000. If you spend £40,000, it's £1 million. The figure is the size of an investment portfolio that should sustainably fund your lifestyle indefinitely. Use the FIRE calculator above to see your exact number based on your monthly spending."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 4% rule for UK retirement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 4% rule says that if you withdraw no more than 4% of your initial portfolio each year (adjusted for inflation), your money should last at least 30 years. It comes from the Trinity Study, which back-tested decades of US stock and bond market data. The 4% figure is the most common safe withdrawal rate, though many in the UK FIRE community prefer a more cautious 3–3.5% to account for sequence-of-returns risk and longer horizons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the FIRE number calculator work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two calculations sit underneath: your FIRE number is annual spending divided by your safe withdrawal rate. Your freedom date is then the number of months it takes for your current savings, plus monthly contributions, to compound up to that target at your chosen growth rate. The calculator above lets you toggle the growth rate (4% cash to 11% aggressive equity) and the withdrawal approach (Cautious 3.5%, Balanced 4%, Flexible 5%) independently."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I reach financial independence in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three levers: spend less, earn more, invest the difference in low-cost diversified funds. The savings rate is what matters most. At a 50% savings rate, financial independence is roughly 17 years away regardless of income. At 25% it's about 32 years. UK-specific tools that help: max out your ISA allowance (£20,000 a year, tax-free growth and withdrawals), use a workplace pension or SIPP for higher-rate tax relief, and consider a Lifetime ISA if you're under 40."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I retire at 40 in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but it requires either a high savings rate or a high income — usually both. To retire at 40 starting from zero at 25, you'd need to save roughly 50–60% of your take-home pay every year and invest it in growth assets. The maths works on the calculator: enter your current age, your monthly spend in retirement, and your monthly contributions to see if 40 is realistic for you. Consider that pension savings can't usually be accessed until 57 (rising to 58 in 2028), so most early retirees use a 'bridge' of ISAs and taxable accounts to cover the gap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between Lean FIRE, Fat FIRE and Barista FIRE?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lean FIRE means retiring on essentials only — typically a smaller portfolio (often under £500k in the UK), with a frugal lifestyle. Fat FIRE means a comfortable retirement with travel, eating out, and buffer — usually £1.5M+ portfolios. Barista FIRE is a hybrid: you save enough that part-time work covers your day-to-day spending while your portfolio compounds untouched, often via a job that provides health benefits or social structure rather than a full salary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I include the UK State Pension in my FIRE calculations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your age and your conservatism. The State Pension is currently around £11,500 a year (full new State Pension) and starts at age 67 (rising to 68). If you're aiming for traditional retirement age, factoring it in is reasonable. If you're aiming to retire in your 30s or 40s, leave it out as a buffer — you'll bridge the gap to State Pension age on your own portfolio, and anything the State pays from age 67 onwards is upside, not load-bearing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this UK FIRE calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, completely free. There's no sign up, no email collection, and no paywall. Everything runs in your browser — none of the figures you enter are sent to a server or stored anywhere outside your device."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK FIRE Calculator",
+  "url": "https://thevaultapp.co.uk/tools/fire-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK FIRE calculator. Calculate your FIRE number, freedom date, and milestones for Lean / Regular / Fat FIRE."
+}
+</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+      <!-- Add more links here as the site grows, e.g. <a href="../../faq/">FAQ</a> -->
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Financial Independence, Retire Early</p>
+    <h1>FIRE Calculator UK — When Can You Retire Early?</h1>
+    <p class="lede">Enter your monthly spend, savings, and contributions to see your FIRE number and freedom date. FIRE — Financial Independence, Retire Early — is the point where your investments can fund your life without you needing to work. Free, private, no sign up.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section class="calc-block">
+  <div class="wrap">
+    <div class="fire-embed" id="fire-calc">
+
+      <!-- Info toggle -->
+      <div class="plan-section-header">
+        <div></div>
+        <button class="fire-info-btn" onclick="toggleFireInfo()" id="fire-info-btn" title="What is FIRE?">What is FIRE? ›</button>
+      </div>
+
+      <!-- Info panel -->
+      <div class="fire-info-panel" id="fire-info-panel" style="display:none">
+        <p>FIRE stands for <strong>Financial Independence, Retire Early</strong>. The idea is simple: if your investments generate enough passive income to cover your living expenses, you no longer need to work for money.</p>
+        <p>The core calculation uses the <strong>Safe Withdrawal Rate (SWR)</strong> — the percentage of your portfolio you can withdraw each year without running out of money. Based on decades of stock market history, 4% has proven sustainable over 30+ year retirements. Your FIRE Number is simply your annual expenses divided by your SWR.</p>
+        <p>Your <strong>Freedom Date</strong> is calculated by projecting your current savings and monthly contributions forward at your chosen growth rate, until you hit your FIRE Number.</p>
+        <div class="fire-info-tiers">
+          <div><strong>Lean FIRE</strong> — minimal lifestyle, lower target</div>
+          <div><strong>Regular FIRE</strong> — your chosen lifestyle maintained</div>
+          <div><strong>Fat FIRE</strong> — comfortable with extras and buffer</div>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <div class="fire-inputs">
+        <div class="fire-inputs-grid">
+          <div class="fire-input-row">
+            <label class="fire-label">Monthly spend in retirement</label>
+            <div class="fire-input-wrap"><span class="fire-prefix">£</span><input type="number" id="fi-spend" class="fire-input" placeholder="2,000" inputmode="decimal" oninput="calcFIREFull()" /></div>
+          </div>
+          <div class="fire-input-row">
+            <label class="fire-label">Saved &amp; invested now</label>
+            <div class="fire-input-wrap"><span class="fire-prefix">£</span><input type="number" id="fi-saved" class="fire-input" placeholder="50,000" inputmode="decimal" oninput="calcFIREFull()" /></div>
+          </div>
+          <div class="fire-input-row">
+            <label class="fire-label">Monthly contributions</label>
+            <div class="fire-input-wrap"><span class="fire-prefix">£</span><input type="number" id="fi-monthly" class="fire-input" placeholder="500" inputmode="decimal" oninput="calcFIREFull()" /></div>
+          </div>
+          <div class="fire-input-row">
+            <label class="fire-label">Current age</label>
+            <div class="fire-input-wrap"><input type="number" id="fi-age" class="fire-input" placeholder="30" inputmode="numeric" oninput="calcFIREFull()" /></div>
+          </div>
+        </div>
+
+        <div class="fire-input-row-full">
+          <label class="fire-label" style="flex:none">Expected growth rate <span style="font-size:10px;color:var(--text3)">(how fast your savings grow before retirement)</span></label>
+          <div class="fire-growth-grid">
+            <div class="fire-growth-card" id="fgc-cash" onclick="setFireGrowth(0.04)">
+              <span class="fgc-info" onclick="event.stopPropagation();this.classList.toggle('open')" tabindex="0">ⓘ<span class="fgc-info-popover">Reflects current high street savings accounts and cash ISAs. Choose this if your money stays in savings rather than being invested in the stock market. Lower risk, lower reward.</span></span>
+              <div class="fire-growth-card-name">Cash / Savings</div>
+              <div class="fire-growth-card-rate">4%</div>
+              <div class="fire-growth-card-tip">High street savings &amp; cash ISAs</div>
+            </div>
+            <div class="fire-growth-card" id="fgc-conservative" onclick="setFireGrowth(0.06)">
+              <span class="fgc-info" onclick="event.stopPropagation();this.classList.toggle('open')" tabindex="0">ⓘ<span class="fgc-info-popover anchor-right">Reflects a cautious investment portfolio weighted toward bonds and stable assets. Suitable if you are close to retirement or have a low appetite for risk.</span></span>
+              <div class="fire-growth-card-name">Conservative</div>
+              <div class="fire-growth-card-rate">6%</div>
+              <div class="fire-growth-card-tip">Cautious portfolio, bonds-weighted</div>
+            </div>
+            <div class="fire-growth-card active" id="fgc-moderate" onclick="setFireGrowth(0.08)">
+              <span class="fgc-info" onclick="event.stopPropagation();this.classList.toggle('open')" tabindex="0">ⓘ<span class="fgc-info-popover">Close to the long term historical average of a globally diversified index fund portfolio. A reasonable assumption for most people investing in stocks and shares over 10 or more years.</span></span>
+              <div class="fire-growth-card-name">Moderate</div>
+              <div class="fire-growth-card-rate">8%</div>
+              <div class="fire-growth-card-tip">Balanced index fund, historical avg</div>
+            </div>
+            <div class="fire-growth-card" id="fgc-aggressive" onclick="setFireGrowth(0.11)">
+              <span class="fgc-info" onclick="event.stopPropagation();this.classList.toggle('open')" tabindex="0">ⓘ<span class="fgc-info-popover anchor-right">Reflects a high equity, growth-focused portfolio. Achievable over long periods with a globally diversified all-equity strategy but comes with significant short term volatility. Only suitable for very long time horizons.</span></span>
+              <div class="fire-growth-card-name">Aggressive</div>
+              <div class="fire-growth-card-rate">11%</div>
+              <div class="fire-growth-card-tip">High equity, global stocks, long horizon</div>
+            </div>
+          </div>
+          <div class="fgc-context-note">This affects how fast your savings grow on the way to your FIRE number. Your withdrawal rate is set separately below.</div>
+        </div>
+
+        <div class="fire-input-row-full" style="margin-top:10px">
+          <label class="fire-label" style="flex:none">Withdrawal approach <span style="font-size:10px;color:var(--text3)">(how you plan to draw down in retirement)</span></label>
+          <div class="fire-comfort-grid">
+            <div class="fire-growth-card" id="frc-cautious" onclick="setFireComfort('cautious')">
+              <div class="fire-growth-card-name">Cautious</div>
+              <div class="fire-growth-card-tip" style="margin-top:4px">I want my money to last indefinitely, even in bad markets.</div>
+            </div>
+            <div class="fire-growth-card active" id="frc-balanced" onclick="setFireComfort('balanced')">
+              <div class="fire-growth-card-name">Balanced</div>
+              <div class="fire-growth-card-tip" style="margin-top:4px">The classic FIRE approach, proven over most 30+ year retirement periods.</div>
+            </div>
+            <div class="fire-growth-card" id="frc-flexible" onclick="setFireComfort('flexible')">
+              <div class="fire-growth-card-name">Flexible</div>
+              <div class="fire-growth-card-tip" style="margin-top:4px">I am comfortable adjusting my spending if markets underperform.</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.fire-inputs -->
+
+      <div class="fill-prompt">
+        Fill in your numbers above — Vault will calculate your FIRE number and project your freedom date in real time.
+      </div>
+
+      <!-- Hero output -->
+      <div class="fire-hero" id="fire-hero">
+        <div class="fire-hero-top">
+          <div class="fire-hero-number-label">You need</div>
+          <div class="fire-hero-number" id="fi-number">£—</div>
+          <div class="fire-hero-number-sub">to retire</div>
+          <div class="fire-hero-approach" id="fi-approach"></div>
+        </div>
+        <div class="fire-hero-freedom" id="fi-freedom">
+          <div class="fire-freedom-label">Freedom date</div>
+          <div class="fire-freedom-value" id="fi-freedom-val">—</div>
+          <div class="fire-freedom-sub" id="fi-freedom-sub"></div>
+        </div>
+      </div>
+
+      <!-- Milestones -->
+      <div class="fire-milestones" id="fire-milestones">
+        <div class="fire-milestone" id="fm-lean">
+          <div class="fire-ms-badge" id="fm-lean-badge">—</div>
+          <div class="fire-ms-name">Lean FIRE</div>
+          <div class="fire-ms-desc">Covers essentials only</div>
+          <div class="fire-ms-num" id="fm-lean-num">—</div>
+        </div>
+        <div class="fire-milestone" id="fm-yours">
+          <div class="fire-ms-badge" id="fm-yours-badge">—</div>
+          <div class="fire-ms-name">Your FIRE</div>
+          <div class="fire-ms-desc">Your chosen lifestyle</div>
+          <div class="fire-ms-num" id="fm-yours-num">—</div>
+        </div>
+        <div class="fire-milestone" id="fm-fat">
+          <div class="fire-ms-badge" id="fm-fat-badge">—</div>
+          <div class="fire-ms-name">Fat FIRE</div>
+          <div class="fire-ms-desc">Comfortable with extras</div>
+          <div class="fire-ms-num" id="fm-fat-num">—</div>
+        </div>
+      </div>
+
+      <!-- What-if strip -->
+      <div class="fire-whatif-label">What if…</div>
+      <div class="fire-whatif-strip" id="fire-whatif-strip">
+        <button class="fire-whatif-btn" id="fwb-0" onclick="toggleWhatIf(0)">
+          <span class="fire-whatif-text">I save £200 more per month</span>
+          <span class="fire-whatif-delta" id="fwd-0"></span>
+        </button>
+        <button class="fire-whatif-btn" id="fwb-1" onclick="toggleWhatIf(1)">
+          <span class="fire-whatif-text">I reduce retirement spend by £300/mo</span>
+          <span class="fire-whatif-delta" id="fwd-1"></span>
+        </button>
+        <button class="fire-whatif-btn" id="fwb-2" onclick="toggleWhatIf(2)">
+          <span class="fire-whatif-text">I get a £5k raise and invest it all</span>
+          <span class="fire-whatif-delta" id="fwd-2"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How to use -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Four numbers, one freedom date</h2>
+    <p class="section-body muted">The FIRE calculator UK above runs the maths the moment you start typing. Here's how to get a useful number out of it.</p>
+
+    <ol>
+      <li><strong>Estimate your monthly spend in retirement.</strong> Not your current take-home pay — your spending. If you live on £2,500 a month now and expect that to be roughly the same in retirement, use £2,500. The calculator multiplies by 12 to get your annual spending, then divides by your safe withdrawal rate to get your FIRE number.</li>
+      <li><strong>Enter what you've already saved and invested.</strong> Combine ISAs, pensions (if you'll be over 57), SIPP, GIA, even crypto if it's part of your long-term portfolio. Cash you'll spend in the next year doesn't count.</li>
+      <li><strong>Add your monthly contributions.</strong> Personal pension, workplace pension (yours plus employer), ISA contributions, anything regularly going into long-term investments.</li>
+      <li><strong>Pick a growth rate and a withdrawal approach.</strong> Growth rate models how your money grows on the way to FI. Withdrawal approach controls your safe withdrawal rate — cautious 3.5%, balanced 4%, flexible 5%. Together they shape both your FIRE number and your freedom date.</li>
+    </ol>
+
+    <p class="section-body">Below the headline figures you'll see Lean / Your / Fat FIRE milestones (50%, 100%, 150% of your annual spend) and a "What if…" strip — toggle them to see how saving £200 more, reducing your retirement spend, or investing a raise changes your timeline.</p>
+  </div>
+</section>
+
+<!-- Understanding FIRE -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding FIRE</p>
+    <h2 class="section-title">The core ideas behind the financial independence calculator</h2>
+    <p class="section-body muted">FIRE is built on a handful of ideas that, once they click, change how you think about money for good.</p>
+
+    <div class="definition-card">
+      <h4>The 4% rule (Safe Withdrawal Rate)</h4>
+      <p>The 4% rule comes from the Trinity Study, which back-tested decades of US stock and bond returns to find the highest withdrawal rate a portfolio could sustain for 30+ years without running out. The headline number — 4% per year, adjusted for inflation — is the basis of the modern FIRE movement. Your FIRE number is simply your annual spending divided by your safe withdrawal rate (SWR). At a 4% SWR, that's the same as 25× annual spending.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why people choose 3.5% instead</h4>
+      <p>The original 4% rule assumed a 30-year retirement. If you're retiring in your 30s or 40s with a 50+ year horizon, a more cautious 3% to 3.5% SWR is widely recommended. It also handles "sequence-of-returns risk" better — the danger of retiring just before a major market downturn. The Cautious option in the calculator above uses 3.5%.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Lean FIRE</h4>
+      <p>Lean FIRE is the minimalist version. You retire on a smaller portfolio (often under £500k in the UK) by keeping spending tight — modest housing, no expensive holidays, careful with cars and eating out. The trade-off is freedom from work in exchange for a deliberately frugal lifestyle. The calculator's Lean FIRE milestone is set at 50% of your stated annual spend.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Fat FIRE</h4>
+      <p>Fat FIRE is the opposite — retire with enough that comfort, travel, and the occasional luxury are baked in. It's typically £1.5M+ in the UK and means working longer or earning more along the way. The calculator's Fat FIRE milestone is set at 150% of your stated annual spend.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Barista FIRE</h4>
+      <p>Barista FIRE is a hybrid. You save enough that part-time work covers your day-to-day spending while your portfolio compounds untouched until traditional retirement age. Often paired with a job that provides health benefits, social structure, or a sense of purpose without a full-time salary load. It's a popular middle path for people who don't want to never work again — they just don't want their job to be load-bearing.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why the number feels big — but is achievable</h4>
+      <p>£750,000 sounds enormous. But the FIRE number is meant to last decades. The reason the maths works is compounding: at a 7% real return, money roughly doubles every decade. £100k saved at 30 is around £400k by 50 without adding a single pound — and most people are still contributing the whole way. The single biggest lever isn't your income — it's your savings rate. At 50% you reach FI in ~17 years from zero. At 25%, ~32 years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UK specifics -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">FIRE in a UK context</h2>
+
+    <h3>ISAs and SIPPs are the foundation</h3>
+    <p class="section-body">UK FIRE planning leans heavily on tax wrappers. <strong>Stocks and Shares ISAs</strong> let you invest up to £20,000 a year with tax-free growth and tax-free withdrawals at any age — making them the cornerstone of an early-retirement bridge before pensions can be accessed. <strong>SIPPs</strong> (Self-Invested Personal Pensions) bolt on income tax relief at your marginal rate — a higher-rate taxpayer effectively gets a 40% boost on every contribution — but the money is locked away until 57 (rising to 58 in 2028). Most UK FIRE plans use both: ISAs for the early-retirement bridge, SIPP for the years from 57 onwards.</p>
+
+    <h3>The Lifetime ISA (LISA) for under-40s</h3>
+    <p class="section-body">If you're under 40 and don't already have one, a Lifetime ISA gives you a 25% government bonus on contributions up to £4,000 a year. Withdraw before 60 (other than for a first home) and you lose the bonus plus a small penalty, so it's a long-horizon vehicle. Useful FIRE tool, but it's a commitment.</p>
+
+    <h3>UK State Pension and your FIRE number</h3>
+    <p class="section-body">The full new State Pension is around £11,500 a year (2025/26) and currently starts at age 67, rising to 68 in the 2040s. If you're aiming for traditional retirement age, factor it in. If you're aiming to retire in your 30s or 40s, leave it out as a buffer — bridge to State Pension age on your own portfolio, treat anything from age 67 onwards as upside not load-bearing.</p>
+
+    <h3>Inflation and "real" returns</h3>
+    <p class="section-body">The growth rate cards in the calculator (4% to 11%) are nominal — i.e. before inflation. The 4% rule is already inflation-adjusted because it includes annual increases, so your FIRE number is in today's pounds. If you assume 7% nominal growth and 2.5% inflation, your real return is roughly 4.5%. Most FIRE planning is done in real terms because it makes future spending power easier to reason about.</p>
+
+    <h3>Workplace pension matching is essentially free FIRE fuel</h3>
+    <p class="section-body">If your employer matches pension contributions, contribute at least up to the match. It's an instant 100% return, on top of tax relief. For a basic-rate taxpayer with a 5% match, every £1 of your take-home pay turns into roughly £2.50 inside the pension. Hard to beat as a FIRE strategy.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK FIRE and retiring early.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>How much do I need to retire early in the UK?</summary>
+        <div class="faq-body">
+          <p>The standard rule of thumb is <strong>25× your annual spending</strong>, based on a 4% safe withdrawal rate. If you spend £30,000 a year, your FIRE number is £750,000. If you spend £40,000, it's £1 million.</p>
+          <p>That figure represents the size of an investment portfolio that should sustainably fund your lifestyle indefinitely. Use the FIRE calculator above to see your exact number based on your monthly spending.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is the 4% rule UK?</summary>
+        <div class="faq-body">
+          <p>The 4% rule says that if you withdraw no more than 4% of your initial portfolio each year (adjusted for inflation), your money should last at least 30 years. It comes from the <strong>Trinity Study</strong>, which back-tested decades of stock and bond market data.</p>
+          <p>The 4% figure is the most common safe withdrawal rate, though many in the UK FIRE community prefer a more cautious 3–3.5% to account for sequence-of-returns risk and longer horizons. The calculator above lets you switch between Cautious (3.5%), Balanced (4%), and Flexible (5%).</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this FIRE number calculator work?</summary>
+        <div class="faq-body">
+          <p>Two calculations sit underneath. Your FIRE number = annual spending ÷ safe withdrawal rate. Your freedom date is then the number of months it takes for your current savings, plus monthly contributions, to compound up to that target at your chosen growth rate.</p>
+          <p>Growth rate (4% cash to 11% aggressive equity) and withdrawal approach are independent — change either to see how it affects your timeline.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How do I reach financial independence in the UK?</summary>
+        <div class="faq-body">
+          <p>Three levers: <strong>spend less, earn more, invest the difference</strong> in low-cost diversified funds. The savings rate matters more than the absolute income. At a 50% savings rate, financial independence is roughly 17 years away regardless of income. At 25%, it's about 32 years.</p>
+          <p>UK-specific tools that help: max out your ISA allowance (£20,000 a year, tax-free growth and withdrawals), use a workplace pension or SIPP for higher-rate tax relief, and consider a Lifetime ISA if you're under 40.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Can I retire at 40 in the UK?</summary>
+        <div class="faq-body">
+          <p>Yes, but it requires either a high savings rate or a high income — usually both. To retire at 40 starting from zero at 25, you'd need to save roughly 50–60% of your take-home pay every year and invest it in growth assets.</p>
+          <p>Use the calculator above to model it: enter your current age, monthly spend, and contributions to see if 40 is realistic for you. Be aware that pension savings can't usually be accessed until 57 (rising to 58 in 2028), so most early retirees use a "bridge" of ISAs and taxable accounts to cover the gap.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the difference between Lean FIRE, Fat FIRE and Barista FIRE?</summary>
+        <div class="faq-body">
+          <p><strong>Lean FIRE</strong> means retiring on essentials only — typically a smaller portfolio (often under £500k in the UK) with a frugal lifestyle.</p>
+          <p><strong>Fat FIRE</strong> means a comfortable retirement with travel, eating out, and buffer — usually £1.5M+ portfolios.</p>
+          <p><strong>Barista FIRE</strong> is a hybrid: you save enough that part-time work covers your day-to-day spending while your portfolio compounds untouched, often via a job that provides health benefits or social structure rather than a full salary.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Should I include the UK State Pension in my FIRE calculation?</summary>
+        <div class="faq-body">
+          <p>It depends on your age and how conservative you want to be. The full new State Pension is around £11,500 a year and starts at age 67 (rising to 68).</p>
+          <p>If you're aiming for traditional retirement age, factoring it in is reasonable. If you're aiming to retire in your 30s or 40s, leave it out as a buffer — you'll bridge the gap to State Pension age on your own portfolio, and anything from age 67 onwards is upside, not load-bearing.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is this UK FIRE calculator free?</summary>
+        <div class="faq-body">
+          <p>Yes, completely free. There's no sign up, no email collection, no paywall. Everything runs in your browser — none of the figures you enter are sent to a server or stored anywhere outside your device.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your full net worth and FIRE progress in one place?</h2>
+      <p>Vault is the home for everything this calculator hints at — your net worth, your spending, your plan, your tax — all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     FIRE CALCULATOR LOGIC — extracted verbatim from
+     Vault_V.1.42.html lines ~21847–22033. No calculation logic
+     altered. The only adaptations:
+       (1) `state` and `save()` are stubbed so the standalone page
+           doesn't depend on the app's persistence layer.
+       (2) `fmtStoryHero` resolves to a self-contained pound formatter
+           (the app version routes through getCurrencySymbol/getDisplayCurrency).
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// Stubs for app-only dependencies
+const state = { fireInputs: {} };
+function save() { /* no-op for standalone */ }
+
+// Self-contained formatter (replaces app's currency-aware fmtStoryHero/fmt)
+function fmtStoryHero(val) {
+  if (!isFinite(val)) return '£—';
+  const abs = Math.abs(val);
+  const sign = val < 0 ? '-' : '';
+  const num = Math.round(abs).toLocaleString('en-GB');
+  return sign + '£' + num;
+}
+
+// ── FIRE Calculator (extracted from app) ─────────────────────────────────────
+let fireGrowthRate     = 0.08;
+let fireWithdrawalRate   = 0.04;
+let fireWithdrawalComfort = 'balanced';
+let fireWhatIfActive   = [false, false, false];
+
+const FIRE_GROWTH_CARDS = [
+  { id: 'cash',         rate: 0.04 },
+  { id: 'conservative', rate: 0.06 },
+  { id: 'moderate',     rate: 0.08 },
+  { id: 'aggressive',   rate: 0.11 },
+];
+
+const FIRE_WHATIF_DELTAS = [
+  { monthly: 200, spend: 0 },
+  { monthly: 0,   spend: -300 },
+  { monthly: 417, spend: 0 }
+];
+
+function setFireGrowth(rate) {
+  fireGrowthRate = rate;
+  FIRE_GROWTH_CARDS.forEach(card => {
+    const el = document.getElementById('fgc-' + card.id);
+    if (el) el.classList.toggle('active', card.rate === rate);
+  });
+  calcFIREFull();
+}
+
+const FIRE_COMFORT_CARDS = [
+  { id: 'cautious',  swr: 0.035 },
+  { id: 'balanced',  swr: 0.040 },
+  { id: 'flexible',  swr: 0.050 },
+];
+
+function setFireComfort(level) {
+  const card = FIRE_COMFORT_CARDS.find(c => c.id === level) || FIRE_COMFORT_CARDS[1];
+  fireWithdrawalRate = card.swr;
+  fireWithdrawalComfort = card.id;
+  FIRE_COMFORT_CARDS.forEach(c => {
+    const el = document.getElementById('frc-' + c.id);
+    if (el) el.classList.toggle('active', c.id === level);
+  });
+  calcFIREFull();
+}
+
+function toggleFireInfo() {
+  const panel = document.getElementById('fire-info-panel');
+  const btn   = document.getElementById('fire-info-btn');
+  if (!panel) return;
+  const open = panel.style.display === 'none';
+  panel.style.display = open ? 'block' : 'none';
+  if (btn) btn.classList.toggle('open', open);
+}
+
+function toggleWhatIf(idx) {
+  fireWhatIfActive[idx] = !fireWhatIfActive[idx];
+  const btn = document.getElementById('fwb-' + idx);
+  if (btn) btn.classList.toggle('active', fireWhatIfActive[idx]);
+  calcFIREFull();
+}
+
+function monthsToFIRE(saved, monthly, target, annualRate) {
+  if (target <= 0) return 0;
+  if (saved >= target) return 0;
+  const r = annualRate / 12;
+  if (monthly <= 0 && r === 0) return Infinity;
+  if (r === 0) return Math.ceil((target - saved) / monthly);
+  const numerator = target * r + monthly;
+  const denominator = saved * r + monthly;
+  if (denominator <= 0 || numerator <= 0) return Infinity;
+  const ratio = numerator / denominator;
+  if (ratio <= 1) return 0;
+  return Math.ceil(Math.log(ratio) / Math.log(1 + r));
+}
+
+function fmtDuration(months) {
+  if (!isFinite(months) || months < 0) return 'Never at this rate';
+  const yrs = Math.floor(months / 12);
+  const mo  = months % 12;
+  const parts = [];
+  if (yrs > 0) parts.push(yrs + (yrs === 1 ? ' year' : ' years'));
+  if (mo  > 0) parts.push(mo  + (mo  === 1 ? ' month' : ' months'));
+  return parts.length ? parts.join(' and ') : 'Already there!';
+}
+
+function calcFIREFull() {
+  const spend   = parseFloat(document.getElementById('fi-spend')?.value)   || 0;
+  const saved   = parseFloat(document.getElementById('fi-saved')?.value)   || 0;
+  const monthly = parseFloat(document.getElementById('fi-monthly')?.value) || 0;
+  const age     = parseFloat(document.getElementById('fi-age')?.value)     || 0;
+
+  if (!state.fireInputs) state.fireInputs = {};
+  Object.assign(state.fireInputs, {
+    spend, saved, monthly, age,
+    growthRate:       fireGrowthRate,
+    withdrawalRate:   fireWithdrawalRate,
+    withdrawalComfort: fireWithdrawalComfort,
+  });
+  save();
+
+  const swr         = fireWithdrawalRate;
+  const annualSpend = spend * 12;
+  const fireNum     = annualSpend > 0 ? annualSpend / swr : 0;
+
+  const growthRate  = fireGrowthRate;
+  const baseMonths  = monthsToFIRE(saved, monthly, fireNum, growthRate);
+  const freedomYear = age > 0 && isFinite(baseMonths)
+    ? (new Date().getFullYear() + Math.floor(baseMonths / 12))
+    : null;
+  const retireAge = age > 0 && isFinite(baseMonths)
+    ? Math.floor(age + baseMonths / 12)
+    : null;
+
+  const numEl = document.getElementById('fi-number');
+  if (numEl) numEl.textContent = fireNum > 0 ? fmtStoryHero(fireNum) : '£—';
+
+  const approachEl = document.getElementById('fi-approach');
+  if (approachEl) {
+    const comfortLabel = fireWithdrawalComfort
+      ? fireWithdrawalComfort.charAt(0).toUpperCase() + fireWithdrawalComfort.slice(1)
+      : 'Balanced';
+    approachEl.textContent = fireNum > 0 ? 'Using a ' + comfortLabel + ' withdrawal approach' : '';
+  }
+
+  const freedomEl = document.getElementById('fi-freedom-val');
+  const subEl     = document.getElementById('fi-freedom-sub');
+  if (freedomEl) {
+    freedomEl.textContent = isFinite(baseMonths) && baseMonths >= 0
+      ? fmtDuration(baseMonths)
+      : '—';
+  }
+  if (subEl) {
+    const parts = [];
+    if (freedomYear) parts.push('in ' + freedomYear);
+    if (retireAge)   parts.push('age ' + retireAge);
+    subEl.textContent = parts.join(' · ');
+  }
+
+  const leanTarget  = (annualSpend * 0.5) / swr;
+  const fatTarget   = (annualSpend * 1.5) / swr;
+  updateMilestone('lean',  leanTarget,  saved);
+  updateMilestone('yours', fireNum,     saved);
+  updateMilestone('fat',   fatTarget,   saved);
+
+  FIRE_WHATIF_DELTAS.forEach((delta, i) => {
+    const deltaMonthly = monthly + delta.monthly;
+    const deltaSpend   = spend   + delta.spend;
+    const deltaAnnual  = deltaSpend * 12;
+    const deltaTarget  = deltaAnnual > 0 ? deltaAnnual / swr : fireNum;
+    const deltaMonths  = monthsToFIRE(saved, deltaMonthly, deltaTarget, growthRate);
+    const diff         = baseMonths - deltaMonths;
+
+    const deltaEl = document.getElementById('fwd-' + i);
+    if (!deltaEl) return;
+    if (!fireWhatIfActive[i]) { deltaEl.textContent = ''; deltaEl.className = 'fire-whatif-delta'; return; }
+
+    if (!isFinite(deltaMonths)) {
+      deltaEl.textContent = 'No change';
+      deltaEl.className = 'fire-whatif-delta';
+      return;
+    }
+    if (diff > 0) {
+      deltaEl.textContent = fmtDuration(diff) + ' earlier';
+      deltaEl.className = 'fire-whatif-delta';
+    } else if (diff < 0) {
+      deltaEl.textContent = fmtDuration(Math.abs(diff)) + ' later';
+      deltaEl.className = 'fire-whatif-delta worse';
+    } else {
+      deltaEl.textContent = 'No change';
+      deltaEl.className = 'fire-whatif-delta';
+    }
+  });
+}
+
+function updateMilestone(key, target, saved) {
+  const numEl   = document.getElementById('fm-' + key + '-num');
+  const badgeEl = document.getElementById('fm-' + key + '-badge');
+  const cardEl  = document.getElementById('fm-' + key);
+  if (!numEl || !badgeEl || !cardEl) return;
+
+  numEl.textContent = target > 0 ? fmtStoryHero(target) : '—';
+
+  if (target <= 0) {
+    badgeEl.textContent = '—'; badgeEl.className = 'fire-ms-badge';
+    cardEl.className = 'fire-milestone'; return;
+  }
+
+  if (saved >= target) {
+    badgeEl.textContent = '✓ Reached'; badgeEl.className = 'fire-ms-badge reached';
+    cardEl.className = 'fire-milestone reached';
+  } else if (saved > 0 && saved >= target * 0.1) {
+    const pct = Math.round(saved / target * 100);
+    badgeEl.textContent = pct + '% there'; badgeEl.className = 'fire-ms-badge progress';
+    cardEl.className = 'fire-milestone progress';
+  } else {
+    badgeEl.textContent = 'Not yet'; badgeEl.className = 'fire-ms-badge';
+    cardEl.className = 'fire-milestone';
+  }
+}
+
+// First render once the DOM is ready (so empty state placeholders show correctly)
+function initFireCalc() { calcFIREFull(); }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initFireCalc);
+} else {
+  initFireCalc();
+}
+</script>
+
+</body>
+</html>
