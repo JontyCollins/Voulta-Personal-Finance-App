@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Salary &amp; Take Home Pay Calculator 2026 | Free | Vault</title>
+<meta name="description" content="Calculate your exact UK take home pay after income tax, National Insurance, student loan and pension. Free, private, no sign up. Built for UK salaries in 2025/26." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/salary-calculator" />
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Salary &amp; Take Home Pay Calculator 2026 — Free" />
+<meta property="og:description" content="Calculate your exact UK take home pay after income tax, National Insurance, student loan and pension. Free, private, no sign up." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/salary-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white bg, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── Header ── */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 50;
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .wordmark {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-left: 32px;
+    margin-right: auto;
+  }
+  .header-nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color .15s ease;
+    white-space: nowrap;
+  }
+  .header-nav a:hover,
+  .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+    .header-nav a.hide-on-mobile { display: none; }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  /* ── Hero ── */
+  .calc-hero {
+    padding: 130px 0 32px;
+    text-align: center;
+  }
+  .calc-hero .eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 auto 18px;
+    max-width: 820px;
+  }
+  .calc-hero .lede {
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0 auto 22px;
+    max-width: 620px;
+  }
+  .privacy-line {
+    font-size: 13px;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* ── Sections ── */
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+
+  .section-eyebrow {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 14px;
+  }
+  .section-body {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0 0 14px;
+  }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 28px 0 8px;
+  }
+  .narrow ol, .narrow ul {
+    padding-left: 22px;
+    margin: 6px 0 14px;
+    color: var(--text);
+  }
+  .narrow ol li, .narrow ul li {
+    margin: 6px 0;
+    line-height: 1.65;
+  }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .definition-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── FAQ ── */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  /* ── CTA card ── */
+  .vault-cta-card {
+    background: var(--founder-card);
+    border-radius: var(--radius);
+    padding: 44px 36px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px;
+    color: var(--text);
+    line-height: 1.65;
+    margin: 0 auto 22px;
+    max-width: 520px;
+  }
+  .back-tools-line {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .back-tools-line a {
+    color: var(--text);
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 1px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0 40px;
+    background: var(--bg);
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     SALARY CALCULATOR EMBED — extracted as-is from the Vault app
+     (Vault_V.1.42.html). Variables scoped to .salary-embed so the
+     calculator carries the app's "instrument panel" look without
+     leaking the dark/warm palette into the rest of the page.
+     ════════════════════════════════════════════════════════════════ */
+  .salary-embed {
+    --surface:  #fbfaf8;
+    --surface2: #eeebe8;
+    --surface3: #ebe7e0;
+    --border:   #e2ddd5;
+    --border2:  #ccc8be;
+    --text:     #221f1c;
+    --text2:    #7f756c;
+    --text3:    #a8a099;
+    --accent:   #298e5f;
+    --red:      #c83030;
+    --green:    #208050;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 560px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+
+  /* Scoped form reset (mirrors the app's global input rule, but only
+     inside the embed so it can't strip checkbox UI elsewhere). */
+  .salary-embed input,
+  .salary-embed select,
+  .salary-embed textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 12px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .salary-embed input:focus,
+  .salary-embed select:focus,
+  .salary-embed textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .salary-embed input::placeholder { color: var(--text3); }
+  .salary-embed select option { background: var(--surface2); color: var(--text); }
+
+  /* ── Salary calculator (extracted from Vault_V.1.42.html lines ~2790–2942) ── */
+  .salary-embed .salary-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 0; }
+  .salary-embed .salary-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px;
+  }
+  .salary-embed .salary-card-header { display: none; } /* single-instance: hide name/delete row */
+  .salary-embed .salary-card-name {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    background: transparent; border: none; border-bottom: 1px dashed var(--border2);
+    padding: 2px 0; width: 60%; min-width: 100px;
+  }
+  .salary-embed .salary-card-name:focus { outline: none; border-bottom-color: var(--accent); }
+  .salary-embed .salary-card-del {
+    background: none; border: none; color: var(--text3); cursor: pointer;
+    font-size: 16px; padding: 2px 6px; border-radius: 4px; line-height: 1;
+  }
+  .salary-embed .salary-card-del:hover { color: var(--red); }
+  .salary-embed .salary-toggle-row {
+    display: flex; gap: 0; margin-bottom: 12px;
+    background: var(--surface3); border-radius: 6px; padding: 2px;
+  }
+  .salary-embed .salary-toggle-btn {
+    flex: 1; padding: 6px 4px; font-size: 11px; font-weight: 600;
+    border: none; background: transparent; color: var(--text3);
+    cursor: pointer; border-radius: 5px; transition: all 0.12s;
+    font-family: var(--sans);
+  }
+  .salary-embed .salary-toggle-btn.active { background: var(--surface); color: var(--text); }
+  .salary-embed .salary-field-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 9px; gap: 8px;
+  }
+  .salary-embed .salary-field-label {
+    font-size: 11px; color: var(--text2); flex: 1; white-space: nowrap;
+  }
+  .salary-embed .salary-field-input-wrap {
+    display: flex; align-items: center; gap: 0;
+    background: var(--surface3); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; flex-shrink: 0; width: auto;
+  }
+  .salary-embed .salary-field-prefix {
+    padding: 0 6px; font-size: 11px; color: var(--text3);
+    background: var(--surface2); border-right: 1px solid var(--border); align-self: stretch;
+    display: flex; align-items: center;
+  }
+  .salary-embed .salary-field-suffix {
+    padding: 0 6px; font-size: 11px; color: var(--text3);
+    background: var(--surface2); border-left: 1px solid var(--border); align-self: stretch;
+    display: flex; align-items: center;
+  }
+  .salary-embed .salary-input {
+    border: none; background: transparent; color: var(--text);
+    font-size: 12px; padding: 7px 8px; width: 90px; text-align: right;
+    border-radius: 0;
+  }
+  .salary-embed .salary-input:focus { outline: none; border-color: transparent; }
+  .salary-embed .salary-select {
+    border: none; background: var(--surface3); color: var(--text);
+    font-size: 11px; padding: 7px 8px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 6px; width: 100%;
+    font-family: var(--sans);
+  }
+  .salary-embed .salary-select:focus { outline: none; }
+  .salary-embed .salary-toggle-check {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 9px; cursor: pointer;
+  }
+  /* The fix: restore native checkbox tick (the app's global `input { appearance: none }` had stripped it). */
+  .salary-embed .salary-toggle-check input[type=checkbox] {
+    -webkit-appearance: checkbox;
+    appearance: checkbox;
+    width: 16px; height: 16px;
+    padding: 0; margin: 0;
+    background: transparent;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .salary-embed .salary-toggle-check span { font-size: 11px; color: var(--text2); }
+  .salary-embed .salary-toggle-help {
+    font-size: 10px; color: var(--text3);
+    margin: 4px 0 9px 24px; line-height: 1.45;
+    font-family: var(--sans);
+  }
+  .salary-embed .salary-gross-preview {
+    font-size: 10px; color: var(--text3); font-family: var(--mono);
+    text-align: right; margin-bottom: 8px;
+  }
+  .salary-embed .salary-divider { border: none; border-top: 1px solid var(--border); margin: 12px 0; }
+  .salary-embed .salary-breakdown { margin-top: 4px; }
+  .salary-embed .salary-breakdown-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 5px 0; border-bottom: 1px solid var(--border);
+    font-size: 11px; color: var(--text2);
+  }
+  .salary-embed .salary-breakdown-row:last-child { border-bottom: none; }
+  .salary-embed .salary-breakdown-row.deduction .salary-val { color: var(--red); }
+  .salary-embed .salary-breakdown-row.employer { color: var(--text3); font-style: italic; }
+  .salary-embed .salary-breakdown-label { flex: 1; }
+  .salary-embed .salary-val { font-family: var(--mono); font-size: 11px; color: var(--text); }
+  .salary-embed .salary-takehome {
+    margin-top: 10px; padding: 12px 14px; background: var(--surface3);
+    border-radius: 8px; border: 1px solid var(--border2);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .salary-embed .salary-takehome-label { font-size: 12px; color: var(--text2); font-weight: 600; }
+  .salary-embed .salary-takehome-val { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--accent); }
+  .salary-embed .salary-takehome-annual { font-size: 10px; color: var(--text3); margin-top: 2px; text-align: right; }
+  .salary-embed .salary-rates-row {
+    display: flex; gap: 16px; margin-top: 8px;
+    font-size: 10px; color: var(--text3); font-family: var(--mono);
+    justify-content: flex-end;
+  }
+  .salary-embed .salary-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin: 10px 0 6px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .salary-embed { padding: 16px; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<!-- ════════════════════════════════════════════════════════════════
+     STRUCTURED DATA — FAQ schema (JSON-LD) for rich results in Google.
+     Mirror any FAQ edits below.
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much will I take home on £35,000 in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a £35,000 gross salary in England, Wales, or Northern Ireland for the 2025/26 tax year, your take home pay is roughly £28,572 a year, or about £2,381 per month. That assumes no pension contributions and no student loan. Adding a 5% pension contribution lowers your taxable income and changes the figure — use the salary calculator above to see your exact take home pay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does pension reduce income tax in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pension contributions made through salary sacrifice or net-pay arrangements reduce your taxable income, which means you pay less income tax on your earnings. National Insurance is calculated on your gross salary and is generally not reduced by personal pension contributions, though it is reduced by salary-sacrifice schemes. The calculator on this page treats your pension as salary sacrifice — it lowers taxable income for the income tax calculation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the student loan repayment threshold for 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For the 2025/26 tax year, Plan 2 student loans are repaid at 9% of any income above £27,295 per year. Plan 1, Plan 4, Plan 5, and Postgraduate loans use different thresholds and rates. This calculator currently supports Plan 2 — more plans are coming soon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is UK take home pay calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Take home pay is your gross salary minus income tax, National Insurance, any student loan repayments, and any pension contributions. Income tax uses the Personal Allowance (£12,570) and the bands above it (20%, 40%, 45%). National Insurance is charged at 8% between £12,570 and £50,270, then 2% above. The calculator above runs through each step and shows the full breakdown."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Scottish income tax rates different?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Scotland sets its own income tax bands. For 2025/26 the Scottish bands are 19% Starter, 20% Basic, 21% Intermediate, 42% Higher, 45% Advanced, and 48% Top. National Insurance is the same across the whole UK because it is set by Westminster. The calculator above lets you switch the region between England/Wales/NI and Scotland."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the personal allowance taper above £100,000?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your gross income exceeds £100,000, your £12,570 Personal Allowance is reduced by £1 for every £2 you earn above that threshold. By £125,140 your Personal Allowance has been fully tapered to zero. This creates an effective marginal income tax rate of 60% on earnings between £100,000 and £125,140. The calculator handles this automatically and shows your effective and marginal rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this UK take home pay calculator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, completely free. There is no sign up, no email collection, no paywall. Everything runs in your browser — none of the figures you enter are sent to a server or stored anywhere outside your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What tax year does the calculator use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The calculator uses the 2025/26 UK tax year, which runs from 6 April 2025 to 5 April 2026. Bands, thresholds, and rates are set to those in force during that period for England, Wales, Northern Ireland, and Scotland."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Salary & Take Home Pay Calculator",
+  "url": "https://thevaultapp.co.uk/tools/salary-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "GBP"
+  },
+  "description": "Free UK salary calculator for 2025/26. Calculate your take home pay after income tax, National Insurance, pension and Plan 2 student loan."
+}
+</script>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+      <!-- Add more links here as the site grows, e.g. <a href="../../faq/">FAQ</a> -->
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · 2025/26 tax year</p>
+    <h1>UK Salary &amp; Take Home Pay Calculator 2026</h1>
+    <p class="lede">Work out your exact take home pay after income tax, National Insurance, pension, and student loan. Free, private, no sign up — your numbers never leave your device.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<!-- ── The calculator ── -->
+<section class="calc-block">
+  <div class="wrap">
+    <div class="salary-embed" id="salary-calc">
+      <!-- Single-card list, populated by initSalaryCalc() on DOMContentLoaded. -->
+      <div class="salary-list" id="salary-list" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How to use ── -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Three steps to your take home pay</h2>
+    <p class="section-body muted">The salary calculator UK above is built for the 2025/26 tax year. Enter a few details and the breakdown updates live as you type.</p>
+
+    <ol>
+      <li><strong>Pick your region.</strong> Switch between England/Wales/NI and Scotland — the income tax bands differ, but National Insurance is the same UK-wide.</li>
+      <li><strong>Enter your gross pay.</strong> Use the annual salary field, or switch to hourly mode if you're paid by the hour. Hourly rate × hours per week × weeks per year gives an annual gross.</li>
+      <li><strong>Add pension and student loan if relevant.</strong> Your employee pension contribution (as a %) reduces your taxable income. Tick the Plan 2 student loan box if you're repaying.</li>
+    </ol>
+
+    <p class="section-body">The breakdown shows every deduction, then your final take home pay alongside the effective and marginal tax rates. Toggle the view between monthly and weekly using the buttons at the top of the card.</p>
+  </div>
+</section>
+
+<!-- ── Understanding your results ── -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding your results</p>
+    <h2 class="section-title">What each deduction actually means</h2>
+    <p class="section-body muted">A take home pay calculator is only useful if you understand the lines underneath it. Here is each deduction in plain English.</p>
+
+    <div class="definition-card">
+      <h4>Income tax</h4>
+      <p>Charged on your taxable income — that is, your gross pay minus pension contributions and the Personal Allowance (£12,570 for 2025/26). For England, Wales, and Northern Ireland, the bands above the allowance are 20% (Basic), 40% (Higher), and 45% (Additional). Earn over £100,000 and the Personal Allowance starts tapering away at £1 per £2 above the threshold.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>National Insurance (Class 1)</h4>
+      <p>Most employees pay Class 1 NI. For 2025/26 the rate is 8% on earnings between £12,570 and £50,270, and 2% on anything above £50,270. Unlike income tax, NI is calculated on your gross pay and is not reduced by personal pension contributions (salary-sacrifice schemes are an exception).</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Student loan — Plan 2</h4>
+      <p>If you took out an undergraduate loan in England or Wales between 2012 and 2023, you're on Plan 2. Repayment is 9% of every pound you earn above £27,295 per year (2025/26 threshold). This calculator currently supports Plan 2. Plan 1, Plan 4, Plan 5, and Postgraduate plans use different thresholds and rates.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Pension contribution (employee)</h4>
+      <p>Your contribution is treated as salary sacrifice in this UK tax calculator 2026 — it comes off your gross pay before income tax is calculated. That's why a 5% pension doesn't just reduce your take home by 5% of gross — it also reduces your tax bill, so the real cost to you is smaller than the headline number.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Effective rate vs marginal rate</h4>
+      <p>The effective rate is your total deductions divided by your gross pay — what proportion of every pound you actually lose. The marginal rate is the tax you'd pay on your next pound of earnings. They're usually different, and the gap matters for decisions like overtime, bonuses, and pension top-ups.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── UK-specific notes ── -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for the 2025/26 tax year</h2>
+
+    <h3>The current tax year</h3>
+    <p class="section-body">The 2025/26 UK tax year runs from <strong>6 April 2025 to 5 April 2026</strong>. All thresholds, bands, and rates in this calculator are set to those in force during that period. The next tax year, 2026/27, begins on 6 April 2026 — figures will be updated then.</p>
+
+    <h3>Scottish income tax</h3>
+    <p class="section-body">Scotland sets its own income tax bands. For 2025/26 they are: 19% Starter (to £2,306), 20% Basic (to £13,991), 21% Intermediate (to £31,092), 42% Higher (to £62,430), 45% Advanced (to £125,140), and 48% Top above that. Switch the region toggle in the calculator to apply them. National Insurance, the Personal Allowance, and the £100,000 taper are set by Westminster and apply UK-wide.</p>
+
+    <h3>How pension contributions reduce your tax</h3>
+    <p class="section-body">When your pension contribution is treated as salary sacrifice (or pulled from gross via a net-pay scheme), it reduces your taxable income — so you pay less income tax on what's left. A higher-rate taxpayer paying £100 into a pension effectively only loses £60 of take home pay, because £40 of income tax would otherwise have been due. The calculator models this directly: change your contribution percentage and watch the income tax line move.</p>
+
+    <h3>Income after tax UK — what's missing</h3>
+    <p class="section-body">This salary calculator covers the four most common deductions: income tax, NI, pension, and Plan 2 student loan. It doesn't include benefits-in-kind tax, salary-sacrifice for childcare or cycle-to-work schemes, marriage allowance transfers, or the High Income Child Benefit Charge. For most salaried employees the four lines above account for almost all the difference between gross and net.</p>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK take home pay.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>How much will I take home on £35,000 in the UK?</summary>
+        <div class="faq-body">
+          <p>On a £35,000 gross salary in England, Wales, or Northern Ireland for the 2025/26 tax year, your take home pay is roughly <strong>£28,572 a year</strong>, or about <strong>£2,381 per month</strong>. That assumes no pension contributions and no student loan.</p>
+          <p>Adding a 5% pension contribution lowers your taxable income and changes the figure. Use the salary calculator above to model your exact situation.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Does pension reduce income tax in the UK?</summary>
+        <div class="faq-body">
+          <p>Yes. Pension contributions made through salary sacrifice or net-pay arrangements reduce your taxable income, so you pay less income tax on your earnings.</p>
+          <p>National Insurance is calculated on your gross salary and is generally <em>not</em> reduced by personal pension contributions — though salary-sacrifice schemes do reduce it. The calculator on this page treats your pension as salary sacrifice for the income tax calculation.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is the student loan repayment threshold in 2026?</summary>
+        <div class="faq-body">
+          <p>For the 2025/26 tax year, <strong>Plan 2</strong> student loans are repaid at 9% of any income above <strong>£27,295</strong> per year. Plan 1, Plan 4, Plan 5, and Postgraduate loans use different thresholds and rates.</p>
+          <p>This calculator currently supports Plan 2. More plans are coming soon.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How is UK take home pay calculated?</summary>
+        <div class="faq-body">
+          <p>Take home pay is your gross salary minus income tax, National Insurance, any student loan repayments, and any pension contributions.</p>
+          <p>Income tax uses the £12,570 Personal Allowance and the bands above it (20%, 40%, 45%). National Insurance is charged at 8% between £12,570 and £50,270, then 2% above £50,270. The calculator above runs through each step and shows the full breakdown.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Are Scottish income tax rates different?</summary>
+        <div class="faq-body">
+          <p>Yes. Scotland sets its own income tax bands. For 2025/26 the Scottish bands are 19% Starter, 20% Basic, 21% Intermediate, 42% Higher, 45% Advanced, and 48% Top.</p>
+          <p>National Insurance is the same across the whole UK because it is set by Westminster. Use the region toggle in the calculator above to switch between England/Wales/NI and Scotland.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is the personal allowance taper above £100,000?</summary>
+        <div class="faq-body">
+          <p>If your gross income exceeds £100,000, your £12,570 Personal Allowance is reduced by £1 for every £2 you earn above that threshold. By £125,140 your Personal Allowance has been fully tapered to zero.</p>
+          <p>This creates an effective marginal income tax rate of <strong>60%</strong> on earnings between £100,000 and £125,140. The calculator handles this automatically and shows your effective and marginal rates underneath the take home figure.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is this UK take home pay calculator free?</summary>
+        <div class="faq-body">
+          <p>Yes, completely free. There is no sign up, no email collection, and no paywall. Everything runs in your browser — none of the figures you enter are sent to a server or stored anywhere outside your device.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What tax year does the calculator use?</summary>
+        <div class="faq-body">
+          <p>The calculator uses the <strong>2025/26 UK tax year</strong>, which runs from 6 April 2025 to 5 April 2026. Bands, thresholds, and rates are set to those in force during that period for England, Wales, Northern Ireland, and Scotland.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your full financial picture?</h2>
+      <p>Vault is the home for everything this calculator hints at — your net worth, your spending, your plan, your tax, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SALARY CALCULATOR LOGIC — extracted verbatim from
+     Vault_V.1.42.html lines ~22320–22692. No calculation logic was
+     altered. The only adaptations:
+       (1) `rerenderSalaryComparison` is stubbed — the SEO page is
+           single-instance, so the multi-job comparison block is
+           irrelevant.
+       (2) `initSalaryCalc` is added at the bottom to seed one job on
+           DOMContentLoaded so the page mounts a working calculator
+           immediately.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+let salaryJobs = [];
+let _salaryJobCounter = 0;
+
+function salaryAddJob() {
+  _salaryJobCounter++;
+  salaryJobs.push({
+    id: 'sj-' + Date.now() + '-' + _salaryJobCounter,
+    name: 'Your salary',
+    region: 'england',
+    payStructure: 'salaried',
+    periodView: 'monthly',
+    annualGross: '',
+    hourlyRate: '',
+    hoursPerWeek: 37.5,
+    weeksPerYear: 52,
+    pensionEmployee: 0,
+    pensionEmployer: 0,
+    studentLoan: false,
+  });
+  renderSalaryTab();
+  const addBottom = document.getElementById('salary-add-bottom');
+  if (addBottom) addBottom.style.display = salaryJobs.length > 0 ? 'block' : 'none';
+}
+
+function salaryDeleteJob(id) {
+  salaryJobs = salaryJobs.filter(j => j.id !== id);
+  renderSalaryTab();
+  const addBottom = document.getElementById('salary-add-bottom');
+  if (addBottom) addBottom.style.display = salaryJobs.length > 0 ? 'block' : 'none';
+}
+
+// Fields that only affect the results (never change input structure)
+const _SALARY_RESULTS_ONLY = new Set(['annualGross','hourlyRate','hoursPerWeek','weeksPerYear','pensionEmployee','pensionEmployer','name']);
+
+function salaryUpdateField(id, field, value) {
+  const job = salaryJobs.find(j => j.id === id);
+  if (!job) return;
+  if (['annualGross','hourlyRate','hoursPerWeek','weeksPerYear','pensionEmployee','pensionEmployer'].includes(field)) {
+    job[field] = value === '' ? '' : parseFloat(value) || 0;
+  } else if (field === 'studentLoan') {
+    job[field] = value;
+  } else {
+    job[field] = value;
+  }
+  if (_SALARY_RESULTS_ONLY.has(field)) {
+    updateSalaryResults(id);
+  } else {
+    rerenderSalaryCard(id);
+  }
+  rerenderSalaryComparison();
+}
+
+function updateSalaryResults(id) {
+  const job = salaryJobs.find(j => j.id === id);
+  if (!job) return;
+  const resultsEl = document.getElementById('sc-results-' + id);
+  if (!resultsEl) return;
+  resultsEl.innerHTML = buildSalaryResultsHtml(job);
+}
+
+function buildSalaryResultsHtml(job) {
+  const r = calcSalaryTax(job);
+  const period = job.periodView;
+  const pLabel = period === 'weekly' ? '/wk' : '/mo';
+
+  if (!r) {
+    return '<div style="font-size:11px;color:var(--text3);padding:12px 0">Enter a salary or hourly rate to see your breakdown.</div>';
+  }
+  const p = period;
+  return `
+    <div class="salary-breakdown">
+      <div class="salary-breakdown-row">
+        <div><div class="salary-breakdown-label">Gross salary</div></div>
+        <div class="salary-val">${salaryFmt(r.annualGross,p)}&nbsp;<span style="font-size:9px;color:var(--text3)">${salaryFmtA(r.annualGross)}</span></div>
+      </div>
+      ${r.pensionEmpPound > 0 ? `
+      <div class="salary-breakdown-row deduction">
+        <div><div class="salary-breakdown-label">Pension (employee ${(parseFloat(job.pensionEmployee)||0).toFixed(1)}%)</div></div>
+        <div class="salary-val">−${salaryFmt(r.pensionEmpPound,p)}</div>
+      </div>` : ''}
+      <div class="salary-breakdown-row" style="font-size:10px;color:var(--text3)">
+        <div class="salary-breakdown-label">Taxable income</div>
+        <div class="salary-val" style="color:var(--text3)">${salaryFmt(r.pensionablePay,p)}</div>
+      </div>
+      <div class="salary-breakdown-row deduction">
+        <div><div class="salary-breakdown-label">Income tax</div></div>
+        <div class="salary-val">−${salaryFmt(r.incomeTax,p)}</div>
+      </div>
+      <div class="salary-breakdown-row deduction">
+        <div><div class="salary-breakdown-label">National Insurance</div></div>
+        <div class="salary-val">−${salaryFmt(r.ni,p)}</div>
+      </div>
+      ${r.studentLoan > 0 ? `
+      <div class="salary-breakdown-row deduction">
+        <div><div class="salary-breakdown-label">Student loan (Plan 2)</div></div>
+        <div class="salary-val">−${salaryFmt(r.studentLoan,p)}</div>
+      </div>` : ''}
+      ${r.pensionEmployerPound > 0 ? `
+      <div class="salary-breakdown-row employer">
+        <div><div class="salary-breakdown-label">Employer adds (pension)</div></div>
+        <div class="salary-val" style="color:var(--text3)">${salaryFmt(r.pensionEmployerPound,p)}</div>
+      </div>` : ''}
+    </div>
+    <div class="salary-takehome">
+      <div>
+        <div class="salary-takehome-label">Take-home pay ${pLabel}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="salary-takehome-val">${salaryFmt(r.takeHome,p)}</div>
+        <div class="salary-takehome-annual">${salaryFmtA(r.takeHome)}</div>
+      </div>
+    </div>
+    <div class="salary-rates-row">
+      <span>Effective rate: ${r.effectiveRate.toFixed(1)}%</span>
+      <span>Marginal rate: ${r.marginalRate.toFixed(0)}%</span>
+    </div>
+  `;
+}
+
+function calcSalaryTax(job) {
+  const annualGross = job.payStructure === 'hourly'
+    ? (parseFloat(job.hourlyRate)||0) * (parseFloat(job.hoursPerWeek)||0) * (parseFloat(job.weeksPerYear)||52)
+    : (parseFloat(job.annualGross)||0);
+
+  if (annualGross <= 0) return null;
+
+  const pensionEmpPct = Math.max(0, Math.min(100, parseFloat(job.pensionEmployee)||0));
+  const pensionEmpPound = annualGross * (pensionEmpPct / 100);
+  const pensionEmployerPound = annualGross * (Math.max(0, parseFloat(job.pensionEmployer)||0) / 100);
+
+  // Pensionable pay (salary sacrifice — reduces taxable income)
+  const pensionablePay = annualGross - pensionEmpPound;
+
+  // Personal allowance with taper for >£100k gross
+  const PA_BASE = 12570;
+  let personalAllowance = PA_BASE;
+  if (annualGross > 100000) {
+    personalAllowance = Math.max(0, PA_BASE - Math.floor((annualGross - 100000) / 2));
+  }
+
+  // Taxable income
+  const taxableIncome = Math.max(0, pensionablePay - personalAllowance);
+
+  // Income tax
+  let incomeTax = 0;
+  if (job.region === 'scotland') {
+    // Scottish bands 2025/26
+    const bands = [
+      [2306,          0.19],
+      [13991 - 2306,  0.20],
+      [31092 - 13991, 0.21],
+      [62430 - 31092, 0.42],
+      [125140 - 62430,0.45],
+      [Infinity,      0.48],
+    ];
+    let rem = taxableIncome;
+    for (const [bw, rate] of bands) {
+      if (rem <= 0) break;
+      const chunk = Math.min(rem, bw);
+      incomeTax += chunk * rate;
+      rem -= chunk;
+    }
+  } else {
+    // England/Wales/NI 2025/26
+    const bands = [
+      [37700,              0.20],
+      [125140 - 37700,     0.40],
+      [Infinity,           0.45],
+    ];
+    let rem = taxableIncome;
+    for (const [bw, rate] of bands) {
+      if (rem <= 0) break;
+      const chunk = Math.min(rem, bw);
+      incomeTax += chunk * rate;
+      rem -= chunk;
+    }
+  }
+
+  // NI — applied to gross (not reduced by pension)
+  const NI_LOWER = 12570, NI_UPPER = 50270;
+  let ni = 0;
+  if (annualGross > NI_LOWER) {
+    const band1 = Math.min(annualGross, NI_UPPER) - NI_LOWER;
+    ni += Math.max(0, band1) * 0.08;
+  }
+  if (annualGross > NI_UPPER) {
+    ni += (annualGross - NI_UPPER) * 0.02;
+  }
+
+  // Student loan Plan 2
+  const SL_THRESHOLD = 27295;
+  let studentLoan = 0;
+  if (job.studentLoan && annualGross > SL_THRESHOLD) {
+    studentLoan = (annualGross - SL_THRESHOLD) * 0.09;
+  }
+
+  const totalDeductions = pensionEmpPound + incomeTax + ni + studentLoan;
+  const takeHome = annualGross - totalDeductions;
+  const effectiveRate = annualGross > 0 ? (totalDeductions / annualGross) * 100 : 0;
+
+  // Marginal rate on next £1 of gross
+  let marginalNI = annualGross < NI_LOWER ? 0 : (annualGross < NI_UPPER ? 0.08 : 0.02);
+  let marginalIT = 0;
+  if (job.region === 'scotland') {
+    if (taxableIncome <= 0) marginalIT = 0;
+    else if (taxableIncome <= 2306) marginalIT = 0.19;
+    else if (taxableIncome <= 13991) marginalIT = 0.20;
+    else if (taxableIncome <= 31092) marginalIT = 0.21;
+    else if (taxableIncome <= 62430) marginalIT = 0.42;
+    else if (taxableIncome <= 125140) marginalIT = 0.45;
+    else marginalIT = 0.48;
+  } else {
+    if (taxableIncome <= 0) marginalIT = 0;
+    else if (taxableIncome <= 37700) marginalIT = 0.20;
+    else if (taxableIncome <= 125140 - 37700) marginalIT = 0.40;
+    else marginalIT = 0.45;
+    // PA taper zone: between £100k–£125,140 gross the effective marginal IT rate doubles
+    if (annualGross > 100000 && annualGross < 125140) marginalIT = 0.60;
+  }
+  const marginalRate = (marginalIT + marginalNI) * 100;
+
+  return {
+    annualGross, pensionEmpPound, pensionEmployerPound, pensionablePay,
+    personalAllowance, taxableIncome, incomeTax, ni, studentLoan,
+    takeHome, effectiveRate, marginalRate,
+  };
+}
+
+function salaryFmt(annual, period) {
+  const val = period === 'weekly' ? annual / 52 : annual / 12;
+  return '£' + val.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function salaryFmtA(annual) {
+  return '£' + annual.toLocaleString('en-GB',{minimumFractionDigits:0,maximumFractionDigits:0}) + '/yr';
+}
+
+function buildSalaryCardHtml(job) {
+  const period = job.periodView;
+
+  // Hourly derived gross preview
+  let grossPreview = '';
+  if (job.payStructure === 'hourly') {
+    const g = (parseFloat(job.hourlyRate)||0) * (parseFloat(job.hoursPerWeek)||0) * (parseFloat(job.weeksPerYear)||52);
+    if (g > 0) grossPreview = `<div class="salary-gross-preview">≈ £${g.toLocaleString('en-GB',{minimumFractionDigits:0,maximumFractionDigits:0})} annual gross</div>`;
+  }
+
+  return `
+    <div class="salary-card" id="${job.id}">
+      <div class="salary-card-header">
+        <input class="salary-card-name" value="${job.name.replace(/"/g,'&quot;')}"
+          oninput="salaryUpdateField('${job.id}','name',this.value)" />
+        <button class="salary-card-del" onclick="salaryDeleteJob('${job.id}')" title="Delete">✕</button>
+      </div>
+
+      <!-- Region -->
+      <div class="salary-field-row">
+        <span class="salary-field-label">Region</span>
+        <select class="salary-select" style="width:auto;max-width:200px"
+          onchange="salaryUpdateField('${job.id}','region',this.value)">
+          <option value="england" ${job.region==='england'?'selected':''}>England / Wales / NI</option>
+          <option value="scotland" ${job.region==='scotland'?'selected':''}>Scotland</option>
+        </select>
+      </div>
+
+      <!-- Pay period view -->
+      <div class="salary-toggle-row" style="margin-bottom:12px">
+        <button class="salary-toggle-btn ${period==='monthly'?'active':''}"
+          onclick="salaryUpdateField('${job.id}','periodView','monthly')">Monthly</button>
+        <button class="salary-toggle-btn ${period==='weekly'?'active':''}"
+          onclick="salaryUpdateField('${job.id}','periodView','weekly')">Weekly</button>
+      </div>
+
+      <!-- Pay structure toggle -->
+      <div class="salary-section-label">Pay</div>
+      <div class="salary-toggle-row">
+        <button class="salary-toggle-btn ${job.payStructure==='salaried'?'active':''}"
+          onclick="salaryUpdateField('${job.id}','payStructure','salaried')">Salaried</button>
+        <button class="salary-toggle-btn ${job.payStructure==='hourly'?'active':''}"
+          onclick="salaryUpdateField('${job.id}','payStructure','hourly')">Hourly</button>
+      </div>
+
+      ${job.payStructure === 'salaried' ? `
+      <div class="salary-field-row" style="margin-top:10px">
+        <span class="salary-field-label">Annual gross salary</span>
+        <div class="salary-field-input-wrap">
+          <span class="salary-field-prefix">£</span>
+          <input class="salary-input" type="number" placeholder="35,000" step="100" inputmode="decimal"
+            value="${job.annualGross}"
+            oninput="salaryUpdateField('${job.id}','annualGross',this.value)" />
+        </div>
+      </div>` : `
+      <div style="margin-top:10px">
+        <div class="salary-field-row">
+          <span class="salary-field-label">Hourly rate</span>
+          <div class="salary-field-input-wrap">
+            <span class="salary-field-prefix">£</span>
+            <input class="salary-input" type="number" placeholder="15.00" step="0.01" inputmode="decimal"
+              value="${job.hourlyRate}"
+              oninput="salaryUpdateField('${job.id}','hourlyRate',this.value)" />
+            <span class="salary-field-suffix">/hr</span>
+          </div>
+        </div>
+        <div class="salary-field-row">
+          <span class="salary-field-label">Hours per week</span>
+          <div class="salary-field-input-wrap">
+            <input class="salary-input" type="number" placeholder="37.5" step="0.5" inputmode="decimal"
+              value="${job.hoursPerWeek}"
+              oninput="salaryUpdateField('${job.id}','hoursPerWeek',this.value)" />
+            <span class="salary-field-suffix">hrs</span>
+          </div>
+        </div>
+        <div class="salary-field-row">
+          <span class="salary-field-label">Weeks per year</span>
+          <div class="salary-field-input-wrap">
+            <input class="salary-input" type="number" placeholder="52" step="1" inputmode="numeric"
+              value="${job.weeksPerYear}"
+              oninput="salaryUpdateField('${job.id}','weeksPerYear',this.value)" />
+            <span class="salary-field-suffix">wks</span>
+          </div>
+        </div>
+        ${grossPreview}
+      </div>`}
+
+      <!-- Pension -->
+      <div class="salary-section-label" style="margin-top:12px">Pension</div>
+      <div class="salary-field-row">
+        <span class="salary-field-label">Your contribution</span>
+        <div class="salary-field-input-wrap">
+          <input class="salary-input" type="number" placeholder="0" step="0.1" inputmode="decimal"
+            value="${job.pensionEmployee}"
+            oninput="salaryUpdateField('${job.id}','pensionEmployee',this.value)" />
+          <span class="salary-field-suffix">%</span>
+        </div>
+      </div>
+      <div class="salary-field-row">
+        <span class="salary-field-label">Employer contribution</span>
+        <div class="salary-field-input-wrap">
+          <input class="salary-input" type="number" placeholder="0" step="0.1" inputmode="decimal"
+            value="${job.pensionEmployer}"
+            oninput="salaryUpdateField('${job.id}','pensionEmployer',this.value)" />
+          <span class="salary-field-suffix">%</span>
+        </div>
+      </div>
+
+      <!-- Student loan -->
+      <div class="salary-section-label" style="margin-top:12px">Student Loan</div>
+      <label class="salary-toggle-check">
+        <input type="checkbox" ${job.studentLoan?'checked':''}
+          onchange="salaryUpdateField('${job.id}','studentLoan',this.checked)" />
+        <span>Plan 2 repayment (9% above £27,295)</span>
+      </label>
+      <div class="salary-toggle-help">Currently supports Plan 2. More plans coming soon.</div>
+
+      <hr class="salary-divider" />
+
+      <!-- Results: targeted div, only this is refreshed on number input -->
+      <div id="sc-results-${job.id}">
+        ${buildSalaryResultsHtml(job)}
+      </div>
+    </div>
+  `;
+}
+
+function renderSalaryTab() {
+  const list = document.getElementById('salary-list');
+  if (!list) return;
+  list.innerHTML = salaryJobs.map(buildSalaryCardHtml).join('');
+}
+
+function rerenderSalaryCard(id) {
+  const job = salaryJobs.find(j => j.id === id);
+  if (!job) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = buildSalaryCardHtml(job);
+  el.replaceWith(tmp.firstElementChild);
+}
+
+// SEO-page-specific: the multi-job comparison block doesn't exist here.
+function rerenderSalaryComparison() { /* no-op for single-instance embed */ }
+
+// Mount one calculator on load.
+function initSalaryCalc() {
+  if (salaryJobs.length === 0) salaryAddJob();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initSalaryCalc);
+} else {
+  initSalaryCalc();
+}
+</script>
+
+</body>
+</html>
