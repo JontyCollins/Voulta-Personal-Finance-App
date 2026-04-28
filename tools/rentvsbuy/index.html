@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Rent vs Buy Calculator 2026 — Should You Rent or Buy? | Vault</title>
+<meta name="description" content="Should you rent or buy in the UK? Our free rent vs buy calculator models the true financial cost of both over any time horizon. Private, no sign up, no data shared." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/rent-vs-buy-calculator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Rent vs Buy Calculator 2026 — Should You Rent or Buy?" />
+<meta property="og:description" content="Free UK rent vs buy calculator. Models the true financial cost of renting vs buying over any time horizon." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/rent-vs-buy-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body { padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     RENT VS BUY EMBED — core month-by-month simulation (mortgage
+     amortisation + investment pot accumulation) is extracted verbatim
+     from the in-app rent-vs-buy story (Vault_V.1.42.html ~21221).
+     The standalone page extends inputs with annual rent escalation,
+     itemised buying costs (stamp duty auto-calc with FTB toggle,
+     solicitor, survey), and ongoing ownership costs (maintenance,
+     insurance) — folded back into the same simulator.
+     ════════════════════════════════════════════════════════════════ */
+  .rvb-embed {
+    --r-surface:  #fbfaf8;
+    --r-surface2: #eeebe8;
+    --r-surface3: #ebe7e0;
+    --r-border:   #e2ddd5;
+    --r-border2:  #ccc8be;
+    --r-text:     #221f1c;
+    --r-text2:    #7f756c;
+    --r-text3:    #a8a099;
+    --r-accent:   #298e5f;
+    --r-accent2:  #1878a0;
+    --r-red:      #c83030;
+    --r-radius: 12px;
+    --r-radius-sm: 8px;
+    --r-mono: 'DM Mono', monospace;
+    --r-sans: 'DM Sans', sans-serif;
+    --r-serif: 'DM Serif Display', serif;
+    font-family: var(--r-sans);
+    color: var(--r-text);
+    background: var(--r-surface);
+    border: 1px solid var(--r-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 720px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .rvb-embed input {
+    background: var(--r-surface2);
+    border: 1px solid var(--r-border);
+    color: var(--r-text);
+    padding: 8px 10px;
+    border-radius: var(--r-radius-sm);
+    font-family: var(--r-mono);
+    font-size: 13px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .rvb-embed input:focus { outline: none; border-color: var(--r-accent); }
+  .rvb-embed input[type=checkbox] {
+    -webkit-appearance: checkbox; appearance: checkbox;
+    width: 16px; height: 16px; padding: 0; margin: 0;
+    background: transparent; border: 1px solid var(--r-border);
+    cursor: pointer; accent-color: var(--r-accent);
+    flex-shrink: 0;
+  }
+
+  .rvb-embed .r-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--r-text3); margin: 0 0 8px;
+  }
+  .rvb-embed .r-section-divider { margin: 16px 0 8px; }
+  .rvb-embed .r-fields {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+  }
+  .rvb-embed .r-field { display: flex; flex-direction: column; gap: 5px; }
+  .rvb-embed .r-field-full { grid-column: 1 / -1; }
+  .rvb-embed .r-label { font-size: 11px; color: var(--r-text2); }
+  .rvb-embed .r-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--r-surface2); border: 1px solid var(--r-border);
+    border-radius: var(--r-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .rvb-embed .r-input-wrap:focus-within { border-color: var(--r-accent); }
+  .rvb-embed .r-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .rvb-embed .r-input-prefix,
+  .rvb-embed .r-input-suffix {
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; background: var(--r-surface3);
+    color: var(--r-text3); font-family: var(--r-mono);
+  }
+  .rvb-embed .r-input-prefix { border-right: 1px solid var(--r-border); }
+  .rvb-embed .r-input-suffix { border-left:  1px solid var(--r-border); }
+
+  .rvb-embed .r-deposit-row { display: flex; gap: 4px; align-items: stretch; }
+  .rvb-embed .r-deposit-row .r-input-wrap { flex: 1; }
+  .rvb-embed .r-toggle {
+    display: flex; gap: 0; padding: 2px;
+    background: var(--r-surface3); border-radius: var(--r-radius-sm);
+    flex-shrink: 0;
+  }
+  .rvb-embed .r-toggle button {
+    border: none; background: transparent;
+    color: var(--r-text3); font-family: var(--r-sans);
+    padding: 6px 10px; font-size: 11px; font-weight: 600;
+    cursor: pointer; border-radius: 5px; min-width: 36px;
+    transition: all 0.12s;
+  }
+  .rvb-embed .r-toggle button.active {
+    background: var(--r-surface); color: var(--r-text);
+  }
+
+  .rvb-embed .r-toggle-row {
+    display: flex; align-items: center; gap: 10px; margin: 6px 0 12px;
+  }
+  .rvb-embed .r-toggle-row label { font-size: 12px; color: var(--r-text2); cursor: pointer; }
+
+  /* Results */
+  .rvb-embed .r-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--r-border);
+  }
+  .rvb-embed .r-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--r-text3);
+  }
+  .rvb-embed .r-panel {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .rvb-embed .r-col {
+    background: var(--r-surface3); border: 1px solid var(--r-border);
+    border-radius: var(--r-radius); padding: 16px;
+    transition: border-color 0.2s;
+  }
+  .rvb-embed .r-col.winner {
+    border-color: rgba(41,142,95,0.5);
+    background: rgba(41,142,95,0.05);
+  }
+  .rvb-embed .r-col-header {
+    display: flex; align-items: center; gap: 6px; margin-bottom: 10px;
+  }
+  .rvb-embed .r-col-emoji { font-size: 16px; }
+  .rvb-embed .r-col-title {
+    font-size: 13px; font-weight: 700; color: var(--r-text);
+  }
+  .rvb-embed .r-winner-badge {
+    margin-left: auto;
+    background: rgba(41,142,95,0.15); border: 1px solid rgba(41,142,95,0.4);
+    color: var(--r-accent); font-size: 9px; font-family: var(--r-mono);
+    padding: 2px 7px; border-radius: 100px; text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .rvb-embed .r-hero-num {
+    font-family: var(--r-serif); font-size: 24px; line-height: 1.1;
+    color: var(--r-accent); margin-bottom: 2px;
+    word-break: break-all;
+  }
+  .rvb-embed .r-hero-num.neutral { color: var(--r-accent2); }
+  .rvb-embed .r-hero-label {
+    font-size: 10px; color: var(--r-text3);
+    font-family: var(--r-mono);
+    margin-bottom: 10px; line-height: 1.4;
+  }
+  .rvb-embed .r-stats { display: flex; flex-direction: column; gap: 6px; }
+  .rvb-embed .r-stat-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; line-height: 1.4;
+    padding: 4px 0; border-bottom: 1px dashed var(--r-border);
+  }
+  .rvb-embed .r-stat-row:last-child { border-bottom: none; }
+  .rvb-embed .r-stat-label { color: var(--r-text3); }
+  .rvb-embed .r-stat-val {
+    color: var(--r-text); font-family: var(--r-mono); font-weight: 600;
+  }
+
+  .rvb-embed .r-verdict {
+    background: rgba(41,142,95,0.07); border: 1px solid rgba(41,142,95,0.25);
+    border-radius: var(--r-radius); padding: 14px 16px;
+    font-size: 13px; line-height: 1.55; color: var(--r-text);
+    margin-bottom: 12px;
+  }
+  .rvb-embed .r-verdict strong { color: var(--r-accent); font-weight: 700; }
+
+  .rvb-embed .r-disclaimer {
+    margin-top: 12px; padding: 10px 12px;
+    background: var(--r-surface2);
+    border-left: 3px solid rgba(200,128,28,0.4);
+    border-radius: var(--r-radius-sm);
+    font-size: 11px; color: var(--r-text2); line-height: 1.5;
+  }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .rvb-embed { padding: 16px; }
+    .rvb-embed .r-fields { grid-template-columns: 1fr; }
+    .rvb-embed .r-panel { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it better to rent or buy in the UK 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on three things: how long you'll stay (buying needs ~5+ years to recoup transaction costs), the local rent-to-price ratio (London skews toward renting; many Northern cities skew toward buying), and what you'd do with the money you don't spend on a deposit and ownership costs. The free UK rent vs buy calculator above models both paths over your chosen time horizon — including stamp duty, fees, maintenance, property growth, and the investment returns you'd earn renting and investing the difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a rent vs buy calculator UK work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It runs two parallel simulations over your chosen horizon. The buying side amortises the mortgage month-by-month and grows the property's value at your assumed rate, then nets out remaining loan balance to give your equity. The renting side invests the deposit upfront, then each month invests the difference between mortgage and rent (or draws down if rent exceeds mortgage), compounding at your assumed return rate. The 'winner' is whichever leaves you with more net wealth after the time horizon. The calculator above shows both numbers side by side and reports the gap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I buy a house or keep renting UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you'll move within 5 years, buying rarely beats renting once you account for stamp duty, legal fees, maintenance, and selling costs. From 7+ years onward, buying typically pulls ahead in most UK regions assuming reasonable property growth. The non-financial answers also matter: stability, freedom to renovate, security against rent rises and evictions — those are real value, just hard to quantify. The calculator above lets you stress-test the financial case; the lifestyle case is yours to decide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is renting throwing money away UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — that framing is wrong. Renting buys you flexibility, no maintenance liability, and frees up capital that would otherwise be locked in property. The interest portion of mortgage payments, stamp duty, fees, and ownership costs are all 'thrown away' too — they're just less visible. The right comparison isn't 'rent paid' vs 'mortgage paid'; it's 'net wealth in 10 years if I rent and invest the difference' vs 'net wealth in 10 years if I buy'. The calculator above runs that comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much deposit do I need to buy a house UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most UK lenders want at least 5% deposit, and you'll get materially better rates at 10%, 15%, 20%, or 25%. On a £300,000 home: 5% = £15,000 (95% LTV, expensive rate); 10% = £30,000 (typical first-time-buyer level); 25% = £75,000 (strong rate, much more lender choice). On top of the deposit you also need cash for stamp duty, legal fees (£1,500–£3,000), and a survey (£400–£1,500) — all paid in cash, not added to the loan. Use the calculator above to see how deposit size shifts the rent vs buy verdict."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rent vs buy London vs Manchester — what's the difference?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "London has a notoriously bad rent-to-price ratio for buyers — high prices relative to rents mean the rent-and-invest path wins more often, especially over shorter time horizons. Manchester, Leeds, Birmingham, and most Northern cities have more favourable ratios where buying typically beats renting from year 5 onwards. The calculator above makes this concrete: plug in London numbers (£500k for a 2-bed, £2,200/mo rent, 10-year horizon) versus Manchester numbers (£250k for the same flat, £1,200/mo rent) and watch the verdict flip."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this rent or buy calculator financial advice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's a modelling tool — the result depends entirely on the assumptions you enter (rent growth, property growth, investment returns, fees). Reality differs from any model. Use it to stress-test scenarios and pressure-test your gut feel, not as a binding recommendation. Buying or selling a home is one of the largest financial decisions most people make; speak to a regulated UK financial adviser or mortgage broker before committing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the UK housing market always go up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. UK average house prices fell in real terms during 1990–95, again from 2008–13, and dipped slightly in 2023. Long-run nominal growth has been roughly 3–5% per year, but that masks volatile decades. Don't model 5–7% growth as if it's risk-free — try the calculator at 0% growth and 2% growth too, and see whether buying still wins. If the verdict only flips in your favour at 4%+ growth, you're betting on the housing market more than you might realise."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Rent vs Buy Calculator",
+  "url": "https://thevaultapp.co.uk/tools/rent-vs-buy-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK rent vs buy calculator. Models the true financial cost of renting vs buying over any time horizon."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Rent or buy calculator</p>
+    <h1>UK Rent vs Buy Calculator 2026 — Should You Rent or Buy a Home?</h1>
+    <p class="lede">One of the most important financial decisions you'll make — and the answer isn't always what you expect. Free, private, no sign up — model both scenarios with your own numbers, over your real time horizon. Nothing you enter ever leaves your device.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="rvb-embed" id="rvb-calc">
+
+      <div class="r-section-label">If you rent</div>
+      <div class="r-fields">
+        <div class="r-field">
+          <label class="r-label" for="rvb-rent">Monthly rent</label>
+          <div class="r-input-wrap">
+            <span class="r-input-prefix">£</span>
+            <input type="number" id="rvb-rent" placeholder="1,500" inputmode="decimal" step="50" />
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-rent-inc">Annual rent increase</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-rent-inc" value="3" inputmode="decimal" step="0.1" />
+            <span class="r-input-suffix">%</span>
+          </div>
+        </div>
+        <div class="r-field r-field-full">
+          <label class="r-label" for="rvb-invest-rate">Expected investment return (if you rent &amp; invest the difference)</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-invest-rate" value="7" inputmode="decimal" step="0.1" />
+            <span class="r-input-suffix">%/yr</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="r-section-label r-section-divider">If you buy</div>
+      <div class="r-fields">
+        <div class="r-field r-field-full">
+          <label class="r-label" for="rvb-price">Property purchase price</label>
+          <div class="r-input-wrap">
+            <span class="r-input-prefix">£</span>
+            <input type="number" id="rvb-price" placeholder="300,000" inputmode="decimal" step="1000" />
+          </div>
+        </div>
+        <div class="r-field r-field-full">
+          <label class="r-label" for="rvb-deposit">Deposit</label>
+          <div class="r-deposit-row">
+            <div class="r-input-wrap">
+              <span class="r-input-prefix" id="rvb-deposit-prefix">£</span>
+              <input type="number" id="rvb-deposit" placeholder="30,000" inputmode="decimal" step="500" />
+            </div>
+            <div class="r-toggle" role="tablist" aria-label="Deposit unit">
+              <button id="rvb-dep-pound" type="button" class="active" aria-pressed="true">£</button>
+              <button id="rvb-dep-pct" type="button" aria-pressed="false">%</button>
+            </div>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-rate">Mortgage interest rate</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-rate" value="4.5" inputmode="decimal" step="0.1" />
+            <span class="r-input-suffix">%</span>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-term">Mortgage term</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-term" value="25" inputmode="numeric" step="1" min="5" max="40" />
+            <span class="r-input-suffix">years</span>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-growth">Annual property growth</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-growth" value="3" inputmode="decimal" step="0.1" />
+            <span class="r-input-suffix">%</span>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-years">Time horizon</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-years" value="10" inputmode="numeric" step="1" min="1" max="40" />
+            <span class="r-input-suffix">years</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="r-section-label r-section-divider">Buying costs (paid up front, in cash)</div>
+      <div class="r-fields">
+        <div class="r-field r-field-full">
+          <div class="r-toggle-row">
+            <input type="checkbox" id="rvb-ftb" />
+            <label for="rvb-ftb">First-time buyer (stamp duty relief on properties up to £500,000)</label>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-solicitor">Solicitor fees</label>
+          <div class="r-input-wrap">
+            <span class="r-input-prefix">£</span>
+            <input type="number" id="rvb-solicitor" value="1500" inputmode="decimal" step="100" />
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-survey">Survey costs</label>
+          <div class="r-input-wrap">
+            <span class="r-input-prefix">£</span>
+            <input type="number" id="rvb-survey" value="500" inputmode="decimal" step="50" />
+          </div>
+        </div>
+      </div>
+
+      <div class="r-section-label r-section-divider">Ongoing ownership costs</div>
+      <div class="r-fields">
+        <div class="r-field">
+          <label class="r-label" for="rvb-maintenance">Annual maintenance (% of value)</label>
+          <div class="r-input-wrap">
+            <input type="number" id="rvb-maintenance" value="1" inputmode="decimal" step="0.1" />
+            <span class="r-input-suffix">%</span>
+          </div>
+        </div>
+        <div class="r-field">
+          <label class="r-label" for="rvb-insurance">Annual buildings insurance</label>
+          <div class="r-input-wrap">
+            <span class="r-input-prefix">£</span>
+            <input type="number" id="rvb-insurance" value="350" inputmode="decimal" step="50" />
+          </div>
+        </div>
+      </div>
+
+      <div class="r-results">
+        <div class="r-empty" id="rvb-empty">Enter your monthly rent and the property price to see the comparison.</div>
+
+        <div id="rvb-output" style="display:none">
+          <div class="r-verdict" id="rvb-verdict">—</div>
+
+          <div class="r-panel">
+            <div class="r-col" id="rvb-buy-col">
+              <div class="r-col-header">
+                <span class="r-col-emoji">🏠</span>
+                <span class="r-col-title">Buy</span>
+                <span class="r-winner-badge" id="rvb-buy-badge" style="display:none">Ahead</span>
+              </div>
+              <div class="r-hero-num" id="rvb-buy-net">£—</div>
+              <div class="r-hero-label" id="rvb-buy-label">Net equity at the end</div>
+              <div class="r-stats">
+                <div class="r-stat-row"><span class="r-stat-label">Upfront cash needed</span><span class="r-stat-val" id="rvb-upfront">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Of which: stamp duty</span><span class="r-stat-val" id="rvb-sdlt">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Monthly mortgage</span><span class="r-stat-val" id="rvb-monthly">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Total paid out</span><span class="r-stat-val" id="rvb-buy-total">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Future home value</span><span class="r-stat-val" id="rvb-future-price">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Mortgage remaining</span><span class="r-stat-val" id="rvb-balance">£—</span></div>
+              </div>
+            </div>
+
+            <div class="r-col" id="rvb-rent-col">
+              <div class="r-col-header">
+                <span class="r-col-emoji">📈</span>
+                <span class="r-col-title">Rent &amp; Invest</span>
+                <span class="r-winner-badge" id="rvb-rent-badge" style="display:none">Ahead</span>
+              </div>
+              <div class="r-hero-num neutral" id="rvb-rent-net">£—</div>
+              <div class="r-hero-label" id="rvb-rent-label">Investment pot at the end</div>
+              <div class="r-stats">
+                <div class="r-stat-row"><span class="r-stat-label">Deposit invested upfront</span><span class="r-stat-val" id="rvb-rent-upfront">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Avg monthly rent</span><span class="r-stat-val" id="rvb-rent-avg">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Total rent paid</span><span class="r-stat-val" id="rvb-rent-total">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Avg invested each month</span><span class="r-stat-val" id="rvb-rent-monthly-invest">£—</span></div>
+                <div class="r-stat-row"><span class="r-stat-label">Investment return</span><span class="r-stat-val" id="rvb-rent-rate-shown">—</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="r-disclaimer">
+            <strong>Modelling tool, not financial advice.</strong> The result depends entirely on the assumptions you enter (rent growth, property growth, investment returns, fees). Reality differs from any model. Use it to stress-test scenarios and pressure-test your gut feel, not as a binding recommendation. For a major decision like this, speak to a regulated UK financial adviser or mortgage broker.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Two scenarios, one verdict</h2>
+    <p class="section-body muted">The rent vs buy calculator UK above runs both scenarios side-by-side over your chosen time horizon. Here's how to get a useful answer out of it.</p>
+    <ol>
+      <li><strong>Enter the rent for the place you'd live.</strong> Use a real listing for the type of property you want — same area, same size as the home you'd buy. Add a realistic annual rent increase (UK average is 3–5%, sometimes more in tight markets).</li>
+      <li><strong>Enter the price of the property you'd buy.</strong> Use a real listing or a Zoopla "estimated value" for somewhere comparable.</li>
+      <li><strong>Set deposit, mortgage rate, and term.</strong> Toggle deposit between £ and %. The calculator computes monthly mortgage payment from the standard amortisation formula.</li>
+      <li><strong>Pick a property growth rate.</strong> UK long-run average is ~3% nominal. Use 2% as a cautious assumption. Try 0% as a stress test — if buying still wins, your case is robust.</li>
+      <li><strong>Pick an investment return rate.</strong> 7% is the historical average for a globally diversified equity portfolio. 5% is more conservative. The renter invests their would-be deposit upfront, plus the monthly difference between mortgage payment and rent.</li>
+      <li><strong>Set the time horizon.</strong> How long you actually plan to stay. Buying needs ~5+ years to recoup transaction costs in most UK markets. Below 5 years, renting almost always wins.</li>
+      <li><strong>Tick the FTB box if you're a first-time buyer.</strong> Stamp duty drops materially on properties up to £500,000.</li>
+      <li><strong>Adjust ongoing costs.</strong> Default maintenance is 1% of property value per year (a reasonable rule of thumb); insurance default is £350/year. Both come off the buy side.</li>
+    </ol>
+    <p class="section-body">The verdict at the top of the result panel tells you which scenario wins, by how much, and the calculator highlights the winner with a green border. If the gap is small (under £20k either way), the financial case is roughly a wash and lifestyle factors should drive the decision.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Rent vs buy — it's more complicated than you think</p>
+    <h2 class="section-title">Why "buying is always better" isn't true</h2>
+    <p class="section-body muted">The "rent is dead money" framing is one of the most persistent myths in UK personal finance. Here's a more honest picture.</p>
+
+    <div class="definition-card">
+      <h4>The hidden costs of ownership</h4>
+      <p>Buying isn't just deposit + mortgage. Stamp duty, legal fees, surveys, mortgage product fees, and moving costs come out at purchase. Then comes ongoing maintenance (rule of thumb: 1% of property value per year), buildings insurance, leasehold service charges, ground rent, and major repair reserves. The "real" cost of owning a £300,000 home is roughly £10,000–£15,000/year on top of the mortgage payment — money you don't have to spend if you rent.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why renting and investing the difference can outperform</h4>
+      <p>Equity markets have historically returned ~7% nominal per year. UK property has averaged ~3–5%. If you put your deposit into a Stocks &amp; Shares ISA instead and invest the monthly difference between mortgage and rent, you're swapping a leveraged 3–5% asset for an unleveraged 7% one. Whether that wins depends on the rent-to-price ratio, leverage (mortgage), and how long you stay. The calculator above models this directly.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>The emotional case for buying is real</h4>
+      <p>Stability, freedom to renovate, security against rent rises and no-fault evictions, the psychological comfort of "owning your home" — these matter, and they aren't fully captured by a financial calculator. UK renters face genuine stress around tenure security that owners don't. If those feel important to you, the financial case can be slightly negative and buying still wins on overall life satisfaction.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>The break-even horizon</h4>
+      <p>Buying typically beats renting from year 5–8 onwards in most UK regions, assuming reasonable property growth and steady rents. Below 5 years, transaction costs dominate and renting almost always wins. Plug your numbers into the calculator with a 3-year, 5-year, 7-year, and 10-year horizon — you'll often see the verdict flip somewhere in that range.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Buying is a leveraged property bet</h4>
+      <p>A 10% deposit means a 10× leveraged exposure to property prices. A 5% rise in property values is a 50% return on your deposit; a 5% fall is a 50% loss. Renters don't take that bet. If property values stagnate or fall (as they did in 1990–95, 2008–13, and parts of 2023), renting wins handily. The calculator's growth assumption is doing more work than you might realise — try 0%, then 2%, then 5%, and see how the verdict moves.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK buyers and renters</h2>
+
+    <h3>UK house price growth — the long-run average</h3>
+    <p class="section-body">UK average house prices have grown ~5% per year nominal over the past 50 years — but that's wildly variable. Some decades the figure was double-digit, others it was negative. The 2023–24 dip reminds anyone modelling property growth that <strong>the long-run average isn't a guarantee for any 10-year window</strong>. Use 2–3% as a cautious modelling figure unless your area has a track record of stronger appreciation.</p>
+
+    <h3>Stamp Duty Land Tax (SDLT)</h3>
+    <p class="section-body">Stamp duty bands for 2025/26: 0% on the first £125,000, 2% on £125,001–£250,000, 5% on £250,001–£925,000, 10% on £925,001–£1.5M, 12% above £1.5M. <strong>First-time buyers</strong> get relief: 0% on the first £300,000, 5% on £300,001–£500,000. Above £500,000, FTB pay standard rates with no relief. SDLT is paid in cash within 14 days of completion — it doesn't get added to the mortgage. The calculator above auto-calculates SDLT based on price and the FTB toggle.</p>
+
+    <h3>How the UK rental market has changed</h3>
+    <p class="section-body">UK rents have risen materially faster than inflation since 2020. The Renters (Reform) Bill aims to abolish Section 21 "no-fault" evictions and create periodic tenancies as the default — improving long-term security for renters. Rental supply remains tight in many cities. Build these dynamics into your assumptions: 3% annual rent increase is a low estimate in many UK markets right now; 4–5% is more realistic in tight rental areas.</p>
+
+    <h3>Why rent vs buy varies hugely by region</h3>
+    <p class="section-body">In London, rent-to-price ratios are notoriously poor for buyers — high prices relative to rents mean the rent-and-invest path often wins, especially over 5–10 year horizons. In Manchester, Leeds, Birmingham, and most Northern cities, the ratio is more favourable to buying — break-even can come at 4–5 years. Run the calculator with regional numbers from Zoopla or Rightmove for the area you're actually deciding between.</p>
+
+    <h3>Lifetime ISA and Help to Buy</h3>
+    <p class="section-body">A Lifetime ISA gives a 25% government bonus on contributions up to £4,000/year — useful for buyers under 40 saving for a first home up to £450,000. Help to Buy in England closed to new applications in 2023, but Help to Buy ISAs (a different product, also closed to new accounts since 2019) still exist for those who opened them. Shared ownership lets you buy a 25–75% share and rent the rest, lowering the deposit and mortgage size needed — useful in pricier areas.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK rent vs buy.</p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>Is it better to rent or buy in the UK 2026?</summary>
+        <div class="faq-body">
+          <p>It depends on three things: <strong>how long you'll stay</strong> (buying needs ~5+ years to recoup transaction costs), the <strong>local rent-to-price ratio</strong> (London skews toward renting; many Northern cities skew toward buying), and what you'd <strong>do with the money you don't spend on a deposit</strong>.</p>
+          <p>The calculator above models both paths over your time horizon — including stamp duty, fees, maintenance, property growth, and the investment returns you'd earn renting and investing the difference.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this rent vs buy calculator UK work?</summary>
+        <div class="faq-body">
+          <p>It runs two parallel simulations over your time horizon. The buying side amortises the mortgage month-by-month and grows the property's value at your assumed rate, then nets out remaining loan balance to give equity.</p>
+          <p>The renting side invests the deposit upfront, then each month invests the difference between mortgage and rent, compounding at your assumed return rate. The "winner" is whichever leaves you with more net wealth at the end.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Should I buy a house or keep renting UK?</summary>
+        <div class="faq-body">
+          <p>If you'll move within 5 years, buying rarely beats renting once you account for stamp duty, legal fees, maintenance, and selling costs. From <strong>7+ years onward</strong>, buying typically pulls ahead in most UK regions assuming reasonable property growth.</p>
+          <p>The non-financial answers also matter — stability, freedom to renovate, security against rent rises and evictions. Those are real value, just hard to quantify.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is renting throwing money away UK?</summary>
+        <div class="faq-body">
+          <p>No — that framing is wrong. Renting buys you flexibility, no maintenance liability, and frees up capital that would otherwise be locked in property. The interest portion of mortgage payments, stamp duty, fees, and ownership costs are all "thrown away" too — they're just less visible.</p>
+          <p>The right comparison isn't "rent paid" vs "mortgage paid"; it's "net wealth in 10 years if I rent and invest the difference" vs "net wealth in 10 years if I buy". The calculator above runs that comparison.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much deposit do I need to buy a house UK?</summary>
+        <div class="faq-body">
+          <p>Most UK lenders want at least 5% deposit, and you'll get materially better rates at 10%, 15%, 20%, or 25%. On a £300,000 home: <strong>5% = £15,000</strong> (95% LTV, expensive rate); <strong>10% = £30,000</strong> (typical first-time-buyer level); <strong>25% = £75,000</strong> (strong rate, much more lender choice).</p>
+          <p>You also need cash for stamp duty, legal fees (£1,500–£3,000), and a survey (£400–£1,500) — paid in cash, not added to the loan.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Rent vs buy London vs Manchester — what's the difference?</summary>
+        <div class="faq-body">
+          <p><strong>London</strong> has a notoriously bad rent-to-price ratio for buyers — high prices relative to rents mean rent-and-invest often wins, especially over shorter horizons.</p>
+          <p><strong>Manchester, Leeds, Birmingham</strong> and most Northern cities have more favourable ratios where buying typically beats renting from year 5 onwards. The calculator makes this concrete: London numbers (£500k, £2,200/mo, 10yr) versus Manchester (£250k, £1,200/mo) flips the verdict.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is this calculator financial advice?</summary>
+        <div class="faq-body">
+          <p>No. It's a modelling tool — the result depends entirely on the assumptions you enter. Reality differs from any model.</p>
+          <p>Use it to stress-test scenarios, not as a binding recommendation. For a major decision like this, speak to a regulated UK financial adviser or mortgage broker.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Does the UK housing market always go up?</summary>
+        <div class="faq-body">
+          <p>No. UK average house prices fell in real terms during 1990–95, again from 2008–13, and dipped slightly in 2023.</p>
+          <p>Long-run nominal growth has been ~3–5%/year, but that masks volatile decades. Don't model 5–7% as risk-free — try the calculator at 0% and 2% growth too. If buying only wins at 4%+ growth, you're betting on the housing market more than you might realise.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your net worth whether you rent or own?</h2>
+      <p>Vault is the home for everything this calculator hints at — your net worth, savings, investments, and (if you own) property equity, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     RENT VS BUY LOGIC — core monthly simulation extracted verbatim
+     from the in-app rent-vs-buy story (Vault_V.1.42.html ~21221).
+     The standalone page extends:
+       (1) annual rent escalation — rent grows each year at user-set %
+       (2) itemised buying costs — stamp duty (auto-calc), solicitor,
+           survey replace the original blanket "£3,000 of buying costs"
+       (3) annual maintenance + buildings insurance, deducted each
+           year from the buy side's running total cost
+     The mortgage amortisation and investment-pot mechanics are
+     unchanged from the in-app version.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+function $r(id) { return document.getElementById(id); }
+function rFmt(n) {
+  if (!isFinite(n)) return '£—';
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+function rParseNum(v) {
+  if (v === '' || v == null) return null;
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+
+// ── Stamp Duty (extracted from in-app calcStampDuty) ─────────────────────
+// 2025/26 SDLT bands: main residence + first-time buyer relief.
+function calcStampDuty(price, isFTB) {
+  // FTB relief only applies up to £500k; above that use main residence rates
+  const ftbAboveCutoff = isFTB && price > 500000;
+  const bands = (isFTB && !ftbAboveCutoff)
+    ? [ { from: 0,      to: 300000,   rate: 0.00 },
+        { from: 300000, to: 500000,   rate: 0.05 } ]
+    : [ { from: 0,      to: 125000,   rate: 0.00 },
+        { from: 125000, to: 250000,   rate: 0.02 },
+        { from: 250000, to: 925000,   rate: 0.05 },
+        { from: 925000, to: 1500000,  rate: 0.10 },
+        { from: 1500000,to: Infinity, rate: 0.12 } ];
+  let total = 0;
+  for (const band of bands) {
+    if (price <= band.from) break;
+    const portion = Math.min(price, band.to === Infinity ? price : band.to) - band.from;
+    total += portion * band.rate;
+  }
+  return total;
+}
+
+let rState = { depositUnit: 'pound' };
+
+function rRender() {
+  const v = {
+    rent:        rParseNum($r('rvb-rent').value)       || 0,
+    rentInc:    (rParseNum($r('rvb-rent-inc').value) ?? 0) / 100,
+    investRate: (rParseNum($r('rvb-invest-rate').value) ?? 0),
+    price:      rParseNum($r('rvb-price').value)       || 0,
+    deposit:    rParseNum($r('rvb-deposit').value)     || 0,
+    rate:       rParseNum($r('rvb-rate').value)        || 0,
+    term:       rParseNum($r('rvb-term').value)        || 25,
+    growth:     rParseNum($r('rvb-growth').value)      || 0,
+    years:      rParseNum($r('rvb-years').value)       || 10,
+    isFTB:      $r('rvb-ftb').checked,
+    solicitor:  rParseNum($r('rvb-solicitor').value)   || 0,
+    survey:     rParseNum($r('rvb-survey').value)      || 0,
+    maintPct:  (rParseNum($r('rvb-maintenance').value) ?? 0) / 100,
+    insurance:  rParseNum($r('rvb-insurance').value)   || 0,
+  };
+
+  const empty = $r('rvb-empty');
+  const out   = $r('rvb-output');
+  if (v.rent <= 0 || v.price <= 0) {
+    empty.style.display = 'block';
+    out.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  out.style.display = 'block';
+
+  // Deposit £ — convert from % if needed, then resolve to amount
+  const depositAmt = rState.depositUnit === 'pct'
+    ? v.price * (v.deposit / 100)
+    : Math.min(v.deposit, v.price);
+  const stampDuty = calcStampDuty(v.price, v.isFTB);
+  const upfrontCosts = stampDuty + v.solicitor + v.survey;
+  const upfront = depositAmt + upfrontCosts;     // total cash needed to buy
+  const loanAmt = Math.max(0, v.price - depositAmt);
+
+  const r  = (v.rate / 100) / 12;
+  const n  = v.term * 12;
+  const monthly = r === 0
+    ? loanAmt / n
+    : loanAmt * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const horizonMo = v.years * 12;
+
+  // ── BUY SCENARIO ────────────────────────────────────────────────────────
+  // Amortise the mortgage month by month, but ALSO add annual maintenance
+  // and insurance to the running total cost. Property grows at v.growth/yr.
+  let balance = loanAmt;
+  let totalMortPaid = 0;
+  let totalOwnership = 0; // maintenance + insurance over the horizon
+  let propValue = v.price;
+  for (let y = 0; y < v.years; y++) {
+    const monthsThisYear = Math.min(12, horizonMo - y * 12);
+    for (let m = 0; m < monthsThisYear; m++) {
+      const ip = balance * r;
+      balance = Math.max(0, balance - (monthly - ip));
+      totalMortPaid += monthly;
+    }
+    // Annual maintenance based on this year's property value
+    totalOwnership += propValue * v.maintPct + v.insurance;
+    // Grow property value into next year
+    propValue = propValue * (1 + v.growth / 100);
+  }
+  const futurePrice  = v.price * Math.pow(1 + v.growth / 100, v.years);
+  const equity       = futurePrice - balance;             // net wealth on the buy side
+  const totalBuyCost = upfront + totalMortPaid + totalOwnership;
+
+  // ── RENT & INVEST SCENARIO ──────────────────────────────────────────────
+  // Renter invests the deposit + buying costs upfront (i.e. all the cash
+  // they would have spent buying). Each month, they pay rent and invest
+  // the difference between the buy-side monthly outflow (mortgage + monthly
+  // maintenance + monthly insurance) and rent. If rent exceeds the buy-side
+  // outflow, the renter draws from the pot to cover the shortfall.
+  // Rent rises annually at v.rentInc.
+  const ri = (v.investRate / 100) / 12;
+  const monthlyOwnershipCost = (v.price * v.maintPct + v.insurance) / 12;
+  let pot = upfront; // renter starts with full cash equivalent
+  let totalRentPaid = 0;
+  let totalInvested = 0;
+  let currentRent = v.rent;
+  for (let y = 0; y < v.years; y++) {
+    const monthsThisYear = Math.min(12, horizonMo - y * 12);
+    // Buy-side monthly outflow this year = mortgage + monthly maintenance/insurance
+    // (we approximate maintenance against starting price for fairness — same as buy-side aggregate)
+    const buyMonthlyOutflow = monthly + monthlyOwnershipCost;
+    for (let m = 0; m < monthsThisYear; m++) {
+      const monthlyDiff = buyMonthlyOutflow - currentRent;
+      // Compound the pot, then add (or subtract) the difference
+      pot = pot * (1 + ri) + monthlyDiff;
+      totalRentPaid += currentRent;
+      if (monthlyDiff > 0) totalInvested += monthlyDiff;
+    }
+    currentRent = currentRent * (1 + v.rentInc); // bump rent for next year
+  }
+  const renterNet = pot;
+
+  // ── WINNER ──────────────────────────────────────────────────────────────
+  const buyWins = equity >= renterNet;
+  const diff    = Math.abs(equity - renterNet);
+
+  // ── Verdict copy ───────────────────────────────────────────────────────
+  let verdict;
+  if (diff < 5000) {
+    verdict = `It's roughly a wash. Buying and renting come out within ${rFmt(diff)} of each other after ${v.years} years — close enough that lifestyle factors should drive the decision.`;
+  } else if (buyWins) {
+    verdict = `<strong>Buying wins by ${rFmt(diff)}</strong> after ${v.years} years — driven mainly by ${(v.growth).toFixed(1)}% annual property growth and the leverage of the mortgage. If growth slows, the gap narrows quickly.`;
+  } else {
+    verdict = `<strong>Renting and investing wins by ${rFmt(diff)}</strong> after ${v.years} years. Upfront costs and mortgage interest are hard to overcome at ${(v.investRate).toFixed(1)}% investment returns.`;
+  }
+
+  // ── Render ─────────────────────────────────────────────────────────────
+  $r('rvb-verdict').innerHTML = verdict;
+  $r('rvb-buy-net').textContent = rFmt(equity);
+  $r('rvb-buy-label').textContent = `Net equity after ${v.years} years`;
+  $r('rvb-upfront').textContent = rFmt(upfront);
+  $r('rvb-sdlt').textContent    = rFmt(stampDuty);
+  $r('rvb-monthly').textContent = rFmt(monthly) + '/mo';
+  $r('rvb-buy-total').textContent = rFmt(totalBuyCost);
+  $r('rvb-future-price').textContent = rFmt(futurePrice);
+  $r('rvb-balance').textContent = rFmt(balance);
+  $r('rvb-buy-col').classList.toggle('winner', buyWins && diff >= 5000);
+  $r('rvb-buy-badge').style.display = (buyWins && diff >= 5000) ? 'inline-block' : 'none';
+
+  $r('rvb-rent-net').textContent = rFmt(renterNet);
+  $r('rvb-rent-label').textContent = `Investment pot after ${v.years} years`;
+  $r('rvb-rent-upfront').textContent = rFmt(upfront);
+  $r('rvb-rent-avg').textContent = rFmt(totalRentPaid / horizonMo) + '/mo';
+  $r('rvb-rent-total').textContent = rFmt(totalRentPaid);
+  $r('rvb-rent-monthly-invest').textContent = totalInvested > 0
+    ? rFmt(totalInvested / horizonMo) + '/mo'
+    : 'Renter draws from pot';
+  $r('rvb-rent-rate-shown').textContent = (v.investRate).toFixed(1) + '%/yr';
+  $r('rvb-rent-col').classList.toggle('winner', !buyWins && diff >= 5000);
+  $r('rvb-rent-badge').style.display = (!buyWins && diff >= 5000) ? 'inline-block' : 'none';
+}
+
+function rSetDepositUnit(unit) {
+  rState.depositUnit = unit;
+  $r('rvb-dep-pound').classList.toggle('active', unit === 'pound');
+  $r('rvb-dep-pct').classList.toggle('active',   unit === 'pct');
+  $r('rvb-dep-pound').setAttribute('aria-pressed', unit === 'pound');
+  $r('rvb-dep-pct').setAttribute('aria-pressed',   unit === 'pct');
+  $r('rvb-deposit-prefix').textContent = unit === 'pct' ? '%' : '£';
+  rRender();
+}
+
+function rInit() {
+  ['rvb-rent','rvb-rent-inc','rvb-invest-rate','rvb-price','rvb-deposit','rvb-rate','rvb-term',
+   'rvb-growth','rvb-years','rvb-solicitor','rvb-survey','rvb-maintenance','rvb-insurance']
+    .forEach(id => $r(id)?.addEventListener('input', rRender));
+  $r('rvb-ftb')?.addEventListener('change', rRender);
+  $r('rvb-dep-pound')?.addEventListener('click', () => rSetDepositUnit('pound'));
+  $r('rvb-dep-pct')?.addEventListener('click',   () => rSetDepositUnit('pct'));
+  rRender();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', rInit);
+} else {
+  rInit();
+}
+</script>
+
+</body>
+</html>
