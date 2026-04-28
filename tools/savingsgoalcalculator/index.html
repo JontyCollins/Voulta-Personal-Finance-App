@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Savings Goal Calculator — How Long to Reach Your Target? | Vault</title>
+<meta name="description" content="Calculate how long it will take to reach any savings goal. Free UK savings calculator — house deposit, emergency fund, or any target. Private, no sign up required." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/savings-goal-calculator" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Savings Goal Calculator — How Long to Reach Your Target?" />
+<meta property="og:description" content="Calculate how long it will take to reach any savings goal. Free, private — no sign up, no data shared." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/savings-goal-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     SAVINGS GOAL EMBED — extends the in-app calcSG() with extra fields
+     (inflation toggle, year-by-year projection) needed for SEO depth.
+     Calculation core is preserved verbatim; the extra outputs are
+     additive (don't touch the core formula).
+     ════════════════════════════════════════════════════════════════ */
+  .sg-embed {
+    --s-surface:  #fbfaf8;
+    --s-surface2: #eeebe8;
+    --s-surface3: #ebe7e0;
+    --s-border:   #e2ddd5;
+    --s-border2:  #ccc8be;
+    --s-text:     #221f1c;
+    --s-text2:    #7f756c;
+    --s-text3:    #a8a099;
+    --s-accent:   #298e5f;
+    --s-red:      #c83030;
+    --s-radius: 12px;
+    --s-radius-sm: 8px;
+    --s-mono: 'DM Mono', monospace;
+    --s-sans: 'DM Sans', sans-serif;
+    --s-serif: 'DM Serif Display', serif;
+    font-family: var(--s-sans);
+    color: var(--s-text);
+    background: var(--s-surface);
+    border: 1px solid var(--s-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 620px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .sg-embed input, .sg-embed select {
+    background: var(--s-surface2);
+    border: 1px solid var(--s-border);
+    color: var(--s-text);
+    padding: 8px 10px;
+    border-radius: var(--s-radius-sm);
+    font-family: var(--s-mono);
+    font-size: 13px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .sg-embed input:focus, .sg-embed select:focus { outline: none; border-color: var(--s-accent); }
+  .sg-embed input[type=checkbox] {
+    -webkit-appearance: checkbox; appearance: checkbox;
+    width: 16px; height: 16px; padding: 0; margin: 0;
+    background: transparent; border: 1px solid var(--s-border);
+    cursor: pointer; accent-color: var(--s-accent);
+    flex-shrink: 0;
+  }
+
+  .sg-embed .s-label-row {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--s-text3); margin: 0 0 8px;
+  }
+  .sg-embed .s-fields {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 14px; margin-bottom: 14px;
+  }
+  .sg-embed .s-field { display: flex; flex-direction: column; gap: 5px; }
+  .sg-embed .s-field-full { grid-column: 1 / -1; }
+  .sg-embed .s-label { font-size: 11px; color: var(--s-text2); }
+  .sg-embed .s-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--s-surface2); border: 1px solid var(--s-border);
+    border-radius: var(--s-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .sg-embed .s-input-wrap:focus-within { border-color: var(--s-accent); }
+  .sg-embed .s-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .sg-embed .s-input-prefix,
+  .sg-embed .s-input-suffix {
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; background: var(--s-surface3);
+    color: var(--s-text3); font-family: var(--s-mono);
+  }
+  .sg-embed .s-input-prefix { border-right: 1px solid var(--s-border); }
+  .sg-embed .s-input-suffix { border-left:  1px solid var(--s-border); }
+  .sg-embed .s-toggle-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 4px;
+  }
+  .sg-embed .s-toggle-row label { font-size: 12px; color: var(--s-text2); cursor: pointer; }
+
+  /* Results */
+  .sg-embed .s-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--s-border);
+  }
+  .sg-embed .s-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--s-text3);
+  }
+  .sg-embed .s-hero {
+    background: var(--s-surface3); border: 1px solid var(--s-border2);
+    border-radius: var(--s-radius); padding: 18px 20px;
+    margin-bottom: 14px; text-align: center;
+  }
+  .sg-embed .s-hero-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--s-text3); margin-bottom: 6px;
+  }
+  .sg-embed .s-hero-val {
+    font-family: var(--s-serif); font-size: 28px;
+    color: var(--s-accent); line-height: 1.1;
+  }
+  .sg-embed .s-hero-sub {
+    font-size: 12px; color: var(--s-text3);
+    font-family: var(--s-mono); margin-top: 6px;
+  }
+
+  .sg-embed .s-bar-wrap {
+    height: 10px; border-radius: 5px;
+    background: var(--s-surface3); overflow: hidden;
+    border: 1px solid var(--s-border);
+    margin-top: 12px;
+  }
+  .sg-embed .s-bar-fill {
+    height: 100%; background: var(--s-accent);
+    transition: width 0.3s;
+  }
+  .sg-embed .s-bar-meta {
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--s-text2);
+    font-family: var(--s-mono);
+    margin-top: 6px;
+  }
+
+  .sg-embed .s-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-top: 14px;
+  }
+  .sg-embed .s-cell {
+    background: var(--s-surface2); border: 1px solid var(--s-border);
+    border-radius: var(--s-radius-sm); padding: 12px 14px;
+  }
+  .sg-embed .s-cell-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--s-text3); margin-bottom: 4px;
+  }
+  .sg-embed .s-cell-val {
+    font-family: var(--s-mono); font-size: 16px; font-weight: 700;
+    color: var(--s-text);
+  }
+
+  /* Inflation note (visible when inflation toggle is on) */
+  .sg-embed .s-inflation-note {
+    margin-top: 12px; padding: 10px 12px;
+    background: var(--s-surface2); border-left: 3px solid rgba(41,142,95,0.4);
+    border-radius: var(--s-radius-sm);
+    font-size: 11px; color: var(--s-text2); line-height: 1.5;
+  }
+
+  /* Year-by-year projection table */
+  .sg-embed .s-projection {
+    margin-top: 16px;
+  }
+  .sg-embed .s-projection-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--s-text); margin-bottom: 8px;
+  }
+  .sg-embed .s-projection-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--s-mono); font-size: 11px;
+  }
+  .sg-embed .s-projection-table th,
+  .sg-embed .s-projection-table td {
+    padding: 6px 8px; text-align: right;
+    border-bottom: 1px solid var(--s-border);
+  }
+  .sg-embed .s-projection-table th {
+    background: var(--s-surface2); color: var(--s-text3);
+    font-weight: 600; text-transform: uppercase;
+    font-size: 9.5px; letter-spacing: 0.6px;
+  }
+  .sg-embed .s-projection-table td:first-child,
+  .sg-embed .s-projection-table th:first-child { text-align: left; }
+  .sg-embed .s-projection-table tr.s-row-final td {
+    background: rgba(41,142,95,0.07);
+    color: var(--s-accent); font-weight: 700;
+  }
+  .sg-embed .s-projection-wrap {
+    max-height: 320px; overflow-y: auto;
+    border: 1px solid var(--s-border); border-radius: var(--s-radius-sm);
+  }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .sg-embed { padding: 16px; }
+    .sg-embed .s-fields { grid-template-columns: 1fr; }
+    .sg-embed .s-summary-grid { grid-template-columns: 1fr; }
+    .sg-embed .s-projection-table { font-size: 10.5px; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long will it take to save for a house deposit in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the deposit you need and how much you can save each month. For a 10% deposit on a £300,000 home (£30,000), saving £500 a month with 4% interest in a Cash ISA takes roughly 4 years 7 months. £750 a month brings that down to about 3 years 1 month. The free UK savings calculator above shows your exact timeline for any combination of target, current savings, and monthly contribution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a savings goal calculator UK work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A savings goal calculator solves for the number of months it will take to compound your current savings plus your monthly contributions up to your target amount. The standard formula is: months = log((target × r + monthly) / (current × r + monthly)) / log(1 + r), where r is your monthly interest rate. With no interest, it's the simpler (target − current) / monthly. The calculator above also factors in inflation if you toggle it on, so you can see your savings in today's purchasing power."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I have in savings UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common UK rule of thumb is an emergency fund of 3–6 months of essential spending. If your essential outgoings are £2,000 a month, that's £6,000–£12,000. Beyond the emergency fund, save toward specific goals — house deposit, holiday, retirement top-up — using their own savings accounts or ISAs. The calculator above lets you model any specific target so you know exactly what's required each month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's a good monthly amount to save in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 50/30/20 rule suggests 20% of post-tax income goes to savings or debt repayment, including pension contributions. On a £2,500/month take-home, that's £500. If you're saving for a specific short-term goal (1–3 years), use the calculator above to back-solve from the target — you might need more than 20%. For long-term goals, 15–25% is a healthy range for most UK households."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does compound interest work for UK savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compound interest is interest earned not just on your original deposit but also on the interest already credited. On £10,000 at 5% per year compounded monthly, after 10 years you have ~£16,470 — about £1,470 more than simple interest would give. The earlier you start, the more time compounding has to work. Doubling your monthly contribution doubles your end balance; doubling your time horizon roughly quadruples it. The calculator above shows the year-by-year breakdown so you can see compounding kick in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best UK savings rate for an emergency fund?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An emergency fund needs to be accessible — instant or easy-access savings accounts and Cash ISAs are typical homes. Best-buy easy-access rates change month-to-month but track the Bank of England base rate. Compare current rates on Moneyfacts, MoneySavingExpert, or directly with banks. Avoid locking the money in a fixed-term bond or notice account if you might need it suddenly. The calculator above lets you plug in any rate you actually receive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does inflation affect my UK savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inflation reduces the real purchasing power of your savings over time. If your savings grow at 4% but inflation runs at 3%, your real return is only ~1%. Toggle the inflation option in the calculator above to see your final amount in today's pounds — the figure that actually tells you what your savings will buy when you reach your goal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much can I save tax-free in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The annual ISA allowance is £20,000 across all ISA types (Cash, Stocks & Shares, Lifetime, Innovative Finance). Outside ISAs, the Personal Savings Allowance lets basic-rate taxpayers earn £1,000 of interest tax-free a year (£500 for higher-rate, £0 for additional-rate). Premium Bonds are also tax-free, with prizes instead of interest. For most UK savers, putting savings in a Cash ISA or a Stocks & Shares ISA is the simplest way to keep returns out of HMRC's reach."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Savings Goal Calculator",
+  "url": "https://thevaultapp.co.uk/tools/savings-goal-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK savings goal calculator. Find out how long until you reach any target — house deposit, emergency fund, holiday, anything."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Savings calculator UK</p>
+    <h1>UK Savings Goal Calculator — How Long to Reach Your Target?</h1>
+    <p class="lede">Whether you're saving for a house deposit, an emergency fund, a holiday, or anything in between — see exactly how long it'll take. Free, private, no sign up. Nothing you enter ever leaves your device.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="sg-embed" id="sg-calc">
+
+      <div class="s-label-row">Your savings goal</div>
+      <div class="s-fields">
+        <div class="s-field s-field-full">
+          <label class="s-label" for="sg-name">Goal name (optional)</label>
+          <input type="text" id="sg-name" placeholder="e.g. House deposit, Japan trip, Emergency fund" autocomplete="off" />
+        </div>
+
+        <div class="s-field s-field-full">
+          <label class="s-label" for="sg-target">Target amount</label>
+          <div class="s-input-wrap">
+            <span class="s-input-prefix">£</span>
+            <input type="number" id="sg-target" placeholder="20,000" inputmode="decimal" step="100" />
+          </div>
+        </div>
+
+        <div class="s-field">
+          <label class="s-label" for="sg-start">Saved so far</label>
+          <div class="s-input-wrap">
+            <span class="s-input-prefix">£</span>
+            <input type="number" id="sg-start" placeholder="0" inputmode="decimal" step="100" />
+          </div>
+        </div>
+
+        <div class="s-field">
+          <label class="s-label" for="sg-monthly">Monthly contribution</label>
+          <div class="s-input-wrap">
+            <span class="s-input-prefix">£</span>
+            <input type="number" id="sg-monthly" placeholder="500" inputmode="decimal" step="10" />
+          </div>
+        </div>
+
+        <div class="s-field">
+          <label class="s-label" for="sg-rate">Annual interest rate</label>
+          <div class="s-input-wrap">
+            <input type="number" id="sg-rate" placeholder="4.5" inputmode="decimal" step="0.1" />
+            <span class="s-input-suffix">%</span>
+          </div>
+        </div>
+
+        <div class="s-field">
+          <label class="s-label" for="sg-inflation-rate">Inflation rate</label>
+          <div class="s-input-wrap">
+            <input type="number" id="sg-inflation-rate" value="2.5" inputmode="decimal" step="0.1" />
+            <span class="s-input-suffix">%</span>
+          </div>
+        </div>
+
+        <div class="s-field s-field-full">
+          <div class="s-toggle-row">
+            <input type="checkbox" id="sg-inflation-on" />
+            <label for="sg-inflation-on">Adjust for inflation (show final amount in today's purchasing power)</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-results">
+        <div class="s-empty" id="sg-empty">Enter a target amount and a monthly contribution to see your timeline.</div>
+
+        <div id="sg-output" style="display:none">
+          <div class="s-hero">
+            <div class="s-hero-label" id="sg-hero-name">You'll reach your goal in</div>
+            <div class="s-hero-val" id="sg-time">—</div>
+            <div class="s-hero-sub" id="sg-date"></div>
+            <div class="s-bar-wrap"><div class="s-bar-fill" id="sg-bar" style="width:0%"></div></div>
+            <div class="s-bar-meta">
+              <span id="sg-pct">0% there</span>
+              <span id="sg-final"></span>
+            </div>
+          </div>
+
+          <div class="s-summary-grid">
+            <div class="s-cell">
+              <div class="s-cell-label">Total contributions</div>
+              <div class="s-cell-val" id="sg-total-contrib">£—</div>
+            </div>
+            <div class="s-cell">
+              <div class="s-cell-label">Total interest earned</div>
+              <div class="s-cell-val" id="sg-total-interest">£—</div>
+            </div>
+          </div>
+
+          <div class="s-inflation-note" id="sg-inflation-note" style="display:none"></div>
+
+          <div class="s-projection" id="sg-projection-block">
+            <div class="s-projection-title">Year-by-year projection</div>
+            <div class="s-projection-wrap">
+              <table class="s-projection-table">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Contributed</th>
+                    <th>Interest</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody id="sg-projection-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Five fields, one timeline</h2>
+    <p class="section-body muted">The savings goal calculator UK above runs the maths the moment you start typing. Here's how to get a useful number out of it.</p>
+    <ol>
+      <li><strong>Set your target.</strong> The full amount you need to reach — house deposit, emergency fund, holiday, dream purchase. Be specific: "£30,000 for a 10% deposit" beats "a house" because the maths only works with a number.</li>
+      <li><strong>Enter what you've already saved.</strong> Anything currently sitting in savings or short-term investments toward this goal. Leave at 0 if you're starting from scratch.</li>
+      <li><strong>Pick a monthly contribution.</strong> The amount you can realistically save each month. If you don't know yet, run the calculator with a guess, see how long it'd take, then adjust until the timeline feels achievable.</li>
+      <li><strong>Add an interest rate.</strong> The annual rate your savings vehicle pays — 4–5% for a Cash ISA or easy-access account in current market conditions; 6–8% for stocks-and-shares investments over the long run. The calculator compounds monthly.</li>
+      <li><strong>Toggle inflation if you're saving long-term.</strong> The final figure is shown in nominal pounds by default. Tick the inflation box to see what it'll actually buy in today's money — important for goals more than 2–3 years out.</li>
+    </ol>
+    <p class="section-body">Below the headline you'll see total contributions, total interest earned, and a year-by-year breakdown of how the balance grows.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding your savings</p>
+    <h2 class="section-title">The maths that does the heavy lifting</h2>
+    <p class="section-body muted">A savings calculator is only useful if you understand the levers it exposes. Here's the plain-English version.</p>
+
+    <div class="definition-card">
+      <h4>Compound interest</h4>
+      <p>Interest earned on top of interest already credited. £10,000 at 5% with monthly compounding becomes ~£16,470 after 10 years — about £1,470 more than a simple-interest calculation would give. The longer you leave it, the wider the gap. This is why a compound interest calculator UK matters: simple maths consistently underestimates long-term outcomes.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why starting earlier matters more than saving more</h4>
+      <p>Two savers, both putting away £200 a month at 6%. Saver A starts at 25 and stops at 35 (10 years × £200 = £24,000 contributed). Saver B starts at 35 and saves until 65 (30 years × £200 = £72,000 contributed). At 65, Saver A has roughly £180,000; Saver B has roughly £200,000. Saver A contributed a third of what Saver B did and ended up almost level. Time in the market beats timing the market — by a lot.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why a small interest-rate change matters so much</h4>
+      <p>Saving £500/month for 10 years at 3% gives ~£70,000. The same £500/month at 6% gives ~£82,000 — £12,000 more for the same effort. Doubling the time horizon roughly quadruples the gap. This is why parking long-term savings in higher-yield vehicles (Cash ISA best-buys, or stocks-and-shares ISAs for 5+ year horizons) is so powerful — small rate differences compound into big lifestyle differences.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Total contributions vs total interest</h4>
+      <p>The calculator separates how much money came from your pocket from how much was generated by interest. Early on, contributions dominate. Past 10–15 years, interest takes over. The crossover point — where your interest earned exceeds your total contributions — is one of the strongest emotional motivators in personal finance. The calculator's year-by-year table makes it visible.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Nominal vs real returns</h4>
+      <p>"Nominal" is the raw number. "Real" is the same number after inflation. If your savings earn 5% nominal but inflation is 3%, your real return is ~1.94%. The inflation toggle in the calculator above shows your final amount adjusted to today's purchasing power — what the money will actually buy when you spend it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK savers</h2>
+
+    <h3>Where UK savings rates sit today</h3>
+    <p class="section-body">UK savings rates broadly track the Bank of England base rate. Best-buy easy-access accounts and Cash ISAs typically sit around the base rate (sometimes 0.5–1 percentage point above). Fixed-rate bonds offer slightly more in exchange for locking the money up for 1–5 years. Compare current rates on Moneyfacts or MoneySavingExpert before plugging a figure into the calculator.</p>
+
+    <h3>Cash ISAs and tax-free saving</h3>
+    <p class="section-body">The annual ISA allowance is <strong>£20,000</strong> across all ISA types — Cash, Stocks &amp; Shares, Lifetime (limited to £4,000), and Innovative Finance. Interest earned inside an ISA is fully tax-free, regardless of your income. Outside ISAs, the Personal Savings Allowance gives basic-rate taxpayers £1,000 of tax-free interest a year (£500 for higher-rate, £0 for additional-rate). Most UK savers should fill their ISA allowance first, then use a normal savings account once it's exhausted.</p>
+
+    <h3>Premium Bonds as an alternative</h3>
+    <p class="section-body">Premium Bonds (NS&amp;I) pay no interest — instead they enter you into a monthly prize draw with tax-free prizes. The "prize fund rate" is published as an indicative average return, but actual returns are random. Useful as a tax-free alternative once you've filled your ISA, or as a place for emergency savings if you don't mind the variability. Won't make sense for goal-oriented saving with a deadline because the upside is probabilistic.</p>
+
+    <h3>How inflation erodes savings over time</h3>
+    <p class="section-body">UK inflation has averaged around 2–3% over the long run, with periods well above. £10,000 today buys what £8,200 buys in 10 years at 2% inflation — a 18% loss in purchasing power even if the money sits untouched. Cash savings paying less than the inflation rate are losing real value every year. Toggle the inflation option in the calculator to see your goal in today's purchasing power.</p>
+
+    <h3>Lifetime ISA for first-time buyers</h3>
+    <p class="section-body">If you're under 40 and saving for a first home (or for retirement after 60), a Lifetime ISA gives a 25% government bonus on contributions up to £4,000/year — up to £1,000/year free. Use it for property up to £450,000. Withdraw before 60 for any other reason and you lose the bonus plus a small penalty, so it's a long-horizon vehicle. Powerful if your goal fits the rules.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK savings goals.</p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>How long to save for a house deposit UK?</summary>
+        <div class="faq-body">
+          <p>It depends on the deposit you need and how much you can save each month. For a 10% deposit on a £300,000 home (£30,000), saving £500 a month with 4% interest in a Cash ISA takes roughly <strong>4 years 7 months</strong>. £750 a month brings that down to about <strong>3 years 1 month</strong>.</p>
+          <p>The calculator above shows your exact timeline for any combination of target, current savings, and monthly contribution.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this savings goal calculator UK work?</summary>
+        <div class="faq-body">
+          <p>It solves for the number of months it'll take to compound your current savings plus your monthly contributions up to your target. The formula is <em>months = log((target × r + monthly) / (current × r + monthly)) / log(1 + r)</em>, where r is your monthly interest rate.</p>
+          <p>With no interest, it's simpler: <em>(target − current) / monthly</em>. The calculator also factors in inflation if you toggle it on.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much should I have in savings UK?</summary>
+        <div class="faq-body">
+          <p>A common UK rule of thumb is an emergency fund of <strong>3–6 months of essential spending</strong>. If your essential outgoings are £2,000 a month, that's £6,000–£12,000.</p>
+          <p>Beyond the emergency fund, save toward specific goals — house deposit, holiday, retirement top-up — using their own savings accounts or ISAs. The calculator above lets you model any specific target so you know exactly what's required each month.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's a good emergency fund calculator UK setup?</summary>
+        <div class="faq-body">
+          <p>Use the calculator with your target set to 3–6× your monthly essential spending (rent/mortgage, utilities, food, transport, minimum debt payments). Pick a monthly contribution that's realistic — usually 5–15% of take-home — and an interest rate based on a current best-buy easy-access account.</p>
+          <p>Don't lock emergency fund money in a fixed-term bond. The point is fast access; the cost is a slightly lower rate.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much do I need to save each month UK?</summary>
+        <div class="faq-body">
+          <p>Depends entirely on your goal and timeline. The 50/30/20 rule suggests <strong>20% of post-tax income</strong> goes to savings or debt repayment, including pension contributions — so on a £2,500/month take-home, that's £500.</p>
+          <p>For specific short-term goals (1–3 years), back-solve from the target using the calculator above. For long-term goals, 15–25% is a healthy range for most UK households.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Compound interest calculator UK — how do I use it?</summary>
+        <div class="faq-body">
+          <p>This calculator <em>is</em> a compound interest calculator. Enter your starting amount, monthly contribution, annual rate, and how much you're aiming for. The maths compounds monthly using the standard amortisation-of-savings formula.</p>
+          <p>The year-by-year projection table shows how interest grows relative to contributions over time — useful for visualising the "compound interest crossover" where interest earned starts to outpace what you put in.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does inflation affect my savings?</summary>
+        <div class="faq-body">
+          <p>Inflation reduces the real purchasing power of your savings over time. If your savings grow at 4% but inflation runs at 3%, your real return is only ~1%.</p>
+          <p>Toggle the inflation option in the calculator above to see your final amount in today's pounds — the figure that actually tells you what your savings will buy when you reach your goal.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is this UK savings calculator free?</summary>
+        <div class="faq-body">
+          <p>Yes, completely free. There's no sign up, no email collection, and no paywall. Everything runs in your browser — none of the figures you enter are sent to a server or stored anywhere outside your device.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track all your savings accounts and goals in one place?</h2>
+      <p>Vault is the home for everything this calculator hints at — your savings, accounts, net worth, and progress toward every goal you set, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SAVINGS GOAL LOGIC — core formula extracted verbatim from the
+     in-app calcSG() in Vault_V.1.42.html (line ~22154). The SEO page
+     extends it with: explicit total-contributions and total-interest
+     cells, a year-by-year projection table, and an inflation toggle
+     that translates the final amount into today's purchasing power.
+     The base maths is unchanged.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+function fmtPound(n, dp) {
+  if (!isFinite(n)) return '£—';
+  const decimals = dp != null ? dp : 0;
+  return '£' + n.toLocaleString('en-GB', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+}
+
+function $(id) { return document.getElementById(id); }
+
+function calcSG() {
+  const target  = parseFloat($('sg-target').value)  || 0;
+  const monthly = parseFloat($('sg-monthly').value) || 0;
+  const start   = parseFloat($('sg-start').value)   || 0;
+  const rate    = parseFloat($('sg-rate').value)    || 0;
+  const goalName = ($('sg-name').value || '').trim();
+  const inflationOn   = $('sg-inflation-on').checked;
+  const inflationRate = parseFloat($('sg-inflation-rate').value) || 0;
+
+  const empty = $('sg-empty');
+  const out   = $('sg-output');
+
+  if (target <= 0 || (monthly <= 0 && start < target)) {
+    empty.style.display = 'block';
+    out.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  out.style.display = 'block';
+
+  // Hero label includes goal name when given
+  $('sg-hero-name').textContent = goalName ? `You'll reach "${goalName}" in` : `You'll reach your goal in`;
+
+  // Already at goal?
+  if (start >= target) {
+    $('sg-time').textContent = 'Goal reached!';
+    $('sg-date').textContent = `${fmtPound(start, 0)} of ${fmtPound(target, 0)}`;
+    $('sg-bar').style.width = '100%';
+    $('sg-pct').textContent = '100% there';
+    $('sg-final').textContent = '';
+    $('sg-total-contrib').textContent = fmtPound(start, 0);
+    $('sg-total-interest').textContent = '£0';
+    $('sg-projection-body').innerHTML = '';
+    $('sg-inflation-note').style.display = 'none';
+    return;
+  }
+
+  // ── Core formula (verbatim from in-app calcSG) ────────────────────────────
+  const r = rate / 100 / 12;
+  let months;
+  if (r === 0) {
+    months = Math.ceil((target - start) / monthly);
+  } else {
+    const num = (target * r + monthly);
+    const den = (start  * r + monthly);
+    if (den <= 0 || num / den <= 1) {
+      months = Math.ceil((target - start) / monthly);
+    } else {
+      months = Math.ceil(Math.log(num / den) / Math.log(1 + r));
+    }
+  }
+
+  // Final amount with compound growth
+  const finalAmt = (r === 0)
+    ? start + monthly * months
+    : start * Math.pow(1 + r, months) + monthly * ((Math.pow(1 + r, months) - 1) / r);
+
+  // Total contributions = starting + every month's contribution
+  const totalContrib = start + monthly * months;
+  const totalInterest = finalAmt - totalContrib;
+
+  // Format duration
+  const yrs = Math.floor(months / 12);
+  const mo  = months % 12;
+  const parts = [];
+  if (yrs > 0) parts.push(yrs + (yrs === 1 ? ' year' : ' years'));
+  if (mo  > 0) parts.push(mo  + (mo  === 1 ? ' month' : ' months'));
+  const durationStr = parts.length ? parts.join(' and ') : 'Less than a month';
+
+  // Arrival date
+  const arrival = new Date();
+  arrival.setMonth(arrival.getMonth() + months);
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const arrivalStr = monthNames[arrival.getMonth()] + ' ' + arrival.getFullYear();
+
+  // Progress bar
+  const pctNow = Math.min(100, target > 0 ? (start / target) * 100 : 0);
+
+  $('sg-time').textContent = durationStr;
+  $('sg-date').textContent = `Around ${arrivalStr}`;
+  $('sg-bar').style.width  = pctNow + '%';
+  $('sg-pct').textContent  = pctNow.toFixed(0) + '% there';
+  $('sg-final').textContent = `Final balance: ${fmtPound(finalAmt, 0)}`;
+
+  $('sg-total-contrib').textContent  = fmtPound(totalContrib, 0);
+  $('sg-total-interest').textContent = fmtPound(Math.max(0, totalInterest), 0);
+
+  // ── Inflation note (purchasing power in today's pounds) ──────────────────
+  const noteEl = $('sg-inflation-note');
+  if (inflationOn && inflationRate > 0 && months > 0) {
+    const years = months / 12;
+    const realFinal = finalAmt / Math.pow(1 + inflationRate / 100, years);
+    noteEl.style.display = 'block';
+    noteEl.innerHTML = `In today's purchasing power, your <strong>${fmtPound(finalAmt, 0)}</strong> will buy what <strong>${fmtPound(realFinal, 0)}</strong> buys today (assuming ${inflationRate}% annual inflation over ${years.toFixed(1)} years).`;
+  } else {
+    noteEl.style.display = 'none';
+  }
+
+  // ── Year-by-year projection ──────────────────────────────────────────────
+  const tbody = $('sg-projection-body');
+  tbody.innerHTML = '';
+  let bal = start;
+  let cumContrib = start;
+  const totalYears = Math.ceil(months / 12);
+  for (let y = 1; y <= totalYears; y++) {
+    const monthsThisYear = (y === totalYears) ? (months - (y - 1) * 12) : 12;
+    const yearStartBal = bal;
+    let yearContrib = 0;
+    for (let i = 0; i < monthsThisYear; i++) {
+      bal = bal * (1 + r) + monthly;
+      yearContrib += monthly;
+    }
+    cumContrib += yearContrib;
+    const yearInterest = bal - yearStartBal - yearContrib;
+    const isFinal = (y === totalYears);
+    const tr = document.createElement('tr');
+    if (isFinal) tr.classList.add('s-row-final');
+    tr.innerHTML = `
+      <td>${isFinal ? 'Year ' + y + ' (goal)' : 'Year ' + y}</td>
+      <td>${fmtPound(yearContrib, 0)}</td>
+      <td>${fmtPound(Math.max(0, yearInterest), 0)}</td>
+      <td>${fmtPound(bal, 0)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
+
+// Wire inputs
+['sg-name','sg-target','sg-monthly','sg-start','sg-rate','sg-inflation-rate','sg-inflation-on']
+  .forEach(id => {
+    const el = $(id);
+    if (!el) return;
+    const evt = el.type === 'checkbox' ? 'change' : 'input';
+    el.addEventListener(evt, calcSG);
+  });
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', calcSG);
+} else {
+  calcSG();
+}
+</script>
+
+</body>
+</html>
