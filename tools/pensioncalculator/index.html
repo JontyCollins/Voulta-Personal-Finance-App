@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Pension Calculator 2026 — Are You Saving Enough to Retire? | Vault</title>
+<meta name="description" content="Calculate your projected pension pot and retirement income. Free UK pension calculator with state pension, employer contributions and compound growth. Private, no sign up." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/pension-calculator" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Pension Calculator 2026 — Are You Saving Enough to Retire?" />
+<meta property="og:description" content="Calculate your projected pension pot and retirement income. Free, private — no sign up, no data shared." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/pension-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     PENSION CALCULATOR EMBED — built from scratch (no equivalent in
+     the app). Variables scoped to .pension-embed so the warm light
+     palette doesn't leak into the rest of the page.
+     Core formula: future value of a pension pot is
+       FV = PV·(1+r)^n + PMT·((1+r)^n − 1)/r
+     monthly compounded across n months, where PMT is the combined
+     employee + employer contribution. Retirement income is then
+     pot × 4% annually (the Trinity-Study safe withdrawal rate).
+     ════════════════════════════════════════════════════════════════ */
+  .pension-embed {
+    --p-surface:  #fbfaf8;
+    --p-surface2: #eeebe8;
+    --p-surface3: #ebe7e0;
+    --p-border:   #e2ddd5;
+    --p-border2:  #ccc8be;
+    --p-text:     #221f1c;
+    --p-text2:    #7f756c;
+    --p-text3:    #a8a099;
+    --p-accent:   #298e5f;
+    --p-red:      #c83030;
+    --p-green:    #208050;
+    --p-amber:    #c8801c;
+    --p-radius: 12px;
+    --p-radius-sm: 8px;
+    --p-mono: 'DM Mono', monospace;
+    --p-sans: 'DM Sans', sans-serif;
+    --p-serif: 'DM Serif Display', serif;
+    font-family: var(--p-sans);
+    color: var(--p-text);
+    background: var(--p-surface);
+    border: 1px solid var(--p-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 640px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .pension-embed input, .pension-embed select {
+    background: var(--p-surface2);
+    border: 1px solid var(--p-border);
+    color: var(--p-text);
+    padding: 8px 10px;
+    border-radius: var(--p-radius-sm);
+    font-family: var(--p-mono);
+    font-size: 13px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .pension-embed select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%237f756c' d='M0 0l5 6 5-6z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    font-family: var(--p-sans);
+  }
+  .pension-embed input:focus, .pension-embed select:focus {
+    outline: none; border-color: var(--p-accent);
+  }
+  .pension-embed input[type=checkbox] {
+    -webkit-appearance: checkbox; appearance: checkbox;
+    width: 16px; height: 16px; padding: 0; margin: 0;
+    background: transparent; border: 1px solid var(--p-border);
+    cursor: pointer; accent-color: var(--p-accent);
+    flex-shrink: 0;
+  }
+
+  .pension-embed .p-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--p-text3); margin: 0 0 8px;
+  }
+  .pension-embed .p-fields {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px 14px; margin-bottom: 14px;
+  }
+  .pension-embed .p-field { display: flex; flex-direction: column; gap: 5px; }
+  .pension-embed .p-field-full { grid-column: 1 / -1; }
+  .pension-embed .p-label { font-size: 11px; color: var(--p-text2); }
+  .pension-embed .p-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--p-surface2); border: 1px solid var(--p-border);
+    border-radius: var(--p-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .pension-embed .p-input-wrap:focus-within { border-color: var(--p-accent); }
+  .pension-embed .p-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .pension-embed .p-input-prefix,
+  .pension-embed .p-input-suffix {
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; background: var(--p-surface3);
+    color: var(--p-text3); font-family: var(--p-mono);
+  }
+  .pension-embed .p-input-prefix { border-right: 1px solid var(--p-border); }
+  .pension-embed .p-input-suffix { border-left:  1px solid var(--p-border); }
+
+  /* Contribution unit toggle (£/%) */
+  .pension-embed .p-contrib-row {
+    display: flex; gap: 4px; align-items: stretch;
+  }
+  .pension-embed .p-contrib-row .p-input-wrap { flex: 1; }
+  .pension-embed .p-toggle {
+    display: flex; gap: 0; padding: 2px;
+    background: var(--p-surface3); border-radius: var(--p-radius-sm);
+    flex-shrink: 0;
+  }
+  .pension-embed .p-toggle button {
+    border: none; background: transparent;
+    color: var(--p-text3); font-family: var(--p-sans);
+    padding: 6px 10px; font-size: 11px; font-weight: 600;
+    cursor: pointer; border-radius: 5px; min-width: 36px;
+    transition: all 0.12s;
+  }
+  .pension-embed .p-toggle button.active {
+    background: var(--p-surface); color: var(--p-text);
+  }
+
+  .pension-embed .p-toggle-row {
+    display: flex; align-items: center; gap: 10px;
+    margin: 6px 0 14px;
+  }
+  .pension-embed .p-toggle-row label { font-size: 12px; color: var(--p-text2); cursor: pointer; }
+
+  /* Results */
+  .pension-embed .p-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--p-border);
+  }
+  .pension-embed .p-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--p-text3);
+  }
+  .pension-embed .p-hero {
+    background: var(--p-surface3); border: 1px solid var(--p-border2);
+    border-radius: var(--p-radius); padding: 18px 20px;
+    margin-bottom: 14px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .pension-embed .p-hero-cell { min-width: 0; }
+  .pension-embed .p-hero-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--p-text3); margin-bottom: 4px;
+  }
+  .pension-embed .p-hero-val {
+    font-family: var(--p-serif); font-size: 26px;
+    color: var(--p-accent); line-height: 1.1;
+    word-break: break-all;
+  }
+  .pension-embed .p-hero-sub {
+    font-size: 11px; color: var(--p-text3);
+    font-family: var(--p-mono); margin-top: 4px;
+  }
+
+  .pension-embed .p-status {
+    margin-top: 14px; padding: 12px 14px;
+    border-radius: var(--p-radius-sm);
+    font-size: 13px; line-height: 1.5;
+    border: 1px solid var(--p-border);
+  }
+  .pension-embed .p-status.on-track {
+    background: rgba(41,142,95,0.07); border-color: rgba(41,142,95,0.3); color: var(--p-text);
+  }
+  .pension-embed .p-status.behind {
+    background: rgba(200,128,28,0.07); border-color: rgba(200,128,28,0.3); color: var(--p-text);
+  }
+  .pension-embed .p-status.no-target {
+    background: var(--p-surface2); color: var(--p-text2);
+  }
+  .pension-embed .p-status strong { color: var(--p-accent); }
+
+  .pension-embed .p-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-top: 14px;
+  }
+  .pension-embed .p-cell {
+    background: var(--p-surface2); border: 1px solid var(--p-border);
+    border-radius: var(--p-radius-sm); padding: 12px 14px;
+  }
+  .pension-embed .p-cell-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--p-text3); margin-bottom: 4px;
+  }
+  .pension-embed .p-cell-val {
+    font-family: var(--p-mono); font-size: 16px; font-weight: 700;
+    color: var(--p-text);
+  }
+
+  /* What-if callout: impact of bumping contributions */
+  .pension-embed .p-whatif {
+    margin-top: 14px; padding: 14px 16px;
+    background: rgba(41,142,95,0.05);
+    border: 1px solid rgba(41,142,95,0.25);
+    border-radius: var(--p-radius);
+  }
+  .pension-embed .p-whatif-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--p-accent); margin-bottom: 6px;
+  }
+  .pension-embed .p-whatif-body {
+    font-size: 13px; color: var(--p-text); line-height: 1.55;
+  }
+  .pension-embed .p-whatif-body strong { color: var(--p-accent); font-weight: 700; }
+
+  .pension-embed .p-state-pension-note {
+    margin-top: 12px; padding: 10px 12px;
+    background: var(--p-surface2); border-left: 3px solid rgba(41,142,95,0.4);
+    border-radius: var(--p-radius-sm);
+    font-size: 11px; color: var(--p-text2); line-height: 1.5;
+  }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .pension-embed { padding: 16px; }
+    .pension-embed .p-fields { grid-template-columns: 1fr; }
+    .pension-embed .p-summary-grid { grid-template-columns: 1fr; }
+    .pension-embed .p-hero { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should I have in my pension at 30 in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common rule of thumb is to have 1× your annual salary saved in pensions by 30. So if you earn £35,000, aim for ~£35,000 in your pension pot. By 40 the target is 3× salary, by 50 it's 6×, and by 67 (state pension age) it's 10×. These are rough benchmarks — auto-enrolment plus modest top-ups generally gets people there if started in their 20s. Use the calculator above to see whether your specific contributions are on track for your target retirement income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a UK pension calculator 2026 work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It projects your pension pot forward using compound growth: FV = PV × (1+r)^n + PMT × ((1+r)^n − 1) / r, where PV is your current pot, PMT is your combined monthly contribution (employee + employer), r is the monthly growth rate, and n is the number of months until retirement. The projected income at retirement is then estimated using the 4% safe withdrawal rate (£100,000 pot ≈ £4,000/year ≈ £333/month). The calculator above adds the option to include the UK state pension on top."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Am I saving enough for retirement in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A very rough rule: aim for total pension contributions (yours + employer) of at least 12–15% of gross salary by age 30, rising to 20%+ in your 40s if you started later. Auto-enrolment minimums (8% combined) are not enough on their own to give most people a comfortable retirement. The calculator above tells you whether your projected retirement income meets your target, and shows how a small bump in contributions changes the outcome."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do I need in my pension to retire in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 25× your desired annual retirement income (the 4% rule). For a £25,000 a year retirement, you need a £625,000 pot. Subtract the state pension (~£11,500/year) and you only need to fund £13,500 yourself — that's a £337,500 pot. The Pensions and Lifetime Savings Association (PLSA) suggests £14,400/year for a 'minimum' UK retirement, £31,300 for 'moderate', and £43,100 for 'comfortable' (single person, outside London, 2024 figures)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good pension pot UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your target lifestyle and whether the state pension is part of your plan. Rough benchmarks for a single retiree: £150,000–£300,000 pot for a minimum retirement (relying heavily on state pension); £500,000–£800,000 for a moderate retirement (some travel, eating out, occasional spending); £1M+ for a comfortable retirement with substantial discretionary spend. The calculator above lets you set your own target and see whether you're on track."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does employer pension matching work in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many UK employers contribute a percentage of your salary to your pension if you contribute too — often called 'matching'. Auto-enrolment requires a minimum 3% employer contribution and 5% employee contribution (8% total of qualifying earnings). Generous schemes match 1:1 or even 1:2 — you put in 5%, they put in 5% or 10%. Always contribute at least up to the full match: it's free money on top of tax relief. The calculator above lets you enter both your contribution and your employer's so the projection reflects the combined total."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the UK state pension in 2025/26?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The full new State Pension is £221.20 a week for 2025/26 — about £11,502 a year. You need 35 qualifying years of National Insurance contributions to get the full amount, with 10 years minimum for any payment at all. The state pension age is currently 66, rising to 67 between 2026 and 2028, and to 68 in the 2040s. The calculator above lets you toggle whether to include the state pension in your projected retirement income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between defined contribution and defined benefit pensions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Defined Contribution (DC) — what most modern UK pensions are — builds up a pot of money you and your employer contribute to. Your retirement income depends on how big the pot grows. Defined Benefit (DB), also called 'final salary' or 'career average', pays you a guaranteed income for life based on your years of service and salary — common in public sector and older private sector schemes. DB pensions are now rare for new joiners outside the public sector. This calculator models a DC pension."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Pension Calculator",
+  "url": "https://thevaultapp.co.uk/tools/pension-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK pension calculator. Project your pension pot at retirement, estimate monthly income, and see whether you're on track."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Pension calculator UK</p>
+    <h1>UK Pension Calculator 2026 — Are You Saving Enough to Retire?</h1>
+    <p class="lede">Project your pension pot at retirement, estimate your monthly income, and see whether your contributions are on track. Free, private, no sign up — built for UK pension planning with UK rules and allowances baked in.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="pension-embed" id="p-calc">
+
+      <div class="p-section-label">Your details</div>
+      <div class="p-fields">
+
+        <div class="p-field">
+          <label class="p-label" for="p-age">Current age</label>
+          <div class="p-input-wrap">
+            <input type="number" id="p-age" placeholder="32" inputmode="numeric" step="1" min="16" max="80" />
+            <span class="p-input-suffix">years</span>
+          </div>
+        </div>
+
+        <div class="p-field">
+          <label class="p-label" for="p-retire-age">Target retirement age</label>
+          <div class="p-input-wrap">
+            <input type="number" id="p-retire-age" placeholder="67" inputmode="numeric" step="1" min="55" max="80" />
+            <span class="p-input-suffix">years</span>
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-pot">Current pension pot</label>
+          <div class="p-input-wrap">
+            <span class="p-input-prefix">£</span>
+            <input type="number" id="p-pot" placeholder="20,000" inputmode="decimal" step="500" />
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-salary">Annual salary (gross) — used if contribution is set as % of salary</label>
+          <div class="p-input-wrap">
+            <span class="p-input-prefix">£</span>
+            <input type="number" id="p-salary" placeholder="40,000" inputmode="decimal" step="500" />
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-employee">Your monthly contribution</label>
+          <div class="p-contrib-row">
+            <div class="p-input-wrap">
+              <span class="p-input-prefix" id="p-employee-prefix">£</span>
+              <input type="number" id="p-employee" placeholder="200" inputmode="decimal" step="10" />
+            </div>
+            <div class="p-toggle" role="tablist" aria-label="Employee contribution unit">
+              <button id="p-emp-pound" type="button" class="active" aria-pressed="true">£</button>
+              <button id="p-emp-pct" type="button" aria-pressed="false">%</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-employer">Employer contribution (% of salary)</label>
+          <div class="p-input-wrap">
+            <input type="number" id="p-employer" placeholder="5" inputmode="decimal" step="0.5" />
+            <span class="p-input-suffix">%</span>
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-growth">Expected annual growth rate</label>
+          <div class="p-input-wrap">
+            <input type="number" id="p-growth" value="7" inputmode="decimal" step="0.1" />
+            <span class="p-input-suffix">%</span>
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <label class="p-label" for="p-target">Target annual retirement income (optional)</label>
+          <div class="p-input-wrap">
+            <span class="p-input-prefix">£</span>
+            <input type="number" id="p-target" placeholder="30,000" inputmode="decimal" step="500" />
+          </div>
+        </div>
+
+        <div class="p-field p-field-full">
+          <div class="p-toggle-row">
+            <input type="checkbox" id="p-include-state" checked />
+            <label for="p-include-state">Include UK State Pension (~£11,502/yr from age 67) in retirement income</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="p-results">
+        <div class="p-empty" id="p-empty">Enter your age, retirement age, current pot and contributions to see your projected pension.</div>
+
+        <div id="p-output" style="display:none">
+          <div class="p-hero">
+            <div class="p-hero-cell">
+              <div class="p-hero-label">Pension pot at retirement</div>
+              <div class="p-hero-val" id="p-pot-final">£—</div>
+              <div class="p-hero-sub" id="p-years-sub"></div>
+            </div>
+            <div class="p-hero-cell" style="text-align:right">
+              <div class="p-hero-label">Estimated monthly income</div>
+              <div class="p-hero-val" id="p-income-monthly" style="font-size:22px">£—</div>
+              <div class="p-hero-sub" id="p-income-detail"></div>
+            </div>
+          </div>
+
+          <div class="p-status" id="p-status">—</div>
+
+          <div class="p-summary-grid">
+            <div class="p-cell">
+              <div class="p-cell-label">Total contributions over period</div>
+              <div class="p-cell-val" id="p-total-contrib">£—</div>
+            </div>
+            <div class="p-cell">
+              <div class="p-cell-label">Total growth (interest)</div>
+              <div class="p-cell-val" id="p-total-growth">£—</div>
+            </div>
+          </div>
+
+          <div class="p-whatif" id="p-whatif">
+            <div class="p-whatif-title">What if you bumped contributions up?</div>
+            <div class="p-whatif-body" id="p-whatif-body"></div>
+          </div>
+
+          <div class="p-state-pension-note" id="p-state-note" style="display:none"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Eight fields, one retirement projection</h2>
+    <p class="section-body muted">The pension calculator UK above runs the maths the moment you start typing. Here's how to get a useful number out of it.</p>
+    <ol>
+      <li><strong>Enter your current age and target retirement age.</strong> 67 is the current State Pension age (rising). For a Defined Contribution pension you can typically access the pot from age 55 (rising to 57 in 2028).</li>
+      <li><strong>Add your current pension pot.</strong> Combine workplace pensions, SIPPs, and any old preserved pensions. If you have several pots, sum them. Don't include ISAs unless you're treating them as retirement money.</li>
+      <li><strong>Enter your salary.</strong> Used to calculate contributions when you set them as a percentage. Use gross (pre-tax) salary.</li>
+      <li><strong>Set your monthly contribution in £ or %.</strong> Toggle the unit. Common UK auto-enrolment is 5% of qualifying earnings — for higher earners, 10–15% is more typical for a comfortable retirement.</li>
+      <li><strong>Add your employer's contribution.</strong> As a percentage of salary. Auto-enrolment minimum is 3%; many UK employers match up to 5–10%.</li>
+      <li><strong>Pick an expected growth rate.</strong> Default is 7% — a reasonable nominal long-run estimate for a balanced UK pension fund. Conservative 5%, aggressive 8–9%. The figure isn't real-terms; for "today's pounds," subtract your inflation assumption.</li>
+      <li><strong>Set a target annual retirement income.</strong> The calculator tells you whether you're on track for it. The PLSA's 2024 benchmarks: £14,400 minimum, £31,300 moderate, £43,100 comfortable (single, outside London).</li>
+      <li><strong>Toggle the State Pension.</strong> Adds £11,502/yr to your retirement income if you'll be at State Pension age. Leave on for traditional retirement; turn off if you're modelling early retirement.</li>
+    </ol>
+    <p class="section-body">Below the headline you'll see total contributions, total growth, an on-track indicator, and a "what if you bumped contributions" callout.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding your pension</p>
+    <h2 class="section-title">The retirement calculator UK in plain English</h2>
+    <p class="section-body muted">Pensions feel complicated but the core mechanics are straightforward. Here's what each piece does.</p>
+
+    <div class="definition-card">
+      <h4>Defined Contribution vs Defined Benefit</h4>
+      <p>Most modern UK pensions are <strong>Defined Contribution (DC)</strong>: you and your employer pay into a pot, the pot is invested, and your retirement income depends on how big it grows. <strong>Defined Benefit (DB)</strong>, also called "final salary" or "career average", pays a guaranteed income for life based on your years of service and salary. DB schemes are now rare for new joiners outside the public sector. This calculator models DC.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Employer matching is essentially free money</h4>
+      <p>If your employer matches contributions up to 5%, contributing 5% of your salary doubles to 10% inside the pension. Add basic-rate tax relief and a £100 chunk of take-home becomes around £200 of pension. Always contribute at least to the full match — anything less is a permanent pay cut you've volunteered for.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>The annual allowance</h4>
+      <p>£60,000 is the standard annual pension allowance for 2025/26 — combined employee, employer, and tax relief. High earners (£260,000+ adjusted income) face tapering down to £10,000. Going over the allowance triggers a tax charge. Most UK savers won't come close, but bonus-heavy years and high earners need to watch it.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why early contributions matter so much</h4>
+      <p>£200/month from 25 to 65 (40 years) at 7% growth becomes ~£525,000. The same £200/month from 35 to 65 (30 years) becomes ~£245,000 — less than half. Stretch the start to 45 and it's only ~£104,000. The 30s and 40s are when the compounding compounds. Late starters need to save much more in £ terms to land in the same place.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Auto-enrolment is the floor, not the goal</h4>
+      <p>UK auto-enrolment requires 8% combined contribution (3% employer + 5% employee) on qualifying earnings between £6,240 and £50,270. That's better than nothing but won't fund a comfortable retirement on its own for most people. Aim for 12–15% combined by your 30s, more if you started later.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK pension planning</h2>
+
+    <h3>State Pension in 2025/26</h3>
+    <p class="section-body">The full new State Pension is <strong>£221.20 a week (£11,502/year)</strong> for 2025/26. You need <strong>35 qualifying years of National Insurance contributions</strong> for the full amount, and 10 minimum for anything. The State Pension age is currently 66, rising to 67 between 2026 and 2028, and to 68 in the 2040s. Check your forecast on GOV.UK — you can pay voluntary contributions to fill gaps in your record.</p>
+
+    <h3>SIPP vs workplace pension</h3>
+    <p class="section-body">A <strong>workplace pension</strong> is set up by your employer and usually has employer contributions attached. A <strong>SIPP</strong> (Self-Invested Personal Pension) is one you set up yourself with a provider like Vanguard, AJ Bell, or Hargreaves Lansdown. SIPPs give you full control over investments and let you contribute beyond a workplace scheme. Most people use both: workplace pension to capture the employer match, SIPP for additional contributions or once they leave the company.</p>
+
+    <h3>Tax relief on pension contributions</h3>
+    <p class="section-body">Pension contributions get <strong>tax relief at your marginal rate</strong>. A basic-rate taxpayer (20%) putting £80 into a pension sees it boosted to £100. A higher-rate taxpayer (40%) gets the same boost automatically, plus can claim back another £20 via self-assessment, so £100 of pension only costs them £60 of take-home pay. Additional-rate (45%) gets a further £5 back. This is why pension contributions are so powerful for higher earners — the discount is huge.</p>
+
+    <h3>Lifetime allowance — now removed</h3>
+    <p class="section-body">The Lifetime Allowance (LTA) was abolished from 6 April 2024. There's no longer a cap on the total pension pot you can build up across your lifetime. The annual allowance (£60,000) still applies. The lump sum allowance (£268,275 — the maximum 25% tax-free cash) is the new ceiling on tax-free withdrawals. Big change for high earners and retirees — old "LTA breach" anxiety is gone.</p>
+
+    <h3>Auto-enrolment minimum contributions</h3>
+    <p class="section-body">From your eligible earnings (£6,240–£50,270 for 2025/26), the <strong>minimum total contribution is 8%</strong> — split as 3% employer + 5% employee (which becomes 4% net of basic-rate tax relief). You can opt out, but you'll lose the employer match — almost always a bad deal. The thresholds are reviewed annually by the Department for Work and Pensions.</p>
+
+    <h3>What this calculator doesn't model</h3>
+    <p class="section-body">The pension forecast calculator above uses nominal returns — for "today's pounds," subtract roughly 2.5% inflation. It assumes a single growth rate for the whole accumulation period, doesn't apply taper-relief if you exceed the annual allowance, and uses a simplified 4% safe withdrawal rate for retirement income. Real pension drawdown is usually a mix of tax-free lump sum (25% up to the lump sum allowance) and taxed income from the rest. For complex situations, speak to a regulated UK financial adviser.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK pensions and retirement.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>How much should I have in my pension at 30 UK?</summary>
+        <div class="faq-body">
+          <p>A common rule of thumb is to have <strong>1× your annual salary</strong> saved in pensions by 30. So if you earn £35,000, aim for ~£35,000 in your pension pot.</p>
+          <p>By 40 the target is 3× salary, by 50 it's 6×, and by 67 (State Pension age) it's 10×. These are rough benchmarks — auto-enrolment plus modest top-ups generally gets people there if started in their 20s.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this pension calculator UK 2026 work?</summary>
+        <div class="faq-body">
+          <p>It projects your pension pot forward using compound growth: <em>FV = PV × (1+r)<sup>n</sup> + PMT × ((1+r)<sup>n</sup> − 1) / r</em>, where PV is your current pot, PMT is your combined monthly contribution, r is the monthly growth rate, and n is the months until retirement.</p>
+          <p>The projected income is then estimated using the 4% safe withdrawal rate (£100,000 pot ≈ £4,000/year). Toggle the State Pension to add ~£11,502/year on top from age 67.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Am I saving enough for retirement UK?</summary>
+        <div class="faq-body">
+          <p>A very rough rule: aim for total pension contributions (yours + employer) of at least <strong>12–15% of gross salary</strong> by age 30, rising to 20%+ in your 40s if you started late.</p>
+          <p>Auto-enrolment minimums (8% combined) are not enough on their own to give most people a comfortable retirement. The calculator above tells you whether your projected income meets your target, and shows how a small bump in contributions changes the outcome.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much do I need in my pension to retire UK?</summary>
+        <div class="faq-body">
+          <p>Use <strong>25× your desired annual retirement income</strong> (the 4% rule). For a £25,000/year retirement, you need a £625,000 pot.</p>
+          <p>Subtract the State Pension (~£11,500/year) and you only need to fund £13,500 yourself — that's a £337,500 pot. The PLSA's 2024 benchmarks: £14,400/yr minimum retirement, £31,300 moderate, £43,100 comfortable (single, outside London).</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is a good pension pot UK?</summary>
+        <div class="faq-body">
+          <p>It depends on your target lifestyle and whether the State Pension is part of your plan.</p>
+          <p>Rough benchmarks for a single retiree: <strong>£150,000–£300,000</strong> for a minimum retirement (relying heavily on State Pension); <strong>£500,000–£800,000</strong> for moderate (some travel, eating out, occasional spending); <strong>£1M+</strong> for a comfortable retirement with substantial discretionary spend.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does employer pension matching work UK?</summary>
+        <div class="faq-body">
+          <p>Many UK employers contribute a percentage of your salary if you contribute too — often called "matching". <strong>Auto-enrolment</strong> requires a minimum 3% employer + 5% employee (8% total of qualifying earnings).</p>
+          <p>Generous schemes match 1:1 or even 1:2 — you put in 5%, they put in 5% or 10%. Always contribute at least up to the full match: it's free money on top of tax relief. The calculator above lets you enter both your contribution and your employer's so the projection reflects the combined total.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the UK State Pension in 2026?</summary>
+        <div class="faq-body">
+          <p>The full new State Pension is <strong>£221.20 a week (£11,502 a year)</strong> for 2025/26, payable from State Pension age (currently 66, rising to 67 between 2026 and 2028, and to 68 in the 2040s).</p>
+          <p>You need 35 qualifying years of National Insurance contributions for the full amount, with 10 years minimum for any payment at all. Check your forecast on GOV.UK.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the difference between SIPP and workplace pension?</summary>
+        <div class="faq-body">
+          <p>A <strong>workplace pension</strong> is set up by your employer and usually has employer contributions attached. A <strong>SIPP</strong> (Self-Invested Personal Pension) is one you set up yourself with a provider like Vanguard, AJ Bell, or Hargreaves Lansdown.</p>
+          <p>SIPPs give you full control over investments and let you contribute beyond a workplace scheme. Most people use both: workplace pension for the employer match, SIPP for additional contributions.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your pension pot alongside your full net worth?</h2>
+      <p>Vault is the home for everything this calculator hints at — your pension, ISAs, property, savings, and how it all fits together as a single net-worth view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PENSION CALCULATOR LOGIC — built from scratch.
+     Future value of a pension pot:
+       FV = PV·(1+r)^n + PMT·((1+r)^n − 1)/r
+     monthly compounded, n = months until retirement.
+     PMT = (employee monthly) + (employer % × salary / 12).
+     Retirement income = pot × 4% / 12 (the Trinity-Study rate),
+     plus optional UK State Pension.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// State
+let pState = {
+  age: null,
+  retireAge: null,
+  pot: null,
+  salary: null,
+  employee: null,
+  employeeUnit: 'pound',  // 'pound' or 'pct'
+  employer: null,
+  growth: 7,
+  target: null,
+  includeState: true,
+};
+
+const STATE_PENSION_ANNUAL = 11502;     // 2025/26: £221.20/wk × 52
+const STATE_PENSION_AGE    = 67;        // current/imminent State Pension age
+const SAFE_WITHDRAWAL_RATE = 0.04;       // 4% rule
+
+function $p(id) { return document.getElementById(id); }
+
+function pFmtMoney(n, dp) {
+  if (!isFinite(n)) return '£—';
+  const decimals = dp != null ? dp : 0;
+  return '£' + Math.round(n / (decimals === 0 ? 1 : 1)).toLocaleString('en-GB', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+}
+
+function pParseNum(v) {
+  if (v === '' || v == null) return null;
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+
+// Resolve the user's monthly employee contribution to £ regardless of unit.
+function pEmployeeMonthlyPounds(s) {
+  if (s.employee == null) return 0;
+  if (s.employeeUnit === 'pct') {
+    return (s.salary || 0) * (s.employee / 100) / 12;
+  }
+  return s.employee;
+}
+
+// Resolve employer monthly contribution. Always entered as % of salary.
+function pEmployerMonthlyPounds(s) {
+  if (s.employer == null) return 0;
+  return (s.salary || 0) * (s.employer / 100) / 12;
+}
+
+// Future value of a pension pot under monthly compounding.
+//   FV = PV·(1+r)^n + PMT·((1+r)^n − 1)/r
+function pFutureValue(pv, monthlyContrib, annualRate, months) {
+  if (months <= 0) return pv;
+  const r = annualRate / 100 / 12;
+  if (r === 0) return pv + monthlyContrib * months;
+  const factor = Math.pow(1 + r, months);
+  return pv * factor + monthlyContrib * (factor - 1) / r;
+}
+
+function pCalculate(s) {
+  if (!s.age || !s.retireAge || s.retireAge <= s.age) return null;
+  const months = (s.retireAge - s.age) * 12;
+  const pv = s.pot || 0;
+  const empPmt = pEmployeeMonthlyPounds(s);
+  const erPmt  = pEmployerMonthlyPounds(s);
+  const totalPmt = empPmt + erPmt;
+  const finalPot = pFutureValue(pv, totalPmt, s.growth || 0, months);
+
+  // 4% rule monthly income from the pot
+  const incomeFromPot = (finalPot * SAFE_WITHDRAWAL_RATE) / 12;
+
+  // State Pension only adds in if (a) toggle on AND (b) retirement age ≥ State Pension age
+  const statePensionMonthly = (s.includeState && s.retireAge >= STATE_PENSION_AGE)
+    ? STATE_PENSION_ANNUAL / 12
+    : 0;
+
+  const totalMonthlyIncome = incomeFromPot + statePensionMonthly;
+  const totalAnnualIncome  = totalMonthlyIncome * 12;
+
+  // Total contributions and growth
+  const totalContrib = totalPmt * months;
+  const totalGrowth  = finalPot - pv - totalContrib;
+
+  return {
+    months, finalPot, incomeFromPot, statePensionMonthly,
+    totalMonthlyIncome, totalAnnualIncome,
+    totalContrib, totalGrowth,
+    empPmt, erPmt, totalPmt
+  };
+}
+
+function pStatusForTarget(annualIncome, target) {
+  if (!target || target <= 0) {
+    return { cls: 'no-target', msg: 'Add a target annual retirement income to see whether you\'re on track.' };
+  }
+  const ratio = annualIncome / target;
+  if (ratio >= 1) {
+    return {
+      cls: 'on-track',
+      msg: `On track. Projected income is <strong>${pFmtMoney(annualIncome)}/year</strong> — that\'s ${(ratio * 100).toFixed(0)}% of your <strong>${pFmtMoney(target)}</strong> target.`
+    };
+  }
+  const shortfall = target - annualIncome;
+  return {
+    cls: 'behind',
+    msg: `Behind target. Projected income is <strong>${pFmtMoney(annualIncome)}/year</strong> — about ${pFmtMoney(shortfall)}/year short of your <strong>${pFmtMoney(target)}</strong> goal.`
+  };
+}
+
+// What-if: bump the user's monthly contribution by £100 and show the impact.
+// Picked at £100 because it's a meaningful but realistic step for most people.
+function pWhatIfText(s, baseResult) {
+  const bumpAmount = 100;
+  const newEmp = pEmployeeMonthlyPounds(s) + bumpAmount;
+  const newTotal = newEmp + pEmployerMonthlyPounds(s);
+  const newFinal = pFutureValue(s.pot || 0, newTotal, s.growth || 0, baseResult.months);
+  const newIncome = (newFinal * SAFE_WITHDRAWAL_RATE) / 12;
+  const newAnnual = newIncome * 12 + (baseResult.statePensionMonthly * 12);
+  const potDelta = newFinal - baseResult.finalPot;
+  const incomeDelta = (newIncome - baseResult.incomeFromPot) * 12;
+  return `Bumping your contribution by <strong>£${bumpAmount}/month</strong> would grow your pot to <strong>${pFmtMoney(newFinal)}</strong> — that\'s <strong>${pFmtMoney(potDelta)}</strong> extra. Your projected annual income rises to <strong>${pFmtMoney(newAnnual)}</strong>, an extra <strong>${pFmtMoney(incomeDelta)}/year</strong> in retirement.`;
+}
+
+function pRender() {
+  const r = pCalculate(pState);
+  const empty = $p('p-empty');
+  const out   = $p('p-output');
+
+  // Need basic inputs; if missing, show empty state.
+  if (!r || (!pState.pot && pEmployeeMonthlyPounds(pState) <= 0 && pEmployerMonthlyPounds(pState) <= 0)) {
+    empty.style.display = 'block';
+    out.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  out.style.display = 'block';
+
+  const yrs = Math.round(r.months / 12);
+  $p('p-pot-final').textContent  = pFmtMoney(r.finalPot);
+  $p('p-years-sub').textContent  = `In ${yrs} year${yrs === 1 ? '' : 's'} — at age ${pState.retireAge}`;
+  $p('p-income-monthly').textContent = pFmtMoney(r.totalMonthlyIncome);
+  $p('p-income-detail').textContent  = `${pFmtMoney(r.totalAnnualIncome)}/year, using the 4% rule`;
+
+  const status = pStatusForTarget(r.totalAnnualIncome, pState.target);
+  const statusEl = $p('p-status');
+  statusEl.className = 'p-status ' + status.cls;
+  statusEl.innerHTML = status.msg;
+
+  $p('p-total-contrib').textContent = pFmtMoney(r.totalContrib);
+  $p('p-total-growth').textContent  = pFmtMoney(Math.max(0, r.totalGrowth));
+
+  $p('p-whatif-body').innerHTML = pWhatIfText(pState, r);
+
+  const stateNote = $p('p-state-note');
+  if (pState.includeState && r.statePensionMonthly > 0) {
+    stateNote.style.display = 'block';
+    stateNote.innerHTML = `Includes UK State Pension of <strong>£11,502/year</strong> (£221.20/week, 2025/26 rate) starting at age ${STATE_PENSION_AGE}. To get the full amount you need 35 qualifying years of National Insurance — check your forecast on GOV.UK.`;
+  } else if (pState.includeState && pState.retireAge && pState.retireAge < STATE_PENSION_AGE) {
+    stateNote.style.display = 'block';
+    stateNote.innerHTML = `State Pension is paid from age ${STATE_PENSION_AGE}. Because you're targeting retirement at ${pState.retireAge}, the figure above only includes income from your pension pot. You'll bridge the gap until State Pension age yourself.`;
+  } else {
+    stateNote.style.display = 'none';
+  }
+}
+
+function pReadInputs() {
+  pState.age        = pParseNum($p('p-age').value);
+  pState.retireAge  = pParseNum($p('p-retire-age').value);
+  pState.pot        = pParseNum($p('p-pot').value);
+  pState.salary     = pParseNum($p('p-salary').value);
+  pState.employee   = pParseNum($p('p-employee').value);
+  pState.employer   = pParseNum($p('p-employer').value);
+  pState.growth     = pParseNum($p('p-growth').value) || 0;
+  pState.target     = pParseNum($p('p-target').value);
+  pState.includeState = $p('p-include-state').checked;
+  pRender();
+}
+
+function pSetEmployeeUnit(unit) {
+  pState.employeeUnit = unit;
+  $p('p-emp-pound').classList.toggle('active', unit === 'pound');
+  $p('p-emp-pct').classList.toggle('active',   unit === 'pct');
+  $p('p-emp-pound').setAttribute('aria-pressed', unit === 'pound');
+  $p('p-emp-pct').setAttribute('aria-pressed',   unit === 'pct');
+  $p('p-employee-prefix').textContent = unit === 'pct' ? '%' : '£';
+  pRender();
+}
+
+function pInit() {
+  ['p-age','p-retire-age','p-pot','p-salary','p-employee','p-employer','p-growth','p-target']
+    .forEach(id => $p(id)?.addEventListener('input', pReadInputs));
+  $p('p-include-state')?.addEventListener('change', pReadInputs);
+  $p('p-emp-pound')?.addEventListener('click', () => pSetEmployeeUnit('pound'));
+  $p('p-emp-pct')?.addEventListener('click',   () => pSetEmployeeUnit('pct'));
+  pReadInputs();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', pInit);
+} else {
+  pInit();
+}
+</script>
+
+</body>
+</html>
