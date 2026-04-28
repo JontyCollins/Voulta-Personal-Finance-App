@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free UK Budget Planner 2026 — 50/30/20, Zero-Based &amp; More | Vault</title>
+<meta name="description" content="Plan your monthly budget with our free UK budget planner. Supports 50/30/20, zero-based budgeting and Pay Yourself First. Private, no sign up, no data shared." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/budget-planner" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Free UK Budget Planner 2026 — 50/30/20, Zero-Based & More" />
+<meta property="og:description" content="Plan your monthly budget with our free UK budget planner. Private, no sign up, no data shared." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/budget-planner" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ════════════════════════════════════════════════════════════════
+     PAGE CHROME — matches landing page (Inter, white, lime accent)
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap {
+    display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  /* Hero */
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  /* Sections */
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul {
+    padding-left: 22px; margin: 6px 0 14px; color: var(--text);
+  }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 {
+    margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .definition-card p {
+    margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65;
+  }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  /* CTA */
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     BUDGET PLANNER EMBED — extracted from Vault_V.1.42.html.
+     Variables scoped to .budget-embed so the planner inherits the
+     app's light-theme look without leaking to the rest of the page.
+     ════════════════════════════════════════════════════════════════ */
+  .budget-embed {
+    --surface:  #fbfaf8;
+    --surface2: #eeebe8;
+    --surface3: #ebe7e0;
+    --border:   #e2ddd5;
+    --border2:  #ccc8be;
+    --text:     #221f1c;
+    --text2:    #7f756c;
+    --text3:    #a8a099;
+    --accent:   #298e5f;
+    --accent2:  #1878a0;
+    --accent4:  #b07830;
+    --red:      #c83030;
+    --green:    #208050;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 620px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+    position: relative;
+  }
+  .budget-embed input, .budget-embed select, .budget-embed textarea {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 12px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .budget-embed input:focus, .budget-embed select:focus { outline: none; border-color: var(--accent); }
+
+  /* Embed-specific helpers */
+  .budget-embed .be-section-title { font-size: 14px; font-weight: 700; color: var(--text); margin: 0 0 4px; letter-spacing: -0.01em; }
+  .budget-embed .be-section-sub { font-size: 11.5px; color: var(--text3); margin: 0 0 12px; line-height: 1.5; }
+  .budget-embed .be-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px; gap: 10px;
+  }
+  .budget-embed .be-btn {
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text2); border-radius: var(--radius-sm);
+    padding: 8px 14px; font-family: var(--sans); font-size: 12px;
+    cursor: pointer; transition: all 0.15s; font-weight: 500;
+  }
+  .budget-embed .be-btn:hover { background: var(--surface3); }
+  .budget-embed .be-btn-accent {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+  }
+  .budget-embed .be-btn-accent:hover { filter: brightness(1.05); background: var(--accent); }
+  .budget-embed .be-btn-sm {
+    padding: 5px 10px; font-size: 11px;
+  }
+
+  /* ── Budget planner styles (extracted from app lines ~1411–1607) ── */
+  .budget-embed .bp-framework-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+  }
+  .budget-embed .bp-framework-card {
+    border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+    padding: 12px; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--surface2);
+  }
+  .budget-embed .bp-framework-card:hover { background: var(--surface3); }
+  .budget-embed .bp-framework-card.selected {
+    border-color: var(--accent); background: rgba(41,142,95,0.07);
+  }
+  .budget-embed .bp-fw-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .budget-embed .bp-fw-desc { font-size: 10px; color: var(--text3); line-height: 1.4; margin-bottom: 8px; }
+  .budget-embed .bp-fw-splits { display: flex; flex-direction: column; gap: 2px; }
+  .budget-embed .bp-fw-split { font-size: 10px; font-family: var(--mono); color: var(--text2); }
+  .budget-embed .bp-blank-link {
+    font-size: 11px; color: var(--text3); text-align: center;
+    cursor: pointer; padding: 6px; text-decoration: underline; display: block;
+  }
+  .budget-embed .bp-blank-link:hover { color: var(--text2); }
+  .budget-embed .bp-field-group { margin-bottom: 14px; }
+  .budget-embed .bp-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 5px; display: block;
+  }
+  .budget-embed .bp-input {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); padding: 9px 12px; border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 13px; box-sizing: border-box;
+    transition: border-color 0.15s;
+  }
+  .budget-embed .bp-input:focus { outline: none; border-color: var(--accent); }
+  .budget-embed .bp-input-wrap {
+    display: flex; align-items: center; gap: 0;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .budget-embed .bp-input-wrap:focus-within { border-color: var(--accent); }
+  .budget-embed .bp-input-sym {
+    padding: 9px 10px; font-size: 13px; color: var(--text3);
+    font-family: var(--mono); background: var(--surface3);
+    border-right: 1px solid var(--border);
+  }
+  .budget-embed .bp-input-wrap .bp-input { border: none; background: transparent; border-radius: 0; }
+  .budget-embed .bp-note { font-size: 10px; color: var(--text3); margin-top: 4px; line-height: 1.4; }
+  .budget-embed .bp-preview-buckets {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 14px;
+  }
+  .budget-embed .bp-preview-bucket {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 10px; text-align: center;
+  }
+  .budget-embed .bp-pb-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); }
+  .budget-embed .bp-pb-pct { font-size: 11px; font-family: var(--mono); color: var(--accent); margin: 2px 0; }
+  .budget-embed .bp-pb-amt { font-size: 14px; font-weight: 600; color: var(--text); }
+  .budget-embed .bp-bucket-title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--text); margin-bottom: 10px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .budget-embed .bp-bucket-target {
+    font-size: 10px; font-family: var(--mono); color: var(--text3); font-weight: 400;
+  }
+  .budget-embed .bp-cost-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .budget-embed .bp-cost-row:last-of-type { border-bottom: none; }
+  .budget-embed .bp-cost-name { flex: 1; font-size: 12px; color: var(--text2); }
+  .budget-embed .bp-cost-input-wrap {
+    display: flex; align-items: center; gap: 0;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); overflow: hidden; width: 90px;
+  }
+  .budget-embed .bp-cost-sym { padding: 5px 6px; font-size: 11px; color: var(--text3); font-family: var(--mono); }
+  .budget-embed .bp-cost-input {
+    width: 100%; background: transparent; border: none; color: var(--text);
+    padding: 5px 6px; font-family: var(--mono); font-size: 12px;
+  }
+  .budget-embed .bp-cost-input:focus { outline: none; }
+  .budget-embed .bp-running-total {
+    margin-top: 12px; padding: 10px 12px;
+    background: var(--surface2); border-radius: var(--radius-sm);
+    font-size: 12px; font-family: var(--mono);
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .budget-embed .bp-total-ok   { color: var(--green); }
+  .budget-embed .bp-total-warn { color: #c8801c; }
+  .budget-embed .bp-total-over { color: var(--red); }
+  .budget-embed .bp-add-row-btn {
+    width: 100%; background: none; border: 1px dashed var(--border);
+    color: var(--text3); padding: 7px; border-radius: var(--radius-sm);
+    cursor: pointer; font-size: 11px; margin-top: 10px; transition: all 0.15s;
+    font-family: var(--sans);
+  }
+  .budget-embed .bp-add-row-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .budget-embed .bp-remaining-bar {
+    margin-top: 10px; font-size: 11px; color: var(--text2);
+    padding: 8px 10px; border-radius: var(--radius-sm);
+    background: rgba(41,142,95,0.07); border: 1px solid rgba(41,142,95,0.2);
+  }
+  .budget-embed .bp-wants-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .budget-embed .bp-wants-row:last-of-type { border-bottom: none; }
+  .budget-embed .bp-wants-toggle {
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; padding: 0; line-height: 1;
+    color: var(--text3); flex-shrink: 0;
+  }
+  .budget-embed .bp-wants-toggle.off { opacity: 0.35; }
+  .budget-embed .bp-unalloc-notice {
+    background: rgba(176,120,48,0.08); border: 1px solid rgba(176,120,48,0.25);
+    color: var(--accent4); padding: 8px 12px; border-radius: var(--radius-sm);
+    font-size: 11px; margin-top: 10px; font-family: var(--mono);
+  }
+  .budget-embed .bp-savings-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .budget-embed .bp-savings-row:last-of-type { border-bottom: none; }
+  .budget-embed .bp-first-badge {
+    background: rgba(41,142,95,0.10); border: 1px solid rgba(41,142,95,0.3);
+    color: var(--accent); font-size: 10px; font-family: var(--mono);
+    padding: 2px 8px; border-radius: 20px; flex-shrink: 0;
+  }
+  .budget-embed .bp-fire-callout {
+    background: rgba(41,142,95,0.07); border: 1px solid rgba(41,142,95,0.25);
+    border-radius: var(--radius-sm); padding: 12px; margin-top: 14px;
+    font-size: 11px; line-height: 1.6; color: var(--text2);
+  }
+  .budget-embed .bp-fire-years {
+    font-size: 22px; font-weight: 700; color: var(--accent);
+    font-family: var(--mono); display: block; margin-bottom: 2px;
+  }
+  .budget-embed .bp-saved-plan {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 12px; margin-bottom: 8px;
+    cursor: pointer; transition: background 0.15s;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 10px;
+  }
+  .budget-embed .bp-saved-plan:hover { background: var(--surface3); }
+  .budget-embed .bp-saved-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .budget-embed .bp-saved-meta { font-size: 10px; color: var(--text3); font-family: var(--mono); margin-top: 3px; }
+  .budget-embed .bp-plan-menu-btn {
+    background: none; border: none; cursor: pointer; color: var(--text3);
+    font-size: 16px; padding: 2px 6px; flex-shrink: 0; border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .budget-embed .bp-plan-menu-btn:hover { background: var(--surface3); color: var(--text); }
+  .budget-embed .bp-plan-menu {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 4px 0;
+    position: absolute; z-index: 100; min-width: 120px;
+    box-shadow: 0 4px 16px rgba(18,17,15,0.12);
+  }
+  .budget-embed .bp-plan-menu button {
+    display: block; width: 100%; text-align: left; background: none;
+    border: none; padding: 8px 14px; font-size: 12px; color: var(--text2);
+    cursor: pointer; transition: background 0.12s;
+  }
+  .budget-embed .bp-plan-menu button:hover { background: var(--surface2); }
+  .budget-embed .bp-plan-menu button.danger { color: var(--red); }
+  .budget-embed .bp-empty-state {
+    text-align: center; padding: 20px 0; font-size: 11px; color: var(--text3);
+    line-height: 1.6;
+  }
+
+  /* Balance bar */
+  .budget-embed #budget-balance-bar {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 14px;
+    font-size: 11px; font-family: var(--mono);
+  }
+
+  /* ── Pay Yourself First section reorder ──
+     PYF philosophy: savings come out first, before anything else. So when
+     the user picks PYF, we visually shuffle the bucket sections to put
+     savings before needs and wants. Implemented with flexbox `order` so
+     the DOM stays unchanged — no need to move nodes around in JS.       */
+  .budget-embed.bp-pyf-order {
+    display: flex;
+    flex-direction: column;
+  }
+  .budget-embed.bp-pyf-order #bp-savings-section { order: 1; }
+  .budget-embed.bp-pyf-order #bp-fixed-section   { order: 2; }
+  .budget-embed.bp-pyf-order #bp-wants-section   { order: 3; }
+  .budget-embed.bp-pyf-order #bp-save-section    { order: 4; }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .budget-embed { padding: 16px; }
+    .budget-embed .bp-framework-grid { grid-template-columns: 1fr; }
+    .budget-embed .bp-preview-buckets { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<!-- ════════════════════════════════════════════════════════════════
+     STRUCTURED DATA — FAQ schema (JSON-LD)
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I budget in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with your monthly take-home pay (after income tax, National Insurance, pension, and any student loan). Allocate it across three buckets: needs (rent, council tax, utilities, groceries, transport), wants (eating out, hobbies, subscriptions), and savings or investments. Then track your actual spending against the plan each month. The 50/30/20 framework is the most common starting point — 50% needs, 30% wants, 20% savings. Use the budget planner above to build a monthly plan in five steps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 50/30/20 rule UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 50/30/20 rule, popularised by US senator Elizabeth Warren, suggests allocating 50% of your post-tax income to needs, 30% to wants, and 20% to savings or debt repayment. It's a balanced default that suits most UK earners outside high-cost-of-living areas. If you live in London, a 60/30/10 split is often more realistic because essentials cost more. The planner above supports both."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free UK budget planner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — the budget planner on this page is completely free, with no sign up, no email collection, and no paywall. Plans are saved privately on your device using browser local storage. Nothing you enter is sent to a server or shared with anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should I save each month in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common UK rule of thumb is at least 20% of take-home pay, split between an emergency fund (3–6 months of essential spending), pension contributions, and longer-term savings or investments. If you're saving for FIRE (Financial Independence, Retire Early), 30–50% is more typical. The exact amount depends on your goals — a deposit for a home, retirement timeline, debt payoff — and your cost of living. The planner above shows your savings rate as a percentage of income so you can compare against these benchmarks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is zero-based budgeting in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zero-based budgeting means giving every pound of income a job — by the end of allocation, your unallocated balance is zero. Every category, including savings, gets a specific amount. It's tighter than percentage-based methods and is popular with people paying down debt or trying to maximise savings. The planner above lets you build a zero-based plan by starting with a blank framework and assigning every pound to a category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a budget planner for couples in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The planner here works equally well for couples — combine your two take-home incomes into a single monthly figure and build the plan against that. Many couples create separate plans (e.g. 'My budget' and 'Joint budget') to track personal and shared spending differently. The planner lets you save unlimited plans on your device and switch between them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Pay Yourself First budgeting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pay Yourself First means your savings come out the moment your salary lands — usually via standing order on payday — before any other allocation. Whatever remains is yours to spend on needs and wants. The psychological lever is that you never miss what you never see, and your savings rate doesn't fluctuate with end-of-month willpower. The planner above includes it as a framework option."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I budget if I'm paid from gross salary in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always budget from your monthly take-home pay, not gross. Take-home is your gross minus income tax, National Insurance, pension contributions, and any student loan repayment. If you only know your gross, run it through a UK salary calculator first to find your actual net monthly income, then enter that figure into the budget planner."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Budget Planner",
+  "url": "https://thevaultapp.co.uk/tools/budget-planner",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK monthly budget planner. Build plans using 50/30/20, 60/30/10, Pay Yourself First, FIRE Mode, or zero-based budgeting."
+}
+</script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+      <!-- Add more links here as the site grows, e.g. <a href="../../faq/">FAQ</a> -->
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Monthly budget calculator UK</p>
+    <h1>Free UK Budget Planner 2026 — Take Control of Your Money</h1>
+    <p class="lede">Build a monthly budget using proven frameworks — 50/30/20, 60/30/10, Pay Yourself First, FIRE Mode, or a blank zero-based plan. Free, private, no sign up — none of the figures you enter ever leave your device.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<!-- Planner — single expanded card (no wizard) -->
+<section class="calc-block">
+  <div class="wrap">
+    <div class="budget-embed" id="budget-planner-panel">
+
+      <!-- Header -->
+      <div style="margin-bottom:14px">
+        <div class="be-section-title">Budget Planner</div>
+        <div class="be-section-sub">Pick a framework, fill in your income and outgoings, and Vault works out whether your plan balances. Saved privately on your device.</div>
+      </div>
+
+      <!-- Saved plans (rendered if any exist) -->
+      <div id="budget-saved-section" style="display:none">
+        <div class="be-section-sub" style="margin-bottom:8px;font-weight:600;color:var(--text2)">My saved plans</div>
+        <div id="budget-saved-list"></div>
+        <button class="be-btn" style="width:100%;margin-top:8px" onclick="startNewBudgetPlan()">+ New plan</button>
+        <hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />
+      </div>
+
+      <!-- Balance bar — always visible once income > 0 -->
+      <div id="budget-balance-bar" style="display:none">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <span>Allocated: <strong id="bbb-allocated">£0</strong> of <strong id="bbb-total">£0</strong></span>
+          <span id="bbb-unalloc-wrap">Unallocated: <strong id="bbb-unalloc" style="color:var(--accent4)">£0</strong></span>
+        </div>
+        <div style="margin-top:6px;height:4px;background:var(--surface3);border-radius:4px;overflow:hidden">
+          <div id="bbb-bar" style="height:100%;background:var(--accent);border-radius:4px;width:0%;transition:width 0.3s"></div>
+        </div>
+      </div>
+
+      <!-- Sections (each owns its own DOM subtree, rendered by renderBudgetForm) -->
+      <div id="bp-framework-section"></div>
+      <div id="bp-income-section"></div>
+      <div id="bp-fixed-section"></div>
+      <div id="bp-wants-section"></div>
+      <div id="bp-savings-section"></div>
+      <div id="bp-save-section"></div>
+    </div>
+  </div>
+</section>
+
+<!-- How to use -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">A complete budget on one page</h2>
+    <p class="section-body muted">The free UK budget planner above is a single expanded form — every section is visible at once so you can scan and edit freely. Plans are saved on your device; come back any time to edit, duplicate, or delete them.</p>
+
+    <ol>
+      <li><strong>Pick a framework.</strong> 50/30/20 is the universal default. 60/30/10 makes more sense in London or other high-cost areas. Pay Yourself First puts savings before everything else. FIRE Mode targets a 50% savings rate. Or pick "blank plan" to build a zero-based budget from scratch.</li>
+      <li><strong>Enter your plan name and monthly take-home income.</strong> This is your post-tax, post-NI, post-pension, post-student-loan figure. If you only know your gross, run it through a UK salary calculator first. The bucket targets recalculate as you type.</li>
+      <li><strong>Fill in your fixed costs (Needs).</strong> Rent or mortgage, council tax, utilities, groceries, transport, insurance, phone, internet, minimum debt payments. The planner pre-fills with UK averages — overwrite them with your actuals.</li>
+      <li><strong>Allocate your wants.</strong> Eating out, entertainment, hobbies, gym, streaming, holidays. Toggle off any category that doesn't apply. Running totals turn amber or red if you push over the framework's target.</li>
+      <li><strong>Allocate your savings &amp; investments.</strong> Emergency fund, ISAs, pension, specific goals. The balance bar at the top shows whether every pound of your income is accounted for. Tap "Save plan" when you're done.</li>
+    </ol>
+
+    <p class="section-body">For Pay Yourself First, the savings line is flagged with a "this comes out first" badge. The order on screen stays the same — but psychologically, you're treating the savings number as untouchable before everything else gets allocated.</p>
+  </div>
+</section>
+
+<!-- Understanding budgeting frameworks -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding budgeting frameworks</p>
+    <h2 class="section-title">Which budgeting style fits your life</h2>
+    <p class="section-body muted">There's no single right answer — different frameworks suit different people. Here's a plain-English summary of the main options inside the planner.</p>
+
+    <div class="definition-card">
+      <h4>50/30/20 — the universal default</h4>
+      <p>Allocate 50% of take-home to needs, 30% to wants, 20% to savings or debt repayment. Popularised by US senator Elizabeth Warren and broadly applicable to most UK earners outside very high-cost areas. It's a good starting point because it forces a healthy savings rate without being restrictive about lifestyle. If you can't make the maths work in your area, swap to 60/30/10.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>60/30/10 — for high-cost UK areas</h4>
+      <p>A more realistic split if you live in London, the South East, or another area where rent and council tax push needs above 50% of post-tax income. Drops the savings target to 10% so the plan is achievable. Better than abandoning budgeting altogether because the percentages don't fit.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Pay Yourself First</h4>
+      <p>Your savings come out the moment your salary lands — typically via a standing order on payday — before anything else is allocated. Whatever remains is yours to spend freely. The framework still uses 50/30/20 splits underneath, but the order shifts so savings are always the first priority. Psychologically powerful: you never miss what you never see, and your savings rate doesn't fluctuate with willpower.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>FIRE Mode</h4>
+      <p>An aggressive 40/10/50 split — 40% needs, 10% wants, 50% savings. Built for people pursuing Financial Independence, Retire Early. Requires discipline and usually a higher income to be feasible in the UK, but dramatically accelerates the timeline. The planner shows an estimated FIRE year based on your savings rate and 7% projected growth.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Zero-based budgeting</h4>
+      <p>Pick the blank-plan option and assign every single pound of income to a category. By the end of allocation, your unallocated balance is exactly zero. Tighter than percentage-based methods and especially effective for paying down debt or maximising savings. The planner's balance bar shows your unallocated amount in real time so you know exactly when you've hit zero.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Which one suits which person</h4>
+      <p>Beginners and most working adults: 50/30/20. London, Manchester centre, high cost-of-living: 60/30/10. People who keep failing at end-of-month willpower: Pay Yourself First. Those pursuing financial independence: FIRE Mode. Disciplined planners and debt-payoff focused: zero-based. You can also create multiple plans and try a different framework each month to see which one sticks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UK specifics -->
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Budgeting from a UK paycheck</h2>
+
+    <h3>Always budget from take-home, not gross</h3>
+    <p class="section-body">Your gross salary is meaningless for monthly budgeting. The figure that matters is what actually lands in your account: gross minus income tax, National Insurance, pension contributions, and any student loan repayment. If you only know your gross, run it through a UK salary calculator first to find your real monthly take-home, then enter that into the planner. Budgeting from gross is the single most common reason a UK budget planner stops matching reality.</p>
+
+    <h3>Treat ISA contributions as a budget line</h3>
+    <p class="section-body">If you're using a Stocks &amp; Shares ISA, Cash ISA, or Lifetime ISA, treat the monthly contribution as a real line item in your savings bucket — not as a "see what's left at the end of the month" afterthought. The £20,000 annual ISA allowance is roughly £1,667 a month if you wanted to fill it. For most people, allocating 5–15% of take-home into the ISA is a strong middle ground.</p>
+
+    <h3>Pounds vs percentages</h3>
+    <p class="section-body">The 50/30/20 framework speaks in percentages — but day-to-day decisions are in pounds. The planner above shows both: your target as a £/month figure and the actual percentage of income each row represents. Set the percentages first to anchor the plan, then refine in pounds as you fill in the categories. If a row pushes you over the framework target, the running total turns amber or red so you know where to trim.</p>
+
+    <h3>Council tax, water, and other annual or biannual bills</h3>
+    <p class="section-body">Some UK fixed costs aren't strictly monthly — council tax is often paid over 10 instalments, water is sometimes biannual, car tax is annual or 6-monthly. To avoid surprises, take the annual bill, divide by 12, and treat that as the monthly line. Set up a separate savings sinking fund so the cash is there when the bill lands.</p>
+
+    <h3>Pension contributions are already deducted</h3>
+    <p class="section-body">If you contribute to your workplace pension via salary sacrifice or a net-pay arrangement, your take-home pay already reflects that contribution. Don't budget it again as a savings line — that double-counts. Only budget pension contributions as a savings line if they're coming from your post-tax take-home pay (e.g. a SIPP top-up).</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK budgeting.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>How do I budget in the UK?</summary>
+        <div class="faq-body">
+          <p>Start with your monthly take-home pay (after income tax, National Insurance, pension, and any student loan). Allocate it across three buckets: <strong>needs</strong> (rent, council tax, utilities, groceries, transport), <strong>wants</strong> (eating out, hobbies, subscriptions), and <strong>savings or investments</strong>.</p>
+          <p>The 50/30/20 framework is the most common starting point. Use the budget planner above to build a monthly plan — every section is visible on one page so you can edit it as a single document.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is the 50 30 20 rule UK?</summary>
+        <div class="faq-body">
+          <p>50% of post-tax income to needs, 30% to wants, 20% to savings or debt repayment. Popularised by US senator Elizabeth Warren, it's a balanced default that suits most UK earners outside high-cost areas.</p>
+          <p>If you live in London or another high-cost area, a 60/30/10 split is often more realistic because essentials cost more. The planner above supports both.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is there a free budget planner UK?</summary>
+        <div class="faq-body">
+          <p>Yes — the budget planner on this page is completely free, with no sign up, no email collection, and no paywall. Plans are saved privately on your device using browser local storage. Nothing you enter is sent to a server.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much should I save each month in the UK?</summary>
+        <div class="faq-body">
+          <p>A common UK rule of thumb is <strong>at least 20%</strong> of take-home pay — split between an emergency fund (3–6 months of essential spending), pension contributions, and longer-term savings or investments.</p>
+          <p>If you're aiming for FIRE (Financial Independence, Retire Early), 30–50% is more typical. The exact figure depends on your goals — a deposit, retirement timeline, debt payoff — and your cost of living.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is zero-based budgeting UK?</summary>
+        <div class="faq-body">
+          <p>Zero-based budgeting means giving every pound of income a job — by the end of allocation, your unallocated balance is exactly zero. Every category, including savings, gets a specific amount.</p>
+          <p>It's tighter than percentage-based methods and is popular with people paying down debt or maximising savings. Use the blank-plan option in the planner above to build one.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is there a budget planner for couples UK?</summary>
+        <div class="faq-body">
+          <p>The planner here works equally well for couples — combine your two take-home incomes into a single monthly figure and build the plan against that.</p>
+          <p>Many couples create separate plans (e.g. "My budget" and "Joint budget") to track personal and shared spending differently. The planner lets you save unlimited plans on your device and switch between them.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What is Pay Yourself First budgeting?</summary>
+        <div class="faq-body">
+          <p>Pay Yourself First means your savings come out the moment your salary lands — usually via standing order on payday — before any other allocation. Whatever remains is yours to spend on needs and wants.</p>
+          <p>The psychological lever: you never miss what you never see, and your savings rate doesn't fluctuate with end-of-month willpower. The planner above includes it as a framework option.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How do I budget if I'm paid a UK gross salary?</summary>
+        <div class="faq-body">
+          <p>Always budget from your monthly <strong>take-home pay</strong>, not gross. Take-home is your gross minus income tax, National Insurance, pension contributions, and any student loan repayment.</p>
+          <p>If you only know your gross, run it through a UK salary calculator first to find your actual net monthly income, then enter that figure into the budget planner.</p>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your actual spending against your budget?</h2>
+      <p>Vault is the home for everything this planner sets up — your net worth, your spending, your tax, your plan, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     BUDGET PLANNER LOGIC — extracted verbatim from
+     Vault_V.1.42.html lines ~25679–26388. No calculation logic
+     altered. The only adaptations:
+       (1) localStorage key namespaced to vault_budget_plans_standalone
+           so the SEO page doesn't share storage with the deployed
+           app (which uses vault_budget_plans on the same origin).
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+const BP_FRAMEWORKS = [
+  {
+    id: 'fifty',
+    name: '50/30/20',
+    desc: 'The most popular budgeting framework, popularised by Elizabeth Warren. Balances everyday life with saving without being restrictive.',
+    splits: { needs: 50, wants: 30, savings: 20 },
+    splitLabels: ['Needs 50%', 'Wants 30%', 'Savings 20%']
+  },
+  {
+    id: 'sixty',
+    name: '60/30/10',
+    desc: 'Better suited to high cost of living areas like London where essentials naturally cost more. Reduces savings target to keep the plan realistic.',
+    splits: { needs: 60, wants: 30, savings: 10 },
+    splitLabels: ['Needs 60%', 'Wants 30%', 'Savings 10%']
+  },
+  {
+    id: 'pyf',
+    name: 'Pay Yourself First',
+    desc: 'Savings come out before anything else is allocated. Whatever remains is yours to spend freely. Psychologically powerful — you never miss what you never see.',
+    splits: { needs: 50, wants: 30, savings: 20 },
+    splitLabels: ['Savings first 20%', 'then Needs 50%', 'Wants 30%'],
+    payFirst: true
+  },
+  {
+    id: 'fire',
+    name: 'FIRE Mode',
+    desc: 'An aggressive savings rate for those pursuing financial independence. Requires discipline but dramatically accelerates your freedom date.',
+    splits: { needs: 40, wants: 10, savings: 50 },
+    splitLabels: ['Needs 40%', 'Wants 10%', 'Savings 50%'],
+    fireMode: true
+  }
+];
+
+const BP_FIXED_DEFAULTS = [
+  { name: 'Rent / Mortgage',             pct: 30,  fixed: 0   },
+  { name: 'Council Tax',                  pct: 0,   fixed: 150 },
+  { name: 'Utilities (gas, elec, water)', pct: 0,   fixed: 180 },
+  { name: 'Groceries',                    pct: 0,   fixed: 250 },
+  { name: 'Transport',                    pct: 0,   fixed: 120 },
+  { name: 'Insurance',                    pct: 0,   fixed: 80  },
+  { name: 'Phone',                        pct: 0,   fixed: 30  },
+  { name: 'Internet',                     pct: 0,   fixed: 35  },
+  { name: 'Minimum debt payments',        pct: 0,   fixed: 0   }
+];
+
+const BP_WANTS_DEFAULTS = [
+  { name: 'Eating out & takeaways',       pct: 20, on: true  },
+  { name: 'Entertainment & hobbies',      pct: 15, on: true  },
+  { name: 'Clothing & personal care',     pct: 15, on: true  },
+  { name: 'Gym & fitness',                pct: 8,  on: true  },
+  { name: 'Streaming & subscriptions',    pct: 7,  on: true  },
+  { name: 'Holidays & travel',            pct: 15, on: true  },
+  { name: 'Car (fuel, maintenance)',      pct: 10, on: true  },
+  { name: 'Miscellaneous',                pct: 10, on: true  }
+];
+
+// Default to 50/30/20 so the form has a useful framework selected on first load.
+let bpState = {
+  framework: 'fifty', blank: false,
+  planName: '', income: 0,
+  fixedRows: [], wantsRows: [], savingsRows: [],
+  customGoals: []
+};
+
+// ── Persistence (namespaced for the standalone page) ────────────────────────
+function loadBudgetPlans() {
+  try { return JSON.parse(localStorage.getItem('vault_budget_plans_standalone') || '[]'); } catch(e) { return []; }
+}
+function saveBudgetPlans(plans) {
+  try { localStorage.setItem('vault_budget_plans_standalone', JSON.stringify(plans)); } catch(e) {}
+}
+
+// Saved-plans list — toggles its parent section in/out depending on whether
+// any plans exist. The single-card layout always renders the form below.
+function showBudgetPlansView() {
+  renderBudgetSavedList();
+}
+
+function renderBudgetSavedList() {
+  const plans = loadBudgetPlans();
+  const section = document.getElementById('budget-saved-section');
+  const el = document.getElementById('budget-saved-list');
+  if (!section || !el) return;
+  if (!plans.length) {
+    section.style.display = 'none';
+    return;
+  }
+  section.style.display = 'block';
+  el.innerHTML = plans.map((p, i) => `
+    <div class="bp-saved-plan" onclick="loadBudgetPlan(${i})">
+      <div style="flex:1;min-width:0">
+        <div class="bp-saved-name">${(p.name||'').replace(/</g,'&lt;')}</div>
+        <div class="bp-saved-meta">
+          ${p.income ? '£' + p.income.toLocaleString() : '£0'}/mo &middot;
+          ${p.actualNeeds != null ? p.actualNeeds + '% needs' : (p.framework || 'Custom')} /
+          ${p.actualWants != null ? p.actualWants + '% wants' : ''} /
+          ${p.actualSavings != null ? p.actualSavings + '% savings' : ''}
+          &middot; ${p.date || ''}
+        </div>
+      </div>
+      <div style="position:relative">
+        <button class="bp-plan-menu-btn" onclick="event.stopPropagation();toggleBpMenu(${i})" title="Options">⋯</button>
+        <div class="bp-plan-menu" id="bp-menu-${i}" style="display:none;right:0;top:24px">
+          <button onclick="event.stopPropagation();duplicateBudgetPlan(${i})">Duplicate</button>
+          <button class="danger" onclick="event.stopPropagation();deleteBudgetPlan(${i})">Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleBpMenu(i) {
+  document.querySelectorAll('.bp-plan-menu').forEach((m,j) => {
+    m.style.display = (j === i) ? (m.style.display === 'none' ? 'block' : 'none') : 'none';
+  });
+}
+
+function deleteBudgetPlan(i) {
+  if (!confirm('Delete this plan?')) return;
+  const plans = loadBudgetPlans();
+  plans.splice(i, 1);
+  saveBudgetPlans(plans);
+  renderBudgetSavedList();
+  document.querySelectorAll('.bp-plan-menu').forEach(m => m.style.display = 'none');
+}
+
+function duplicateBudgetPlan(i) {
+  const plans = loadBudgetPlans();
+  const copy = JSON.parse(JSON.stringify(plans[i]));
+  copy.name = copy.name + ' (copy)';
+  copy.date = new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'});
+  plans.push(copy);
+  saveBudgetPlans(plans);
+  renderBudgetSavedList();
+  document.querySelectorAll('.bp-plan-menu').forEach(m => m.style.display = 'none');
+}
+
+function loadBudgetPlan(i) {
+  const plans = loadBudgetPlans();
+  const p = plans[i];
+  bpState = JSON.parse(JSON.stringify(p._state || {}));
+  if (!bpState.income) bpState.income = p.income || 0;
+  if (!bpState.planName) bpState.planName = p.name || '';
+  if (!bpState.fixedRows || !bpState.fixedRows.length)     bpState.fixedRows   = bpInitFixedRows(bpState.income);
+  if (!bpState.wantsRows || !bpState.wantsRows.length)     bpState.wantsRows   = bpInitWantsRows(bpState.income);
+  if (!bpState.savingsRows || !bpState.savingsRows.length) bpState.savingsRows = bpInitSavingsRows(bpState.income);
+  renderBudgetForm();
+  // Scroll the form into view so the loaded plan is immediately visible.
+  document.getElementById('bp-income-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function startNewBudgetPlan() {
+  bpState = { framework: 'fifty', blank: false, planName: '', income: 0, fixedRows: [], wantsRows: [], savingsRows: [] };
+  renderBudgetForm();
+  document.getElementById('bp-framework-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function bpFmt(n) {
+  if (!n || isNaN(n)) return '£0';
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+
+function bpGetSplits() {
+  if (bpState.blank) return { needs: 0, wants: 0, savings: 0 };
+  const fw = BP_FRAMEWORKS.find(f => f.id === bpState.framework);
+  return fw ? fw.splits : { needs: 50, wants: 30, savings: 20 };
+}
+
+function bpBucketAmt(bucket) {
+  const splits = bpGetSplits();
+  return (bpState.income || 0) * (splits[bucket] || 0) / 100;
+}
+
+function bpInitFixedRows(income) {
+  const targetAmt = bpBucketAmt('needs');
+  const raw = BP_FIXED_DEFAULTS.map(d => ({
+    name: d.name,
+    amount: d.pct > 0 ? Math.round((income || 0) * d.pct / 100) : d.fixed
+  }));
+  const rawTotal = raw.reduce((s, r) => s + r.amount, 0);
+  if (rawTotal > 0 && targetAmt > 0) {
+    const scale = targetAmt / rawTotal;
+    let running = 0;
+    raw.forEach((r, i) => {
+      if (i < raw.length - 1) {
+        r.amount = Math.round(r.amount * scale);
+        running += r.amount;
+      } else {
+        r.amount = Math.round(targetAmt - running);
+      }
+    });
+  }
+  return raw;
+}
+
+function bpInitWantsRows(income) {
+  const wantsAmt = bpBucketAmt('wants');
+  const raw = BP_WANTS_DEFAULTS.map(d => ({
+    name: d.name, pct: d.pct,
+    amount: Math.round((wantsAmt || 0) * d.pct / 100),
+    on: d.on
+  }));
+  if (wantsAmt > 0) {
+    const rawTotal = raw.reduce((s, r) => s + r.amount, 0);
+    raw[raw.length - 1].amount += Math.round(wantsAmt) - rawTotal;
+  }
+  return raw;
+}
+
+function bpInitSavingsRows(income) {
+  const savingsAmt = bpBucketAmt('savings');
+  const fixedTotal = (bpState.fixedRows || []).reduce((s,r) => s + (parseFloat(r.amount)||0), 0);
+  const emergencyMonthly = Math.min(savingsAmt * 0.3, Math.round(fixedTotal * 0.1));
+  const isaAmt = Math.round(savingsAmt - emergencyMonthly);
+  return [
+    { name: 'Emergency fund', amount: emergencyMonthly, goal: fixedTotal * 3 },
+    { name: 'ISA / Investments', amount: isaAmt, goal: 0 },
+    { name: 'Additional pension', amount: 0, goal: 0 }
+  ];
+}
+
+function bpTotalFixed()    { return (bpState.fixedRows   || []).reduce((s,r) => s + (parseFloat(r.amount)||0), 0); }
+function bpTotalWants()    { return (bpState.wantsRows   || []).filter(r => r.on).reduce((s,r) => s + (parseFloat(r.amount)||0), 0); }
+function bpTotalSavings()  { return (bpState.savingsRows || []).reduce((s,r) => s + (parseFloat(r.amount)||0), 0); }
+function bpTotalAllocated(){ return bpTotalFixed() + bpTotalWants() + bpTotalSavings(); }
+
+function bpUpdateBalanceBar() {
+  const bar = document.getElementById('budget-balance-bar');
+  if (!bar || bpState.step < 3) { if(bar) bar.style.display='none'; return; }
+  bar.style.display = 'block';
+  const total = bpState.income || 0;
+  const alloc = bpTotalAllocated();
+  const unalloc = total - alloc;
+  const pct = total > 0 ? Math.min(100, (alloc/total)*100) : 0;
+  document.getElementById('bbb-allocated').textContent = bpFmt(alloc);
+  document.getElementById('bbb-total').textContent = bpFmt(total);
+  document.getElementById('bbb-unalloc').textContent = bpFmt(Math.abs(unalloc));
+  document.getElementById('bbb-unalloc-wrap').style.color = unalloc < 0 ? 'var(--red)' : unalloc === 0 ? 'var(--green)' : 'var(--accent4)';
+  document.getElementById('bbb-bar').style.width = pct + '%';
+  document.getElementById('bbb-bar').style.background = unalloc < 0 ? 'var(--red)' : unalloc === 0 ? 'var(--green)' : 'var(--accent)';
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// SINGLE-CARD RENDER — replaces the 5-step wizard. Each section owns its
+// own DOM subtree so handlers can do partial re-renders without
+// stealing focus from the field the user is typing in.
+// ════════════════════════════════════════════════════════════════════════════
+function renderBudgetForm() {
+  // Seed default rows on first render if income is set (e.g. plan loaded
+  // from save). Live framework/income changes are handled by their
+  // dedicated handlers, which call bpResetRowsToDefaults() to refresh
+  // the auto-contributions whenever inputs change.
+  if (bpState.income > 0) {
+    if (!bpState.fixedRows   || !bpState.fixedRows.length)   bpState.fixedRows   = bpInitFixedRows(bpState.income);
+    if (!bpState.wantsRows   || !bpState.wantsRows.length)   bpState.wantsRows   = bpInitWantsRows(bpState.income);
+    if (!bpState.savingsRows || !bpState.savingsRows.length) bpState.savingsRows = bpInitSavingsRows(bpState.income);
+  }
+  renderFrameworkSection();
+  renderIncomeSection();
+  renderFixedSection();
+  renderWantsSection();
+  renderSavingsSection();
+  renderSaveSection();
+  bpApplyFrameworkOrder();
+  bpUpdateBalanceBar();
+}
+
+// Re-init all three row arrays from the current income + framework.
+// Called whenever the user changes framework OR income, so the suggested
+// auto-contributions stay in sync with their inputs. Note: this overwrites
+// any user-edited row amounts — that's the intentional cost of changing
+// framework or income, since the framework drives the bucket targets and
+// the row defaults are derived from those targets.
+function bpResetRowsToDefaults() {
+  if (!(bpState.income > 0)) {
+    bpState.fixedRows   = [];
+    bpState.wantsRows   = [];
+    bpState.savingsRows = [];
+    return;
+  }
+  bpState.fixedRows   = bpInitFixedRows(bpState.income);
+  bpState.wantsRows   = bpInitWantsRows(bpState.income);
+  bpState.savingsRows = bpInitSavingsRows(bpState.income);
+}
+
+// Toggle the PYF-order class on the planner panel — flexbox `order` rules
+// then move the savings section to the top, ahead of needs and wants.
+function bpApplyFrameworkOrder() {
+  const panel = document.getElementById('budget-planner-panel');
+  if (!panel) return;
+  panel.classList.toggle('bp-pyf-order', bpState.framework === 'pyf' && !bpState.blank);
+}
+
+// ── Framework section ──────────────────────────────────────────────────────
+function renderFrameworkSection() {
+  let html = `
+    <div style="margin-bottom:6px">
+      <div class="bp-label" style="margin-bottom:8px">Framework</div>
+    </div>
+    <div class="bp-framework-grid">`;
+  BP_FRAMEWORKS.forEach(f => {
+    const sel = (!bpState.blank && bpState.framework === f.id) ? ' selected' : '';
+    html += `<div class="bp-framework-card${sel}" onclick="bpSelectFramework('${f.id}')">
+      <div class="bp-fw-name">${f.name}</div>
+      <div class="bp-fw-desc">${f.desc}</div>
+      <div class="bp-fw-splits">${f.splitLabels.map(l => `<span class="bp-fw-split">· ${l}</span>`).join('')}</div>
+    </div>`;
+  });
+  html += `</div>`;
+  const blankSel = bpState.blank ? ' style="color:var(--accent);font-weight:600"' : '';
+  html += `<a class="bp-blank-link"${blankSel} onclick="bpSelectBlank()">${bpState.blank ? '✓ Blank plan (zero-based)' : 'Or start with a blank plan (zero-based budgeting)'}</a>`;
+  document.getElementById('bp-framework-section').innerHTML = html;
+}
+
+function bpSelectFramework(id) {
+  bpState.framework = id;
+  bpState.blank = false;
+  // Frameworks have different splits → row defaults must update.
+  bpResetRowsToDefaults();
+  // Income preview labels in the income section depend on splits — refresh them
+  // without re-rendering the section (so the input keeps focus if user clicks
+  // back into it).
+  bpRefreshIncomePreview();
+  renderFrameworkSection();
+  renderFixedSection();
+  renderWantsSection();
+  renderSavingsSection();
+  bpApplyFrameworkOrder();   // PYF moves savings section to the top
+  bpUpdateBalanceBar();
+}
+
+function bpSelectBlank() {
+  bpState.framework = null;
+  bpState.blank = true;
+  // Blank plan has no targets (0/0/0 splits) — clear the rows so the user
+  // starts from scratch. They can use "+ Add" buttons to populate manually.
+  bpState.fixedRows   = [];
+  bpState.wantsRows   = [];
+  bpState.savingsRows = [];
+  bpRefreshIncomePreview();
+  renderFrameworkSection();
+  renderIncomeSection();   // re-render to drop the preview-buckets row
+  renderFixedSection();
+  renderWantsSection();
+  renderSavingsSection();
+  bpApplyFrameworkOrder();
+  bpUpdateBalanceBar();
+}
+
+// ── Plan name + income section ─────────────────────────────────────────────
+function renderIncomeSection() {
+  const splits = bpGetSplits();
+  const inc = bpState.income || 0;
+  const needsAmt   = Math.round(inc * splits.needs   / 100);
+  const wantsAmt   = Math.round(inc * splits.wants   / 100);
+  const savingsAmt = Math.round(inc * splits.savings / 100);
+
+  let html = `
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />
+    <div class="bp-field-group">
+      <label class="bp-label">Plan name</label>
+      <input class="bp-input" id="bp-plan-name" placeholder="e.g. Current Budget, Post-Raise Plan, London Move"
+        value="${(bpState.planName||'').replace(/"/g,'&quot;')}"
+        oninput="bpState.planName=this.value" />
+    </div>
+    <div class="bp-field-group">
+      <label class="bp-label">Monthly take-home income</label>
+      <div class="bp-input-wrap">
+        <span class="bp-input-sym">£</span>
+        <input class="bp-input" type="number" id="bp-income" placeholder="0"
+          value="${inc||''}" inputmode="decimal"
+          oninput="bpOnIncomeChange(this.value)" />
+      </div>
+      <div class="bp-note">Your post-tax, post-NI, post-pension monthly figure. Use a UK salary calculator first if you only know your gross.</div>
+    </div>`;
+
+  if (!bpState.blank) {
+    html += `<div class="bp-preview-buckets">
+      <div class="bp-preview-bucket">
+        <div class="bp-pb-label">Needs</div>
+        <div class="bp-pb-pct">${splits.needs}%</div>
+        <div class="bp-pb-amt">${bpFmt(needsAmt)}</div>
+      </div>
+      <div class="bp-preview-bucket">
+        <div class="bp-pb-label">Wants</div>
+        <div class="bp-pb-pct">${splits.wants}%</div>
+        <div class="bp-pb-amt">${bpFmt(wantsAmt)}</div>
+      </div>
+      <div class="bp-preview-bucket">
+        <div class="bp-pb-label">Savings</div>
+        <div class="bp-pb-pct">${splits.savings}%</div>
+        <div class="bp-pb-amt">${bpFmt(savingsAmt)}</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('bp-income-section').innerHTML = html;
+}
+
+// Income change re-renders the bucket sections (targets AND row defaults
+// depend on income) but DOES NOT re-render the income section itself —
+// the user is typing into it, so we'd steal focus on every keystroke.
+function bpOnIncomeChange(value) {
+  bpState.income = parseFloat(value) || 0;
+  // Re-seed row defaults so the suggested auto-contributions track income.
+  // For blank plans, leave rows alone (user is building from scratch).
+  if (!bpState.blank) bpResetRowsToDefaults();
+  bpRefreshIncomePreview();
+  renderFixedSection();
+  renderWantsSection();
+  renderSavingsSection();
+  bpUpdateBalanceBar();
+}
+
+// Update both the percentage labels AND the £ amounts in the three preview
+// buckets in the income section, in place, so framework changes flow
+// through without losing focus on the income input. The buckets render in
+// fixed Needs/Wants/Savings order — only the numbers move.
+function bpRefreshIncomePreview() {
+  const splits = bpGetSplits();
+  const pcts = document.querySelectorAll('#bp-income-section .bp-pb-pct');
+  const amts = document.querySelectorAll('#bp-income-section .bp-pb-amt');
+  if (pcts.length !== 3 || amts.length !== 3) return;
+  if (bpState.blank) return;
+  const inc = bpState.income || 0;
+  pcts[0].textContent = splits.needs   + '%';
+  pcts[1].textContent = splits.wants   + '%';
+  pcts[2].textContent = splits.savings + '%';
+  amts[0].textContent = bpFmt(Math.round(inc * splits.needs   / 100));
+  amts[1].textContent = bpFmt(Math.round(inc * splits.wants   / 100));
+  amts[2].textContent = bpFmt(Math.round(inc * splits.savings / 100));
+}
+
+// ── Fixed (Needs) section ──────────────────────────────────────────────────
+function renderFixedSection() {
+  const splits = bpGetSplits();
+  const targetAmt = bpBucketAmt('needs');
+  const targetPct = splits.needs;
+  const rows = bpState.fixedRows || [];
+  const total = bpTotalFixed();
+  const inc = bpState.income || 1;
+  const pct = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - total;
+
+  let html = `
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />
+    <div class="bp-bucket-title">
+      Needs — essential fixed costs
+      ${bpState.blank ? '' : `<span class="bp-bucket-target">Target: ${targetPct}% · ${bpFmt(targetAmt)}/mo</span>`}
+    </div>`;
+  if (!rows.length) {
+    html += `<div class="bp-empty-state">Enter your monthly income above to see suggested UK averages, or add categories manually.</div>`;
+  }
+  rows.forEach((r, i) => {
+    html += `<div class="bp-cost-row">
+      <span class="bp-cost-name">${r.name}</span>
+      <div class="bp-cost-input-wrap">
+        <span class="bp-cost-sym">£</span>
+        <input class="bp-cost-input" type="number" value="${r.amount||''}" placeholder="0"
+          oninput="bpState.fixedRows[${i}].amount=parseFloat(this.value)||0;bpRefreshFixed()" />
+      </div>
+    </div>`;
+  });
+  html += `<button class="bp-add-row-btn" onclick="bpAddFixedRow()">+ Add fixed cost</button>`;
+  html += `<div class="bp-running-total">
+    <span>Total fixed: <strong class="${cls}" id="bp-fixed-total">${bpFmt(total)}</strong> · <span id="bp-fixed-pct" class="${cls}">${pct}%</span></span>
+    ${bpState.blank ? '' : `<span style="font-size:10px;color:var(--text3)">Target: ${targetPct}%</span>`}
+  </div>`;
+  html += `<div class="bp-remaining-bar" id="bp-fixed-remaining">Remaining after fixed costs: ${bpFmt(remaining)} (${((remaining/(bpState.income||1))*100).toFixed(1)}% of income)</div>`;
+  document.getElementById('bp-fixed-section').innerHTML = html;
+}
+
+function bpRefreshFixed() {
+  const total = bpTotalFixed();
+  const inc = bpState.income || 1;
+  const targetAmt = bpBucketAmt('needs');
+  const pct = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - total;
+  const t = document.getElementById('bp-fixed-total');
+  const p = document.getElementById('bp-fixed-pct');
+  const r = document.getElementById('bp-fixed-remaining');
+  if (t) { t.textContent = bpFmt(total); t.className = cls; }
+  if (p) { p.textContent = pct + '%'; p.className = cls; }
+  if (r) r.textContent = `Remaining after fixed costs: ${bpFmt(remaining)} (${((remaining/inc)*100).toFixed(1)}% of income)`;
+  // Wants and Savings remaining bars also depend on fixed total — refresh them.
+  bpRefreshWants();
+  bpRefreshSavings();
+  bpUpdateBalanceBar();
+}
+
+function bpAddFixedRow() {
+  const name = prompt('Category name:');
+  if (!name) return;
+  bpState.fixedRows.push({ name: name.trim(), amount: 0 });
+  renderFixedSection();
+  bpUpdateBalanceBar();
+}
+
+// ── Wants section ──────────────────────────────────────────────────────────
+function renderWantsSection() {
+  const splits = bpGetSplits();
+  const targetAmt = bpBucketAmt('wants');
+  const targetPct = splits.wants;
+  const rows = bpState.wantsRows || [];
+  const total = bpTotalWants();
+  const unalloc = targetAmt - total;
+  const inc = bpState.income || 1;
+  const pctUsed = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - bpTotalFixed() - total;
+
+  let html = `
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />
+    <div class="bp-bucket-title">
+      Wants — guilt-free spending
+      ${bpState.blank ? '' : `<span class="bp-bucket-target">Target: ${targetPct}% · ${bpFmt(targetAmt)}/mo</span>`}
+    </div>`;
+  if (!rows.length) {
+    html += `<div class="bp-empty-state">Enter your monthly income above to see suggested wants categories.</div>`;
+  }
+  rows.forEach((r, i) => {
+    const offCls = r.on ? '' : ' off';
+    html += `<div class="bp-wants-row">
+      <button class="bp-wants-toggle${offCls}" onclick="bpToggleWant(${i})" title="${r.on ? 'Remove' : 'Add back'}">${r.on ? '✓' : '○'}</button>
+      <span class="bp-cost-name" style="${r.on ? '' : 'opacity:0.4;text-decoration:line-through'}">${r.name}</span>
+      <div class="bp-cost-input-wrap" style="${r.on ? '' : 'opacity:0.3;pointer-events:none'}">
+        <span class="bp-cost-sym">£</span>
+        <input class="bp-cost-input" type="number" value="${r.on ? (r.amount||'') : ''}" placeholder="0"
+          oninput="bpState.wantsRows[${i}].amount=parseFloat(this.value)||0;bpRefreshWants()" />
+      </div>
+    </div>`;
+  });
+  html += `<div class="bp-running-total">
+    <span>Total wants: <strong class="${cls}" id="bp-wants-total">${bpFmt(total)}</strong> · <span id="bp-wants-pct" class="${cls}">${pctUsed}%</span></span>
+    ${bpState.blank ? '' : `<span style="font-size:10px;color:var(--text3)">Target: ${targetPct}%</span>`}
+  </div>`;
+  html += `<div class="bp-remaining-bar" id="bp-wants-remaining">Remaining after wants: ${bpFmt(remaining)} (${((remaining/inc)*100).toFixed(1)}% of income)</div>`;
+  if (!bpState.blank && Math.abs(unalloc) > 1) {
+    const dir = unalloc > 0 ? `You have ${bpFmt(unalloc)} unallocated in wants — assign it or move it to savings.` : `You are ${bpFmt(-unalloc)} over the wants budget.`;
+    html += `<div class="bp-unalloc-notice" id="bp-wants-unalloc">${dir}</div>`;
+  } else {
+    html += `<div class="bp-unalloc-notice" id="bp-wants-unalloc" style="display:none"></div>`;
+  }
+  document.getElementById('bp-wants-section').innerHTML = html;
+}
+
+function bpToggleWant(i) {
+  bpState.wantsRows[i].on = !bpState.wantsRows[i].on;
+  renderWantsSection();
+  bpUpdateBalanceBar();
+}
+
+function bpRefreshWants() {
+  const targetAmt = bpBucketAmt('wants');
+  const total = bpTotalWants();
+  const inc = bpState.income || 1;
+  const unalloc = targetAmt - total;
+  const pctUsed = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - bpTotalFixed() - total;
+  const t = document.getElementById('bp-wants-total');
+  const p = document.getElementById('bp-wants-pct');
+  const r = document.getElementById('bp-wants-remaining');
+  if (t) { t.textContent = bpFmt(total); t.className = cls; }
+  if (p) { p.textContent = pctUsed + '%'; p.className = cls; }
+  if (r) r.textContent = `Remaining after wants: ${bpFmt(remaining)} (${((remaining/inc)*100).toFixed(1)}% of income)`;
+  const notice = document.getElementById('bp-wants-unalloc');
+  if (notice) {
+    if (!bpState.blank && Math.abs(unalloc) > 1) {
+      notice.textContent = unalloc > 0 ? `You have ${bpFmt(unalloc)} unallocated in wants — assign it or move it to savings.` : `You are ${bpFmt(-unalloc)} over the wants budget.`;
+      notice.style.display = 'block';
+    } else {
+      notice.style.display = 'none';
+    }
+  }
+  bpRefreshSavings();
+  bpUpdateBalanceBar();
+}
+
+// ── Savings section ────────────────────────────────────────────────────────
+function renderSavingsSection() {
+  const splits = bpGetSplits();
+  const targetAmt = bpBucketAmt('savings');
+  const targetPct = splits.savings;
+  const fwObj = BP_FRAMEWORKS.find(f => f.id === bpState.framework);
+  const isPyf = fwObj && fwObj.payFirst;
+  const isFireMode = fwObj && fwObj.fireMode;
+  const rows = bpState.savingsRows || [];
+  const total = bpTotalSavings();
+
+  let html = `<hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />`;
+  html += `<div class="bp-bucket-title">`;
+  if (isPyf) html += `Savings &amp; investments <span class="bp-first-badge">This comes out first</span>`;
+  else       html += `Savings &amp; investments`;
+  if (!bpState.blank) html += `<span class="bp-bucket-target">Target: ${targetPct}% · ${bpFmt(targetAmt)}/mo</span>`;
+  html += `</div>`;
+
+  if (!rows.length) {
+    html += `<div class="bp-empty-state">Enter your monthly income above to see suggested savings goals.</div>`;
+  }
+  rows.forEach((r, i) => {
+    html += `<div class="bp-savings-row">
+      <span class="bp-cost-name">${r.name}</span>
+      <div class="bp-cost-input-wrap">
+        <span class="bp-cost-sym">£</span>
+        <input class="bp-cost-input" type="number" value="${r.amount||''}" placeholder="0"
+          oninput="bpState.savingsRows[${i}].amount=parseFloat(this.value)||0;bpRefreshSavings()" />
+      </div>
+    </div>`;
+  });
+  html += `<button class="bp-add-row-btn" onclick="bpAddSavingsGoal()">+ Add savings goal</button>`;
+
+  const inc = bpState.income || 1;
+  const pctUsed = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - bpTotalFixed() - bpTotalWants() - total;
+  html += `<div class="bp-running-total">
+    <span>Total savings: <strong class="${cls}" id="bp-sav-total">${bpFmt(total)}</strong> · <span id="bp-sav-pct" class="${cls}">${pctUsed}%</span></span>
+    ${bpState.blank ? '' : `<span style="font-size:10px;color:var(--text3)">Target: ${targetPct}%</span>`}
+  </div>`;
+  const remCls = Math.abs(remaining) <= 1 ? 'color:var(--green)' : remaining < 0 ? 'color:var(--red)' : 'color:var(--accent4)';
+  html += `<div class="bp-remaining-bar" id="bp-sav-remaining" style="${remCls}">`;
+  if (Math.abs(remaining) <= 1)       html += `✓ Fully allocated — ready to save`;
+  else if (remaining > 0)             html += `${bpFmt(remaining)} still unallocated (${((remaining/inc)*100).toFixed(1)}% of income)`;
+  else                                 html += `Over by ${bpFmt(-remaining)} — reduce a category above`;
+  html += `</div>`;
+
+  if (isFireMode) {
+    const monthlySpend = bpBucketAmt('needs') + bpBucketAmt('wants');
+    const annualSpend = monthlySpend * 12;
+    const fireNum = annualSpend / 0.04;
+    const annualSavings = total * 12;
+    const g = 0.07;
+    let years = '—';
+    if (annualSavings > 0 && fireNum > 0) {
+      years = (Math.log(fireNum / Math.max(annualSavings, 1)) / Math.log(1 + g)).toFixed(1);
+      if (isNaN(years) || years < 0) years = '—';
+    }
+    html += `<div class="bp-fire-callout">
+      <span class="bp-fire-years">${years === '—' ? '—' : years + ' years'}</span>
+      At this savings rate, assuming 7% annual growth, you could reach financial independence in approximately ${years} years.
+      <div style="font-size:10px;color:var(--text3);margin-top:4px">FIRE number: ${bpFmt(fireNum)} · Annual spend: ${bpFmt(annualSpend)}</div>
+    </div>`;
+  }
+
+  document.getElementById('bp-savings-section').innerHTML = html;
+}
+
+function bpRefreshSavings() {
+  const total = bpTotalSavings();
+  const inc = bpState.income || 1;
+  const targetAmt = bpBucketAmt('savings');
+  const pctUsed = (total / inc * 100).toFixed(1);
+  const cls = total > targetAmt * 1.05 ? 'bp-total-over' : total > targetAmt ? 'bp-total-warn' : 'bp-total-ok';
+  const remaining = (bpState.income || 0) - bpTotalFixed() - bpTotalWants() - total;
+  const t = document.getElementById('bp-sav-total');
+  const p = document.getElementById('bp-sav-pct');
+  const r = document.getElementById('bp-sav-remaining');
+  if (t) { t.textContent = bpFmt(total); t.className = cls; }
+  if (p) { p.textContent = pctUsed + '%'; p.className = cls; }
+  if (r) {
+    let txt = '';
+    if (Math.abs(remaining) <= 1)       txt = `✓ Fully allocated — ready to save`;
+    else if (remaining > 0)             txt = `${bpFmt(remaining)} still unallocated (${((remaining/inc)*100).toFixed(1)}% of income)`;
+    else                                 txt = `Over by ${bpFmt(-remaining)} — reduce a category above`;
+    r.textContent = txt;
+    r.style.color = Math.abs(remaining) <= 1 ? 'var(--green)' : remaining < 0 ? 'var(--red)' : 'var(--accent4)';
+  }
+  bpUpdateBalanceBar();
+}
+
+function bpAddSavingsGoal() {
+  const name = prompt('Goal name (e.g. House deposit, New car):');
+  if (!name) return;
+  bpState.savingsRows.push({ name: name.trim(), amount: 0, goal: 0 });
+  renderSavingsSection();
+  bpUpdateBalanceBar();
+}
+
+// ── Save section ───────────────────────────────────────────────────────────
+function renderSaveSection() {
+  document.getElementById('bp-save-section').innerHTML = `
+    <hr style="border:none;border-top:1px solid var(--border);margin:18px 0" />
+    <button class="be-btn be-btn-accent" style="width:100%" onclick="bpSavePlan()">💾 Save plan</button>
+    <div class="bp-note" style="text-align:center;margin-top:8px">Plans are stored in your browser only — they never leave your device.</div>
+  `;
+}
+
+function bpSavePlan() {
+  if (!bpState.framework && !bpState.blank) { alert('Please pick a framework or choose blank plan.'); return; }
+  if (!bpState.planName || bpState.planName.trim() === '') { alert('Please enter a plan name.'); return; }
+  if (!bpState.income || bpState.income <= 0) { alert('Please enter your monthly income.'); return; }
+
+  const total = bpState.income || 0;
+  const alloc = bpTotalAllocated();
+  const unalloc = total - alloc;
+  if (Math.abs(unalloc) > 5) {
+    const dir = unalloc > 0 ? `You have ${bpFmt(unalloc)} unallocated.` : `You are ${bpFmt(-unalloc)} over budget.`;
+    if (!confirm(`${dir} Save anyway?`)) return;
+  }
+  const fw = BP_FRAMEWORKS.find(f => f.id === bpState.framework);
+  const plans = loadBudgetPlans();
+  const inc = bpState.income || 1;
+  const actualNeeds   = Math.round(bpTotalFixed()   / inc * 100);
+  const actualWants   = Math.round(bpTotalWants()   / inc * 100);
+  const actualSavings = Math.round(bpTotalSavings() / inc * 100);
+  const plan = {
+    name: bpState.planName.trim(),
+    framework: fw ? fw.name : 'Custom',
+    income: bpState.income,
+    date: new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'}),
+    actualNeeds, actualWants, actualSavings,
+    _state: JSON.parse(JSON.stringify(bpState))
+  };
+  const existingIdx = plans.findIndex(p => p.name === plan.name);
+  if (existingIdx >= 0) plans[existingIdx] = plan;
+  else plans.push(plan);
+  saveBudgetPlans(plans);
+  renderBudgetSavedList();
+  alert('Plan saved.');
+}
+
+// On load: render the form (always visible) and the saved-plans list (hidden if empty).
+function bpInit() {
+  renderBudgetSavedList();
+  renderBudgetForm();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bpInit);
+} else {
+  bpInit();
+}
+</script>
+
+</body>
+</html>
