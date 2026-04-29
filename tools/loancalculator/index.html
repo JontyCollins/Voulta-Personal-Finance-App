@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Loan &amp; Credit Card Repayment Calculator 2026 — True Cost of Borrowing | Vault</title>
+<meta name="description" content="Calculate the true cost of any UK loan or credit card. See monthly repayments, total interest and your payoff date. Free, private, no sign up, no data shared." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/loan-calculator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Loan &amp; Credit Card Repayment Calculator 2026 — True Cost of Borrowing" />
+<meta property="og:description" content="Free UK loan and credit card calculator. See monthly repayments, total interest, and your payoff date." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/loan-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff; --section-soft: #faf9f5; --founder-card: #f4f2ed;
+    --text: #12110f; --muted: #6b6a65; --border: #e8e6df;
+    --accent: #b8f000; --accent-ink: #12110f;
+    --radius: 14px; --radius-sm: 10px; --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body { padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     LOAN & CREDIT CARD CALCULATOR EMBED — built from scratch.
+     Two modes:
+       Loan: standard amortisation. M = P·r(1+r)^n / ((1+r)^n − 1).
+       Credit Card: month-by-month simulation, optional minimum-payment
+       mode where minimum = max(£25, 1% balance + monthly interest).
+     Both modes show what-if savings from £50 and £100 extra payments.
+     ════════════════════════════════════════════════════════════════ */
+  .ln-embed {
+    --l-surface:  #fbfaf8;
+    --l-surface2: #eeebe8;
+    --l-surface3: #ebe7e0;
+    --l-border:   #e2ddd5;
+    --l-border2:  #ccc8be;
+    --l-text:     #221f1c;
+    --l-text2:    #7f756c;
+    --l-text3:    #a8a099;
+    --l-accent:   #298e5f;
+    --l-red:      #c83030;
+    --l-amber:    #c8801c;
+    --l-radius: 12px;
+    --l-radius-sm: 8px;
+    --l-mono: 'DM Mono', monospace;
+    --l-sans: 'DM Sans', sans-serif;
+    --l-serif: 'DM Serif Display', serif;
+    font-family: var(--l-sans);
+    color: var(--l-text);
+    background: var(--l-surface);
+    border: 1px solid var(--l-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 720px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .ln-embed input {
+    background: var(--l-surface2);
+    border: 1px solid var(--l-border);
+    color: var(--l-text);
+    padding: 8px 10px;
+    border-radius: var(--l-radius-sm);
+    font-family: var(--l-mono);
+    font-size: 13px; width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .ln-embed input:focus { outline: none; border-color: var(--l-accent); }
+  .ln-embed input[type=checkbox] {
+    -webkit-appearance: checkbox; appearance: checkbox;
+    width: 16px; height: 16px; padding: 0; margin: 0;
+    background: transparent; border: 1px solid var(--l-border);
+    cursor: pointer; accent-color: var(--l-accent); flex-shrink: 0;
+  }
+
+  /* Mode tabs */
+  .ln-embed .l-mode-tabs {
+    display: flex; gap: 0; padding: 3px;
+    background: var(--l-surface3); border-radius: var(--l-radius-sm);
+    margin-bottom: 16px;
+  }
+  .ln-embed .l-mode-tabs button {
+    flex: 1; border: none; background: transparent;
+    color: var(--l-text3); font-family: var(--l-sans);
+    padding: 10px 12px; font-size: 13px; font-weight: 600;
+    cursor: pointer; border-radius: 6px;
+    transition: all 0.12s;
+  }
+  .ln-embed .l-mode-tabs button.active {
+    background: var(--l-surface); color: var(--l-text);
+    box-shadow: 0 1px 3px rgba(18,17,15,.08);
+  }
+
+  .ln-embed .l-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--l-text3); margin: 0 0 8px;
+  }
+  .ln-embed .l-fields {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px;
+  }
+  .ln-embed .l-field { display: flex; flex-direction: column; gap: 5px; }
+  .ln-embed .l-field-full { grid-column: 1 / -1; }
+  .ln-embed .l-label { font-size: 11px; color: var(--l-text2); }
+  .ln-embed .l-help { font-size: 10.5px; color: var(--l-text3); line-height: 1.45; margin-top: 2px; }
+  .ln-embed .l-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--l-surface2); border: 1px solid var(--l-border);
+    border-radius: var(--l-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .ln-embed .l-input-wrap:focus-within { border-color: var(--l-accent); }
+  .ln-embed .l-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .ln-embed .l-input-prefix,
+  .ln-embed .l-input-suffix {
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; background: var(--l-surface3);
+    color: var(--l-text3); font-family: var(--l-mono);
+  }
+  .ln-embed .l-input-prefix { border-right: 1px solid var(--l-border); }
+  .ln-embed .l-input-suffix { border-left:  1px solid var(--l-border); }
+
+  .ln-embed .l-toggle-row {
+    display: flex; align-items: center; gap: 10px; margin: 6px 0 12px;
+  }
+  .ln-embed .l-toggle-row label { font-size: 12.5px; color: var(--l-text2); cursor: pointer; }
+
+  /* Results */
+  .ln-embed .l-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--l-border);
+  }
+  .ln-embed .l-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--l-text3);
+  }
+  .ln-embed .l-warning {
+    background: rgba(200,128,28,0.08); border: 1px solid rgba(200,128,28,0.3);
+    color: var(--l-text); padding: 12px 14px; border-radius: var(--l-radius-sm);
+    font-size: 12.5px; line-height: 1.5; margin-bottom: 14px;
+  }
+  .ln-embed .l-warning strong { color: var(--l-amber); }
+  .ln-embed .l-hero {
+    background: var(--l-surface3); border: 1px solid var(--l-border2);
+    border-radius: var(--l-radius); padding: 18px 20px;
+    margin-bottom: 14px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .ln-embed .l-hero-cell { min-width: 0; }
+  .ln-embed .l-hero-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--l-text3); margin-bottom: 4px;
+  }
+  .ln-embed .l-hero-val {
+    font-family: var(--l-serif); font-size: 24px;
+    color: var(--l-accent); line-height: 1.1; word-break: break-all;
+  }
+  .ln-embed .l-hero-sub {
+    font-size: 11px; color: var(--l-text3);
+    font-family: var(--l-mono); margin-top: 4px;
+  }
+
+  .ln-embed .l-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 14px;
+  }
+  .ln-embed .l-cell {
+    background: var(--l-surface2); border: 1px solid var(--l-border);
+    border-radius: var(--l-radius-sm); padding: 12px 14px;
+  }
+  .ln-embed .l-cell-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--l-text3); margin-bottom: 4px;
+  }
+  .ln-embed .l-cell-val {
+    font-family: var(--l-mono); font-size: 16px; font-weight: 700;
+    color: var(--l-text);
+  }
+
+  /* Capital vs interest split bar */
+  .ln-embed .l-split {
+    background: var(--l-surface2); border: 1px solid var(--l-border);
+    border-radius: var(--l-radius-sm); padding: 14px;
+    margin-bottom: 14px;
+  }
+  .ln-embed .l-split-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--l-text); margin-bottom: 10px;
+  }
+  .ln-embed .l-split-bar {
+    height: 14px; border-radius: 7px; overflow: hidden;
+    background: var(--l-surface3); display: flex;
+    border: 1px solid var(--l-border);
+  }
+  .ln-embed .l-split-cap { background: var(--l-accent); transition: width 0.3s; }
+  .ln-embed .l-split-int { background: var(--l-red); opacity: 0.7; transition: width 0.3s; }
+  .ln-embed .l-split-legend {
+    display: flex; justify-content: space-between; gap: 12px;
+    margin-top: 10px; font-size: 11px; color: var(--l-text2);
+    font-family: var(--l-mono);
+  }
+  .ln-embed .l-split-legend strong { color: var(--l-text); font-weight: 700; }
+  .ln-embed .l-split-legend .swatch {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 6px; vertical-align: middle;
+  }
+  .ln-embed .l-split-legend .swatch.cap { background: var(--l-accent); }
+  .ln-embed .l-split-legend .swatch.int { background: var(--l-red); opacity: 0.7; }
+
+  /* What-if savings prompt */
+  .ln-embed .l-whatif {
+    background: rgba(41,142,95,0.05);
+    border: 1px solid rgba(41,142,95,0.25);
+    border-radius: var(--l-radius); padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .ln-embed .l-whatif-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--l-accent); margin-bottom: 8px;
+  }
+  .ln-embed .l-whatif-row {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12.5px; color: var(--l-text); padding: 6px 0;
+    border-bottom: 1px dashed rgba(41,142,95,0.18);
+  }
+  .ln-embed .l-whatif-row:last-child { border-bottom: none; }
+  .ln-embed .l-whatif-row strong { color: var(--l-accent); font-weight: 700; }
+
+  /* Schedule table */
+  .ln-embed .l-schedule { margin-top: 16px; }
+  .ln-embed .l-schedule-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--l-text); margin-bottom: 8px;
+  }
+  .ln-embed .l-schedule-wrap {
+    max-height: 360px; overflow-y: auto;
+    border: 1px solid var(--l-border); border-radius: var(--l-radius-sm);
+  }
+  .ln-embed table.l-schedule-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--l-mono); font-size: 11px;
+  }
+  .ln-embed .l-schedule-table th,
+  .ln-embed .l-schedule-table td {
+    padding: 6px 8px; text-align: right;
+    border-bottom: 1px solid var(--l-border);
+  }
+  .ln-embed .l-schedule-table th {
+    background: var(--l-surface2); color: var(--l-text3);
+    font-weight: 600; text-transform: uppercase;
+    font-size: 9.5px; letter-spacing: 0.6px;
+    position: sticky; top: 0;
+  }
+  .ln-embed .l-schedule-table td:first-child,
+  .ln-embed .l-schedule-table th:first-child { text-align: left; }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .ln-embed { padding: 16px; }
+    .ln-embed .l-fields { grid-template-columns: 1fr; }
+    .ln-embed .l-summary-grid { grid-template-columns: 1fr; }
+    .ln-embed .l-hero { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does a UK loan repayment calculator work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A UK loan repayment calculator uses the standard amortisation formula: M = P × r(1+r)^n / ((1+r)^n − 1), where P is the loan amount, r is the monthly interest rate, and n is the number of monthly payments. Each payment covers all the interest accrued that month plus a chunk of capital — early payments are mostly interest, late payments mostly capital. The calculator above also runs a what-if comparison showing how much faster and cheaper the loan clears if you bump the monthly payment by £50 or £100."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long to pay off credit card UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depends on balance, APR, and payment. £5,000 at 22% APR with minimum payment only takes ~22 years and costs ~£8,000 in interest. With £150/month flat, ~4 years 6 months and ~£2,800 interest. With £250/month flat, ~2 years 4 months and ~£1,400 interest. Switch the calculator above to credit card mode and tick 'minimum payment only' to see how the trap works on your specific balance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a credit card repayment calculator UK 2026 work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It runs a month-by-month simulation. Each month, interest is added to the balance (rate ÷ 12 × balance), then your monthly payment is deducted. If you tick 'minimum payment only', the monthly payment is recalculated each month as max(£25, 1% of balance + monthly interest) — the standard UK lender formula. The simulation runs until the balance hits zero, then reports how long it took and what the total cost was."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much will my loan cost UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Total cost = monthly payment × number of months. A £10,000 personal loan at 8% over 5 years has monthly payments of ~£203, total repaid ~£12,165, total interest ~£2,165. The same loan at 12% costs ~£222/month, ~£13,347 total, ~£3,347 interest. The longer the term and higher the rate, the more interest dominates the cost. The calculator above shows this split visually with a capital-vs-interest bar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Minimum payment credit card calculator UK — how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UK credit card minimum payments are typically calculated as the higher of (a) interest plus 1% of balance, (b) a fixed amount like £5 or £25, or (c) 1–3% of balance flat. The calculator above uses max(£25, 1% balance + monthly interest), which matches standard UK practice. Paying only the minimum keeps the debt alive almost indefinitely — a £3,000 balance at 22% APR can take 20+ years to clear and cost more in interest than the original balance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Personal loan calculator UK — what are typical 2026 rates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UK personal loan rates depend on amount, term, and credit profile. Best-buy unsecured personal loans for 2025/26 sit around 5.9–7.5% APR for £7,500–£15,000 over 3–5 years for prime borrowers. Smaller loans (£1,000–£5,000) tend to be 10–25%. Larger amounts and stronger credit unlock cheaper rates. Compare with Money Saving Expert, Moneyfacts, or directly with banks. The calculator above lets you plug in any rate and instantly see the monthly payment and total cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between APR and flat rate interest UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "APR (Annual Percentage Rate) accounts for the compounding effect — what you actually pay over a year on a reducing balance. Flat rate interest is calculated on the original loan amount each year and ignores the fact that your balance shrinks as you repay. A 5% flat rate is roughly equivalent to 9–10% APR on a typical 5-year loan. UK lenders are required to advertise APR, but some short-term, point-of-sale, or guarantor loans quote flat rates — always verify which rate type you're seeing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does paying off a loan early hurt my credit score UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — clearing a loan typically helps your score short-term (lower utilisation, paid-as-agreed) and long-term (more capacity for new borrowing). Some loans charge an Early Repayment Charge (ERC), usually 1–2 months of interest, which makes overpayment less attractive than it would otherwise be. Check your loan agreement before paying off in full. Credit cards generally don't have ERCs — you can clear them whenever you like."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Loan & Credit Card Repayment Calculator",
+  "url": "https://thevaultapp.co.uk/tools/loan-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK loan and credit card calculator. See monthly repayments, total interest, and the true cost of borrowing."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Loan repayment calculator UK</p>
+    <h1>UK Loan &amp; Credit Card Repayment Calculator 2026 — See the True Cost of Borrowing</h1>
+    <p class="lede">Understanding the true cost of debt is one of the most important things you can do for your financial future. Free, private, no sign up. Switch between loan and credit card modes to see your monthly payment, total interest, and exact payoff date.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="ln-embed" id="ln-calc">
+
+      <div class="l-mode-tabs" role="tablist" aria-label="Calculator mode">
+        <button id="l-mode-loan" type="button" class="active" aria-pressed="true">Personal loan</button>
+        <button id="l-mode-card" type="button" aria-pressed="false">Credit card</button>
+      </div>
+
+      <!-- LOAN MODE -->
+      <div id="l-loan-fields">
+        <div class="l-section-label">Loan details</div>
+        <div class="l-fields">
+          <div class="l-field l-field-full">
+            <label class="l-label" for="l-loan-amount">Loan amount</label>
+            <div class="l-input-wrap">
+              <span class="l-input-prefix">£</span>
+              <input type="number" id="l-loan-amount" placeholder="10,000" inputmode="decimal" step="100" />
+            </div>
+          </div>
+          <div class="l-field">
+            <label class="l-label" for="l-loan-rate">Annual interest rate</label>
+            <div class="l-input-wrap">
+              <input type="number" id="l-loan-rate" value="7.5" inputmode="decimal" step="0.1" />
+              <span class="l-input-suffix">%</span>
+            </div>
+          </div>
+          <div class="l-field">
+            <label class="l-label" for="l-loan-term">Loan term</label>
+            <div class="l-input-wrap">
+              <input type="number" id="l-loan-term" value="60" inputmode="numeric" step="1" min="1" max="480" />
+              <span class="l-input-suffix">months</span>
+            </div>
+            <div class="l-help">Common UK personal loan terms: 12, 24, 36, 60, 84 months.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARD MODE -->
+      <div id="l-card-fields" style="display:none">
+        <div class="l-section-label">Credit card details</div>
+        <div class="l-fields">
+          <div class="l-field l-field-full">
+            <label class="l-label" for="l-card-balance">Current balance</label>
+            <div class="l-input-wrap">
+              <span class="l-input-prefix">£</span>
+              <input type="number" id="l-card-balance" placeholder="3,000" inputmode="decimal" step="50" />
+            </div>
+          </div>
+          <div class="l-field">
+            <label class="l-label" for="l-card-rate">APR</label>
+            <div class="l-input-wrap">
+              <input type="number" id="l-card-rate" value="22" inputmode="decimal" step="0.1" />
+              <span class="l-input-suffix">%</span>
+            </div>
+            <div class="l-help">Typical UK credit card APR is 22–28%. Check your statement.</div>
+          </div>
+          <div class="l-field">
+            <label class="l-label" for="l-card-payment">Monthly payment</label>
+            <div class="l-input-wrap">
+              <span class="l-input-prefix">£</span>
+              <input type="number" id="l-card-payment" placeholder="100" inputmode="decimal" step="5" />
+            </div>
+          </div>
+          <div class="l-field l-field-full">
+            <div class="l-toggle-row">
+              <input type="checkbox" id="l-card-min-only" />
+              <label for="l-card-min-only">Pay minimum only (max £25 or 1% of balance + interest, recalculated each month)</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="l-results">
+        <div class="l-empty" id="l-empty">Fill in the fields above to see your repayment plan.</div>
+
+        <div id="l-output" style="display:none">
+          <div class="l-warning" id="l-warning" style="display:none"></div>
+
+          <div class="l-hero">
+            <div class="l-hero-cell">
+              <div class="l-hero-label" id="l-hero1-label">Monthly payment</div>
+              <div class="l-hero-val" id="l-hero1-val">£—</div>
+              <div class="l-hero-sub" id="l-hero1-sub"></div>
+            </div>
+            <div class="l-hero-cell" style="text-align:right">
+              <div class="l-hero-label" id="l-hero2-label">Time to clear</div>
+              <div class="l-hero-val" id="l-hero2-val">—</div>
+              <div class="l-hero-sub" id="l-hero2-sub"></div>
+            </div>
+          </div>
+
+          <div class="l-summary-grid">
+            <div class="l-cell">
+              <div class="l-cell-label">Total repaid</div>
+              <div class="l-cell-val" id="l-total-repaid">£—</div>
+            </div>
+            <div class="l-cell">
+              <div class="l-cell-label">Total interest</div>
+              <div class="l-cell-val" id="l-total-interest">£—</div>
+            </div>
+          </div>
+
+          <div class="l-split">
+            <div class="l-split-title">Capital vs interest</div>
+            <div class="l-split-bar">
+              <div class="l-split-cap" id="l-bar-cap" style="width:0"></div>
+              <div class="l-split-int" id="l-bar-int" style="width:0"></div>
+            </div>
+            <div class="l-split-legend">
+              <span><span class="swatch cap"></span>Capital <strong id="l-leg-cap">£—</strong></span>
+              <span><span class="swatch int"></span>Interest <strong id="l-leg-int">£—</strong></span>
+            </div>
+          </div>
+
+          <div class="l-whatif" id="l-whatif">
+            <div class="l-whatif-title">What if you paid more each month?</div>
+            <div id="l-whatif-rows"></div>
+          </div>
+
+          <div class="l-schedule">
+            <div class="l-schedule-title">Repayment schedule</div>
+            <div class="l-schedule-wrap">
+              <table class="l-schedule-table">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Payment</th>
+                    <th>Interest</th>
+                    <th>Capital</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody id="l-schedule-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Two modes, one calculator</h2>
+
+    <h3>Loan mode</h3>
+    <p class="section-body">Use this for personal loans, car finance, or any fixed-term repayment loan with a defined monthly payment. Enter the loan amount, the annual rate (APR — your loan agreement will show it), and the term in months. The calculator returns your monthly payment using the standard amortisation formula, plus a full month-by-month schedule showing how much of each payment goes to interest vs capital.</p>
+
+    <h3>Credit card mode</h3>
+    <p class="section-body">Use this for credit card balances or revolving credit. Enter the current balance, the APR (look at your statement — most UK cards show this prominently), and what you can afford to pay each month. Tick "Pay minimum only" to see what happens if you only pay the lender's minimum — usually a long, expensive timeline that's worth running once just to see the numbers.</p>
+
+    <p class="section-body">Both modes show a what-if section underneath: how much faster and cheaper the debt clears if you bump your monthly payment by £50 or £100. Even small bumps make outsized differences on long-term debt.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Understanding the true cost of borrowing</p>
+    <h2 class="section-title">What the headline rate hides</h2>
+
+    <div class="definition-card">
+      <h4>How interest compounds on credit cards</h4>
+      <p>Credit card interest is charged monthly on your outstanding balance. A £3,000 balance at 22% APR accrues ~£55/month in interest just sitting still. If your minimum payment is £85, only £30 actually reduces the capital — the other £55 covers the interest. That's why minimum payments take 20+ years to clear a £3,000 card. Increase the payment and a much higher fraction goes to capital, accelerating the balance down.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why minimum payments are designed to keep you in debt</h4>
+      <p>Lenders set minimums to be barely above the monthly interest charge — covering the interest plus a token capital reduction. The arithmetic ensures the balance shrinks but never quickly. The card stays profitable for the lender for as long as possible. The minimum payment isn't "what you should pay" — it's the absolute floor below which the lender takes action. Treat it as a warning line, not a target.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>APR vs flat rate interest</h4>
+      <p><strong>APR</strong> (Annual Percentage Rate) accounts for the compounding effect — what you actually pay over a year on a reducing balance. <strong>Flat rate</strong> interest is calculated on the original loan amount each year and ignores the fact that the balance shrinks as you repay. A 5% flat rate is roughly equivalent to 9–10% APR on a typical 5-year loan. UK consumer credit must advertise APR, but some short-term, point-of-sale, or guarantor loans quote flat rates — always check which rate type you're seeing.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why a small increase in monthly payment changes everything</h4>
+      <p>On a £5,000 credit card at 22% APR, paying £100/month clears it in ~6 years 7 months and costs ~£3,000 in interest. Paying £150/month clears it in ~3 years 8 months and costs ~£1,400. The extra £50/month — about £600/year — saves ~£1,600 in interest and 3 years of payments. The maths is non-linear: each pound above the minimum reduces capital faster, which reduces future interest, which reduces future minimums, in a positive feedback loop.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>The real cost of long terms</h4>
+      <p>Stretching a personal loan from 5 years to 7 years lowers the monthly payment but materially increases total interest. On a £10,000 loan at 8%: 5 years = ~£2,166 total interest; 7 years = ~£3,089 — about £900 more for the same money. Longer terms are useful for affordability when monthly cash flow is tight, but they're expensive. If you can manage a shorter term comfortably, take it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK borrowers in 2026</h2>
+
+    <h3>Typical UK personal loan rates in 2026</h3>
+    <p class="section-body">Best-buy <strong>unsecured personal loans</strong> for 2025/26 sit around 5.9–7.5% APR for £7,500–£15,000 over 3–5 years for prime borrowers. Smaller loans (£1,000–£5,000) tend to be 10–25%. Larger amounts and stronger credit unlock cheaper rates. The advertised "representative APR" only needs to be offered to 51% of accepted applicants — the rest get their own personal rate, which can be higher. Compare on Money Saving Expert, Moneyfacts, or use a soft-search comparison tool that won't affect your credit score.</p>
+
+    <h3>Typical UK credit card APRs in 2026</h3>
+    <p class="section-body">Average UK credit card APR sits around <strong>23–28%</strong>. Specific products vary widely: standard purchase cards 18–25%, rewards cards 22–32%, store cards often 30%+. <strong>0% balance transfer cards</strong> remain widely available — typical offers run 18–30 months at 0% with a 2–4% transfer fee. For high-interest card debt, transferring to a 0% card is often the fastest single change you can make. Always check the post-promotional rate so you don't drop straight back to 25%+ when the 0% ends.</p>
+
+    <h3>Consumer Credit Act protection</h3>
+    <p class="section-body">UK personal loans, credit agreements, and credit cards are regulated under the Consumer Credit Act 1974 (and the FCA Handbook). Lenders must give clear pre-contract information, a 14-day right of withdrawal on credit agreements, and follow strict rules on advertising and arrears handling. If you fall behind, regulated lenders must offer forbearance — payment holidays, reduced payments, freeze on interest — before defaulting you. Free, regulated debt advice is available from <a href="https://www.stepchange.org" target="_blank" rel="noopener">StepChange</a>, <a href="https://www.nationaldebtline.org" target="_blank" rel="noopener">National Debtline</a>, and <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener">Citizens Advice</a>.</p>
+
+    <h3>Section 75 protection on credit cards</h3>
+    <p class="section-body">Pay for a £100–£30,000 purchase with a UK credit card and Section 75 of the Consumer Credit Act makes the card issuer <strong>jointly liable</strong> with the retailer if something goes wrong — non-delivery, fraud, the retailer going bust, faulty goods. This is one of the strongest consumer protections anywhere in the world and is the main reason to use a credit card for big purchases (then pay it off in full to avoid interest). Debit cards have weaker chargeback rights.</p>
+
+    <h3>How loan applications affect your credit score</h3>
+    <p class="section-body">Every <strong>hard credit search</strong> (the kind a lender does when you formally apply) leaves a footprint on your credit file for ~12 months. Multiple hard searches in a short window can drop your score and signal financial stress to other lenders. <strong>Soft searches</strong> (eligibility checkers, your own credit report) leave no footprint. Always use eligibility checkers / soft-search comparison tools first to confirm you're likely to be accepted before doing a hard application.</p>
+
+    <h3>Soft vs hard credit searches</h3>
+    <p class="section-body"><strong>Soft search</strong>: eligibility checks, prequalification tools, your own credit report, employer background checks. Visible only to you and the lender doing the check. Doesn't affect your score. <strong>Hard search</strong>: a formal application for credit. Visible on your credit file to other lenders for ~12 months and can lower your score slightly. The score impact of a single hard search is small (a few points) and recovers within months — but a cluster of hard searches in 30 days raises red flags.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK loans and credit cards.</p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>How does this loan repayment calculator UK work?</summary>
+        <div class="faq-body">
+          <p>It uses the standard amortisation formula: <em>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</em>, where P is the loan amount, r is the monthly interest rate, and n is the number of monthly payments.</p>
+          <p>Each payment covers all the interest accrued that month plus a chunk of capital. The calculator runs a what-if showing how £50 or £100 extra changes the timeline and total interest.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How long to pay off credit card UK?</summary>
+        <div class="faq-body">
+          <p>£5,000 at 22% APR with minimum only ≈ <strong>22 years and ~£8,000 interest</strong>. £150/month flat ≈ 4 years 6 months. £250/month flat ≈ 2 years 4 months.</p>
+          <p>Switch the calculator above to credit card mode and tick "minimum payment only" to see how the trap works on your specific balance.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this credit card repayment calculator UK 2026 work?</summary>
+        <div class="faq-body">
+          <p>It runs a month-by-month simulation. Each month, interest is added (rate ÷ 12 × balance), then your payment is deducted. With "minimum payment only" ticked, the monthly payment is recalculated each month as max(£25, 1% of balance + monthly interest) — standard UK lender practice.</p>
+          <p>The simulation runs until balance hits zero, then reports time and total cost.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much will my loan cost UK?</summary>
+        <div class="faq-body">
+          <p>Total cost = monthly payment × number of months. A £10,000 personal loan at 8% over 5 years has monthly payments of <strong>~£203</strong>, total repaid <strong>~£12,165</strong>, total interest <strong>~£2,165</strong>.</p>
+          <p>The same loan at 12% costs ~£222/month, ~£13,347 total, ~£3,347 interest. The longer the term and higher the rate, the more interest dominates the cost.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Minimum payment credit card calculator UK — how does it work?</summary>
+        <div class="faq-body">
+          <p>UK credit card minimum payments are typically the higher of (a) interest plus 1% of balance, (b) a fixed minimum like £5 or £25, or (c) 1–3% of balance flat.</p>
+          <p>The calculator above uses max(£25, 1% balance + monthly interest), matching standard UK practice. Paying only the minimum keeps the debt alive almost indefinitely.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Personal loan calculator UK — what are typical 2026 rates?</summary>
+        <div class="faq-body">
+          <p>Best-buy unsecured personal loans for 2025/26 sit around <strong>5.9–7.5% APR</strong> for £7,500–£15,000 over 3–5 years for prime borrowers. Smaller loans (£1,000–£5,000) tend to be 10–25%.</p>
+          <p>Larger amounts and stronger credit unlock cheaper rates. Compare on Money Saving Expert, Moneyfacts, or with a soft-search comparison tool before applying.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the difference between APR and flat rate UK?</summary>
+        <div class="faq-body">
+          <p><strong>APR</strong> accounts for the compounding effect — what you actually pay over a year on a reducing balance. <strong>Flat rate</strong> is calculated on the original loan amount each year and ignores the balance shrinking as you repay.</p>
+          <p>A 5% flat rate is roughly equivalent to 9–10% APR on a typical 5-year loan. UK consumer credit must advertise APR — always verify which rate type you're seeing.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Does paying off a loan early hurt my credit score UK?</summary>
+        <div class="faq-body">
+          <p>No — clearing a loan typically <strong>helps</strong> your score short-term (lower utilisation) and long-term (more capacity for new borrowing).</p>
+          <p>Some loans charge an Early Repayment Charge (ERC) of 1–2 months' interest. Check your loan agreement before paying off in full. Credit cards generally don't have ERCs — you can clear them whenever you like.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track all your debts alongside your full net worth?</h2>
+      <p>Vault is the home for everything this calculator hints at — your loans, credit cards, savings, income, and net worth, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     LOAN / CREDIT CARD LOGIC — built from scratch.
+     Loan mode: amortisation formula M = P·r(1+r)^n / ((1+r)^n − 1).
+     Card mode: month-by-month simulation. If "minimum only" toggled,
+       payment recalculates each month as max(£25, 1% bal + interest).
+     Both modes feed the same render path so the schedule and
+     what-if comparison have a consistent shape.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+const MIN_FLOOR = 25;
+const MAX_MONTHS_SIM = 600; // hard cap — 50 years
+
+let lMode = 'loan';
+
+function $l(id) { return document.getElementById(id); }
+function lFmt(n) {
+  if (!isFinite(n) || n < 0) return '£—';
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+function lFmtMoney2(n) {
+  if (!isFinite(n) || n < 0) return '£—';
+  return '£' + n.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+function lParseNum(v) {
+  if (v === '' || v == null) return null;
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+function lFormatMonths(months) {
+  if (!isFinite(months) || months <= 0) return '—';
+  const yrs = Math.floor(months / 12);
+  const mo  = months % 12;
+  const parts = [];
+  if (yrs > 0) parts.push(yrs + (yrs === 1 ? ' year' : ' years'));
+  if (mo  > 0) parts.push(mo  + (mo  === 1 ? ' month' : ' months'));
+  return parts.join(' and ') || 'less than a month';
+}
+
+// Standard amortisation: returns the fixed monthly payment.
+function lLoanMonthlyPayment(principal, annualRate, months) {
+  if (months <= 0 || principal <= 0) return 0;
+  const r = (annualRate / 100) / 12;
+  if (r === 0) return principal / months;
+  const f = Math.pow(1 + r, months);
+  return principal * r * f / (f - 1);
+}
+
+// Run a month-by-month simulation. `paymentFn(balance, interest)` returns
+// the payment for the month — either a fixed value (loan / fixed monthly card)
+// or the dynamic minimum (1% balance + interest, floored at £25) for card-min mode.
+function lSimulate(startBalance, annualRate, paymentFn, options) {
+  options = options || {};
+  const cap = options.cap || MAX_MONTHS_SIM;
+  const r = (annualRate / 100) / 12;
+  let balance = startBalance;
+  let totalInterest = 0;
+  const schedule = [];
+
+  for (let month = 1; month <= cap && balance > 0.005; month++) {
+    const interest = balance * r;
+    let payment = paymentFn(balance, interest);
+    // Don't pay more than what's outstanding
+    payment = Math.min(payment, balance + interest);
+    const capital = Math.max(0, payment - interest);
+    balance = Math.max(0, balance + interest - payment);
+    totalInterest += interest;
+    schedule.push({ month, payment, interest, capital, balance });
+  }
+
+  if (balance > 0.005) {
+    return { months: cap, totalInterest, schedule, infeasible: true, balanceLeft: balance };
+  }
+  return { months: schedule.length, totalInterest, schedule, infeasible: false, balanceLeft: 0 };
+}
+
+// Card minimum: max(£25, 1% balance + interest). Standard UK lender practice.
+function lCardMinFn(balance, interest) {
+  const onePctPlusInt = balance * 0.01 + interest;
+  return Math.max(MIN_FLOOR, onePctPlusInt);
+}
+
+function lRender() {
+  const empty = $l('l-empty');
+  const out   = $l('l-output');
+
+  if (lMode === 'loan') {
+    const amount = lParseNum($l('l-loan-amount').value);
+    const rate   = lParseNum($l('l-loan-rate').value);
+    const term   = lParseNum($l('l-loan-term').value);
+    if (!amount || amount <= 0 || rate == null || rate < 0 || !term || term <= 0) {
+      empty.style.display = 'block'; out.style.display = 'none'; return;
+    }
+    const monthly = lLoanMonthlyPayment(amount, rate, term);
+    const sim = lSimulate(amount, rate, () => monthly, { cap: term + 1 });
+    lRenderResult({
+      mode: 'loan',
+      heroPayment: monthly,
+      heroPaymentSub: 'Fixed for the full term',
+      heroTime: lFormatMonths(term),
+      heroTimeSub: 'Set by your loan agreement',
+      principal: amount,
+      totalRepaid: monthly * term,
+      totalInterest: monthly * term - amount,
+      schedule: sim.schedule.slice(0, term),
+      whatIfBase: { amount, rate, monthly, term },
+      warning: null,
+    });
+  } else {
+    const balance = lParseNum($l('l-card-balance').value);
+    const rate    = lParseNum($l('l-card-rate').value);
+    const minOnly = $l('l-card-min-only').checked;
+    let payment   = lParseNum($l('l-card-payment').value) || 0;
+    if (!balance || balance <= 0 || rate == null || rate < 0) {
+      empty.style.display = 'block'; out.style.display = 'none'; return;
+    }
+    let paymentFn, displayPaymentLabel, displayPaymentValue;
+    if (minOnly) {
+      paymentFn = lCardMinFn;
+      // First-month minimum for hero display
+      const firstInterest = balance * (rate / 100) / 12;
+      displayPaymentValue = lCardMinFn(balance, firstInterest);
+      displayPaymentLabel = 'Minimum (month 1)';
+    } else {
+      // Need at least the monthly interest, otherwise infinite loop
+      const monthlyInt = balance * (rate / 100) / 12;
+      if (payment <= monthlyInt) {
+        // Show warning and skip simulation
+        empty.style.display = 'none'; out.style.display = 'block';
+        $l('l-warning').style.display = 'block';
+        $l('l-warning').innerHTML = `<strong>Payment doesn\'t cover interest.</strong> The monthly interest on this balance is <strong>${lFmtMoney2(monthlyInt)}</strong>, so a £${payment}/mo payment never reduces the capital — the balance grows indefinitely. Increase the monthly payment to at least <strong>${lFmt(Math.ceil(monthlyInt + 25))}</strong> to start clearing the debt.`;
+        // Blank out other result blocks
+        ['l-hero1-val','l-hero2-val','l-total-repaid','l-total-interest','l-leg-cap','l-leg-int'].forEach(id => $l(id).textContent = '£—');
+        $l('l-bar-cap').style.width = '0%'; $l('l-bar-int').style.width = '100%';
+        $l('l-schedule-body').innerHTML = '';
+        $l('l-whatif-rows').innerHTML = '';
+        return;
+      }
+      paymentFn = () => payment;
+      displayPaymentValue = payment;
+      displayPaymentLabel = 'Fixed payment';
+    }
+
+    const sim = lSimulate(balance, rate, paymentFn);
+    let warning = null;
+    if (minOnly && sim.months > 60) {
+      warning = `<strong>The minimum-payment trap.</strong> At minimums only, this card takes ${lFormatMonths(sim.months)} to clear and costs <strong>${lFmt(sim.totalInterest)}</strong> in interest — likely more than the original balance. The minimum is designed to keep the debt alive, not to clear it.`;
+    }
+    if (sim.infeasible) {
+      warning = `<strong>Couldn\'t clear in ${MAX_MONTHS_SIM/12} years.</strong> The minimum payment doesn\'t make meaningful progress. Increase the monthly payment to start clearing the debt.`;
+    }
+
+    lRenderResult({
+      mode: 'card',
+      heroPayment: displayPaymentValue,
+      heroPaymentSub: displayPaymentLabel,
+      heroTime: lFormatMonths(sim.months),
+      heroTimeSub: minOnly ? 'On minimum-only payments' : 'At your chosen monthly payment',
+      principal: balance,
+      totalRepaid: sim.schedule.reduce((s, r) => s + r.payment, 0),
+      totalInterest: sim.totalInterest,
+      schedule: sim.schedule,
+      whatIfBase: { balance, rate, payment: minOnly ? null : payment, minOnly },
+      warning,
+    });
+  }
+}
+
+function lRenderResult(r) {
+  $l('l-empty').style.display = 'none';
+  $l('l-output').style.display = 'block';
+
+  const w = $l('l-warning');
+  if (r.warning) {
+    w.style.display = 'block';
+    w.innerHTML = r.warning;
+  } else {
+    w.style.display = 'none';
+  }
+
+  $l('l-hero1-label').textContent = 'Monthly payment';
+  $l('l-hero1-val').textContent = lFmtMoney2(r.heroPayment);
+  $l('l-hero1-sub').textContent = r.heroPaymentSub || '';
+  $l('l-hero2-label').textContent = 'Time to clear';
+  $l('l-hero2-val').textContent = r.heroTime;
+  $l('l-hero2-sub').textContent = r.heroTimeSub || '';
+
+  $l('l-total-repaid').textContent = lFmt(r.totalRepaid);
+  $l('l-total-interest').textContent = lFmt(r.totalInterest);
+
+  // Capital vs interest split
+  const capPct = r.totalRepaid > 0 ? (r.principal / r.totalRepaid) * 100 : 0;
+  $l('l-bar-cap').style.width = capPct.toFixed(2) + '%';
+  $l('l-bar-int').style.width = (100 - capPct).toFixed(2) + '%';
+  $l('l-leg-cap').textContent = lFmt(r.principal);
+  $l('l-leg-int').textContent = lFmt(r.totalInterest);
+
+  // What-if rows
+  const whatIfRows = lBuildWhatIf(r);
+  $l('l-whatif-rows').innerHTML = whatIfRows;
+
+  // Schedule
+  const tbody = $l('l-schedule-body');
+  tbody.innerHTML = r.schedule.map(row => `
+    <tr>
+      <td>Month ${row.month}</td>
+      <td>${lFmtMoney2(row.payment)}</td>
+      <td>${lFmtMoney2(row.interest)}</td>
+      <td>${lFmtMoney2(row.capital)}</td>
+      <td>${lFmtMoney2(row.balance)}</td>
+    </tr>
+  `).join('');
+}
+
+function lBuildWhatIf(r) {
+  // For loan mode: simulate paying current monthly + 50 / + 100
+  // For card mode: only when there's a fixed payment (minOnly: skip the "at minimum" baseline)
+  const bumps = [50, 100];
+  if (r.mode === 'loan') {
+    const { amount, rate, monthly, term } = r.whatIfBase;
+    return bumps.map(b => {
+      const sim = lSimulate(amount, rate, () => monthly + b);
+      const newInt = sim.totalInterest;
+      const intSaved = (monthly * term - amount) - newInt;
+      const monthsSaved = term - sim.months;
+      return `
+        <div class="l-whatif-row">
+          <span>Pay <strong>${lFmtMoney2(monthly + b)}</strong>/mo (+£${b})</span>
+          <span>Save <strong>${lFmt(intSaved)}</strong> · clear ${monthsSaved > 0 ? Math.abs(monthsSaved) + ' month' + (Math.abs(monthsSaved) === 1 ? '' : 's') + ' earlier' : 'in similar time'}</span>
+        </div>`;
+    }).join('');
+  } else {
+    const { balance, rate, payment, minOnly } = r.whatIfBase;
+    // Anchor payment for the bump comparison
+    const anchorInterest = balance * (rate / 100) / 12;
+    const anchorPayment = minOnly
+      ? lCardMinFn(balance, anchorInterest) // first-month minimum
+      : payment;
+    return bumps.map(b => {
+      const newPayment = anchorPayment + b;
+      const sim = lSimulate(balance, rate, () => newPayment);
+      const intSaved = r.totalInterest - sim.totalInterest;
+      const monthsSaved = r.schedule.length - sim.months;
+      return `
+        <div class="l-whatif-row">
+          <span>Pay <strong>${lFmtMoney2(newPayment)}</strong>/mo (+£${b})</span>
+          <span>Save <strong>${lFmt(Math.max(0, intSaved))}</strong> · clear ${monthsSaved > 0 ? Math.abs(monthsSaved) + ' month' + (Math.abs(monthsSaved) === 1 ? '' : 's') + ' earlier' : 'in similar time'}</span>
+        </div>`;
+    }).join('');
+  }
+}
+
+function lSetMode(mode) {
+  lMode = mode;
+  $l('l-mode-loan').classList.toggle('active', mode === 'loan');
+  $l('l-mode-card').classList.toggle('active', mode === 'card');
+  $l('l-mode-loan').setAttribute('aria-pressed', mode === 'loan');
+  $l('l-mode-card').setAttribute('aria-pressed', mode === 'card');
+  $l('l-loan-fields').style.display = mode === 'loan' ? 'block' : 'none';
+  $l('l-card-fields').style.display = mode === 'card' ? 'block' : 'none';
+  lRender();
+}
+
+function lInit() {
+  $l('l-mode-loan').addEventListener('click', () => lSetMode('loan'));
+  $l('l-mode-card').addEventListener('click', () => lSetMode('card'));
+  ['l-loan-amount','l-loan-rate','l-loan-term','l-card-balance','l-card-rate','l-card-payment']
+    .forEach(id => $l(id)?.addEventListener('input', lRender));
+  $l('l-card-min-only').addEventListener('change', lRender);
+  // Seed sensible defaults
+  $l('l-loan-amount').value = '10000';
+  lRender();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', lInit);
+} else {
+  lInit();
+}
+</script>
+
+</body>
+</html>
