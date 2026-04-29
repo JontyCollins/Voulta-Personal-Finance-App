@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Debt Payoff Calculator 2026 — Become Debt Free Faster | Vault</title>
+<meta name="description" content="Calculate exactly when you'll be debt free and how much interest you'll save. Free UK debt payoff calculator with avalanche and snowball methods. Private, no sign up." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/debt-payoff-calculator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Debt Payoff Calculator 2026 — Become Debt Free Faster" />
+<meta property="og:description" content="Free UK debt payoff calculator with avalanche and snowball methods. Private, no sign up." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/debt-payoff-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --section-soft: #faf9f5;
+    --founder-card: #f4f2ed;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body { padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     DEBT PAYOFF CALCULATOR EMBED
+     Uses effective monthly rate and optional auto‑minimum.
+     ════════════════════════════════════════════════════════════════ */
+  .debt-embed {
+    --d-surface:  #fbfaf8;
+    --d-surface2: #eeebe8;
+    --d-surface3: #ebe7e0;
+    --d-border:   #e2ddd5;
+    --d-border2:  #ccc8be;
+    --d-text:     #221f1c;
+    --d-text2:    #7f756c;
+    --d-text3:    #a8a099;
+    --d-accent:   #298e5f;
+    --d-accent2:  #1878a0;
+    --d-red:      #c83030;
+    --d-amber:    #c8801c;
+    --d-radius: 12px;
+    --d-radius-sm: 8px;
+    --d-mono: 'DM Mono', monospace;
+    --d-sans: 'DM Sans', sans-serif;
+    --d-serif: 'DM Serif Display', serif;
+    font-family: var(--d-sans);
+    color: var(--d-text);
+    background: var(--d-surface);
+    border: 1px solid var(--d-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 720px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .debt-embed input {
+    background: var(--d-surface2);
+    border: 1px solid var(--d-border);
+    color: var(--d-text);
+    padding: 8px 10px;
+    border-radius: var(--d-radius-sm);
+    font-family: var(--d-mono);
+    font-size: 13px;
+    width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .debt-embed input:focus { outline: none; border-color: var(--d-accent); }
+
+  .debt-embed .d-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--d-text3); margin: 0 0 8px;
+  }
+  .debt-embed .d-section-divider { margin: 16px 0 8px; }
+
+  /* Debt rows */
+  .debt-embed .d-debts-list {
+    display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 8px;
+  }
+  .debt-embed .d-debt-row {
+    background: var(--d-surface2); border: 1px solid var(--d-border);
+    border-radius: var(--d-radius); padding: 12px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+    gap: 6px 10px;
+    align-items: end;
+  }
+  .debt-embed .d-debt-row .d-field { display: flex; flex-direction: column; gap: 4px; }
+  .debt-embed .d-debt-row .d-field-label {
+    font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--d-text3); font-family: var(--d-sans);
+  }
+  .debt-embed .d-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--d-surface); border: 1px solid var(--d-border);
+    border-radius: var(--d-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .debt-embed .d-input-wrap:focus-within { border-color: var(--d-accent); }
+  .debt-embed .d-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .debt-embed .d-input-prefix,
+  .debt-embed .d-input-suffix {
+    display: flex; align-items: center; padding: 0 8px;
+    font-size: 11px; background: var(--d-surface3);
+    color: var(--d-text3); font-family: var(--d-mono);
+  }
+  .debt-embed .d-input-prefix { border-right: 1px solid var(--d-border); }
+  .debt-embed .d-input-suffix { border-left:  1px solid var(--d-border); }
+  .debt-embed .d-debt-row input[type=text] {
+    background: transparent; border: 1px solid var(--d-border);
+    padding: 6px 10px; font-family: var(--d-sans); font-size: 12.5px;
+    border-radius: var(--d-radius-sm);
+    color: var(--d-text);
+  }
+  .debt-embed .d-debt-row input[type=text]:focus { outline: none; border-color: var(--d-accent); }
+  .debt-embed .d-debt-del {
+    background: none; border: none; color: var(--d-text3);
+    cursor: pointer; padding: 6px 10px; font-size: 14px;
+    border-radius: var(--d-radius-sm);
+    align-self: end; transition: color .15s;
+  }
+  .debt-embed .d-debt-del:hover { color: var(--d-red); }
+
+  .debt-embed .d-add-debt-btn {
+    width: 100%; border: 1px dashed var(--d-border);
+    background: transparent; color: var(--d-text3);
+    padding: 10px; font-size: 12px; cursor: pointer;
+    border-radius: var(--d-radius-sm);
+    font-family: var(--d-sans); transition: all .15s;
+  }
+  .debt-embed .d-add-debt-btn:hover { border-color: var(--d-accent); color: var(--d-accent); }
+
+  .debt-embed .d-fields {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px;
+  }
+  .debt-embed .d-field-full { grid-column: 1 / -1; }
+  .debt-embed .d-label { font-size: 11px; color: var(--d-text2); }
+
+  .debt-embed .d-segment {
+    display: flex; gap: 0; padding: 2px;
+    background: var(--d-surface3); border-radius: var(--d-radius-sm);
+    margin-top: 4px;
+  }
+  .debt-embed .d-segment button {
+    flex: 1; border: none; background: transparent;
+    color: var(--d-text3); font-family: var(--d-sans);
+    padding: 8px 10px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border-radius: 5px;
+    transition: all 0.12s;
+  }
+  .debt-embed .d-segment button.active {
+    background: var(--d-surface); color: var(--d-text);
+  }
+  .debt-embed .d-help { font-size: 10.5px; color: var(--d-text3); line-height: 1.45; margin-top: 4px; }
+
+  /* Results */
+  .debt-embed .d-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--d-border);
+  }
+  .debt-embed .d-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--d-text3);
+  }
+  .debt-embed .d-warning {
+    background: rgba(200,128,28,0.08); border: 1px solid rgba(200,128,28,0.3);
+    color: var(--d-amber); padding: 12px 14px; border-radius: var(--d-radius-sm);
+    font-size: 12px; line-height: 1.5; margin-bottom: 14px;
+  }
+  .debt-embed .d-hero {
+    background: var(--d-surface3); border: 1px solid var(--d-border2);
+    border-radius: var(--d-radius); padding: 18px 20px;
+    margin-bottom: 14px; text-align: center;
+  }
+  .debt-embed .d-hero-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--d-text3); margin-bottom: 6px;
+  }
+  .debt-embed .d-hero-val {
+    font-family: var(--d-serif); font-size: 28px;
+    color: var(--d-accent); line-height: 1.1;
+  }
+  .debt-embed .d-hero-sub {
+    font-size: 12px; color: var(--d-text3);
+    font-family: var(--d-mono); margin-top: 6px;
+  }
+
+  .debt-embed .d-summary-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 14px;
+  }
+  .debt-embed .d-cell {
+    background: var(--d-surface2); border: 1px solid var(--d-border);
+    border-radius: var(--d-radius-sm); padding: 12px 14px;
+  }
+  .debt-embed .d-cell-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--d-text3); margin-bottom: 4px;
+  }
+  .debt-embed .d-cell-val {
+    font-family: var(--d-mono); font-size: 16px; font-weight: 700;
+    color: var(--d-text);
+  }
+
+  /* Comparison block */
+  .debt-embed .d-compare {
+    background: var(--d-surface2); border: 1px solid var(--d-border);
+    border-radius: var(--d-radius); padding: 16px;
+    margin-bottom: 14px;
+  }
+  .debt-embed .d-compare-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--d-text); margin-bottom: 10px;
+  }
+  .debt-embed .d-compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .debt-embed .d-compare-col {
+    background: var(--d-surface); border: 1px solid var(--d-border);
+    border-radius: var(--d-radius-sm); padding: 10px 12px;
+    transition: border-color 0.15s;
+  }
+  .debt-embed .d-compare-col.winner {
+    border-color: rgba(41,142,95,0.5);
+    background: rgba(41,142,95,0.05);
+  }
+  .debt-embed .d-compare-col.tied {
+    border-color: rgba(24,120,160,0.4);
+  }
+  .debt-embed .d-compare-name {
+    font-size: 11px; font-weight: 700; color: var(--d-text);
+    margin-bottom: 6px; display: flex; justify-content: space-between;
+  }
+  .debt-embed .d-compare-name .d-tag {
+    font-size: 9px; font-family: var(--d-mono);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 2px 7px; border-radius: 100px;
+    background: rgba(41,142,95,0.12); color: var(--d-accent);
+    border: 1px solid rgba(41,142,95,0.3);
+  }
+  .debt-embed .d-compare-stats { font-size: 11px; line-height: 1.5; color: var(--d-text2); font-family: var(--d-mono); }
+  .debt-embed .d-compare-stats div { display: flex; justify-content: space-between; }
+  .debt-embed .d-compare-verdict {
+    background: rgba(41,142,95,0.07); border-radius: var(--d-radius-sm);
+    padding: 10px 12px; font-size: 12px; line-height: 1.55;
+    color: var(--d-text);
+  }
+  .debt-embed .d-compare-verdict strong { color: var(--d-accent); font-weight: 700; }
+
+  /* Milestones */
+  .debt-embed .d-milestones {
+    margin-bottom: 14px;
+  }
+  .debt-embed .d-milestones-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--d-text); margin-bottom: 8px;
+  }
+  .debt-embed .d-milestone {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; background: var(--d-surface2);
+    border: 1px solid var(--d-border); border-radius: var(--d-radius-sm);
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+  .debt-embed .d-milestone-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: rgba(41,142,95,0.12); color: var(--d-accent);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .debt-embed .d-milestone-body { flex: 1; line-height: 1.4; }
+  .debt-embed .d-milestone-name { font-weight: 600; color: var(--d-text); }
+  .debt-embed .d-milestone-meta { font-family: var(--d-mono); font-size: 10.5px; color: var(--d-text3); margin-top: 2px; }
+
+  /* Schedule table */
+  .debt-embed .d-schedule { margin-top: 16px; }
+  .debt-embed .d-schedule-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--d-text); margin-bottom: 8px;
+  }
+  .debt-embed .d-schedule-wrap {
+    max-height: 360px; overflow-y: auto;
+    border: 1px solid var(--d-border); border-radius: var(--d-radius-sm);
+  }
+  .debt-embed table.d-schedule-table {
+    width: 100%; border-collapse: collapse;
+    font-family: var(--d-mono); font-size: 11px;
+  }
+  .debt-embed .d-schedule-table th,
+  .debt-embed .d-schedule-table td {
+    padding: 6px 8px; text-align: right;
+    border-bottom: 1px solid var(--d-border);
+  }
+  .debt-embed .d-schedule-table th {
+    background: var(--d-surface2); color: var(--d-text3);
+    font-weight: 600; text-transform: uppercase;
+    font-size: 9.5px; letter-spacing: 0.6px;
+    position: sticky; top: 0;
+  }
+  .debt-embed .d-schedule-table td:first-child,
+  .debt-embed .d-schedule-table th:first-child { text-align: left; }
+  .debt-embed .d-schedule-table tr.d-row-cleared td { color: var(--d-accent); font-weight: 700; }
+
+  /* Auto minimum toggle + dynamic display */
+  .debt-embed .d-auto-min-row {
+    display: flex; align-items: center; gap: 12px;
+    margin: 10px 0 6px;
+    font-size: 13px; color: var(--d-text2);
+  }
+  .debt-embed .d-auto-min-row input[type="checkbox"] {
+    width: auto; margin: 0; accent-color: var(--d-accent);
+  }
+  .debt-embed .d-auto-min-display {
+    font-family: var(--d-mono); font-size: 10px;
+    color: var(--d-accent); margin-top: 2px;
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+    .debt-embed .d-debt-row {
+      grid-template-columns: 1fr 1fr; gap: 6px 8px;
+    }
+    .debt-embed .d-debt-row .d-debt-name-field { grid-column: 1 / -1; }
+    .debt-embed .d-debt-del { grid-column: 1 / -1; justify-self: end; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .debt-embed { padding: 16px; }
+    .debt-embed .d-fields { grid-template-columns: 1fr; }
+    .debt-embed .d-summary-grid { grid-template-columns: 1fr; }
+    .debt-embed .d-compare-grid { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to pay off debt faster UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three levers: (1) cut spending and throw the freed-up cash at debt; (2) order your debts properly — the avalanche method (highest interest rate first) saves the most money mathematically; (3) consider consolidating high-interest credit-card debt onto a 0% balance-transfer card to stop interest while you pay it down. The free UK debt payoff calculator above lets you list every debt, set an extra monthly payment, and compare avalanche vs snowball outcomes side-by-side."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a debt payoff calculator UK work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It runs a month-by-month simulation. Each month, interest is added to every debt, the minimum payment is applied to each, and any extra payment is directed at one specific debt based on the strategy you've picked. Avalanche targets the highest-interest debt first; snowball targets the smallest balance first. As debts clear, their freed-up minimum payments roll into the next target debt — the 'snowball effect' — accelerating payoff over time. The calculator above shows your debt-free date, total interest paid, and a month-by-month schedule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Avalanche vs snowball method UK — which should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avalanche (highest interest first) saves the most money. On £15,000 of debt across three accounts (a 22% credit card, an 8% personal loan, and a 6% car finance) avalanche typically saves £500–£2,000+ in interest vs snowball over the payoff period. Snowball (smallest balance first) gives faster psychological wins — the first debt clears sooner, which builds momentum. If you've struggled to stick with debt payoff before, snowball's quick wins are worth the extra money. If discipline isn't the bottleneck, avalanche wins on pure maths."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long to pay off credit card UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a £5,000 credit card balance at 22% APR with only the minimum payment (~2.5% of balance), it takes roughly 22 years and you pay around £8,000 in interest. With £150/month flat, it clears in about 4 years 6 months and ~£2,800 interest. With £250/month flat, ~2 years 4 months and ~£1,400 interest. The minimum-payment trap is real: paying only the minimum keeps the debt alive almost indefinitely. The calculator above models your specific balance, rate, and payment to show the exact difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to use a debt free calculator UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "List every debt with its current balance, interest rate (APR), and the minimum monthly payment your lender requires. Add the extra you can throw at debt each month — anything beyond the sum of minimums. Pick avalanche or snowball as your strategy. The calculator simulates each month: interest accrues, minimums get paid, the extra goes to your chosen target debt. The output is your debt-free date, total interest paid, the comparison between avalanche and snowball, and milestone markers for first debt cleared and halfway point."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I pay off debt or invest UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compare the interest rate on the debt with your expected investment return. Credit-card debt at 20%+ should be cleared first — it's mathematically impossible to beat by investing. Personal loans at 6–10% are borderline; the long-run UK equity return is ~7%, so investing might break even but the certainty of debt repayment usually wins. Mortgage interest at 4–5% is comfortably below long-run equity returns, so most UK savers continue mortgage payments at the contractual rate while investing extra cash. The general order: clear high-interest debt → build emergency fund → max ISA/pension contributions → overpay mortgage if no other use for the cash."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are minimum credit card payments calculated UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UK lenders typically calculate the minimum as the higher of (a) interest + 1% of the balance, (b) a fixed amount like £5 or £25, or (c) 1–3% of the balance. The exact formula is in your card's terms. A £3,000 balance at 22% APR has roughly £55/month interest, so a minimum of ~£85 (interest + 1%) is common. Paying the minimum keeps the debt alive almost indefinitely — at minimum payments, that £3,000 card can take 20+ years to clear and cost more in interest than the original balance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does paying off debt improve my credit score UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — UK credit scores (Experian, Equifax, TransUnion) react positively to lower debt utilisation, reliable payments, and aged accounts in good standing. Paying down balances below 30% of the credit limit on each card can lift scores quickly. Closing accounts after payoff isn't always the best move — keeping older accounts open improves your credit history length. Once you're debt-free, focus on staying on top of the few credit lines you keep active to maintain the score for a future mortgage application."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Debt Payoff Calculator",
+  "url": "https://thevaultapp.co.uk/tools/debt-payoff-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK debt payoff calculator with avalanche and snowball methods. Multi-debt support, month-by-month schedule."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Debt free calculator UK</p>
+    <h1>UK Debt Payoff Calculator 2026 — Become Debt Free Faster</h1>
+    <p class="lede">Whether it's credit cards, personal loans, car finance, or all three — find the fastest, cheapest path out. Free, private, no sign up. Add as many debts as you like, pick avalanche or snowball, and see exactly when you're debt-free.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="debt-embed" id="debt-calc">
+
+      <div class="d-section-label">Your debts</div>
+      <div class="d-debts-list" id="d-debts-list"></div>
+
+      <div class="d-auto-min-row">
+        <input type="checkbox" id="d-auto-min" />
+        <label for="d-auto-min">Auto‑calculate minimums (interest + 1 % of balance) — typical UK formula</label>
+      </div>
+
+      <button class="d-add-debt-btn" id="d-add-debt">+ Add another debt</button>
+
+      <div class="d-section-label d-section-divider">Extra payment &amp; strategy</div>
+      <div class="d-fields">
+        <div class="d-field-full">
+          <label class="d-label" for="d-extra">Extra payment available each month (on top of minimums)</label>
+          <div class="d-input-wrap">
+            <span class="d-input-prefix">£</span>
+            <input type="number" id="d-extra" placeholder="200" inputmode="decimal" step="10" />
+          </div>
+          <div class="d-help">Anything you can throw at debt beyond the sum of minimum payments. Even £50/month makes a meaningful dent.</div>
+        </div>
+        <div class="d-field-full">
+          <label class="d-label">Payoff strategy</label>
+          <div class="d-segment" role="tablist" aria-label="Payoff strategy">
+            <button id="d-strat-avalanche" type="button" class="active" aria-pressed="true">Avalanche (highest rate first)</button>
+            <button id="d-strat-snowball" type="button" aria-pressed="false">Snowball (smallest balance first)</button>
+          </div>
+          <div class="d-help" id="d-strat-help">Avalanche saves the most money. Snowball builds momentum with quick early wins.</div>
+        </div>
+      </div>
+
+      <div class="d-results">
+        <div class="d-empty" id="d-empty">Add at least one debt above to see your payoff plan.</div>
+
+        <div id="d-output" style="display:none">
+          <div class="d-warning" id="d-warning" style="display:none"></div>
+
+          <div class="d-hero">
+            <div class="d-hero-label" id="d-hero-label">Debt-free in</div>
+            <div class="d-hero-val" id="d-hero-val">—</div>
+            <div class="d-hero-sub" id="d-hero-sub"></div>
+          </div>
+
+          <div class="d-summary-grid">
+            <div class="d-cell">
+              <div class="d-cell-label">Total debt today</div>
+              <div class="d-cell-val" id="d-total-debt">£—</div>
+            </div>
+            <div class="d-cell">
+              <div class="d-cell-label">Total interest paid</div>
+              <div class="d-cell-val" id="d-total-interest">£—</div>
+            </div>
+          </div>
+
+          <div class="d-compare">
+            <div class="d-compare-title">Avalanche vs Snowball</div>
+            <div class="d-compare-grid">
+              <div class="d-compare-col" id="d-compare-aval">
+                <div class="d-compare-name">Avalanche <span class="d-tag" id="d-aval-tag" style="display:none">Best</span></div>
+                <div class="d-compare-stats">
+                  <div><span>Time</span><span id="d-aval-time">—</span></div>
+                  <div><span>Total interest</span><span id="d-aval-interest">—</span></div>
+                </div>
+              </div>
+              <div class="d-compare-col" id="d-compare-snow">
+                <div class="d-compare-name">Snowball <span class="d-tag" id="d-snow-tag" style="display:none">Best</span></div>
+                <div class="d-compare-stats">
+                  <div><span>Time</span><span id="d-snow-time">—</span></div>
+                  <div><span>Total interest</span><span id="d-snow-interest">—</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="d-compare-verdict" id="d-compare-verdict">—</div>
+          </div>
+
+          <div class="d-milestones">
+            <div class="d-milestones-title">Milestones (active strategy)</div>
+            <div id="d-milestones-list"></div>
+          </div>
+
+          <div class="d-schedule">
+            <div class="d-schedule-title">Month-by-month payoff schedule</div>
+            <div class="d-schedule-wrap">
+              <table class="d-schedule-table">
+                <thead>
+                  <tr>
+                    <th>Month</th>
+                    <th>Attacking</th>
+                    <th>Total balance</th>
+                    <th>Interest paid</th>
+                  </tr>
+                </thead>
+                <tbody id="d-schedule-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Three steps to a real payoff plan</h2>
+    <p class="section-body muted">The debt payoff calculator UK above runs a month-by-month simulation across all your debts. Here's how to get a useful answer.</p>
+    <ol>
+      <li><strong>Add every debt you have.</strong> Credit cards, personal loans, car finance, store cards, overdrafts. Give each a name, the current outstanding balance, the APR (your statement will show it), and the minimum monthly payment. Use "+ Add another debt" to add as many rows as you need.</li>
+      <li><strong>Set your extra monthly payment.</strong> Anything you can throw at debt beyond the sum of all minimums. £50/month meaningfully accelerates payoff; £200/month transforms the timeline. Be realistic — pick a number you'll actually maintain.</li>
+      <li><strong>Pick avalanche or snowball.</strong> Avalanche saves the most money mathematically. Snowball gives faster psychological wins. The calculator shows both side by side so you can compare exact figures.</li>
+    </ol>
+    <p class="section-body">Below the headline you'll see your debt-free date, total interest paid under each strategy, the saving from picking the better one, and milestone markers (first debt cleared, halfway point, debt-free date).</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Avalanche vs Snowball</p>
+    <h2 class="section-title">Which method is right for you?</h2>
+    <p class="section-body muted">Two well-known approaches with different trade-offs. The calculator above shows the difference for your specific debts — here's the plain-English version of the choice.</p>
+
+    <div class="definition-card">
+      <h4>Avalanche method</h4>
+      <p>Pay minimums on every debt, then throw all extra cash at the debt with the <strong>highest interest rate</strong>. When that's cleared, roll its freed-up payment into the next-highest-rate debt. Repeat until you're debt-free. This minimises total interest paid because you're killing the most expensive debt first.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Snowball method</h4>
+      <p>Pay minimums on every debt, then throw all extra cash at the debt with the <strong>smallest balance</strong>, regardless of interest rate. Once that's cleared, the next-smallest. Each cleared debt is a visible win, and the freed-up minimum payment "snowballs" into the next target. Slightly more interest paid in total, but the early wins keep many people from giving up.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>The maths behind why avalanche saves more</h4>
+      <p>Interest is the real enemy. £5,000 at 22% costs you £92/month just standing still. £5,000 at 6% costs £25/month. Killing the 22% debt first frees up £92/month of "interest you're not paying anymore" that compounds against your remaining debts. Snowball clears smaller debts faster but lets the high-interest beasts grow longer. On typical UK debt mixes, avalanche saves £500–£2,000 over the payoff period.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why snowball works better for some people</h4>
+      <p>Personal finance research from Northwestern Kellogg and others has found that people on snowball plans <strong>stick with them longer</strong>. The first cleared debt is a real, visible win — usually within the first 6–12 months. Avalanche's first win can take 18+ months if your highest-rate debt also has the largest balance. If you've started debt payoff plans before and given up, snowball's quick wins are worth the slightly higher total cost.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>How to choose between them</h4>
+      <p>Run the calculator with both strategies and look at the gap. If avalanche saves £200 versus snowball, take snowball — the £200 buys you motivation insurance. If avalanche saves £2,000+ and you're confident you'll stay disciplined, take avalanche. The worst outcome is not picking either and drifting through minimum payments.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes for UK borrowers in 2026</h2>
+
+    <h3>Typical UK credit card interest rates in 2026</h3>
+    <p class="section-body">Average UK credit card APR sits around 23–28%. Specific products vary widely: standard purchase cards 18–25%, rewards cards 22–32%, store cards often 30%+. <strong>0% balance transfer cards</strong> remain widely available — typical offers run 18–30 months at 0% with a 2–4% transfer fee. For high-interest credit card debt, transferring to a 0% card is often the fastest single change you can make. Run this calculator on your post-transfer balances and rates to see the new payoff timeline.</p>
+
+    <h3>How UK lenders calculate minimum payments</h3>
+    <p class="section-body">UK credit cards typically charge the higher of (a) interest plus 1% of balance, (b) a fixed minimum like £5 or £25, or (c) a flat 1–3% of balance. The exact formula is in your card's terms. A £3,000 balance at 22% APR has ~£55/month interest, so a minimum of ~£85/month is common. <strong>Paying only the minimum is the trap</strong> — it can keep a single £3,000 card alive for 20+ years and cost more in interest than the original balance.</p>
+
+    <h3>How debt affects mortgage affordability and credit score</h3>
+    <p class="section-body">UK mortgage lenders subtract a year's worth of monthly debt payments from your gross income before applying their multiple — £400/month of debt is £4,800/year, knocking ~£19,000 off a 4× borrowing limit. Credit scores (Experian, Equifax, TransUnion) react positively to lower utilisation, reliable payments, and longer account history. Aim for credit utilisation below 30% on each card. Don't close older accounts after payoff — keeping them open lengthens your credit history.</p>
+
+    <h3>Secured vs unsecured debt</h3>
+    <p class="section-body"><strong>Secured debt</strong> (mortgage, car finance, secured loans) is backed by an asset — miss payments and the lender can repossess. <strong>Unsecured debt</strong> (credit cards, most personal loans, overdrafts, store cards) isn't tied to an asset. Unsecured debt typically has higher interest because the lender's risk is greater. For payoff prioritisation, the rate matters more than secured/unsecured — but for missed payments, secured debts are the much bigger risk because losing an asset is worse than a credit-score hit.</p>
+
+    <h3>When to consider a Debt Management Plan or IVA</h3>
+    <p class="section-body">If unsecured debts are over £5,000 and you genuinely can't afford the minimums, regulated UK options exist: <strong>Debt Management Plan (DMP)</strong> — informal, you pay an affordable amount distributed across creditors, interest may be frozen. <strong>Individual Voluntary Arrangement (IVA)</strong> — formal 5-year agreement, typically clears unsecured debts above what you can repay, but stays on your credit file for 6 years. Charity-run advisers like StepChange and National Debtline give free, regulated advice — call before you miss payments, not after.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK debt payoff.</p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>How to pay off debt faster UK?</summary>
+        <div class="faq-body">
+          <p>Three levers: cut spending and throw the freed-up cash at debt; order your debts properly (avalanche method saves most money); consider consolidating high-interest credit-card debt onto a 0% balance-transfer card to stop interest while you pay it down.</p>
+          <p>The calculator above lets you list every debt, set an extra monthly payment, and compare avalanche vs snowball outcomes side-by-side.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this debt payoff calculator UK work?</summary>
+        <div class="faq-body">
+          <p>It runs a month-by-month simulation. Each month, interest is added to every debt, the minimum is applied to each, and any extra is directed at one specific debt based on the strategy you've picked.</p>
+          <p>As debts clear, their freed-up minimums roll into the next target debt — the "snowball effect" — accelerating payoff over time.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Avalanche vs snowball method UK — which should I use?</summary>
+        <div class="faq-body">
+          <p><strong>Avalanche</strong> (highest interest first) saves the most money. <strong>Snowball</strong> (smallest balance first) gives faster psychological wins.</p>
+          <p>If you've struggled to stick with debt payoff before, snowball's quick wins are worth the extra money. If discipline isn't the bottleneck, avalanche wins on pure maths. The calculator shows both side-by-side for your specific debts.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How long to pay off credit card UK?</summary>
+        <div class="faq-body">
+          <p>On a £5,000 credit card balance at 22% APR with only the minimum payment, it takes <strong>roughly 22 years</strong> and costs ~£8,000 in interest. With £150/month flat, ~4 years 6 months and ~£2,800 interest. With £250/month flat, ~2 years 4 months.</p>
+          <p>The minimum-payment trap is real. The calculator above models your specific balance, rate, and payment to show the exact difference.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How to use a debt free calculator UK?</summary>
+        <div class="faq-body">
+          <p>List every debt with its balance, APR, and minimum monthly payment. Add the extra you can throw at debt each month — anything beyond the sum of minimums. Pick avalanche or snowball.</p>
+          <p>The calculator simulates each month: interest accrues, minimums get paid, the extra goes to your chosen target debt. Output: debt-free date, total interest paid, comparison between methods, and milestone markers.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Should I pay off debt or invest UK?</summary>
+        <div class="faq-body">
+          <p>Compare interest rate vs expected investment return. <strong>Credit-card debt at 20%+</strong> should be cleared first — impossible to beat by investing. <strong>Personal loans at 6–10%</strong> are borderline. <strong>Mortgage at 4–5%</strong> is below long-run equity returns, so most UK savers continue mortgage payments at the contractual rate while investing extra cash.</p>
+          <p>General order: clear high-interest debt → emergency fund → max ISA/pension → overpay mortgage if no other use for the cash.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How are minimum credit card payments calculated UK?</summary>
+        <div class="faq-body">
+          <p>UK lenders typically calculate the minimum as the higher of (a) interest plus 1% of balance, (b) a fixed amount like £5 or £25, or (c) 1–3% of balance.</p>
+          <p>A £3,000 balance at 22% APR has ~£55/month interest, so minimums of ~£85 are common. Paying only the minimum can keep that £3,000 debt alive for 20+ years.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Does paying off debt improve my credit score UK?</summary>
+        <div class="faq-body">
+          <p>Yes. UK credit scores react positively to lower utilisation, reliable payments, and aged accounts in good standing. Paying down balances below 30% of the credit limit on each card can lift scores quickly.</p>
+          <p>Don't close old accounts after payoff — keeping them open improves your credit history length, which boosts your score for future mortgage applications.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your debt payoff progress alongside your full net worth?</h2>
+      <p>Vault is the home for everything this calculator hints at — your debts, savings, accounts, net worth, and how each cleared debt moves the needle. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     DEBT PAYOFF LOGIC — effective monthly rate + optional auto‑min.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+const MAX_MONTHS = 600;
+
+let dDebts = [
+  { id: 1, name: 'Credit card 1', balance: 3000, rate: 22, min: 85 },
+  { id: 2, name: 'Personal loan',  balance: 5000, rate: 8,  min: 110 },
+];
+let dNextId = 3;
+let dStrategy = 'avalanche';
+let dAutoMin = false;
+
+function $d(id) { return document.getElementById(id); }
+function dFmt(n) {
+  if (!isFinite(n) || n < 0) return '£—';
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+function dParseNum(v) {
+  if (v === '' || v == null) return null;
+  const n = parseFloat(String(v).replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+function dFormatMonths(months) {
+  if (!isFinite(months) || months <= 0) return '—';
+  const yrs = Math.floor(months / 12);
+  const mo  = months % 12;
+  const parts = [];
+  if (yrs > 0) parts.push(yrs + (yrs === 1 ? ' year' : ' years'));
+  if (mo  > 0) parts.push(mo  + (mo  === 1 ? ' month' : ' months'));
+  return parts.join(' and ') || 'less than a month';
+}
+
+function dMonthlyRate(aprPercent) {
+  if (aprPercent <= 0) return 0;
+  return Math.pow(1 + aprPercent / 100, 1 / 12) - 1;
+}
+
+function dCalcAutoMin(debt) {
+  const mr = dMonthlyRate(debt.rate);
+  const interestPart = debt.balance * mr;
+  const percentPart = 0.01 * debt.balance;
+  return Math.max(1, Math.min(debt.balance, interestPart + percentPart));
+}
+
+// ════════════════ RENDERING (split into rows and outputs) ════════════════
+
+function dBuildDebtRowHTML(debt) {
+  const autoMinVal = dAutoMin && debt.balance > 0 ? dCalcAutoMin(debt) : null;
+  return `
+    <div class="d-debt-row" data-id="${debt.id}">
+      <div class="d-field d-debt-name-field">
+        <span class="d-field-label">Name</span>
+        <input type="text" data-field="name" value="${(debt.name||'').replace(/"/g,'&quot;')}" placeholder="e.g. Credit card" />
+      </div>
+      <div class="d-field">
+        <span class="d-field-label">Balance</span>
+        <div class="d-input-wrap">
+          <span class="d-input-prefix">£</span>
+          <input type="number" data-field="balance" value="${debt.balance||''}" inputmode="decimal" step="50" />
+        </div>
+      </div>
+      <div class="d-field">
+        <span class="d-field-label">APR</span>
+        <div class="d-input-wrap">
+          <input type="number" data-field="rate" value="${debt.rate||''}" inputmode="decimal" step="0.1" />
+          <span class="d-input-suffix">%</span>
+        </div>
+      </div>
+      <div class="d-field">
+        <span class="d-field-label">Min/mo</span>
+        <div class="d-input-wrap">
+          <span class="d-input-prefix">£</span>
+          <input type="number" data-field="min" value="${debt.min||''}" inputmode="decimal" step="5" ${dAutoMin ? 'disabled' : ''} />
+        </div>
+        <span class="d-auto-min-display" style="display:${dAutoMin && autoMinVal !== null ? 'block' : 'none'}">Auto: ${dFmt(autoMinVal)}</span>
+      </div>
+      <button type="button" class="d-debt-del" data-action="delete" title="Remove debt">✕</button>
+    </div>`;
+}
+
+function dRenderDebtRows() {
+  const list = $d('d-debts-list');
+  list.innerHTML = dDebts.map(d => dBuildDebtRowHTML(d)).join('');
+
+  // Wire input listeners
+  list.querySelectorAll('.d-debt-row').forEach(row => {
+    const id = parseInt(row.dataset.id, 10);
+    row.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', () => {
+        const debt = dDebts.find(d => d.id === id);
+        if (!debt) return;
+        const field = input.dataset.field;
+        if (field === 'name') debt.name = input.value;
+        else debt[field] = dParseNum(input.value) || 0;
+        dUpdateOutputs();
+      });
+    });
+    row.querySelector('[data-action="delete"]').addEventListener('click', () => {
+      dDebts = dDebts.filter(d => d.id !== id);
+      if (dDebts.length === 0) {
+        dDebts.push({ id: dNextId++, name: '', balance: 0, rate: 0, min: 0 });
+      }
+      dRenderDebtRows();
+      dUpdateOutputs();
+    });
+  });
+}
+
+function dUpdateOutputs() {
+  const debts = dDebts.filter(d => d.balance > 0 && d.rate >= 0 && d.min >= 0);
+  const extra = dParseNum($d('d-extra').value) || 0;
+  const empty = $d('d-empty');
+  const out   = $d('d-output');
+
+  if (!debts.length) {
+    empty.style.display = 'block';
+    out.style.display = 'none';
+    return;
+  }
+  empty.style.display = 'none';
+  out.style.display = 'block';
+
+  const totalDebt = debts.reduce((s, d) => s + d.balance, 0);
+
+  let sumMinsDynamic = 0;
+  for (const d of debts) sumMinsDynamic += dAutoMin ? dCalcAutoMin(d) : d.min;
+
+  const aval = dSimulate(debts, extra, 'avalanche', dAutoMin);
+  const snow = dSimulate(debts, extra, 'snowball', dAutoMin);
+  const active = dStrategy === 'avalanche' ? aval : snow;
+
+  let monthlyInt = 0;
+  for (const d of debts) monthlyInt += d.balance * dMonthlyRate(d.rate);
+
+  const w = $d('d-warning');
+  if (sumMinsDynamic + extra <= monthlyInt) {
+    w.style.display = 'block';
+    w.innerHTML = `<strong>Warning:</strong> Your monthly payments (${dFmt(sumMinsDynamic + extra)}) don't cover the monthly interest (${dFmt(monthlyInt)}) accruing on your debts. The balance will grow indefinitely. You need at least <strong>${dFmt(Math.ceil(monthlyInt + 50))}/month</strong> total to start reducing the debt.`;
+  } else {
+    w.style.display = 'none';
+  }
+
+  $d('d-hero-val').textContent = active.infeasible ? '50+ years' : dFormatMonths(active.months);
+  $d('d-hero-sub').textContent = active.infeasible
+    ? 'Payments don\'t cover interest — increase the extra payment to make progress.'
+    : `Using ${dStrategy === 'avalanche' ? 'avalanche' : 'snowball'} method · ${dFmt(sumMinsDynamic + extra)}/mo total payment`;
+
+  $d('d-total-debt').textContent = dFmt(totalDebt);
+  $d('d-total-interest').textContent = dFmt(active.totalInterest);
+
+  $d('d-aval-time').textContent = aval.infeasible ? '50+ yrs' : dFormatMonths(aval.months);
+  $d('d-aval-interest').textContent = dFmt(aval.totalInterest);
+  $d('d-snow-time').textContent = snow.infeasible ? '50+ yrs' : dFormatMonths(snow.months);
+  $d('d-snow-interest').textContent = dFmt(snow.totalInterest);
+
+  const interestSaved = snow.totalInterest - aval.totalInterest;
+  const monthsSaved   = snow.months - aval.months;
+  const avalCol = $d('d-compare-aval');
+  const snowCol = $d('d-compare-snow');
+  const avalTag = $d('d-aval-tag');
+  const snowTag = $d('d-snow-tag');
+  avalCol.classList.remove('winner','tied'); snowCol.classList.remove('winner','tied');
+  avalTag.style.display = 'none'; snowTag.style.display = 'none';
+
+  let verdict;
+  if (Math.abs(interestSaved) < 5 && Math.abs(monthsSaved) < 1) {
+    verdict = `On these debts, the two methods land within a hair of each other — pick whichever you'll actually stick with.`;
+    avalCol.classList.add('tied'); snowCol.classList.add('tied');
+  } else if (interestSaved >= 0) {
+    avalCol.classList.add('winner');
+    avalTag.style.display = 'inline-block';
+    verdict = `<strong>Avalanche saves ${dFmt(interestSaved)}</strong> in interest and clears the debt ${monthsSaved > 0 ? Math.abs(monthsSaved) + ' month' + (Math.abs(monthsSaved) === 1 ? '' : 's') + ' faster' : 'in similar time'} than snowball. If discipline isn't the bottleneck, avalanche is the better pick.`;
+  } else {
+    snowCol.classList.add('winner');
+    snowTag.style.display = 'inline-block';
+    verdict = `Unusually, <strong>snowball saves ${dFmt(-interestSaved)}</strong> in interest here. (This can happen when the smallest debt also happens to have one of the highest rates.) Either method works.`;
+  }
+  $d('d-compare-verdict').innerHTML = verdict;
+
+  $d('d-milestones-list').innerHTML = active.milestones.map(m => `
+    <div class="d-milestone">
+      <div class="d-milestone-icon">${m.icon}</div>
+      <div class="d-milestone-body">
+        <div class="d-milestone-name">${m.name}</div>
+        <div class="d-milestone-meta">${m.meta}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const tbody = $d('d-schedule-body');
+  tbody.innerHTML = active.schedule.map(s => `
+    <tr${s.cleared ? ' class="d-row-cleared"' : ''}>
+      <td>Month ${s.month}</td>
+      <td>${s.attacking}</td>
+      <td>${dFmt(s.totalRemaining)}</td>
+      <td>${dFmt(s.monthInterest)}</td>
+    </tr>
+  `).join('');
+
+  // Refresh auto‑min display spans in the existing rows (without rebuilding input fields)
+  document.querySelectorAll('.d-debt-row').forEach(row => {
+    const id = parseInt(row.dataset.id, 10);
+    const debt = dDebts.find(d => d.id === id);
+    if (!debt) return;
+    const displaySpan = row.querySelector('.d-auto-min-display');
+    if (displaySpan) {
+      if (dAutoMin && debt.balance > 0) {
+        displaySpan.style.display = 'block';
+        displaySpan.textContent = 'Auto: ' + dFmt(dCalcAutoMin(debt));
+      } else {
+        displaySpan.style.display = 'none';
+      }
+    }
+    const minInput = row.querySelector('input[data-field="min"]');
+    if (minInput) minInput.disabled = dAutoMin;
+  });
+}
+
+function dSimulate(debts, extra, strategy, autoMin) {
+  const active = debts
+    .filter(d => d.balance > 0 && d.rate >= 0 && d.min >= 0)
+    .map(d => ({ ...d }));
+  const totalStart = active.reduce((s, d) => s + d.balance, 0);
+  if (active.length === 0) return null;
+
+  const schedule = [];
+  const milestones = [];
+  const seenHalfway = { done: false };
+  const initialDebtCount = active.length;
+  let firstClearedAt = null;
+  let totalInterest = 0;
+
+  for (let month = 1; month <= MAX_MONTHS; month++) {
+    let monthInterest = 0;
+    for (const d of active) {
+      const mr = dMonthlyRate(d.rate);
+      const ip = d.balance * mr;
+      d.balance += ip;
+      monthInterest += ip;
+    }
+    totalInterest += monthInterest;
+
+    const minsThisMonth = [];
+    for (const d of active) {
+      if (autoMin) {
+        const calc = dCalcAutoMin(d);
+        minsThisMonth.push({ debt: d, amount: Math.min(d.balance, calc) });
+      } else {
+        minsThisMonth.push({ debt: d, amount: Math.min(d.balance, d.min) });
+      }
+    }
+
+    let paymentBudget = minsThisMonth.reduce((s, m) => s + m.amount, 0) + extra;
+
+    for (const m of minsThisMonth) {
+      const pay = Math.min(m.amount, m.debt.balance, paymentBudget);
+      m.debt.balance -= pay;
+      paymentBudget -= pay;
+    }
+
+    while (paymentBudget > 0.01 && active.some(d => d.balance > 0.01)) {
+      const candidates = active.filter(d => d.balance > 0.01);
+      candidates.sort((a, b) =>
+        strategy === 'avalanche'
+          ? b.rate - a.rate || a.balance - b.balance
+          : a.balance - b.balance || b.rate - a.rate
+      );
+      const target = candidates[0];
+      const pay = Math.min(target.balance, paymentBudget);
+      target.balance -= pay;
+      paymentBudget -= pay;
+    }
+
+    const stillActive = active.filter(d => d.balance > 0.01);
+    let attacking = '—';
+    if (stillActive.length > 0) {
+      const sorted = [...stillActive].sort((a, b) =>
+        strategy === 'avalanche'
+          ? b.rate - a.rate || a.balance - b.balance
+          : a.balance - b.balance || b.rate - a.rate
+      );
+      attacking = sorted[0].name || '(unnamed)';
+    }
+    const totalRemaining = active.reduce((s, d) => s + Math.max(0, d.balance), 0);
+    schedule.push({ month, attacking, totalRemaining, monthInterest, cleared: stillActive.length === 0 });
+
+    if (firstClearedAt === null && stillActive.length < initialDebtCount) {
+      const justCleared = active.find(d => d.balance <= 0.01 && !d._milestoned);
+      if (justCleared) {
+        justCleared._milestoned = true;
+        firstClearedAt = month;
+        milestones.push({
+          icon: '✓', kind: 'first-cleared',
+          name: `First debt cleared: ${justCleared.name || 'unnamed'}`,
+          meta: `Month ${month} · ${dFormatMonths(month)} from start`
+        });
+      }
+    }
+    if (!seenHalfway.done && totalRemaining <= totalStart * 0.5) {
+      seenHalfway.done = true;
+      milestones.push({
+        icon: '◐', kind: 'halfway',
+        name: 'Halfway through your debt',
+        meta: `Month ${month} · ${dFmt(totalRemaining)} remaining`
+      });
+    }
+    if (stillActive.length === 0) {
+      milestones.push({
+        icon: '★', kind: 'debt-free',
+        name: 'Debt-free',
+        meta: `Month ${month} · total interest ${dFmt(totalInterest)}`
+      });
+      return { months: month, totalInterest, schedule, milestones, infeasible: false };
+    }
+  }
+  return { months: MAX_MONTHS, totalInterest, schedule, milestones, infeasible: true };
+}
+
+function dSetStrategy(s) {
+  dStrategy = s;
+  $d('d-strat-avalanche').classList.toggle('active', s === 'avalanche');
+  $d('d-strat-snowball').classList.toggle('active', s === 'snowball');
+  $d('d-strat-avalanche').setAttribute('aria-pressed', s === 'avalanche');
+  $d('d-strat-snowball').setAttribute('aria-pressed', s === 'snowball');
+  $d('d-strat-help').textContent = s === 'avalanche'
+    ? 'Avalanche: pay all extra at the highest-rate debt. Mathematically optimal — saves the most interest.'
+    : 'Snowball: pay all extra at the smallest-balance debt. Builds momentum with quick early wins.';
+  dUpdateOutputs();
+}
+
+function dInit() {
+  dRenderDebtRows();
+  dUpdateOutputs();
+
+  $d('d-auto-min').addEventListener('change', function() {
+    dAutoMin = this.checked;
+    dRenderDebtRows();   // rebuild rows to disable/enable min inputs and show auto label
+    dUpdateOutputs();
+  });
+
+  $d('d-add-debt').addEventListener('click', () => {
+    dDebts.push({ id: dNextId++, name: 'New debt', balance: 0, rate: 0, min: 0 });
+    dRenderDebtRows();
+    dUpdateOutputs();
+  });
+  $d('d-extra').addEventListener('input', dUpdateOutputs);
+  $d('d-strat-avalanche').addEventListener('click', () => dSetStrategy('avalanche'));
+  $d('d-strat-snowball').addEventListener('click', () => dSetStrategy('snowball'));
+  $d('d-extra').value = '200';
+  dUpdateOutputs();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', dInit);
+} else {
+  dInit();
+}
+</script>
+
+</body>
+</html>
