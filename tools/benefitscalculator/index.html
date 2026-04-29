@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1YZLT5X0C3');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UK Benefits &amp; Entitlements Checker 2026 — What Are You Entitled To? | Vault</title>
+<meta name="description" content="Find out which UK benefits and entitlements you may be eligible for. Free benefits checker — Universal Credit, Child Benefit, PIP and more. Private, no sign up, no data shared." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://thevaultapp.co.uk/tools/benefits-calculator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UK Benefits &amp; Entitlements Checker 2026 — What Are You Entitled To?" />
+<meta property="og:description" content="Free UK benefits checker. Find out which entitlements you may qualify for. Private, no sign up." />
+<meta property="og:url" content="https://thevaultapp.co.uk/tools/benefits-calculator" />
+<meta property="og:site_name" content="Vault" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #ffffff; --section-soft: #faf9f5; --founder-card: #f4f2ed;
+    --text: #12110f; --muted: #6b6a65; --border: #e8e6df;
+    --accent: #b8f000; --accent-ink: #12110f;
+    --radius: 14px; --radius-sm: 10px; --max: 1120px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    color: var(--text); background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  .site-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border); z-index: 50;
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
+  .wordmark .dot { color: var(--accent); }
+  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
+  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
+  .header-nav a:hover, .header-nav a.active { color: var(--text); }
+  @media (max-width: 600px) {
+    .header-nav { gap: 18px; margin-left: 18px; }
+    .header-nav a { font-size: 13px; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 10px 18px; border-radius: 999px;
+    font-weight: 600; font-size: 14px; line-height: 1;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--text); }
+  .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+  .calc-hero { padding: 130px 0 32px; text-align: center; }
+  .calc-hero .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); font-weight: 500; margin: 0 0 12px;
+  }
+  .calc-hero h1 {
+    font-size: clamp(32px, 4.6vw, 48px); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 820px;
+  }
+  .calc-hero .lede { font-size: 17px; color: var(--muted); margin: 0 auto 22px; max-width: 660px; }
+  .privacy-line { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+  .privacy-line .dot-accent {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); display: inline-block;
+  }
+
+  section { padding: 56px 0; }
+  section.soft { background: var(--section-soft); }
+  .calc-block { padding: 12px 0 40px; }
+  .section-eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); margin: 0 0 12px; font-weight: 500;
+  }
+  h2.section-title {
+    font-size: clamp(24px, 2.6vw, 32px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .section-body { font-size: 16px; color: var(--text); line-height: 1.7; margin: 0 0 14px; }
+  .section-body.muted { color: var(--muted); }
+  .narrow h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin: 28px 0 8px; }
+  .narrow ol, .narrow ul { padding-left: 22px; margin: 6px 0 14px; color: var(--text); }
+  .narrow ol li, .narrow ul li { margin: 6px 0; line-height: 1.65; }
+  .narrow strong { font-weight: 600; }
+
+  .definition-card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 22px; margin: 14px 0;
+  }
+  .definition-card h4 { margin: 0 0 6px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+  .definition-card p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  details.faq {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none; cursor: pointer; padding: 18px 22px;
+    font-weight: 600; font-size: 16px; letter-spacing: -0.01em;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+'; font-size: 22px; font-weight: 400;
+    color: var(--muted); flex-shrink: 0; transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body { padding: 0 22px 20px; font-size: 15px; line-height: 1.65; color: var(--muted); }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+
+  .vault-cta-card {
+    background: var(--founder-card); border-radius: var(--radius);
+    padding: 44px 36px; max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .vault-cta-card .section-eyebrow { margin: 0 0 14px; }
+  .vault-cta-card h2 {
+    font-size: clamp(22px, 2.4vw, 28px); font-weight: 700;
+    letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 14px;
+  }
+  .vault-cta-card p {
+    font-size: 15.5px; color: var(--text); line-height: 1.65;
+    margin: 0 auto 22px; max-width: 520px;
+  }
+  .back-tools-line { text-align: center; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .back-tools-line a {
+    color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px;
+  }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 0 40px; background: var(--bg); }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px; margin-bottom: 28px;
+  }
+  .footer-disclaimer {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+    max-width: 680px; margin: 0 0 18px;
+  }
+  .footer-meta { font-size: 13px; color: var(--muted); }
+
+  /* ════════════════════════════════════════════════════════════════
+     BENEFITS CHECKER EMBED — built from scratch.
+     Rule-based: each benefit has a function `applies(state)` returning
+     true/false based on user inputs. SIGNPOSTING ONLY. Heavy
+     disclaimers. Every result links to the official GOV.UK page.
+     ════════════════════════════════════════════════════════════════ */
+
+  /* The big-disclaimer block sits ABOVE the calculator on the light page,
+     not inside it — it's a content concern, not an embed concern.       */
+  .big-disclaimer {
+    max-width: 720px; margin: 0 auto 16px;
+    background: rgba(200,128,28,0.06); border: 1px solid rgba(200,128,28,0.3);
+    border-radius: var(--radius); padding: 18px 22px;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+  }
+  .big-disclaimer strong { color: #a06010; }
+  .big-disclaimer a { color: var(--text); border-bottom: 1px solid var(--text); padding-bottom: 1px; }
+
+  .ben-embed {
+    --b-surface:  #fbfaf8;
+    --b-surface2: #eeebe8;
+    --b-surface3: #ebe7e0;
+    --b-border:   #e2ddd5;
+    --b-border2:  #ccc8be;
+    --b-text:     #221f1c;
+    --b-text2:    #7f756c;
+    --b-text3:    #a8a099;
+    --b-accent:   #298e5f;
+    --b-amber:    #c8801c;
+    --b-radius: 12px;
+    --b-radius-sm: 8px;
+    --b-mono: 'DM Mono', monospace;
+    --b-sans: 'DM Sans', sans-serif;
+    font-family: var(--b-sans);
+    color: var(--b-text);
+    background: var(--b-surface);
+    border: 1px solid var(--b-border);
+    border-radius: 18px;
+    padding: 22px;
+    max-width: 720px;
+    margin: 8px auto 0;
+    box-shadow: 0 1px 2px rgba(18,17,15,.04), 0 12px 32px rgba(18,17,15,.06);
+  }
+  .ben-embed input, .ben-embed select {
+    background: var(--b-surface2);
+    border: 1px solid var(--b-border);
+    color: var(--b-text);
+    padding: 8px 10px;
+    border-radius: var(--b-radius-sm);
+    font-family: var(--b-mono);
+    font-size: 13px; width: 100%;
+    transition: border-color 0.15s;
+    -webkit-appearance: none; appearance: none;
+  }
+  .ben-embed select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='%237f756c' d='M0 0l5 6 5-6z'/></svg>");
+    background-repeat: no-repeat; background-position: right 10px center;
+    padding-right: 28px; font-family: var(--b-sans);
+  }
+  .ben-embed input:focus, .ben-embed select:focus { outline: none; border-color: var(--b-accent); }
+  .ben-embed input[type=checkbox] {
+    -webkit-appearance: checkbox; appearance: checkbox;
+    width: 16px; height: 16px; padding: 0; margin: 0;
+    background: transparent; border: 1px solid var(--b-border);
+    cursor: pointer; accent-color: var(--b-accent); flex-shrink: 0;
+  }
+
+  .ben-embed .b-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--b-text3); margin: 0 0 8px;
+  }
+  .ben-embed .b-section-divider { margin: 16px 0 8px; }
+  .ben-embed .b-fields {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px;
+  }
+  .ben-embed .b-field { display: flex; flex-direction: column; gap: 5px; }
+  .ben-embed .b-field-full { grid-column: 1 / -1; }
+  .ben-embed .b-label { font-size: 11px; color: var(--b-text2); }
+  .ben-embed .b-input-wrap {
+    display: flex; align-items: stretch;
+    background: var(--b-surface2); border: 1px solid var(--b-border);
+    border-radius: var(--b-radius-sm); overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .ben-embed .b-input-wrap:focus-within { border-color: var(--b-accent); }
+  .ben-embed .b-input-wrap input {
+    border: none; background: transparent; border-radius: 0;
+    flex: 1; min-width: 0;
+  }
+  .ben-embed .b-input-prefix,
+  .ben-embed .b-input-suffix {
+    display: flex; align-items: center; padding: 0 10px;
+    font-size: 12px; background: var(--b-surface3);
+    color: var(--b-text3); font-family: var(--b-mono);
+  }
+  .ben-embed .b-input-prefix { border-right: 1px solid var(--b-border); }
+  .ben-embed .b-input-suffix { border-left:  1px solid var(--b-border); }
+
+  .ben-embed .b-toggle-list {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .ben-embed .b-toggle-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; background: var(--b-surface2);
+    border: 1px solid var(--b-border);
+    border-radius: var(--b-radius-sm);
+    cursor: pointer; transition: border-color 0.15s;
+  }
+  .ben-embed .b-toggle-row:hover { border-color: var(--b-border2); }
+  .ben-embed .b-toggle-row label { font-size: 12.5px; color: var(--b-text); cursor: pointer; flex: 1; }
+
+  /* Results */
+  .ben-embed .b-results {
+    margin-top: 18px; padding-top: 18px;
+    border-top: 1px solid var(--b-border);
+  }
+  .ben-embed .b-empty {
+    text-align: center; padding: 24px 0; font-size: 12px; color: var(--b-text3);
+  }
+  .ben-embed .b-results-header {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--b-text); margin-bottom: 10px;
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .ben-embed .b-count { color: var(--b-accent); font-family: var(--b-mono); font-size: 12px; }
+
+  .ben-embed .b-benefit-list {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ben-embed .b-benefit {
+    background: #fff; border: 1px solid var(--b-border);
+    border-radius: var(--b-radius); padding: 14px 16px;
+  }
+  .ben-embed .b-benefit-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 12px; margin-bottom: 6px;
+  }
+  .ben-embed .b-benefit-name {
+    font-size: 14px; font-weight: 700; color: var(--b-text);
+    letter-spacing: -0.01em;
+  }
+  .ben-embed .b-benefit-tag {
+    font-size: 9px; font-family: var(--b-mono);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 3px 8px; border-radius: 100px;
+    background: rgba(41,142,95,0.10); color: var(--b-accent);
+    border: 1px solid rgba(41,142,95,0.3);
+    white-space: nowrap;
+  }
+  .ben-embed .b-benefit-tag.amber {
+    background: rgba(200,128,28,0.08); color: var(--b-amber);
+    border-color: rgba(200,128,28,0.3);
+  }
+  .ben-embed .b-benefit-desc {
+    font-size: 13px; color: var(--b-text2); line-height: 1.6; margin-bottom: 8px;
+  }
+  .ben-embed .b-benefit-elig {
+    font-size: 11.5px; color: var(--b-text3);
+    line-height: 1.55; padding-top: 8px;
+    border-top: 1px dashed var(--b-border);
+    margin-bottom: 10px;
+  }
+  .ben-embed .b-benefit-elig strong { color: var(--b-text2); font-weight: 700; }
+  .ben-embed .b-benefit-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600;
+    color: var(--b-accent);
+    border-bottom: 1px solid rgba(41,142,95,0.4);
+    padding-bottom: 2px;
+  }
+
+  .ben-embed .b-no-match {
+    background: var(--b-surface2); border: 1px solid var(--b-border);
+    border-radius: var(--b-radius); padding: 16px 18px;
+    font-size: 13px; line-height: 1.6; color: var(--b-text2);
+  }
+
+  .ben-embed .b-disclaimer {
+    margin-top: 14px; padding: 12px 14px;
+    background: rgba(200,128,28,0.06);
+    border: 1px solid rgba(200,128,28,0.25);
+    border-radius: var(--b-radius-sm);
+    font-size: 11.5px; line-height: 1.55; color: var(--b-text2);
+  }
+  .ben-embed .b-disclaimer strong { color: var(--b-amber); font-weight: 700; }
+  .ben-embed .b-disclaimer a {
+    color: var(--b-text); border-bottom: 1px solid var(--b-text);
+    padding-bottom: 1px;
+  }
+
+  @media (max-width: 860px) {
+    .calc-hero { padding: 110px 0 24px; }
+    section { padding: 44px 0; }
+    .vault-cta-card { padding: 32px 22px; }
+  }
+  @media (max-width: 480px) {
+    .wrap, .narrow { padding: 0 18px; }
+    .calc-hero h1 { font-size: 28px; }
+    .calc-hero .lede { font-size: 15.5px; }
+    .site-header .wrap { height: 58px; }
+    .ben-embed { padding: 16px; }
+    .ben-embed .b-fields { grid-template-columns: 1fr; }
+    .definition-card { padding: 16px 18px; }
+    details.faq summary { padding: 16px 18px; font-size: 15px; }
+    details.faq .faq-body { padding: 0 18px 18px; font-size: 14.5px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What benefits am I entitled to UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eligibility depends on your circumstances — income, household, age, employment, disability, caring responsibilities, and savings. Common UK benefits and entitlements include Universal Credit (low-income working-age households), Child Benefit (parents of under-16s), Personal Independence Payment (long-term disability), Carer's Allowance (caring 35+ hrs/week for someone on a qualifying disability benefit), Pension Credit (low-income State Pension age), Council Tax Reduction (low-income, council-administered), and the State Pension. The free UK benefits checker above gives you a personalised list based on your inputs. Always verify on GOV.UK before applying."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a UK benefits calculator 2026 work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most UK benefits calculators (this one included, plus Turn2us, EntitledTo, and Citizens Advice tools) ask about your household, income, age, employment status, disability, and caring responsibilities, then map those answers against eligibility rules to surface the benefits you may be able to claim. They are signposting tools, not formal assessments. Real eligibility depends on the full picture — savings, immigration status, recent income changes, and dozens of other factors. Use the result as a starting list, then check each benefit on GOV.UK or speak to Citizens Advice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Universal Credit eligibility checker UK — am I eligible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Universal Credit is generally for working-age people (18 to State Pension age) on a low income or out of work, with household savings under £16,000. It's available whether you're employed, self-employed, unemployed, or unable to work. The amount you get depends on your income, household composition, housing costs, and any disability or caring elements. Universal Credit replaces six legacy benefits (Income Support, income-based JSA, income-related ESA, Housing Benefit, Working Tax Credit, Child Tax Credit) for most new claims. Apply on GOV.UK at gov.uk/universal-credit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much Universal Credit will I get UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Universal Credit is calculated as a standard allowance plus elements you qualify for (children, housing, disability, carer), minus deductions for any income above your work allowance and 55p in every £1 of post-tax earnings (the 'taper rate'). Standard allowances for 2025/26 are roughly £316.98/month single under 25, £400.14 single 25+, £497.55 joint under 25, £628.10 joint 25+. The exact figure depends on rent, kids, disability, and earned income. Use the official calculator on GOV.UK or speak to Citizens Advice for an accurate quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there benefits for low income workers UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Universal Credit pays in addition to wages until earnings reach a level where the taper rate (55p reduction per £1 earned above the work allowance) zeroes it out. Council Tax Reduction varies by council but typically applies to working low earners. NHS Low Income Scheme covers prescriptions, dental, and eye care for households below thresholds. Free childcare hours apply to most working families with 9-month-olds and up. Working Tax Credit was a major in-work benefit but is mostly closed to new claims — UC has replaced it. Use the checker above to surface what may apply to your specific situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What benefits can I claim if I am working UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Working doesn't disqualify you from UK benefits. The most relevant in-work benefits are: Universal Credit (if your household income is below the relevant threshold), Council Tax Reduction (means-tested), Child Benefit (only reduced via the High Income Child Benefit Charge for incomes over £60,000), Carer's Allowance (if you care 35+ hrs/week — but it's capped at modest earnings), free childcare hours, NHS Low Income Scheme, and Warm Home Discount. PIP and Attendance Allowance aren't means-tested at all, so you can claim them while working if you have qualifying needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do savings affect UK benefit entitlement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Means-tested benefits look at your capital. For Universal Credit, savings above £6,000 reduce your award (£4.35/month per £250 above £6,000); savings above £16,000 disqualify you entirely. Pension Credit has different thresholds. Non-means-tested benefits (PIP, Attendance Allowance, Carer's Allowance, Child Benefit, State Pension) are unaffected by savings. Pension pots you can't yet access don't usually count as capital for working-age means-tested benefits — but withdrawn pension lump sums do."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much UK benefit money goes unclaimed each year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Around £23 billion of UK benefits go unclaimed each year, according to research by Policy in Practice. Pension Credit is the biggest single missed benefit — roughly £1.5 billion unclaimed annually because eligible pensioners don't realise they qualify or don't apply. Council Tax Reduction, Universal Credit, and Carer's Allowance also see substantial under-claiming. The reasons are stigma, complexity, awareness gaps, and the application process feeling daunting. Tools like this checker exist to chip away at the awareness gap."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "UK Benefits & Entitlements Checker",
+  "url": "https://thevaultapp.co.uk/tools/benefits-calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any (browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+  "description": "Free UK benefits checker. Signposting tool that surfaces benefits and entitlements you may qualify for, with links to GOV.UK."
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../" class="active" aria-current="page">Tools</a>
+    </nav>
+    <a href="../../app" class="btn btn-primary">Launch Vault</a>
+  </div>
+</header>
+
+<section class="calc-hero">
+  <div class="wrap">
+    <p class="eyebrow">Free UK tool · Benefits checker UK 2026</p>
+    <h1>UK Benefits &amp; Entitlements Checker 2026 — What Are You Entitled To?</h1>
+    <p class="lede">Around £23 billion of UK benefits go unclaimed every year. This tool helps you surface what you might be missing — Universal Credit, Pension Credit, PIP, Carer's Allowance, free childcare hours, and more. Free, private, no sign up.</p>
+    <span class="privacy-line">
+      <span class="dot-accent"></span>
+      Your data never leaves your device. Ever.
+    </span>
+  </div>
+</section>
+
+<section class="calc-block">
+  <div class="wrap">
+    <div class="big-disclaimer">
+      <strong>Important — read first.</strong> This is a <strong>signposting tool, not an eligibility assessment</strong>. UK benefits are too complex to model definitively in a browser. Use the result as a starting list, then verify each benefit on <a href="https://www.gov.uk" target="_blank" rel="noopener">GOV.UK</a> or get free, regulated advice from <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener">Citizens Advice</a>, <a href="https://www.turn2us.org.uk" target="_blank" rel="noopener">Turn2us</a>, or <a href="https://www.entitledto.co.uk" target="_blank" rel="noopener">EntitledTo</a> for a fuller picture. Real eligibility depends on details this tool doesn't ask about — recent income changes, immigration status, savings type, partner's circumstances, and many more.
+    </div>
+
+    <div class="ben-embed" id="ben-checker">
+
+      <div class="b-section-label">About you</div>
+      <div class="b-fields">
+
+        <div class="b-field">
+          <label class="b-label" for="ben-age">Your age</label>
+          <div class="b-input-wrap">
+            <input type="number" id="ben-age" placeholder="35" inputmode="numeric" step="1" min="16" max="110" />
+            <span class="b-input-suffix">years</span>
+          </div>
+        </div>
+
+        <div class="b-field">
+          <label class="b-label" for="ben-employment">Employment status</label>
+          <select id="ben-employment">
+            <option value="">— pick —</option>
+            <option value="employed">Employed</option>
+            <option value="self-employed">Self-employed</option>
+            <option value="unemployed">Unemployed (looking for work)</option>
+            <option value="unable">Unable to work (illness or disability)</option>
+            <option value="carer">Full-time carer</option>
+            <option value="retired">Retired</option>
+          </select>
+        </div>
+
+        <div class="b-field">
+          <label class="b-label" for="ben-household">Household type</label>
+          <select id="ben-household">
+            <option value="">— pick —</option>
+            <option value="single">Single, no children</option>
+            <option value="couple">Couple, no children</option>
+            <option value="single-parent">Single parent</option>
+            <option value="couple-children">Couple with children</option>
+          </select>
+        </div>
+
+        <div class="b-field">
+          <label class="b-label" for="ben-children">Number of dependent children</label>
+          <div class="b-input-wrap">
+            <input type="number" id="ben-children" placeholder="0" inputmode="numeric" step="1" min="0" max="12" />
+          </div>
+        </div>
+
+        <div class="b-field b-field-full">
+          <label class="b-label" for="ben-income">Approximate annual household income (gross)</label>
+          <div class="b-input-wrap">
+            <span class="b-input-prefix">£</span>
+            <input type="number" id="ben-income" placeholder="25,000" inputmode="decimal" step="500" />
+          </div>
+        </div>
+
+        <div class="b-field">
+          <label class="b-label" for="ben-housing">Housing</label>
+          <select id="ben-housing">
+            <option value="">— pick —</option>
+            <option value="rent">Rent</option>
+            <option value="mortgage">Mortgage / own with mortgage</option>
+            <option value="own">Own outright</option>
+            <option value="other">Other / family</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="b-section-label b-section-divider">Health &amp; care</div>
+      <div class="b-toggle-list">
+        <div class="b-toggle-row">
+          <input type="checkbox" id="ben-disability" />
+          <label for="ben-disability">Someone in the household has a disability or long-term health condition</label>
+        </div>
+        <div class="b-toggle-row">
+          <input type="checkbox" id="ben-carer-flag" />
+          <label for="ben-carer-flag">I (or someone in the household) am a carer for someone</label>
+        </div>
+      </div>
+
+      <div class="b-results">
+        <div class="b-empty" id="ben-empty">Fill in the fields above to see which UK benefits and entitlements you may qualify for.</div>
+
+        <div id="ben-output" style="display:none">
+          <div class="b-results-header">
+            <span>Benefits you may be entitled to</span>
+            <span class="b-count" id="ben-count"></span>
+          </div>
+          <div class="b-benefit-list" id="ben-list"></div>
+          <div class="b-disclaimer">
+            <strong>Reminder:</strong> This list is suggested based on the broad criteria you entered — actual eligibility depends on your full circumstances. Always verify on <a href="https://www.gov.uk" target="_blank" rel="noopener">GOV.UK</a> or with a regulated adviser. Missing a benefit you'd expect to see? It's likely because the tool doesn't ask enough about it. Try <a href="https://www.entitledto.co.uk" target="_blank" rel="noopener">EntitledTo</a> or <a href="https://www.turn2us.org.uk" target="_blank" rel="noopener">Turn2us</a> for a more detailed assessment.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">How to use</p>
+    <h2 class="section-title">Eight quick fields, a personalised list</h2>
+    <p class="section-body muted">The benefits checker UK above maps your situation to the most common UK benefits and entitlements. Here's how to get the most out of it.</p>
+    <ol>
+      <li><strong>Enter your age.</strong> Drives State Pension, Pension Credit, Attendance Allowance, and several other age-gated benefits.</li>
+      <li><strong>Pick your employment status.</strong> Employed, self-employed, unemployed, unable to work, full-time carer, or retired. Different statuses unlock different benefits — Statutory Sick Pay, ESA, Carer's Allowance, etc.</li>
+      <li><strong>Choose your household type and number of children.</strong> Drives Child Benefit, Universal Credit child elements, free childcare hours, and the two-child cap.</li>
+      <li><strong>Enter approximate household income.</strong> Used for means-tested benefits (UC, Pension Credit, Council Tax Reduction). Gross — pre-tax — is fine.</li>
+      <li><strong>Pick your housing situation.</strong> Renters typically qualify for the housing element of Universal Credit; mortgage holders generally don't (with rare exceptions).</li>
+      <li><strong>Tick the health and carer boxes if relevant.</strong> Unlocks PIP, Attendance Allowance, Carer's Allowance, and the disability element of Universal Credit.</li>
+    </ol>
+    <p class="section-body">The result list shows benefits you may qualify for, plus a one-line plain-English description, a rough eligibility note, and a direct link to the GOV.UK page where you can verify and apply. Treat it as a starting list — the next step is checking each one with the official calculator on GOV.UK or with Citizens Advice.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">Why benefits go unclaimed</p>
+    <h2 class="section-title">£23 billion left on the table every year</h2>
+    <p class="section-body muted">UK households fail to claim around £23 billion in benefits annually, according to research by Policy in Practice. Pension Credit alone accounts for ~£1.5 billion. The reasons are well-understood — and addressable.</p>
+
+    <div class="definition-card">
+      <h4>Stigma around claiming</h4>
+      <p>"Benefits" carry social baggage. Older claimants in particular often see Pension Credit as "for other people" rather than something they've contributed to via a lifetime of NI payments. Working families on Universal Credit sometimes feel embarrassed to claim despite UC being designed explicitly for low-income workers. The benefits system isn't charity — it's a redistributive mechanism funded by tax to top up household incomes when circumstances make that necessary.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Complexity of the system</h4>
+      <p>The UK has dozens of benefits with overlapping rules — Universal Credit alone has 14 distinct elements. Eligibility hinges on income, capital, household, employment, disability, age, residency, immigration status, and recent life events. Even regulated advisers say full assessment requires 30+ minutes per household. No simple online tool can model it accurately, which is why this one is explicitly a signposting tool.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Lack of awareness</h4>
+      <p>Many people don't know specific benefits exist, especially less-publicised ones — NHS Low Income Scheme (free prescriptions, dental, eye care below thresholds), Warm Home Discount, Council Tax Reduction (rules vary by council). The overall benefits "map" isn't taught at school, doesn't appear on payslips, and isn't pushed by employers. Awareness gaps are the easiest barrier to fix; this checker tries to chip at that.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Application friction</h4>
+      <p>UC applications can take 5+ weeks to first payment. PIP requires extensive medical evidence and often involves an assessment that some claimants find draining. Even Pension Credit, which has a much simpler application, requires phoning the Pension Service. None of these are reasons not to apply — but they're real friction that explains some non-claiming.</p>
+    </div>
+
+    <div class="definition-card">
+      <h4>Why it matters</h4>
+      <p>Unclaimed benefits aren't abstract. Pension Credit unlocks ~£3,900/year on average plus passport benefits (free TV licence at 75+, Cold Weather Payment, Warm Home Discount, Housing Benefit, Council Tax Reduction). For a single pensioner missing it, that's life-changing money. Universal Credit can mean the difference between an emergency and a manageable month for a working family. The headline £23 billion is millions of individual stories.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="narrow">
+    <p class="section-eyebrow">UK specifics</p>
+    <h2 class="section-title">Notes on the UK benefits system in 2026</h2>
+
+    <h3>Universal Credit is replacing legacy benefits</h3>
+    <p class="section-body">Universal Credit (UC) replaces six legacy benefits — Income Support, income-based JSA, income-related ESA, Housing Benefit, Working Tax Credit, Child Tax Credit — for most new claims. The full migration ("managed migration") is scheduled to complete around 2026. Existing claimants on legacy benefits get migration notices and a transitional protection top-up where their UC entitlement would be lower. New claimants almost always go onto UC. Some pension-age claimants still use Housing Benefit and Pension Credit on the legacy track.</p>
+
+    <h3>The two-child benefit cap</h3>
+    <p class="section-body">For children born after April 2017, child elements of Universal Credit and Child Tax Credit are paid for the first two children only — there's no extra UC child element for a third or subsequent child unless an exception applies (multiple birth, adoption, non-consensual conception). Child Benefit itself is paid for every eligible child without the two-child cap. The two-child policy is politically contested and could change; check current rules on GOV.UK.</p>
+
+    <h3>The benefit cap</h3>
+    <p class="section-body">Total household benefit income is capped at <strong>£25,323/year (£487/wk) outside London</strong> and <strong>£29,117/year (£560/wk) inside London</strong> for couples and lone parents. Single people without children have lower caps. The cap doesn't apply if you're working enough hours to qualify for working tax credit-equivalent thresholds, or if anyone in the household is on PIP, Attendance Allowance, Carer's Allowance, or qualifying disability benefits. Check exemptions carefully — many capped households are wrongly capped.</p>
+
+    <h3>How savings and capital affect entitlement</h3>
+    <p class="section-body">For Universal Credit, household savings/capital above £6,000 reduce your award (£4.35/month per £250 above £6,000); above £16,000 disqualify entirely. Pension Credit has different thresholds (£10,000 free, then deemed income calculations above). Non-means-tested benefits (PIP, Attendance Allowance, Carer's Allowance, Child Benefit, State Pension) are unaffected by capital. Pension pots you can't yet access generally don't count for working-age means-tested benefits — but lump sums you've withdrawn do.</p>
+
+    <h3>How being in work affects Universal Credit</h3>
+    <p class="section-body">UC has a <strong>taper rate of 55p</strong> — for every £1 you earn above your work allowance, your UC award reduces by 55p. Work allowances depend on whether you have housing costs and dependent children. The point of the taper is to make work always pay (you're never worse off taking on more hours), but it means UC payments shrink as earnings rise until they zero out. Many working households remain on UC throughout — typical break-even points are £25k–£40k household earnings depending on rent and kids.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Frequently asked questions</h2>
+    <p class="section-body muted">The questions people most often type into Google about UK benefits.</p>
+
+    <div class="faq-list">
+      <details class="faq">
+        <summary>What benefits am I entitled to UK?</summary>
+        <div class="faq-body">
+          <p>Eligibility depends on your income, household, age, employment, disability, caring responsibilities, and savings. Common UK benefits include <strong>Universal Credit</strong> (low-income working-age), <strong>Child Benefit</strong> (parents of under-16s), <strong>PIP</strong> (long-term disability), <strong>Carer's Allowance</strong> (caring 35+ hrs/week), <strong>Pension Credit</strong> (low-income State Pension age), Council Tax Reduction, and the State Pension itself.</p>
+          <p>The free UK benefits checker above gives you a personalised list. Always verify on GOV.UK before applying.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does this benefits calculator UK 2026 work?</summary>
+        <div class="faq-body">
+          <p>It maps your inputs (age, employment, household, income, housing, disability, caring) against eligibility rules for the most common UK benefits. It's a <strong>signposting tool, not an eligibility assessment</strong> — real eligibility depends on details this tool doesn't ask about (savings, immigration status, recent income changes, partner's NI record, etc.).</p>
+          <p>Use the result as a starting list, then check each benefit on GOV.UK or speak to Citizens Advice.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Universal Credit eligibility checker UK — am I eligible?</summary>
+        <div class="faq-body">
+          <p>Universal Credit is generally for <strong>working-age people (18 to State Pension age) on a low income or out of work, with household savings under £16,000</strong>. Available whether you're employed, self-employed, unemployed, or unable to work.</p>
+          <p>The amount depends on your income, household, housing costs, and any disability or caring elements. UC replaces six legacy benefits for most new claims. Apply on GOV.UK at gov.uk/universal-credit.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much Universal Credit will I get UK?</summary>
+        <div class="faq-body">
+          <p>UC is calculated as a standard allowance plus elements you qualify for (children, housing, disability, carer), minus deductions for income above your work allowance and 55p in every £1 of post-tax earnings (the "taper rate").</p>
+          <p>Standard allowances for 2025/26: ~£316.98/month single under 25, £400.14 single 25+, £497.55 joint under 25, £628.10 joint 25+. Use GOV.UK's official calculator or speak to Citizens Advice for an accurate quote.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Are there benefits for low income workers UK?</summary>
+        <div class="faq-body">
+          <p>Yes. <strong>Universal Credit</strong> pays in addition to wages until earnings reach the level where the taper rate zeroes it out. <strong>Council Tax Reduction</strong> varies by council but typically applies to working low earners.</p>
+          <p><strong>NHS Low Income Scheme</strong> covers prescriptions, dental, and eye care for households below thresholds. Free childcare hours apply to most working families. Working Tax Credit was the major in-work benefit but is mostly closed to new claims — UC has replaced it.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What benefits can I claim if I am working UK?</summary>
+        <div class="faq-body">
+          <p>Working doesn't disqualify you. The most relevant in-work benefits: <strong>Universal Credit</strong> (income-dependent), <strong>Council Tax Reduction</strong> (means-tested), <strong>Child Benefit</strong> (only reduced via HICBC above £60,000), Carer's Allowance, free childcare hours, NHS Low Income Scheme, and Warm Home Discount.</p>
+          <p>PIP and Attendance Allowance aren't means-tested at all, so you can claim them while working if you have qualifying needs.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How do savings affect UK benefit entitlement?</summary>
+        <div class="faq-body">
+          <p>Means-tested benefits look at capital. For <strong>Universal Credit</strong>, savings above £6,000 reduce your award; above £16,000 disqualify entirely. Pension Credit has different thresholds.</p>
+          <p>Non-means-tested benefits (PIP, Attendance Allowance, Carer's Allowance, Child Benefit, State Pension) are unaffected by savings. Pension pots you can't yet access generally don't count.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How much UK benefit money goes unclaimed each year?</summary>
+        <div class="faq-body">
+          <p>Around <strong>£23 billion</strong> of UK benefits go unclaimed each year, per research by Policy in Practice. <strong>Pension Credit</strong> alone is ~£1.5 billion unclaimed annually because eligible pensioners don't realise they qualify or don't apply.</p>
+          <p>Council Tax Reduction, Universal Credit, and Carer's Allowance also see substantial under-claiming. The reasons are stigma, complexity, awareness gaps, and application friction.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="vault-cta-card">
+      <p class="section-eyebrow">The full picture</p>
+      <h2>Want to track your full income and household finances in one place?</h2>
+      <p>Vault is the home for everything this checker hints at — your income, accounts, debts, and net worth, all in one private view. Same principles: free, private, local only. Nothing you enter ever leaves your device.</p>
+      <a href="../../app" class="btn btn-primary btn-lg">Launch Vault</a>
+    </div>
+    <p class="back-tools-line"><a href="../">← Back to all free tools</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="../../" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="../../app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, legal, or benefits decisions. The benefits checker is a signposting tool only and does not constitute an eligibility assessment. Please verify all entitlements on GOV.UK or speak to a qualified adviser (such as Citizens Advice) for guidance on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════
+     BENEFITS CHECKER LOGIC — built from scratch.
+     Each benefit is a record with: name, description, eligibility
+     hint, official GOV.UK link, and a `applies(state)` predicate
+     that decides whether to show it. Predicates are intentionally
+     permissive — over-suggesting is better than under-suggesting
+     for a signposting tool.
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// State Pension age has moved to 66, rising to 67 between 2026–2028.
+// Treating 66 as the threshold for now.
+const SPA = 66;
+
+// All benefits the checker can surface. Each has:
+//   name, desc (one-line plain English), elig (rough eligibility line),
+//   url (GOV.UK or NHS), applies(state) → boolean.
+const BENEFITS = [
+  {
+    name: 'Universal Credit',
+    desc: 'Monthly payment to help with living costs if you\'re on a low income or out of work.',
+    elig: 'Working-age (18 to State Pension age) household with savings under £16,000. Replaces six legacy benefits for new claims.',
+    url: 'https://www.gov.uk/universal-credit',
+    applies(s) {
+      return s.age >= 18 && s.age < SPA &&
+             (s.income < 40000 || ['unemployed','unable','carer'].includes(s.employment));
+    }
+  },
+  {
+    name: 'Child Benefit',
+    desc: '£26.05/wk for the first child plus £17.25/wk for each subsequent child. Paid until child is 16 (or 20 if in approved education).',
+    elig: 'Parent or guardian of a child under 16 (or under 20 in approved education). High Income Child Benefit Charge starts to claw it back if anyone in the household earns over £60,000.',
+    url: 'https://www.gov.uk/child-benefit',
+    applies(s) { return s.children > 0; }
+  },
+  {
+    name: 'Pension Credit',
+    desc: 'Top-up for State Pension age people on low incomes. Unlocks passport benefits like Cold Weather Payment, Warm Home Discount, and free TV licence at 75+.',
+    elig: 'You\'re State Pension age and your weekly income is below ~£218.15 single / £332.95 joint (2025/26). About 1 in 3 eligible pensioners don\'t claim — worth checking even if you think you don\'t qualify.',
+    url: 'https://www.gov.uk/pension-credit',
+    applies(s) { return s.age >= SPA && s.income < 25000; }
+  },
+  {
+    name: 'State Pension',
+    desc: 'Weekly payment from State Pension age (currently 66, rising to 67). Full new State Pension is £221.20/wk for 2025/26.',
+    elig: 'You\'re State Pension age and have at least 10 qualifying years of National Insurance contributions. 35 years for the full amount.',
+    url: 'https://www.gov.uk/new-state-pension',
+    applies(s) { return s.age >= SPA - 1; }
+  },
+  {
+    name: 'Personal Independence Payment (PIP)',
+    desc: 'Tax-free payments for working-age people with a long-term disability or health condition that affects daily living or mobility.',
+    elig: 'Aged 16 to State Pension age. Not means-tested — your income and savings don\'t affect entitlement. Awarded based on functional need, not diagnosis.',
+    url: 'https://www.gov.uk/pip',
+    applies(s) { return s.disability && s.age >= 16 && s.age < SPA; }
+  },
+  {
+    name: 'Attendance Allowance',
+    desc: 'Tax-free payment for State Pension age people who need help with personal care due to a long-term illness or disability.',
+    elig: 'You\'re State Pension age (66+), have needed care/supervision for 6+ months, and have a physical or mental disability. Not means-tested.',
+    url: 'https://www.gov.uk/attendance-allowance',
+    applies(s) { return s.disability && s.age >= SPA; }
+  },
+  {
+    name: 'Carer\'s Allowance',
+    desc: '£81.90/wk for people caring for someone 35+ hours per week. The person you care for must be on a qualifying disability benefit (PIP, Attendance Allowance, etc.).',
+    elig: 'Caring 35+ hrs/wk, earnings under £196/wk after tax/NI. Affects some other benefits — check before claiming if the person you care for receives the severe disability premium.',
+    url: 'https://www.gov.uk/carers-allowance',
+    applies(s) { return s.carer; }
+  },
+  {
+    name: 'Statutory Sick Pay (SSP)',
+    desc: '£116.75/wk paid by your employer if you\'re too ill to work. Up to 28 weeks.',
+    elig: 'Employed, earning at least £123/wk, and unable to work for 4+ days in a row. Doesn\'t apply to self-employed — you\'d typically claim ESA or Universal Credit instead.',
+    url: 'https://www.gov.uk/statutory-sick-pay',
+    applies(s) { return s.employment === 'employed' && s.disability; }
+  },
+  {
+    name: 'Employment and Support Allowance (ESA)',
+    desc: 'Income for people who can\'t work due to illness or disability. Mostly being replaced by Universal Credit for new claims, but the contributory ("New Style") version is still available.',
+    elig: 'Limited capability for work, recent NI contributions (for New Style ESA), and a Work Capability Assessment.',
+    url: 'https://www.gov.uk/employment-support-allowance',
+    applies(s) { return s.employment === 'unable' && s.age < SPA; }
+  },
+  {
+    name: 'Jobseeker\'s Allowance (JSA)',
+    desc: 'New Style JSA: £90.50/wk for up to 6 months for unemployed people with recent NI contributions. Income-based JSA replaced by Universal Credit.',
+    elig: 'Aged 18 to State Pension age, actively looking for work, and have made enough NI contributions in the last 2–3 tax years.',
+    url: 'https://www.gov.uk/jobseekers-allowance',
+    applies(s) { return s.employment === 'unemployed' && s.age >= 18 && s.age < SPA; }
+  },
+  {
+    name: 'Council Tax Reduction',
+    desc: 'Reduction (sometimes 100%) on your council tax if you\'re on a low income. Rules vary by council.',
+    elig: 'On a low income, in receipt of certain benefits, or in a low Council Tax Reduction Scheme band. Apply through your local council, not GOV.UK directly.',
+    url: 'https://www.gov.uk/apply-council-tax-reduction',
+    applies(s) { return s.income < 30000; }
+  },
+  {
+    name: 'Housing Benefit',
+    desc: 'Help with rent for State Pension age claimants and some specific groups. For working-age renters, the housing element of Universal Credit applies instead.',
+    elig: 'You\'re State Pension age, OR live in supported, sheltered, or temporary accommodation. Claim through your local council.',
+    url: 'https://www.gov.uk/housing-benefit',
+    applies(s) { return s.housing === 'rent' && (s.age >= SPA || s.disability); }
+  },
+  {
+    name: 'Free childcare hours',
+    desc: 'From 9 months to school age — up to 30 hours/wk free childcare for working parents (15 hours for non-working low-income from age 2). Phased rollout completing in 2025/26.',
+    elig: 'At least one parent earning the equivalent of 16 hrs/wk at minimum wage, and not above £100,000 income. Different rules for 2-year-old free hours (income-based).',
+    url: 'https://www.gov.uk/help-with-childcare-costs',
+    applies(s) { return s.children > 0 && (s.employment === 'employed' || s.employment === 'self-employed' || s.income < 30000); }
+  },
+  {
+    name: 'NHS Low Income Scheme',
+    desc: 'Help with prescription charges, dental, eye tests, glasses, wigs, and travel to hospital appointments for low-income households.',
+    elig: 'Income and savings below NHS thresholds. Already covered if you\'re on Universal Credit (subject to thresholds), Income Support, income-based JSA, or Pension Credit Guarantee.',
+    url: 'https://www.nhsbsa.nhs.uk/nhs-low-income-scheme',
+    applies(s) { return s.income < 25000; }
+  },
+  {
+    name: 'Warm Home Discount',
+    desc: '£150 off your winter electricity bill. Applied automatically by your supplier if you qualify.',
+    elig: 'On Pension Credit Guarantee, OR on a low income with high energy costs (England &amp; Wales). Slightly different rules in Scotland.',
+    url: 'https://www.gov.uk/the-warm-home-discount-scheme',
+    applies(s) { return s.income < 25000; }
+  },
+  {
+    name: 'Winter Fuel Payment',
+    desc: '£200–£300 to help with heating costs in winter. Narrowed in 2024 to recipients of Pension Credit and other qualifying benefits.',
+    elig: 'You\'re State Pension age AND in receipt of Pension Credit, Universal Credit, or other qualifying means-tested benefits. Most pensioners no longer auto-qualify after the 2024 change.',
+    url: 'https://www.gov.uk/winter-fuel-payment',
+    applies(s) { return s.age >= SPA; }
+  },
+];
+
+function $b(id) { return document.getElementById(id); }
+function bParseInt(v) {
+  const n = parseInt(v, 10);
+  return isNaN(n) ? null : n;
+}
+function bParseFloat(v) {
+  const n = parseFloat(String(v||'').replace(/[^0-9.\-]/g, ''));
+  return isNaN(n) ? null : n;
+}
+
+function bRender() {
+  const state = {
+    age:        bParseInt($b('ben-age').value),
+    employment: $b('ben-employment').value,
+    household:  $b('ben-household').value,
+    children:   bParseInt($b('ben-children').value) || 0,
+    income:     bParseFloat($b('ben-income').value),
+    housing:    $b('ben-housing').value,
+    disability: $b('ben-disability').checked,
+    carer:      $b('ben-carer-flag').checked,
+  };
+
+  const empty = $b('ben-empty');
+  const out   = $b('ben-output');
+
+  // Need at least: age + employment + income to give a useful list
+  if (state.age == null || !state.employment || state.income == null) {
+    empty.style.display = 'block';
+    out.style.display = 'none';
+    return;
+  }
+
+  empty.style.display = 'none';
+  out.style.display = 'block';
+
+  const matched = BENEFITS.filter(b => {
+    try { return b.applies(state); } catch(e) { return false; }
+  });
+
+  $b('ben-count').textContent = matched.length === 1
+    ? '1 entitlement to check'
+    : matched.length + ' entitlements to check';
+
+  if (matched.length === 0) {
+    $b('ben-list').innerHTML = `
+      <div class="b-no-match">
+        Based on what you've entered, we haven't surfaced any of the major UK benefits in this checker. That doesn't mean nothing applies — every household is different. We strongly recommend running a full check on
+        <a href="https://www.entitledto.co.uk" target="_blank" rel="noopener">EntitledTo</a> or
+        <a href="https://www.turn2us.org.uk" target="_blank" rel="noopener">Turn2us</a>, or speaking to
+        <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener">Citizens Advice</a> for free, regulated advice.
+      </div>`;
+    return;
+  }
+
+  $b('ben-list').innerHTML = matched.map(b => `
+    <div class="b-benefit">
+      <div class="b-benefit-head">
+        <div class="b-benefit-name">${b.name}</div>
+        <span class="b-benefit-tag">May qualify</span>
+      </div>
+      <div class="b-benefit-desc">${b.desc}</div>
+      <div class="b-benefit-elig"><strong>Rough eligibility:</strong> ${b.elig}</div>
+      <a href="${b.url}" target="_blank" rel="noopener" class="b-benefit-link">Check on official site →</a>
+    </div>
+  `).join('');
+}
+
+function bInit() {
+  ['ben-age','ben-employment','ben-household','ben-children','ben-income','ben-housing']
+    .forEach(id => {
+      const el = $b(id);
+      if (!el) return;
+      const evt = el.tagName === 'SELECT' ? 'change' : 'input';
+      el.addEventListener(evt, bRender);
+    });
+  $b('ben-disability').addEventListener('change', bRender);
+  $b('ben-carer-flag').addEventListener('change', bRender);
+  bRender();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bInit);
+} else {
+  bInit();
+}
+</script>
+
+</body>
+</html>
