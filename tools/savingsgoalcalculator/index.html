@@ -61,24 +61,12 @@
   img, svg { display: block; max-width: 100%; }
   .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
   .narrow { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    
+<!-- Placeholder for the shared navbar -->
+<div id="nav-placeholder"></div>
 
-  .site-header {
-    position: fixed; top: 0; left: 0; right: 0;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: saturate(180%) blur(10px);
-    -webkit-backdrop-filter: saturate(180%) blur(10px);
-    border-bottom: 1px solid var(--border); z-index: 50;
-  }
-  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .wordmark { font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: var(--text); }
-  .wordmark .dot { color: var(--accent); }
-  .header-nav { display: flex; align-items: center; gap: 28px; margin-left: 32px; margin-right: auto; }
-  .header-nav a { font-size: 14px; font-weight: 500; color: var(--muted); transition: color .15s ease; white-space: nowrap; }
-  .header-nav a:hover, .header-nav a.active { color: var(--text); }
-  @media (max-width: 600px) {
-    .header-nav { gap: 18px; margin-left: 18px; }
-    .header-nav a { font-size: 13px; }
-  }
+<!-- Load the shared navbar script -->
+<script src="/common/navbar.js"></script>
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
