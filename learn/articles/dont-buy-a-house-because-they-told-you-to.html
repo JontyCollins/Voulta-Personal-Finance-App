@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1YZLT5X0C3');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="37% of UK homeowners regret their purchase — 63% of under-34s. Buying a house because society expects it is a recipe for misery. Here's why renting is a legitimate strategy, when owning makes sense, and how to run your own race." />
+  <title>Don't Buy a House Because They Told You To. Buy It Because You Want To – Vault</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Don't Buy a House Because They Told You To. Buy It Because You Want To",
+      "description": "37% of UK homeowners regret their purchase. Buying a house because society expects it is a recipe for misery. Here's why renting is a legitimate strategy, when owning makes sense, and how to run your own race.",
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-01",
+      "author": {
+        "@type": "Person",
+        "name": "Jonty"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vault",
+        "url": "https://thevaultapp.co.uk"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thevaultapp.co.uk/article/dont-buy-because-they-told-you-to"
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --section-soft: #faf9f5;
+      --founder-card: #f4f2ed;
+      --text: #12110f;
+      --muted: #6b6a65;
+      --border: #e8e6df;
+      --accent: #b8f000;
+      --accent-ink: #12110f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 1120px;
+      --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+      --article-max: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .article-wrap { max-width: var(--article-max); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .wordmark {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .wordmark .dot { color: var(--accent); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: 32px;
+      margin-right: auto;
+    }
+    .header-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .15s ease;
+      white-space: nowrap;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { color: var(--text); }
+    @media (max-width: 600px) {
+      .header-nav { gap: 18px; margin-left: 18px; }
+      .header-nav a { font-size: 13px; }
+      .header-nav a.hide-on-mobile { display: none; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+    .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+    /* ── Breadcrumb + back link ── */
+    .article-back {
+      padding: 120px 0 0;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .15s; }
+    .breadcrumb a:hover { border-bottom-color: var(--muted); }
+    .breadcrumb .sep { margin: 0 6px; }
+
+    /* ── Article header ── */
+    .article-header {
+      margin-bottom: 40px;
+    }
+    .article-header h1 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+    .article-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Featured image placeholder ── */
+    .article-featured-img {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      height: 280px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ── Article body ── */
+    .article-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .article-body h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 48px 0 16px;
+    }
+    .article-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+    }
+    .article-body p {
+      margin: 0 0 20px;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0 0 20px;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 16px 24px;
+      border-left: 4px solid var(--accent);
+      background: var(--section-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .article-body img {
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+    .inline-image-placeholder {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 32px 0;
+    }
+
+    /* ── Tool card (bottom) ── */
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+    .tool-card .tool-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0;
+    }
+    .tool-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .tool-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .tool-card .btn {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 40px;
+      background: var(--bg);
+      margin-top: 64px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 0 18px;
+    }
+    .footer-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .article-featured-img { height: 200px; }
+      .article-body { font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      .btn-lg { padding: 12px 20px; font-size: 14px; }
+      .site-header .wrap { height: 58px; }
+      .article-back { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Placeholder for the shared navbar -->
+<div id="nav-placeholder"></div>
+
+<!-- Load the shared navbar script -->
+<script src="/common/navbar.js"></script>
+
+<!-- ── Breadcrumb + back ── -->
+<section class="article-back">
+  <div class="wrap">
+    <div class="article-wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/learn/">The Reading Room</a><span class="sep">/</span><span>Don't Buy a House Because They Told You To</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ARTICLE CONTENT
+     ═══════════════════════════════════════════════════════════════════ -->
+<article>
+  <div class="wrap">
+    <div class="article-wrap">
+
+      <!-- ── Article header ── -->
+      <div class="article-header">
+        <h1>Don't Buy a House Because They Told You To. Buy It Because You Want To.</h1>
+        <div class="article-meta">
+          <span>By Jonty</span>
+          <span>·</span>
+          <time datetime="2026-05-01">1 May 2026</time>
+        </div>
+      </div>
+
+      <!-- ── Featured image ── -->
+      <div class="article-featured-img" style="background:none; border:none; padding:0; height:auto; display:block; overflow:hidden;">
+        <svg style="width:100%;border-radius:14px;display:block;" viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="leftBg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1916"/>
+      <stop offset="100%" stop-color="#12110f"/>
+    </linearGradient>
+    <linearGradient id="rightBg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf9f5"/>
+    </linearGradient>
+    <pattern id="grid" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0 L0 0 0 24" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.06"/>
+    </pattern>
+  </defs>
+
+  <!-- Left dark panel -->
+  <rect width="380" height="280" fill="url(#leftBg)"/>
+  <rect width="380" height="280" fill="url(#grid)"/>
+
+  <!-- Right light panel -->
+  <rect x="380" y="0" width="380" height="280" fill="url(#rightBg)"/>
+
+  <!-- Divider -->
+  <line x1="380" y1="0" x2="380" y2="280" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- ── LEFT: "The Script" ── -->
+  <text x="36" y="44" font-size="10" font-weight="600" fill="#4a4843" letter-spacing="0.14em">THE SCRIPT</text>
+
+  <!-- Stacked struck-through lines — the received wisdom -->
+  <text x="36" y="82" font-size="17" fill="#6b6a65" letter-spacing="-0.01em">Go to university.</text>
+  <line x1="36" y1="77" x2="198" y2="77" stroke="#4a4843" stroke-width="1.5"/>
+
+  <text x="36" y="112" font-size="17" fill="#6b6a65" letter-spacing="-0.01em">Get a stable job.</text>
+  <line x1="36" y1="107" x2="196" y2="107" stroke="#4a4843" stroke-width="1.5"/>
+
+  <text x="36" y="142" font-size="17" fill="#6b6a65" letter-spacing="-0.01em">Save the deposit.</text>
+  <line x1="36" y1="137" x2="208" y2="137" stroke="#4a4843" stroke-width="1.5"/>
+
+  <text x="36" y="172" font-size="19" font-weight="700" fill="#9b9a94" letter-spacing="-0.02em">Buy the house.</text>
+  <line x1="36" y1="167" x2="224" y2="167" stroke="#6b6a65" stroke-width="2"/>
+
+  <text x="36" y="202" font-size="17" fill="#4a4843" letter-spacing="-0.01em">Climb the ladder.</text>
+  <line x1="36" y1="197" x2="212" y2="197" stroke="#3a3835" stroke-width="1.5"/>
+
+  <!-- Bottom label -->
+  <text x="36" y="248" font-size="11" fill="#3a3835" font-style="italic">Written for a cast of millions.</text>
+  <text x="36" y="264" font-size="11" fill="#3a3835" font-style="italic">You are not a cast of millions.</text>
+
+  <!-- Vault mark -->
+  <text x="344" y="264" font-size="12" font-weight="700" fill="#ffffff" opacity="0.2" text-anchor="end">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+
+  <!-- ── RIGHT: "Your call" ── -->
+  <text x="404" y="44" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.14em">YOUR CALL</text>
+
+  <!-- The question, large -->
+  <text x="404" y="90" font-size="32" font-weight="700" fill="#12110f" letter-spacing="-0.03em">Do you actually</text>
+  <text x="404" y="126" font-size="32" font-weight="700" fill="#12110f" letter-spacing="-0.03em">want this?</text>
+
+  <!-- Accent underline on "want" -->
+  <rect x="404" y="132" width="148" height="5" rx="2.5" fill="#b8f000"/>
+
+  <!-- Two options -->
+  <!-- Option A -->
+  <rect x="404" y="158" width="312" height="46" rx="10" fill="#f5f4f0"/>
+  <rect x="404" y="158" width="5" height="46" rx="2.5" fill="#b8f000"/>
+  <text x="420" y="177" font-size="12" font-weight="700" fill="#12110f">Yes — for my reasons.</text>
+  <text x="420" y="194" font-size="11" fill="#6b6a65">Location, life stage, roots. Buy it.</text>
+
+  <!-- Option B -->
+  <rect x="404" y="212" width="312" height="46" rx="10" fill="#f5f4f0"/>
+  <rect x="404" y="212" width="5" height="46" rx="2.5" fill="#e8e6df"/>
+  <text x="420" y="231" font-size="12" font-weight="700" fill="#12110f">Not yet — and that's fine.</text>
+  <text x="420" y="248" font-size="11" fill="#6b6a65">Rent. Invest. Wait for the right moment.</text>
+
+  <!-- Small label bottom right -->
+  <text x="716" y="270" font-size="10" fill="#9b9a94" text-anchor="end" font-style="italic">Both are valid. Neither is failure.</text>
+</svg>
+      </div>
+
+      <!-- ── Article body ── -->
+      <div class="article-body">
+
+        <p>There's a script we're all handed at some point — usually around 15, usually from someone who means well. Go to university. Get the job. Save the deposit. Buy the house. Climb the ladder. It's recited like scripture, like the natural order of things, like you've failed a level of adulthood if you haven't got a mortgage by 30.</p>
+
+        <p>Here's the thing about scripts: they're written for a cast of millions, but you're not a cast of millions. You're one person with one life, one set of priorities, and one timeline that doesn't have to look like anyone else's. And yet the pressure to buy — not because you want to, but because you think you're <em>supposed</em> to — is relentless. It comes from parents. From friends. From the quiet scroll through Instagram where everyone seems to be holding keys outside a front door you can't afford.</p>
+
+        <p>I want to make a case for something unfashionable: <strong>buying a house is not an automatic good</strong>. It's a decision — a massive, leveraged, life-anchoring decision — and it should be made deliberately, for reasons that are actually yours, not because the script says so. Renting isn't failure. It's often the smarter play. And the people who are most miserable in homeownership are frequently the ones who bought for everyone except themselves.</p>
+
+        <h2>The regret nobody warned you about</h2>
+
+        <p>Let's start with the stat that should be printed on every estate agent's window: <strong>37% of UK homeowners regret aspects of their purchase</strong> — more than a third of people who achieved the thing we're all told to want. Among under-34s, the number jumps to <strong>63%</strong>. Nearly two-thirds of young homeowners wish they'd made different choices.<sup>1</sup></p>
+
+        <p>Sixty-three percent. That's not a few people who bought the wrong shade of kitchen tile. That's a structural mismatch between what people expected and what they got. Regrets include underestimating the full costs of buying and renovating, dissatisfaction with the location, and having to make painful compromises on indoor or outdoor space.<sup>1</sup></p>
+
+        <p>In London, more than half of homeowners — <strong>51%</strong> — say they'd make different choices if they could go back.<sup>1</sup> The place where the pressure to buy is most intense is also the place where people are most likely to regret doing it. That's not a coincidence. That's what happens when you buy because the clock is ticking, not because the decision is right.</p>
+
+        <blockquote>
+          Buying a house because you feel left behind is like getting married because all your friends are doing it. The decision is too big to make for someone else.
+        </blockquote>
+
+        <h2>The £30,000 you didn't plan for</h2>
+
+        <p>When people talk about the cost of buying a house, they usually mean the deposit. But the deposit is just the ticket price. The real cost starts the day you get the keys.</p>
+
+        <p>Research from Skipton Building Society found that first-time buyers face nearly <strong>£30,000 in costs within the first three months</strong> of homeownership. Furniture, decorating, essential appliances — it adds up fast. Buyers spent an average of £3,487 on sofas, coffee tables, and beds alone. Kitchen essentials like air fryers and toasters added another £2,662. Redecorating came in at £2,118. Then there's the removal company (£1,747), electrical work (£1,914), roof repairs (£1,759).<sup>2</sup></p>
+
+        <p>The result? <strong>Nearly half of new buyers struggled to afford their first mortgage payment</strong> because of these mounting upfront costs. Almost two-thirds admitted their finances were stretched to the limit. Over a quarter had to dip into savings they hadn't earmarked for this purpose. Others turned to credit, worked overtime, or borrowed from family.<sup>2</sup></p>
+
+        <p>And this isn't a rare horror story. Separate research from Smoove found that <strong>62% of homebuyers experienced unexpected costs during the transaction itself</strong> — legal fees they weren't prepared for, repair costs that surfaced in surveys, stamp duty they'd underestimated. For first-time buyers specifically, 66% were hit with surprise bills.<sup>3</sup></p>
+
+        <p>If you're renting, none of these costs exist. If the boiler breaks, you call the landlord. If the roof leaks, it's someone else's problem. The monthly rent is the <em>maximum</em> you pay for housing. A mortgage payment is the <em>minimum</em>.</p>
+
+        <div class="inline-image-placeholder" style="background:none; border:none; padding:0;">
+          <svg style="width:100%;display:block;border-radius:14px;" viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="sh">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#12110f" flood-opacity="0.07"/>
+    </filter>
+  </defs>
+
+  <rect width="720" height="280" fill="#faf9f5"/>
+
+  <!-- ── LEFT CARD: Renting ── -->
+  <rect x="20" y="20" width="326" height="242" rx="14" fill="#ffffff" filter="url(#sh)" stroke="#e8e6df" stroke-width="1"/>
+  <!-- Green top bar -->
+  <rect x="20" y="20" width="326" height="6" rx="3" fill="#b8f000"/>
+  <rect x="20" y="23" width="326" height="3" fill="#b8f000"/>
+
+  <!-- Header -->
+  <text x="44" y="58" font-size="11" font-weight="600" fill="#6b6a65" letter-spacing="0.1em">RENTING</text>
+  <text x="44" y="78" font-size="20" font-weight="700" fill="#12110f" letter-spacing="-0.02em">Your monthly cost</text>
+  <line x1="44" y1="90" x2="326" y2="90" stroke="#f0ede6" stroke-width="1"/>
+
+  <!-- The single item — large and lonely -->
+  <text x="44" y="138" font-size="36" font-weight="700" fill="#12110f" letter-spacing="-0.03em">Rent.</text>
+
+  <!-- Subline -->
+  <text x="44" y="162" font-size="13" fill="#6b6a65">That's it. The ceiling, not the floor.</text>
+
+  <!-- Badge -->
+  <rect x="44" y="190" width="158" height="28" rx="14" fill="#b8f000"/>
+  <text x="123" y="209" font-size="12" font-weight="700" fill="#12110f" text-anchor="middle">Predictable. Capped.</text>
+
+  <!-- ── RIGHT CARD: Owning ── -->
+  <rect x="374" y="20" width="326" height="242" rx="14" fill="#ffffff" filter="url(#sh)" stroke="#e8e6df" stroke-width="1"/>
+  <!-- Dark top bar -->
+  <rect x="374" y="20" width="326" height="6" rx="3" fill="#12110f"/>
+  <rect x="374" y="23" width="326" height="3" fill="#12110f"/>
+
+  <!-- Header -->
+  <text x="398" y="58" font-size="11" font-weight="600" fill="#6b6a65" letter-spacing="0.1em">OWNING</text>
+  <text x="398" y="78" font-size="20" font-weight="700" fill="#12110f" letter-spacing="-0.02em">Your monthly cost</text>
+  <line x1="398" y1="90" x2="680" y2="90" stroke="#f0ede6" stroke-width="1"/>
+
+  <!-- List of costs — deliberately crowded to make the point -->
+  <circle cx="406" cy="109" r="2.5" fill="#12110f" opacity="0.4"/>
+  <text x="416" y="113" font-size="13" fill="#12110f">Mortgage payment</text>
+
+  <circle cx="406" cy="129" r="2.5" fill="#12110f" opacity="0.4"/>
+  <text x="416" y="133" font-size="13" fill="#12110f">Buildings insurance</text>
+
+  <circle cx="406" cy="149" r="2.5" fill="#12110f" opacity="0.4"/>
+  <text x="416" y="153" font-size="13" fill="#12110f">Maintenance &amp; repairs</text>
+
+  <circle cx="406" cy="169" r="2.5" fill="#12110f" opacity="0.4"/>
+  <text x="416" y="173" font-size="13" fill="#12110f">Ground rent / service charge</text>
+
+  <circle cx="406" cy="189" r="2.5" fill="#12110f" opacity="0.4"/>
+  <text x="416" y="193" font-size="13" fill="#12110f">Emergency fund (boiler, roof…)</text>
+
+  <circle cx="406" cy="209" r="2.5" fill="#ff6b6b"/>
+  <text x="416" y="213" font-size="13" font-weight="600" fill="#cc4444">+ whatever breaks this month</text>
+
+  <!-- Badge -->
+  <rect x="398" y="228" width="160" height="22" rx="11" fill="#fff0f0" stroke="#ffd5d5" stroke-width="1"/>
+  <text x="478" y="243" font-size="11" font-weight="600" fill="#cc4444" text-anchor="middle">The floor, not the ceiling.</text>
+
+  <!-- Vault mark -->
+  <text x="700" y="270" font-size="11" font-weight="700" fill="#12110f" opacity="0.2" text-anchor="end">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+</svg>
+        </div>
+
+        <h2>The case for renting (yes, really)</h2>
+
+        <p>Renting gets a bad reputation in Britain. It's framed as "dead money" — paying someone else's mortgage while you get nothing in return. But that framing is incomplete at best and dishonest at worst. You're not getting nothing. You're getting <strong>shelter, flexibility, and freedom from the costs and commitments of ownership</strong>. Those things have value.</p>
+
+        <p>Here's what renting actually gives you:</p>
+
+        <ul>
+          <li><strong>Mobility.</strong> You can leave. You can move for a job, for a relationship, for a change of scenery. A house chains you to a postcode. In your twenties and early thirties, when your career and life are still taking shape, that flexibility has enormous value.</li>
+          <li><strong>Cost certainty.</strong> Your rent is your rent. No surprise roof repairs. No £1,759 electrical bill that appears from nowhere. No stamp duty. No conveyancing fees. No buildings insurance. No ground rent. No service charge. The predictability allows you to plan around other things — like investing.</li>
+          <li><strong>Time.</strong> Homeownership is a part-time maintenance job you didn't apply for. DIY, gardening, dealing with tradespeople, managing the endless stream of things that need fixing. Renting frees that time up for things you actually enjoy.</li>
+          <li><strong>The ability to invest the difference.</strong> This is the one that doesn't get talked about enough. In many parts of the UK, renting is cheaper than a mortgage on an equivalent property — and even where it isn't, the deposit you're not locking into bricks and mortar can be working for you in the stock market, compounding away while you decide what you actually want your life to look like.</li>
+        </ul>
+
+        <p>Here's a thought experiment. The average UK first-time buyer deposit is <strong>£89,400</strong>, according to Aldermore.<sup>5</sup> If you invested that instead — in a broad global index tracker, inside a Stocks & Shares ISA — and added nothing else, at a historically conservative 7% annual return, you'd have roughly <strong>£175,000 in ten years</strong>. In twenty years? Over <strong>£345,000</strong>. All completely tax-free, all completely liquid.</p>
+
+        <p>I'm not saying one path is better than the other. I'm saying <strong>there is a path</strong>. You're not failing at life because you're renting. You might be making a deliberate, mathematically sound choice to prioritise freedom and compound growth over fixing a roof on a Sunday. That's not dead money. That's a strategy.</p>
+
+        <h2>The case for buying (when you're actually ready)</h2>
+
+        <p>None of this is to say buying is bad. Over the long run, ownership wins — and it wins for reasons that are more fundamental than house price growth.</p>
+
+        <p>When you buy, you fix your housing costs — at least the core mortgage payment — for years, sometimes decades. Inflation, meanwhile, keeps eating away at the real value of that debt. A £1,200 mortgage payment today will feel like a rounding error in twenty years, while rent will have doubled or tripled. That's not speculation; it's what the data shows. TwentyCi's 2026 research found that <strong>homeowners pay on average £493 less per month than tenants</strong> across the UK. In London, the saving is nearly £1,000 a month.<sup>4</sup></p>
+
+        <p>Rental costs now consume a record <strong>45.5% of median disposable income</strong>.<sup>4</sup> That's not sustainable, and it's not going down. When you own, your housing cost is increasingly insulated from that pressure. Over a thirty-year horizon, the owner is almost always in a stronger position — assuming they could afford the house in the first place, and assuming they stay put long enough for the maths to work.</p>
+
+        <p>Ownership also gives you something renting never will: <strong>control</strong>. Paint the walls whatever colour you want. Get the dog. Knock down the wall. Stay forever. Nobody can sell the house out from under you, and nobody can raise the rent because the market's hot. That stability is worth real money, especially if you're raising a family or building a life in a particular community.</p>
+
+        <p>As Paula Higgins, chief executive of HomeOwners Alliance, puts it: even with the regrets, "owning a home brings long-term stability and financial security. You're building equity, not paying someone else's mortgage, and you have a roof over your head that you can call your own."<sup>1</sup></p>
+
+        <p>But notice the distinction: stability and security come from staying put. They don't come from buying a house you can't afford in a neighbourhood you don't like because you felt like you were falling behind. The benefits of ownership compound with time. If you buy and sell within three years, the transaction costs alone — stamp duty, legal fees, estate agent fees — will likely wipe out any equity you built. The five-year rule exists for a reason.</p>
+
+        <h2>Run your own race</h2>
+
+        <p>The housing conversation in Britain is broken because it only has two positions: "buy immediately at all costs" or "you'll never own anything, give up now." Both are lazy. Both let you off the hook from actually thinking about what <em>you</em> need.</p>
+
+        <p>Here's a better framework. Buy a house when:</p>
+
+        <ul>
+          <li><strong>You actually want to live there.</strong> Not because it's a good investment. Not because the postcode impresses someone. Because you can genuinely see yourself building a life in that specific house, on that specific street, for at least the next five years.</li>
+          <li><strong>You can comfortably afford it.</strong> The mortgage, the bills, the maintenance, and still some breathing room. If your mortgage payment would consume more than 30–35% of your take-home pay, you're stretching too far. The bank might lend it to you — lenders are now offering 5.5x and 6x income multiples<sup>7</sup>— but the bank doesn't have to live your life.</li>
+          <li><strong>You're running toward something, not away from FOMO.</strong> The worst reason to buy is because you feel left behind. The best reason is because you've found a place you want to stay.</li>
+          <li><strong>Your life stage actually calls for it.</strong> Starting a family, settling into a long-term career, building community in a specific area — these are good reasons to put down roots. Being 28 and single with a job you might leave in two years is not.</li>
+        </ul>
+
+        <p>And if those conditions aren't met? <strong>Keep renting, and invest the difference.</strong> Use the deposit money to build an ISA portfolio. Let compounding do its work. When you're actually ready — when the location, the job, the relationship, and the finances all line up — you'll have a bigger deposit and a clearer head. The house will still be there. The ladder isn't going anywhere.</p>
+
+        <p>There's a statistic I can't stop thinking about: <strong>41% of renters who say they're ready to buy are hesitating</strong>. They've got the deposit. They've checked the mortgage options. They feel positive about their chances. But something is holding them back.<sup>6</sup> Maybe it's fear. Maybe it's confusion — <strong>31% of first-time buyers don't understand the home buying process</strong>.<sup>6</sup> Or maybe, just maybe, it's the quiet voice saying "I don't actually want this right now — I just think I'm supposed to."</p>
+
+        <p>That voice deserves to be listened to.</p>
+
+        <blockquote>
+          The best financial decision is the one that's right for your actual life, not the life someone else thinks you should be living.
+        </blockquote>
+
+        <h2>What this looks like in practice</h2>
+
+        <p>If you're weighing renting versus buying, don't guess. Use numbers. Run the comparison. Your specific circumstances — your income, your deposit, your location, your plans for the next five years — will almost certainly tip the scales one way or the other. The answer isn't universal. It's personal.</p>
+
+        <p>I built a set of free tools to help with exactly this. They run in your browser, they don't collect your data, and they won't tell you what to do — they'll just show you the maths so you can decide for yourself.</p>
+
+        <p><strong>The Rent vs. Buy Calculator</strong> lets you plug in rent prices, house prices, mortgage rates, and expected costs, and see side-by-side what each path looks like over 5, 10, or 25 years. In many parts of the country, the result genuinely surprises people.</p>
+
+        <p><strong>The Mortgage Affordability Calculator</strong> shows you what you can actually borrow based on your income, deposit, and current rates — and more importantly, what you <em>should</em> borrow if you want to maintain a comfortable buffer.</p>
+
+        <p><strong>The Mortgage Repayment Calculator</strong> breaks down monthly payments, total interest, and how overpaying even a small amount can shave years off your term.</p>
+
+        <p>They're free. No sign-up. No data leaves your device. Just the numbers, laid out clearly, so you can make the biggest financial decision of your life with your eyes open.</p>
+
+      </div><!-- /article-body -->
+
+      <!-- ── Tool card ── -->
+      <div class="tool-card">
+        <p class="tool-eyebrow">Free tools</p>
+        <h3>Rent vs. Buy · Mortgage Affordability · Mortgage Repayment Calculator</h3>
+        <p>Compare renting versus buying over any timeline. Check what you can actually afford to borrow — and what you <em>should</em> borrow. Model monthly payments, interest costs, and the impact of overpayments. Three free calculators, private, no sign-up, works entirely in your browser.</p>
+        <a href="/tools/" class="btn btn-primary">Explore the free tools →</a>
+      </div>
+
+      <!-- ── References ── -->
+      <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); line-height:1.7;">
+        <p style="font-weight:600; margin-bottom:12px;">References</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li style="margin-bottom:6px;">HomeOwners Alliance / Opinium, survey of 1,200+ UK homeowners, April 2025. 37% of homeowners regret aspects of their purchase; 63% of under-34s; 51% in London. Reported in LBC, "More than a third of homeowners 'have regrets about their property,'" updated February 2026.</li>
+          <li style="margin-bottom:6px;">Skipton Building Society, survey of 1,000 UK first-time buyers who purchased within the last five years, May 2025. Average additional costs in first three months: ~£30,000. Reported in The Mirror, "First-time buyers hit by an extra £30k in initial months of homeownership," May 2025.</li>
+          <li style="margin-bottom:6px;">Smoove, survey of recent UK homebuyers, May 2025. 62% experienced unexpected costs during the transaction; 66% for first-time buyers specifically. Reported in IFA Magazine, "Unexpected costs hampering transactions for two thirds of UK homebuyers," June 2025.</li>
+          <li style="margin-bottom:6px;">TwentyCi, UK Property & Homemover Report, April 2026. Homeowners pay on average £493 less per month than tenants across all UK regions; nearly £1,000/month less in London. Rental costs consume a record 45.5% of median disposable income.</li>
+          <li style="margin-bottom:6px;">Aldermore Bank, First Time Buyers Index 2026. Average FTB deposit: £89,400 (25.6% of property value); 71% of prospective FTBs impacted by rising cost of living; 63% by high house prices.</li>
+          <li style="margin-bottom:6px;">Mortgage Advice Bureau, survey of 1,001 UK renters, April 2026. 52% ready to purchase in 2026; 75% positive about mortgage options; 41% hesitating; 31% don't understand the home buying process. Reported in Today's Conveyancer, April 2026.</li>
+          <li style="margin-bottom:6px;">TwentyCi, April 2026. Major lenders including Nationwide, Halifax, and Barclays now offering 5.5x and 6x income multiples. Five-fold rise in applications for higher LTI products year-on-year.</li>
+          <li style="margin-bottom:6px;">Wis Mortgages, "Renting vs Buying in 2026: The Financial Balance Has Shifted," February 2026. ~40% of UK homes now cheaper to buy than rent; mortgage rates stabilised between 3.5% and 4.5%; stress testing eased from ~8.5% to ~6.5%.</li>
+        </ol>
+      </div>
+
+      <!-- ── Back link ── -->
+      <p style="margin-top: 40px; font-size: 15px;">
+        <a href="/learn/" class="btn btn-ghost">← Back to The Reading Room</a>
+      </p>
+
+    </div><!-- /article-wrap -->
+  </div><!-- /wrap -->
+</article>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="/" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="/app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation. Your home may be repossessed if you do not keep up repayments on your mortgage.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
