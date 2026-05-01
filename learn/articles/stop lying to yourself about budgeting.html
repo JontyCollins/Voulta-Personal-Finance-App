@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1YZLT5X0C3');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="More than half of Brits don't budget — and it's costing them. Here's why the 50/30/20 rule and paying yourself first work, and a free UK budget planner that makes it effortless." />
+  <title>Stop Lying to Yourself About Budgeting — The 50/30/20 Rule Actually Works – Vault</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Stop Lying to Yourself About Budgeting — The 50/30/20 Rule Actually Works",
+      "description": "More than half of Brits don't budget — and it's costing them. Here's why the 50/30/20 rule and paying yourself first work, backed by UK research.",
+      "datePublished": "2026-05-1",
+      "dateModified": "2026-05-1",
+      "author": {
+        "@type": "Person",
+        "name": "Jonty"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vault",
+        "url": "https://thevaultapp.co.uk"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thevaultapp.co.uk/article/stop-lying-to-yourself-about-budgeting"
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --section-soft: #faf9f5;
+      --founder-card: #f4f2ed;
+      --text: #12110f;
+      --muted: #6b6a65;
+      --border: #e8e6df;
+      --accent: #b8f000;
+      --accent-ink: #12110f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 1120px;
+      --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+      --article-max: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .article-wrap { max-width: var(--article-max); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .wordmark {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .wordmark .dot { color: var(--accent); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: 32px;
+      margin-right: auto;
+    }
+    .header-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .15s ease;
+      white-space: nowrap;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { color: var(--text); }
+    @media (max-width: 600px) {
+      .header-nav { gap: 18px; margin-left: 18px; }
+      .header-nav a { font-size: 13px; }
+      .header-nav a.hide-on-mobile { display: none; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+    .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+    /* ── Breadcrumb + back link ── */
+    .article-back {
+      padding: 120px 0 0;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .15s; }
+    .breadcrumb a:hover { border-bottom-color: var(--muted); }
+    .breadcrumb .sep { margin: 0 6px; }
+
+    /* ── Article header ── */
+    .article-header {
+      margin-bottom: 40px;
+    }
+    .article-header h1 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+    .article-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Featured image placeholder ── */
+    .article-featured-img {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      height: 280px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ── Article body ── */
+    .article-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .article-body h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 48px 0 16px;
+    }
+    .article-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+    }
+    .article-body p {
+      margin: 0 0 20px;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0 0 20px;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 16px 24px;
+      border-left: 4px solid var(--accent);
+      background: var(--section-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .article-body img {
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+    .inline-image-placeholder {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 32px 0;
+    }
+
+    /* ── Tool card (bottom) ── */
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+    .tool-card .tool-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0;
+    }
+    .tool-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .tool-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .tool-card .btn {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 40px;
+      background: var(--bg);
+      margin-top: 64px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 0 18px;
+    }
+    .footer-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .article-featured-img { height: 200px; }
+      .article-body { font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      .btn-lg { padding: 12px 20px; font-size: 14px; }
+      .site-header .wrap { height: 58px; }
+      .article-back { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Placeholder for the shared navbar -->
+<div id="nav-placeholder"></div>
+
+<!-- Load the shared navbar script -->
+<script src="/common/navbar.js"></script>
+
+<!-- ── Breadcrumb + back ── -->
+<section class="article-back">
+  <div class="wrap">
+    <div class="article-wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/learn/">The Reading Room</a><span class="sep">/</span><span>Stop Lying to Yourself About Budgeting</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ARTICLE CONTENT
+     ═══════════════════════════════════════════════════════════════════ -->
+<article>
+  <div class="wrap">
+    <div class="article-wrap">
+
+      <!-- ── Article header ── -->
+      <div class="article-header">
+        <h1>Stop Lying to Yourself About Budgeting — The 50/30/20 Rule Actually Works</h1>
+        <div class="article-meta">
+          <span>By Jonty</span>
+          <span>·</span>
+          <time datetime="2026-05-01">1 May 2026</time>
+        </div>
+      </div>
+
+      <!-- ── Featured image ── -->
+      <div class="article-featured-img" style="background:none; border:none; padding:0; height:auto; display:block;">
+        <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:14px;display:block;" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf9f5"/>
+      <stop offset="100%" stop-color="#f2f0ea"/>
+    </linearGradient>
+    <linearGradient id="noteGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f9f8f4"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#12110f" flood-opacity="0.08"/>
+    </filter>
+    <filter id="lightShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#12110f" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="760" height="280" fill="url(#bgGrad)"/>
+  <g opacity="0.04">
+    <line x1="0" y1="40" x2="760" y2="40" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="0" y1="80" x2="760" y2="80" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="0" y1="120" x2="760" y2="120" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="0" y1="160" x2="760" y2="160" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="0" y1="200" x2="760" y2="200" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="0" y1="240" x2="760" y2="240" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="80" y1="0" x2="80" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="160" y1="0" x2="160" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="240" y1="0" x2="240" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="320" y1="0" x2="320" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="480" y1="0" x2="480" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="560" y1="0" x2="560" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="640" y1="0" x2="640" y2="280" stroke="#12110f" stroke-width="0.5"/>
+    <line x1="720" y1="0" x2="720" y2="280" stroke="#12110f" stroke-width="0.5"/>
+  </g>
+  <rect x="72" y="26" width="216" height="242" rx="12" fill="#12110f" opacity="0.07"/>
+  <rect x="68" y="22" width="216" height="242" rx="12" fill="url(#noteGrad)" filter="url(#softShadow)"/>
+  <rect x="68" y="22" width="8" height="242" rx="4" fill="#e8e6df"/>
+  <rect x="68" y="22" width="216" height="242" rx="12" fill="none" stroke="#e8e6df" stroke-width="1"/>
+  <g opacity="0.35">
+    <line x1="88" y1="58" x2="268" y2="58" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="74" x2="268" y2="74" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="90" x2="268" y2="90" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="106" x2="268" y2="106" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="122" x2="268" y2="122" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="138" x2="268" y2="138" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="154" x2="268" y2="154" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="170" x2="268" y2="170" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="186" x2="268" y2="186" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="202" x2="268" y2="202" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="218" x2="268" y2="218" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="234" x2="268" y2="234" stroke="#e8e6df" stroke-width="1"/>
+    <line x1="88" y1="250" x2="268" y2="250" stroke="#e8e6df" stroke-width="1"/>
+  </g>
+  <text x="88" y="44" font-size="9" font-weight="600" fill="#6b6a65" letter-spacing="0.12em">MONTHLY BUDGET</text>
+  <text x="88" y="71" font-size="11" fill="#12110f" opacity="0.6">Rent ................................ £800</text>
+  <line x1="88" y1="68" x2="250" y2="68" stroke="#12110f" stroke-width="1.5" opacity="0.4"/>
+  <text x="88" y="87" font-size="11" fill="#12110f" opacity="0.5">Groceries ........................ £???</text>
+  <text x="88" y="103" font-size="11" fill="#12110f" opacity="0.55">Subscriptions ............... £40ish</text>
+  <line x1="88" y1="100" x2="252" y2="100" stroke="#12110f" stroke-width="1.5" opacity="0.35"/>
+  <text x="88" y="119" font-size="11" fill="#12110f" opacity="0.5">Takeaways .................... £idk</text>
+  <text x="88" y="135" font-size="11" fill="#12110f" opacity="0.5">Total savings ................ £—</text>
+  <line x1="88" y1="132" x2="240" y2="132" stroke="#12110f" stroke-width="1.5" opacity="0.35"/>
+  <path d="M292 140 L326 140" stroke="#b8f000" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M320 134 L328 140 L320 146" stroke="#b8f000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="344" y="30" width="344" height="228" rx="14" fill="#12110f" opacity="0.06"/>
+  <rect x="340" y="26" width="344" height="228" rx="14" fill="#ffffff" filter="url(#lightShadow)"/>
+  <rect x="340" y="26" width="344" height="228" rx="14" fill="none" stroke="#e8e6df" stroke-width="1"/>
+  <rect x="340" y="26" width="344" height="52" rx="14" fill="#faf9f5"/>
+  <rect x="340" y="54" width="344" height="24" fill="#faf9f5"/>
+  <rect x="340" y="54" width="344" height="1" fill="#e8e6df"/>
+  <text x="360" y="56" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.1em">VAULT — BUDGET OVERVIEW</text>
+  <text x="360" y="70" font-size="11" fill="#6b6a65">April 2026 · £2,500 take-home</text>
+  <text x="360" y="104" font-size="12" font-weight="600" fill="#12110f">Needs</text>
+  <text x="360" y="118" font-size="10" fill="#6b6a65">Rent · Bills · Food · Transport</text>
+  <rect x="360" y="124" width="300" height="10" rx="5" fill="#f0ede6"/>
+  <rect x="360" y="124" width="150" height="10" rx="5" fill="#12110f" opacity="0.85"/>
+  <text x="514" y="133" font-size="10" font-weight="700" fill="#12110f">£1,250 · 50%</text>
+  <text x="360" y="155" font-size="12" font-weight="600" fill="#12110f">Wants</text>
+  <text x="360" y="169" font-size="10" fill="#6b6a65">Dining · Subscriptions · Fun</text>
+  <rect x="360" y="175" width="300" height="10" rx="5" fill="#f0ede6"/>
+  <rect x="360" y="175" width="90" height="10" rx="5" fill="#6b6a65" opacity="0.6"/>
+  <text x="454" y="184" font-size="10" font-weight="700" fill="#12110f">£750 · 30%</text>
+  <text x="360" y="206" font-size="12" font-weight="600" fill="#12110f">Savings &amp; Investments</text>
+  <text x="360" y="220" font-size="10" fill="#6b6a65">ISA · Emergency fund · Pension</text>
+  <rect x="360" y="226" width="300" height="10" rx="5" fill="#f0ede6"/>
+  <rect x="360" y="226" width="60" height="10" rx="5" fill="#b8f000"/>
+  <text x="424" y="235" font-size="10" font-weight="700" fill="#12110f">£500 · 20%</text>
+  <text x="640" y="48" font-size="13" font-weight="700" fill="#12110f" opacity="0.35" letter-spacing="-0.01em">Vault<tspan fill="#b8f000">.</tspan></text>
+</svg>
+      </div>
+
+      <!-- ── Article body ── -->
+      <div class="article-body">
+
+        <p>I used to be the person who said, "I don't need a budget because I can just keep track of it in my head." I learnt the hard way, that this is next to impossible. I'd tell myself I was going to stop spending on takeaways, then order a Deliveroo on Tuesday because I couldn't be bothered to cook. I'd promise to cut back on random Amazon purchases, and somehow a new portable battery would arrive on Thursday. Every single month, the money would just disappear. Not on anything crazy, but I'd still be left with nothing.</p>
+
+        <p>Here's the uncomfortable truth I had to face, and maybe you do too: <strong>your mental budget is a fantasy</strong>. It's a story you tell yourself to avoid the discomfort of actually looking at your numbers. And you're not alone. In fact, more than half of Brits are running the same experiment, and the results are not great.</p>
+
+        <p>But there's a way out that doesn't involve spreadsheets with 47 tabs or guilt-tripping yourself every time you buy a coffee. It's called the 50/30/20 budget, paired with something called "paying yourself first." I know most people loath thinking about budgeting, especially when its advice, but give me ten minutes. I'll make it worth your while.</p>
+
+        <h2>The great British budgeting gap</h2>
+
+        <p>Let's look at the numbers, because feelings are nice but data is better. According to research from TSB, <strong>56% of UK adults don't have a budget in place</strong> — that's more than half the country winging it month to month.<sup>1</sup> NatWest's Savings Index shows the UK in an even worse light: nearly two in five adults (39%) don't budget at all, and just over half (53%) have no specific savings goal.<sup>2</sup></p>
+
+        <p>Meanwhile, the consequences are playing out in real time. A separate study found that <strong>9.3 million UK adults are unaware of how much they spend on essentials</strong> like mortgage payments and groceries. One in five (22%) avoid checking their bank balance entirely due to financial anxiety.<sup>3</sup></p>
+
+        <p>That's not a coincidence. That's the cause and effect. If you don't look, you don't know. When you don't know, you don't act. And when you don't act, nothing changes.</p>
+
+        <blockquote>
+          A quote I love to bring up is <strong>what you're not chaning, you're choosing.</strong>
+        </blockquote>
+
+        <p>Willpower alone is a terrible financial strategy. It's like trying to hold your breath underwater and being surprised when you gasp for air. The environment always wins. What you need is a system: something that does the heavy lifting so you just have to coast your way to financial freedom.</p>
+
+        <h2>The 50/30/20 rule: a budget so simple it's almost insulting</h2>
+
+        <p>The 50/30/20 budget was popularised by US Senator Elizabeth Warren and her daughter Amelia. The idea is as basic as it gets</p>
+
+        <ul>
+          <li><strong>50% of your take-home pay goes to needs</strong> — rent or mortgage, council tax, utilities, groceries, transport, minimum debt payments, insurance. The stuff you genuinely can't skip without consequences.</li>
+          <li><strong>30% goes to wants</strong> — eating out, streaming services, holidays, hobbies, that gym membership you're definitely using this month. The fun stuff. This is your guilt free spend.</li>
+          <li><strong>20% goes to savings and investments</strong> — emergency fund, ISA contributions, pension top-ups, overpaying the mortgage, sinking funds for future goals.</li>
+        </ul>
+
+        <div class="inline-image-placeholder" style="background:none; border:none; padding:0;">
+          <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;border-radius:14px;" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="cardBg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf9f5"/>
+    </linearGradient>
+    <filter id="cardShadow2">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#12110f" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="720" height="300" fill="#faf9f5"/>
+  <rect x="24" y="20" width="672" height="262" rx="14" fill="url(#cardBg2)" filter="url(#cardShadow2)" stroke="#e8e6df" stroke-width="1"/>
+  <text x="44" y="56" font-size="11" font-weight="600" letter-spacing="0.1em" fill="#6b6a65">THE 50/30/20 RULE</text>
+  <text x="44" y="74" font-size="17" font-weight="700" fill="#12110f" letter-spacing="-0.02em">Where does your money go?</text>
+  <text x="44" y="92" font-size="12" fill="#6b6a65">Based on £2,500 take-home pay — the UK median</text>
+  <line x1="44" y1="104" x2="676" y2="104" stroke="#e8e6df" stroke-width="1"/>
+  <rect x="44" y="120" width="632" height="44" rx="8" fill="#f0ede6"/>
+  <rect x="44" y="120" width="316" height="44" rx="8" fill="#12110f"/>
+  <rect x="316" y="120" width="16" height="44" fill="#12110f"/>
+  <rect x="360" y="120" width="189.6" height="44" fill="#6b6a65" opacity="0.65"/>
+  <rect x="360" y="120" width="8" height="44" fill="#6b6a65" opacity="0.65"/>
+  <rect x="549.6" y="120" width="126.4" height="44" rx="8" fill="#b8f000"/>
+  <rect x="549.6" y="120" width="8" height="44" fill="#b8f000"/>
+  <text x="180" y="147" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">50% Needs</text>
+  <text x="454" y="147" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle">30% Wants</text>
+  <text x="612" y="147" font-size="12" font-weight="700" fill="#12110f" text-anchor="middle">20% Savings</text>
+  <rect x="44" y="182" width="198" height="80" rx="10" fill="#12110f" opacity="0.04"/>
+  <text x="56" y="207" font-size="22" font-weight="700" fill="#12110f" letter-spacing="-0.02em">£1,250</text>
+  <text x="56" y="223" font-size="12" font-weight="600" fill="#12110f">Needs</text>
+  <text x="56" y="239" font-size="11" fill="#6b6a65">Rent · Bills · Food · Travel</text>
+  <circle cx="56" cy="250" r="3" fill="#12110f" opacity="0.5"/>
+  <text x="64" y="254" font-size="10" fill="#6b6a65">The non-negotiables</text>
+  <rect x="258" y="182" width="198" height="80" rx="10" fill="#6b6a65" opacity="0.07"/>
+  <text x="270" y="207" font-size="22" font-weight="700" fill="#12110f" letter-spacing="-0.02em">£750</text>
+  <text x="270" y="223" font-size="12" font-weight="600" fill="#12110f">Wants</text>
+  <text x="270" y="239" font-size="11" fill="#6b6a65">Dining · Subs · Fun · Hobbies</text>
+  <circle cx="270" cy="250" r="3" fill="#6b6a65" opacity="0.5"/>
+  <text x="278" y="254" font-size="10" fill="#6b6a65">Yours to enjoy, guilt-free</text>
+  <rect x="472" y="182" width="224" height="80" rx="10" fill="#b8f000" opacity="0.18"/>
+  <text x="484" y="207" font-size="22" font-weight="700" fill="#12110f" letter-spacing="-0.02em">£500</text>
+  <text x="484" y="223" font-size="12" font-weight="600" fill="#12110f">Savings &amp; Investing</text>
+  <text x="484" y="239" font-size="11" fill="#6b6a65">ISA · Pension · Emergency fund</text>
+  <circle cx="484" cy="250" r="3" fill="#b8f000"/>
+  <text x="492" y="254" font-size="10" fill="#6b6a65">Pay yourself first, always</text>
+  <text x="676" y="42" font-size="13" font-weight="700" fill="#12110f" opacity="0.3" letter-spacing="-0.01em" text-anchor="end">Vault<tspan fill="#b8f000">.</tspan></text>
+</svg>
+        </div>
+
+        <p>That's it. No categorising your Pret sandwiches into sub-categories. No tracking every pound to the penny unless you want to. The genius of 50/30/20 isn't tallying everything up, it's providing you the permission to spend 30% on whatever you want without feeling bad about it. Once you've covered your needs and invested into your future self, all that cash is yours to enjoy. </p>
+
+        <p>And here's the thing: <strong>it works in the UK</strong>. Some American financial imports don't translate over the Atlantic, but the 50/30/20 rule slots neatly into British life. Student loan deductions? Already accounted for in your take-home pay. Council tax? That's a need. ISA allowance? That's where your 20% goes. If you live in London or the South East where rent eats more than 50%, you can tweak it to 60/30/10, but the principle holds.</p>
+
+        <h2>The "pay yourself first" mindset shift</h2>
+
+        <p>If you take anything from this article, let it be this: here's where most people get budgeting backwards. They pay their bills, they spend on whatever's left, and then with good intentions, they plan to save whatevers left. Spoiler: there's almost never anything remaining.</p>
+
+        <p>"Paying yourself first" prioritises your future self before anything else. Before the rent, before the bills, before the Deliveroo, the first chunk of your income goes straight into savings and investments. Treat it like a bill to your future self. Your future self is a person you've never met, but when you do, they'll be furious if you didn't share your spread.</p>
+
+        <blockquote>
+          Think of savings as a tax you owe to the person you're going to become.
+        </blockquote>
+
+        <p>The mechanics are dead simple: set up a standing order for payday that moves 20% of your income into an ISA or savings account before you even see it. What your current account never holds, you can't accidentally spend. This is sometimes called "reverse budgeting" because it treats savings as the fixed cost and spending as the variable; the exact opposite of how most people operate.</p>
+
+        <p>Psychologically, this is powerful. You never miss what you never saw. Your spending brain adjusts to the lower balance, and your savings brain gets to watch the number climb without effort. No willpower required. No monthly negotiation with yourself. The system runs on autopilot.</p>
+
+        <h2>But does any of this actually work?</h2>
+
+        <p>I understand the intent to throw this out. The personal finance world is full of people telling you to give up avocado toast as if it the thing that will get you to owning a home. So let me give you something more solid than opinion.</p>
+
+        <p>Research from Tink found that UK consumers who use digital budgeting and financial management tools are, on average, <strong>£445 better off per year</strong> compared to before they started.<sup>4</sup> That's not hypothetical. That's £37.08 extra in your pocket every single month, just from paying attention.</p>
+
+        <p>Another study of 2,000 UK adults found that <strong>86% of people who use tools or apps to monitor their spending feel more in control of their finances</strong>, and budgeting app users cut an average of £240 from their annual spending.<sup>5</sup> That number climbs as you get better at tracking and managing your finances.</p>
+
+        <p>The evidence points in one direction: people who budget are ahead. Not just financially, psychologically too. They worry less. They make decisions faster. They stop being surprised by the end of the month. Control isn't about having more money; it's about knowing where the money is going.</p>
+
+        <p>It's about giving yourself the optionality to make choices that align with your long-term goals.</p>
+
+        <h2>What this looks like in practice</h2>
+
+        <p>Let's ground this in something real. Say you earn £2,500 after tax each month - roughly the UK median full-time take-home. Under a 50/30/20 split:</p>
+
+        <ul>
+          <li><strong>£1,250 for needs</strong> — rent, bills, food, transport</li>
+          <li><strong>£750 for wants</strong> — restaurants, subscriptions, gigs, holidays, whatever floats your boat</li>
+          <li><strong>£500 for savings</strong> — into your ISA, emergency fund, or pension</li>
+        </ul>
+
+        <p>That £500 a month, invested at a modest 5% return, becomes roughly £82,000 in ten years. In twenty? Over £205,000. That's not lottery money, that's the compounding of a simple, boring, consistent habit.</p>
+
+        <p>The beauty is that you don't have to be militant about it. Some months the needs will be 55%. Some months the wants will be 25%. The point isn't perfection, it's <strong>awareness</strong>. Once you see the numbers in front of you, you can't unsee them. And once you can't unsee them, you start making better choices without anyone having to nag you.</p>
+
+        <h2>Stop running blind</h2>
+
+        <p>I built Vault's budget planner because I was tired of the alternatives. Most budgeting apps either want your bank login (hard pass), lock features behind a subscription (£9.99/month to see your own numbers? Come on), or were clearly designed for an American audience with no clue what a council tax band is.</p>
+
+        <p>The budget planner I built lets you pick your framework — 50/30/20, 60/30/10 for high-cost areas, Pay Yourself First, even a FIRE mode if you're chasing financial independence — and shows you exactly where every pound is going. It runs entirely in your browser. No data leaves your device. No account to create. Just your numbers, your plan, your control.</p>
+
+        <p>Your mental budget has been lying to you. That's fine — it lied to me too. But at some point you have to stop winging it and start <em>seeing</em> it. The tool is free. The clarity is priceless.</p>
+
+      </div><!-- /article-body -->
+
+      <!-- ── Tool card ── -->
+      <div class="tool-card">
+        <p class="tool-eyebrow">Free tool</p>
+        <h3>Free UK Budget Planner</h3>
+        <p>Build a budget using the 50/30/20 rule, Pay Yourself First, or any framework that fits your life. Private, no sign-up, works entirely in your browser — your data never leaves your device.</p>
+        <a href="https://thevaultapp.co.uk/tools/budgetplanner/index.html" class="btn btn-primary">Try the budget planner →</a>
+      </div>
+
+      <!-- ── References ── -->
+      <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); line-height:1.7;">
+        <p style="font-weight:600; margin-bottom:12px;">References</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li style="margin-bottom:6px;">TSB via Censuswide. Survey of 2,000 nationally representative UK adults, April 2025. Reported in <em>The Independent</em>, "Nearly one in four people describe finances as uncomfortable," 23 April 2025.</li>
+          <li style="margin-bottom:6px;">NatWest Savings Index. Survey of 10,000 UK adults, 2024. Reported in <em>Birmingham Live</em>, "NatWest warns customers saving less than £265 a month," 16 July 2024.</li>
+          <li style="margin-bottom:6px;">Aldermore Bank, "Over 9 million UK adults blind to their spending," Savings Tracker research, May 2025.</li>
+          <li style="margin-bottom:6px;">Tink, "Brits could be £24.5 billion per year better off by using digital financial management tools," August 2024. Consumer survey showing average £445/year improvement.</li>
+          <li style="margin-bottom:6px;">Smart Energy GB via Censuswide. Survey of 2,000 UK adults, November 2025. Reported in <em>The Mirror</em>, "Brits could save up to £2,000 a year by doing 1 simple thing," 18 November 2025.</li>
+        </ol>
+      </div>
+
+      <!-- ── Back link ── -->
+      <p style="margin-top: 40px; font-size: 15px;">
+        <a href="/learn/" class="btn btn-ghost">← Back to The Reading Room</a>
+      </p>
+
+    </div><!-- /article-wrap -->
+  </div><!-- /wrap -->
+</article>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="/" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="/app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
