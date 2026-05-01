@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1YZLT5X0C3');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UK savers lost £17.6bn to inflation in 2025 alone. Every day you wait to invest, your purchasing power is quietly eroding. Here's why starting early — even with small amounts — is the single biggest advantage you have." />
+  <title>Why Wait to Invest? Every Day You Don't, You're Getting Poorer – Vault</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Why Wait to Invest? Every Day You Don't, You're Getting Poorer",
+      "description": "UK savers lost £17.6bn to inflation in 2025 alone. The real returns on cash are negative, while a simple global index tracker compounds quietly into life-changing wealth. Here's the maths, a story of three friends, and why your youth is your greatest financial weapon.",
+      "datePublished": "2026-05-05",
+      "dateModified": "2026-05-05",
+      "author": {
+        "@type": "Person",
+        "name": "Jonty"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vault",
+        "url": "https://thevaultapp.co.uk"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://thevaultapp.co.uk/article/why-wait-to-invest"
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --section-soft: #faf9f5;
+      --founder-card: #f4f2ed;
+      --text: #12110f;
+      --muted: #6b6a65;
+      --border: #e8e6df;
+      --accent: #b8f000;
+      --accent-ink: #12110f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 1120px;
+      --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+      --article-max: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .article-wrap { max-width: var(--article-max); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .wordmark {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .wordmark .dot { color: var(--accent); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: 32px;
+      margin-right: auto;
+    }
+    .header-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .15s ease;
+      white-space: nowrap;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { color: var(--text); }
+    @media (max-width: 600px) {
+      .header-nav { gap: 18px; margin-left: 18px; }
+      .header-nav a { font-size: 13px; }
+      .header-nav a.hide-on-mobile { display: none; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+    .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+    /* ── Breadcrumb + back link ── */
+    .article-back {
+      padding: 120px 0 0;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .15s; }
+    .breadcrumb a:hover { border-bottom-color: var(--muted); }
+    .breadcrumb .sep { margin: 0 6px; }
+
+    /* ── Article header ── */
+    .article-header {
+      margin-bottom: 40px;
+    }
+    .article-header h1 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+    .article-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Featured image placeholder ── */
+    .article-featured-img {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      height: 280px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ── Article body ── */
+    .article-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .article-body h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 48px 0 16px;
+    }
+    .article-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+    }
+    .article-body p {
+      margin: 0 0 20px;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0 0 20px;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 16px 24px;
+      border-left: 4px solid var(--accent);
+      background: var(--section-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .article-body img {
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+    .inline-image-placeholder {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 32px 0;
+    }
+
+    /* ── Tool card (bottom) ── */
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+    .tool-card .tool-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0;
+    }
+    .tool-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .tool-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .tool-card .btn {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 40px;
+      background: var(--bg);
+      margin-top: 64px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 0 18px;
+    }
+    .footer-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .article-featured-img { height: 200px; }
+      .article-body { font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      .btn-lg { padding: 12px 20px; font-size: 14px; }
+      .site-header .wrap { height: 58px; }
+      .article-back { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Placeholder for the shared navbar -->
+<div id="nav-placeholder"></div>
+
+<!-- Load the shared navbar script -->
+<script src="/common/navbar.js"></script>
+
+<!-- ── Breadcrumb + back ── -->
+<section class="article-back">
+  <div class="wrap">
+    <div class="article-wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/learn/">The Reading Room</a><span class="sep">/</span><span>Why Wait to Invest?</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ARTICLE CONTENT
+     ═══════════════════════════════════════════════════════════════════ -->
+<article>
+  <div class="wrap">
+    <div class="article-wrap">
+
+      <!-- ── Article header ── -->
+      <div class="article-header">
+        <h1>Why Wait to Invest? Every Day You Don't, You're Getting Poorer</h1>
+        <div class="article-meta">
+          <span>By Jonty</span>
+          <span>·</span>
+          <time datetime="2026-05-05">5 May 2026</time>
+        </div>
+      </div>
+
+      <!-- ── Featured image ── -->
+      <div class="article-featured-img" style="background:none; border:none; padding:0; height:auto; display:block; overflow:hidden;">
+        <svg style="width:100%;border-radius:14px;display:block;" viewBox="0 0 760 290" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="darkPanel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#12110f"/>
+      <stop offset="100%" stop-color="#1e1c19"/>
+    </linearGradient>
+    <linearGradient id="lightPanel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#faf9f5"/>
+      <stop offset="100%" stop-color="#f0ede6"/>
+    </linearGradient>
+    <linearGradient id="limeGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8f000" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#b8f000" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="redGlow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff4444" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ff4444" stop-opacity="0.12"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#ffffff"/>
+    </pattern>
+  </defs>
+
+  <!-- Full dark background -->
+  <rect width="760" height="290" fill="url(#darkPanel)"/>
+  <!-- Dot grid texture -->
+  <rect width="760" height="290" fill="url(#dots)" opacity="0.07"/>
+
+  <!-- Light panel on right -->
+  <rect x="420" y="0" width="340" height="290" fill="url(#lightPanel)"/>
+  <line x1="420" y1="0" x2="420" y2="290" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- ══════════════════════════════
+       LEFT DARK PANEL
+       ══════════════════════════════ -->
+
+  <!-- Eyebrow -->
+  <text x="40" y="46" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.14em">UK SAVERS · 2025</text>
+
+  <!-- Hero stat -->
+  <text x="40" y="100" font-size="56" font-weight="700" fill="#ffffff" letter-spacing="-0.03em">£17.6bn</text>
+  <text x="40" y="122" font-size="13" fill="#9b9a94">lost to inflation while people slept</text>
+
+  <!-- Source for left stat -->
+  <text x="40" y="140" font-size="9" fill="#4a4843">Source: Fidelity International, January 2026</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="158" x2="400" y2="158" stroke="#2e2c28" stroke-width="1"/>
+
+  <!-- Two sub-stats -->
+  <!-- Avg savings rate -->
+  <text x="40" y="180" font-size="10" fill="#6b6a65">Avg. savings rate</text>
+  <text x="40" y="202" font-size="26" font-weight="700" fill="#ff6b6b" letter-spacing="-0.02em">1.94%</text>
+  <text x="40" y="216" font-size="9" fill="#4a4843">Bank of England, Dec 2025</text>
+
+  <!-- CPI inflation -->
+  <text x="180" y="180" font-size="10" fill="#6b6a65">CPI inflation</text>
+  <text x="180" y="202" font-size="26" font-weight="700" fill="#ff6b6b" letter-spacing="-0.02em">3.4%</text>
+  <text x="180" y="216" font-size="9" fill="#4a4843">ONS, December 2025</text>
+
+  <!-- Barclays 20yr real cash return -->
+  <line x1="40" y1="232" x2="400" y2="232" stroke="#2e2c28" stroke-width="1"/>
+  <text x="40" y="250" font-size="10" fill="#6b6a65">20-year real return on cash</text>
+  <text x="40" y="266" font-size="16" font-weight="700" fill="#ff6b6b">−1.8% per year</text>
+  <text x="40" y="280" font-size="9" fill="#4a4843">Source: Barclays Equity Gilt Study, 2024</text>
+
+  <!-- ══════════════════════════════
+       RIGHT LIGHT PANEL
+       Chart area: y=44 (top of stocks line) to y=234 (bottom of cash line)
+       Zero line: y=148
+       X-axis labels: y=252
+       Source: y=268
+       All within 290px height
+       ══════════════════════════════ -->
+
+  <!-- Section label -->
+  <text x="440" y="30" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.12em">20-YEAR REAL RETURNS</text>
+
+  <!-- Y-axis labels -->
+  <text x="440" y="52" font-size="9" fill="#12110f" font-weight="600">+3.1% p/a</text>
+  <text x="440" y="153" font-size="9" fill="#6b6a65">0%</text>
+  <text x="440" y="238" font-size="9" fill="#ff6b6b" font-weight="600">−1.8% p/a</text>
+
+  <!-- Zero line: y=148 -->
+  <line x1="470" y1="148" x2="738" y2="148" stroke="#d8d6cf" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!--
+    Chart x range: 470 to 738 (268px wide)
+    Chart y range: 44 (top) to 234 (bottom of cash)
+    Zero at y=148.
+    Stocks end: +3.1% → y=44. Stocks label at y=44.
+    Cash end: -1.8% → y=234. Cash label at y=234.
+  -->
+
+  <!-- Equities area fill -->
+  <path d="M470 148 C510 138 550 118 590 96 C630 74 680 58 738 44 L738 148 Z" fill="url(#limeGlow)"/>
+  <!-- Equities line -->
+  <path d="M470 148 C510 138 550 118 590 96 C630 74 680 58 738 44" fill="none" stroke="#b8f000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- End dot -->
+  <circle cx="738" cy="44" r="4" fill="#b8f000"/>
+  <!-- Stocks label (top-right, well within bounds) -->
+  <text x="734" y="38" font-size="10" font-weight="700" fill="#12110f" text-anchor="end">Stocks</text>
+
+  <!-- Cash area fill -->
+  <path d="M470 148 C510 158 550 172 590 188 C630 205 680 222 738 234 L738 148 Z" fill="url(#redGlow)"/>
+  <!-- Cash line -->
+  <path d="M470 148 C510 158 550 172 590 188 C630 205 680 222 738 234" fill="none" stroke="#ff6b6b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 3"/>
+  <!-- End dot -->
+  <circle cx="738" cy="234" r="4" fill="#ff6b6b"/>
+  <!-- Cash label -->
+  <text x="734" y="244" font-size="10" font-weight="700" fill="#12110f" text-anchor="end">Cash</text>
+
+  <!-- Start dot -->
+  <circle cx="470" cy="148" r="3" fill="#9b9a94" opacity="0.5"/>
+
+  <!-- X axis baseline -->
+  <line x1="470" y1="250" x2="738" y2="250" stroke="#e8e6df" stroke-width="0.5"/>
+
+  <!-- X axis labels — y=262, well clear of cash label at y=244 -->
+  <text x="470" y="262" font-size="9" fill="#9b9a94" text-anchor="middle">Year 0</text>
+  <text x="604" y="262" font-size="9" fill="#9b9a94" text-anchor="middle">Year 10</text>
+  <text x="738" y="262" font-size="9" fill="#9b9a94" text-anchor="middle">Year 20</text>
+
+  <!-- Source — y=278, clear of everything -->
+  <text x="440" y="278" font-size="8" fill="#9b9a94">Source: Barclays Equity Gilt Study, 2024</text>
+
+</svg>
+      </div>
+
+      <!-- ── Article body ── -->
+      <div class="article-body">
+
+        <p>There's a slow puncture happening to your money, and most people are sleeping through it. Literally. In 2025, UK savers lost almost <strong>£7 billion in purchasing power while they were asleep</strong> — roughly £122 per adult evaporating into the night, while their cash sat in accounts paying less than inflation.<sup>1</sup> No alarm went off. No notification pinged. But the money was worth less when they woke up than when they closed their eyes.</p>
+
+        <p>That's not a one-off. It's not a bad year. It's the default setting of the modern economy: your cash is <em>designed</em> to lose value over time. The only question is whether you're going to do something about it or keep hitting snooze.</p>
+
+        <p>I'm going to make the case that waiting to invest is the most expensive mistake you can make — more expensive than picking the wrong fund, more expensive than a market dip, more expensive than almost anything else you could get wrong. And I'm going to show you why, with a story about three friends who made very different choices.</p>
+
+        <h2>The slow, silent theft happening to your savings</h2>
+
+        <p>Let's get the numbers out first, because feelings are nice but data changes behaviour. UK inflation hit <strong>3.4% in December 2025</strong>, well above the Bank of England's 2% target.<sup>2</sup> Meanwhile, the average interest rate on easy-access savings accounts sat at a pathetic <strong>1.94%</strong>.<sup>3</sup> If you can do basic maths, you already see the problem: your savings were losing about 1.5% of their real value every single year, just sitting there "safely" in the bank.</p>
+
+        <p>Over the full year, Fidelity International crunched the numbers and found that UK households collectively lost <strong>£17.6 billion</strong> in real purchasing power once inflation was accounted for.<sup>4</sup> Not lost as in "the stock market dipped." Lost as in <em>gone</em>. Permanently. The money was still in the account, but what it could buy had shrunk.</p>
+
+        <blockquote>
+          Saving isn't safe anymore. Saving is a guaranteed slow loss, dressed up in the language of prudence.
+        </blockquote>
+
+        <p>And this isn't a short-term blip. Over a 20-year horizon, the Barclays Equity Gilt Study found that <strong>UK cash lost an average of -1.8% per year in real, inflation-adjusted terms</strong>. Equities, by contrast, returned <strong>+3.1% per year after inflation</strong> over the same period.<sup>5</sup> That gap — nearly five percentage points, compounded over decades — is the difference between comfortably affording your life and quietly falling behind.</p>
+
+        <h2>Cash has never been a worse bet</h2>
+
+        <p>I want to pause on this because it's the single most important financial concept most Brits never learn: <strong>the risk of holding cash is not zero</strong>. It feels safe. It feels responsible. But the data says that over every 20-year period stretching back to 1988, UK stocks have consistently beaten inflation, while cash has failed to do so in a quarter of cases.<sup>6</sup></p>
+
+        <p>Fidelity's analysis looked at every rolling 10-year period since the late 1980s. UK equities beat inflation <strong>95% of the time</strong>. Cash managed it just <strong>58% of the time</strong>.<sup>7</sup> That means if you held cash for a decade, there was nearly a coin-flip chance you ended up poorer in real terms. If you held stocks for a decade, your odds of staying ahead were almost certain.</p>
+
+        <div class="inline-image-placeholder" style="background:none; border:none; padding:0;">
+          <svg style="width:100%;display:block;border-radius:14px;" viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="cardBg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf9f5"/>
+    </linearGradient>
+    <filter id="s3">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#12110f" flood-opacity="0.06"/>
+    </filter>
+    <!-- Radial arc clip -->
+    <clipPath id="leftHalf">
+      <rect x="0" y="0" width="360" height="260"/>
+    </clipPath>
+    <clipPath id="rightHalf">
+      <rect x="360" y="0" width="360" height="260"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="260" fill="#faf9f5"/>
+
+  <!-- Card -->
+  <rect x="20" y="16" width="680" height="230" rx="14" fill="url(#cardBg3)" filter="url(#s3)" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- Eyebrow -->
+  <text x="40" y="46" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.12em">BEATING INFLATION OVER 10 YEARS</text>
+
+  <!-- ── Left panel: STOCKS 95% ── -->
+  <!-- Giant percentage number -->
+  <text x="40" y="138" font-size="86" font-weight="700" fill="#12110f" letter-spacing="-0.04em" opacity="0.92">95%</text>
+
+  <!-- Arc background (progress ring feel) — full circle track -->
+  <circle cx="310" cy="118" r="52" fill="none" stroke="#f0ede6" stroke-width="8"/>
+  <!-- Arc fill: 95% of circumference = 2πr * 0.95 ≈ 310 -->
+  <!-- circumference = 2 * pi * 52 = 326.7 -->
+  <!-- 95% = 310.4, gap = 16.3 -->
+  <circle cx="310" cy="118" r="52" fill="none" stroke="#b8f000" stroke-width="8"
+    stroke-dasharray="310.4 16.3"
+    stroke-dashoffset="81.7"
+    stroke-linecap="round"
+    transform="rotate(-90 310 118)"/>
+  <!-- Inner label -->
+  <text x="310" y="112" font-size="18" font-weight="700" fill="#12110f" text-anchor="middle">95%</text>
+  <text x="310" y="128" font-size="9" fill="#6b6a65" text-anchor="middle">of the time</text>
+
+  <!-- Label block -->
+  <text x="40" y="162" font-size="14" font-weight="600" fill="#12110f" letter-spacing="-0.01em">UK Stocks</text>
+  <text x="40" y="178" font-size="12" fill="#6b6a65">beat inflation over a 10-year period</text>
+
+  <!-- Pill badge -->
+  <rect x="40" y="190" width="110" height="24" rx="12" fill="#b8f000"/>
+  <text x="95" y="206" font-size="11" font-weight="700" fill="#12110f" text-anchor="middle">Near-certain</text>
+
+  <!-- Divider -->
+  <line x1="360" y1="36" x2="360" y2="232" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- ── Right panel: CASH 58% ── -->
+  <!-- Giant percentage number -->
+  <text x="380" y="138" font-size="86" font-weight="700" fill="#12110f" letter-spacing="-0.04em" opacity="0.15">58%</text>
+
+  <!-- Arc background -->
+  <circle cx="650" cy="118" r="52" fill="none" stroke="#f0ede6" stroke-width="8"/>
+  <!-- 58% of 326.7 = 189.5, gap = 137.2 -->
+  <circle cx="650" cy="118" r="52" fill="none" stroke="#ff6b6b" stroke-width="8"
+    stroke-dasharray="189.5 137.2"
+    stroke-dashoffset="81.7"
+    stroke-linecap="round"
+    transform="rotate(-90 650 118)"/>
+  <!-- Inner label -->
+  <text x="650" y="112" font-size="18" font-weight="700" fill="#12110f" text-anchor="middle">58%</text>
+  <text x="650" y="128" font-size="9" fill="#6b6a65" text-anchor="middle">of the time</text>
+
+  <!-- Label block -->
+  <text x="380" y="162" font-size="14" font-weight="600" fill="#12110f" letter-spacing="-0.01em">Cash Savings</text>
+  <text x="380" y="178" font-size="12" fill="#6b6a65">beat inflation over a 10-year period</text>
+
+  <!-- Pill badge -->
+  <rect x="380" y="190" width="96" height="24" rx="12" fill="#fff0f0" stroke="#ffd5d5" stroke-width="1"/>
+  <text x="428" y="206" font-size="11" font-weight="700" fill="#cc4444" text-anchor="middle">Coin-flip odds</text>
+
+  <!-- Source note bottom -->
+  <text x="40" y="238" font-size="9" fill="#9b9a94">Source: Fidelity International analysis of rolling 10-year periods since late 1980s</text>
+
+  <!-- Vault watermark -->
+  <text x="680" y="238" font-size="11" font-weight="700" fill="#12110f" opacity="0.25" text-anchor="end" letter-spacing="-0.01em">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+</svg>
+        </div>
+
+        <p>If you want a visceral example, IG ran the numbers on Cash ISAs versus the FTSE 100 going all the way back to 1999. Someone who maxed out their cash ISA allowance every year since ISAs launched would have seen <strong>just £23,199 in real wealth creation</strong> after inflation. Someone who put the same money into a FTSE 100 tracker? <strong>£157,591 in real, inflation-adjusted wealth</strong>.<sup>8</sup> Same contributions. Same timeframe. A <strong>£134,392 difference</strong>. That's not a small gap — that's the cost of playing it "safe."</p>
+
+        <h2>A tale of three friends: Maya, Dan, and Sam</h2>
+
+        <p>This is where the abstract becomes real. Meet three people who all turned 21 in the same year. Each of them had £100 spare at the end of every month — not a huge sum, about the cost of a couple of takeaway dinners and a streaming subscription. Here's what they did with it.</p>
+
+        <p><strong>Maya got curious.</strong> She'd read somewhere that the stock market had historically returned about 7% a year over the long run, and she had time on her side. So at 21, she set up a standing order: £100 a month into a broad global index tracker. She didn't overthink it. She didn't check the FTSE every morning. She just let it run. After ten years, at age 31, she stopped contributing entirely — life got expensive, she had other priorities — but she left everything invested. She never touched it again.</p>
+
+        <p><strong>Dan got cautious.</strong> He also saved £100 a month, but he kept it in cash. He was waiting for the "right moment" to invest — that mythical point when markets are cheap, the news is calm, and everything feels safe. Occasionally he'd get close to pulling the trigger, but then the headlines would turn negative and he'd talk himself out of it. His money sat in a savings account earning whatever the bank felt like paying. He was convinced he was being prudent.</p>
+
+        <p><strong>Sam got distracted.</strong> His twenties were a blur of rent, rounds, and recurring payments. Investing felt like something for later — people in suits, people with money, people who weren't him. At 31, something clicked. He decided to start investing £100 a month, exactly like Maya had done a decade earlier, and he kept at it for the next twenty years.</p>
+
+        <p>Now fast-forward to their 51st birthdays. Let's see where they stand.</p>
+
+        <h3>Maya (the early starter)</h3>
+
+        <p>Total contributed: <strong>£12,000</strong> (£100/month for 10 years).<br>
+        That money sat invested for 30 years in total — 10 years of contributions, then 20 years of pure compounding. At a 7% annual return, her pot grew to approximately <strong>£68,600</strong>.<sup>9</sup></p>
+
+        <p>Maya contributed <em>less</em> than anyone else. She stopped contributing at 31. But time did the heavy lifting for her. That's what compounding does: it takes modest, consistent inputs and turns them into something that looks almost unfair.</p>
+
+        <h3>Sam (the late starter)</h3>
+
+        <p>Total contributed: <strong>£24,000</strong> (£100/month for 20 years, starting at 31).<br>
+        Sam put in <em>twice as much</em> as Maya — double the contributions, double the discipline. At the same 7% annual return, his pot reached approximately <strong>£52,600</strong>.</p>
+
+        <p>Let that sink in. Sam contributed <strong>£12,000 more</strong> than Maya but ended up with <strong>£16,000 less</strong>. He worked twice as hard for a smaller result. The only difference was the decade Maya had at the start — money she invested when she was 21 that Sam's money never got to catch up to.</p>
+
+        <h3>Dan (the timer)</h3>
+
+        <p>Total saved: <strong>£36,000</strong> in cash over thirty years.<br>
+        Dan never really got in. He kept waiting for the perfect moment, and the perfect moment never arrived. His cash earned roughly 2% in interest — but inflation eroded almost all of it. After 30 years, the real purchasing power of his savings had barely moved. Meanwhile, research from Schroders found that trying to time the market and <strong>missing just the 30 best days over a multi-decade period slashed annual returns from 11.4% to 7.0%</strong> — and that's if you were lucky enough to only miss 30 days.<sup>10</sup> The Association of Investment Companies found that missing the <strong>20 best days over 20 years cut your final investment value by 43%</strong>.<sup>11</sup></p>
+
+        <p>Dan didn't lose his money in a crash. He lost it to inertia, disguised as caution. The so-called "safe" choice turned out to be the riskiest one of all.</p>
+
+        <blockquote>
+          The best day to start investing was ten years ago. The second-best day is today. Every day you wait, the maths gets a little bit worse.
+        </blockquote>
+
+        <div class="inline-image-placeholder" style="background:none; border:none; padding:0;">
+          <svg style="width:100%;display:block;border-radius:14px;" viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="cardshadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#12110f" flood-opacity="0.07"/>
+    </filter>
+    <linearGradient id="mayaGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b8f000"/>
+      <stop offset="100%" stop-color="#d0ff33"/>
+    </linearGradient>
+    <linearGradient id="samGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8e6df"/>
+      <stop offset="100%" stop-color="#f0ede6"/>
+    </linearGradient>
+    <linearGradient id="danGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff0f0"/>
+      <stop offset="100%" stop-color="#fde8e8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="320" fill="#faf9f5"/>
+
+  <!-- ── HEADER ── -->
+  <text x="36" y="34" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.12em">£100/MONTH · 7% ANNUAL RETURN · OUTCOME AT AGE 51</text>
+  <line x1="36" y1="46" x2="684" y2="46" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- Column headers -->
+  <text x="54" y="66" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.08em">PERSON</text>
+  <text x="500" y="66" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.08em" text-anchor="end">CONTRIBUTED</text>
+  <text x="684" y="66" font-size="10" font-weight="600" fill="#6b6a65" letter-spacing="0.08em" text-anchor="end">FINAL VALUE</text>
+
+  <!-- ═══ ROW 1: MAYA ═══ y=76, h=66 -->
+  <rect x="36" y="76" width="648" height="66" rx="12" fill="url(#mayaGrad)" filter="url(#cardshadow)"/>
+  <rect x="36" y="76" width="6" height="66" rx="3" fill="#88bb00"/>
+
+  <text x="54" y="104" font-size="18" font-weight="700" fill="#12110f">Maya</text>
+  <text x="54" y="122" font-size="12" fill="#3a3a30">Started at 21 · stopped at 31</text>
+
+  <text x="500" y="115" font-size="20" font-weight="700" fill="#12110f" text-anchor="end">£12,000</text>
+
+  <text x="684" y="107" font-size="26" font-weight="700" fill="#12110f" text-anchor="end" letter-spacing="-0.02em">£68,600</text>
+  <text x="684" y="124" font-size="11" fill="#3a3a30" text-anchor="end">+£56,600</text>
+
+  <!-- ═══ ANNOTATION ═══ -->
+  <text x="360" y="158" font-size="11" fill="#9b9a94" text-anchor="middle" font-style="italic">Sam put in £12,000 more — and got £16,000 less</text>
+
+  <!-- ═══ ROW 2: SAM ═══ y=168, h=66 -->
+  <rect x="36" y="168" width="648" height="66" rx="12" fill="url(#samGrad)" filter="url(#cardshadow)"/>
+  <rect x="36" y="168" width="6" height="66" rx="3" fill="#9b9a94"/>
+
+  <text x="54" y="196" font-size="18" font-weight="700" fill="#12110f">Sam</text>
+  <text x="54" y="214" font-size="12" fill="#6b6a65">Started at 31 · contributed for 20 years</text>
+
+  <text x="500" y="207" font-size="20" font-weight="700" fill="#12110f" text-anchor="end">£24,000</text>
+
+  <text x="684" y="199" font-size="26" font-weight="700" fill="#12110f" text-anchor="end" letter-spacing="-0.02em">£52,600</text>
+  <text x="684" y="216" font-size="11" fill="#6b6a65" text-anchor="end">+£28,600</text>
+
+  <!-- ═══ ANNOTATION ═══ -->
+  <text x="360" y="250" font-size="11" fill="#9b9a94" text-anchor="middle" font-style="italic">Dan saved the same as Maya — but never invested</text>
+
+  <!-- ═══ ROW 3: DAN ═══ y=260, h=44 -->
+  <rect x="36" y="260" width="648" height="44" rx="12" fill="url(#danGrad)" filter="url(#cardshadow)" stroke="#ffd5d5" stroke-width="1"/>
+  <rect x="36" y="260" width="6" height="44" rx="3" fill="#ff9999"/>
+
+  <text x="54" y="287" font-size="18" font-weight="700" fill="#cc4444">Dan</text>
+
+  <text x="500" y="287" font-size="20" font-weight="700" fill="#cc4444" text-anchor="end">£36,000</text>
+
+  <text x="684" y="281" font-size="18" font-weight="700" fill="#cc4444" text-anchor="end">Flat</text>
+  <text x="684" y="297" font-size="11" fill="#cc4444" text-anchor="end">inflation eroded all gains</text>
+
+  <!-- ── FOOTER ── -->
+  <text x="36" y="314" font-size="9" fill="#9b9a94">Illustrative. 7% nominal return. Past performance is not a guide to future returns.</text>
+  <text x="684" y="314" font-size="11" font-weight="700" fill="#12110f" opacity="0.22" text-anchor="end">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+</svg>
+        </div>
+
+        <p>This isn't a hypothetical. Research from JP Morgan Personal Investing found that someone who invested early in the tax year into a global tracker was nearly <strong>£17,000 better off after ten years</strong> than someone who waited until the last day.<sup>12</sup> The pattern holds across every study, every market, every timeframe: <strong>time in the market beats timing the market</strong>. Always.</p>
+
+        <h2>If you're young, you're holding a weapon you don't realise you have</h2>
+
+        <p>There's a quiet revolution happening among young UK investors, and it's one of the most encouraging things I've seen in personal finance. According to Moneybox, <strong>54% of 25-34 year olds chose to invest in the last year</strong> — a 13% increase since 2023.<sup>13</sup> Among 18-25 year olds, 52% now invest. The appetite for long-term wealth building among younger generations has climbed from 18% in 2023 to 38% in 2025 among 25-34 year olds.<sup>14</sup></p>
+
+        <p>This matters because youth is not just an advantage in investing — it is <em>the</em> advantage. Every year you're invested is a year your money is working while you're sleeping (and actually gaining value rather than losing it, unlike the £122-per-adult inflation tax mentioned earlier). You don't need a high salary. You don't need to pick the next Nvidia. You just need time, consistency, and a broad, cheap index fund.</p>
+
+        <p>A global tracker — something tracking the MSCI World or FTSE All-World — gives you a slice of the world's largest companies for near-zero effort. The Fidelity MSCI World Index fund returned over 18% in sterling terms in 2025 alone.<sup>15</sup> Not every year will look like that. But over decades, the average is what matters, and the average has been remarkably consistent.</p>
+
+        <p>If you're 21 today and you put £100 a month into a global tracker at 7%, by 61 you're looking at roughly <strong>£262,000</strong> — from a total contribution of just £48,000. If you wait until 31 to start, that same £100/month at 7% gives you about <strong>£122,000</strong> by 61. Same monthly effort. Same total contributions from that point forward. <strong>The only thing that changed was when you started. And it cost you £140,000.</strong></p>
+
+        <h2>What to actually do about it</h2>
+
+        <p>I'm not going to tell you to give up your daily coffee or cancel your Netflix. That's noise. Here's what actually matters:</p>
+
+        <ul>
+          <li><strong>Open a Stocks & Shares ISA.</strong> You can contribute up to £20,000 per year, and everything inside grows tax-free. No capital gains tax. No dividend tax. No brainer. If you don't have one, open one this week.</li>
+          <li><strong>Pick a broad global index tracker.</strong> Something like the iShares MSCI World ETF or the L&G Global 100 Index Trust. Low fees (under 0.2%), massive diversification, no need to pick winners. You're betting on human ingenuity and global capitalism, not one company's quarterly earnings.</li>
+          <li><strong>Automate it.</strong> Set up a direct debit for the day after payday. £50, £100, £200 — whatever you can afford. The amount matters less than the consistency. Treat it like a bill to your future self, same as the 50/30/20 approach I've written about before.</li>
+          <li><strong>Ignore it.</strong> Check once a year if you must. The people who underperform are the ones who check daily, panic on red days, and try to get clever. Don't be Dan.</li>
+        </ul>
+
+        <p>Fidelity estimated that if just a quarter of UK household cash savings — around £470 billion — had been invested instead of left in cash, savers could have gained <strong>£44 billion in real, post-inflation wealth</strong> in 2025 alone.<sup>16</sup> Don't let your money be on the wrong side of that equation.</p>
+
+        <h2>Stop waiting for the sign</h2>
+
+        <p>I get why people wait. Markets feel volatile. The news is always scary. There's never a moment where everything looks calm and obvious. But waiting for the perfect entry point has been a losing strategy for over a century of market history, and it's not going to suddenly start working now.</p>
+
+        <p>Your cash is melting. Not dramatically — no smoke, no sirens — but steadily, year after year, while you wait for the "right time." The right time was yesterday. The next-best time is today.</p>
+
+        <p>I built Vault to help people see their finances clearly, and that includes a set of free investment projection tools that run entirely in your browser. No sign-up. No data collection. Just the numbers, so you can see for yourself what starting now versus starting later actually means in pounds and pence.</p>
+
+      </div><!-- /article-body -->
+
+      <!-- ── Tool card ── -->
+      <div class="tool-card">
+        <p class="tool-eyebrow">Free tools</p>
+        <h3>Investment Returns Calculator & FIRE Planner</h3>
+        <p>See what your money could grow to with Vault's free investment returns calculator — model compound growth, experiment with monthly contributions, and stop guessing. Also try the FIRE calculator to map your path to financial independence. Private, no sign-up, works entirely in your browser.</p>
+        <a href="/tools/" class="btn btn-primary">Explore the free tools →</a>
+      </div>
+
+      <!-- ── References ── -->
+      <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); line-height:1.7;">
+        <p style="font-weight:600; margin-bottom:12px;">References</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li style="margin-bottom:6px;">Fidelity International, "UK savers lost almost £7bn to inflation while they slept in 2025," January 2026. Analysis based on ONS inflation data at 3.4% and Bank of England savings rate data (average easy-access rate 1.94%). Equivalent to approximately £122 per UK adult.</li>
+          <li style="margin-bottom:6px;">Office for National Statistics (ONS), Consumer Price Inflation, December 2025. Annual CPI rose to 3.4% from 3.2% in November 2025.</li>
+          <li style="margin-bottom:6px;">Bank of England, effective interest rates on outstanding household deposits, December 2025. Average easy-access savings rate: 1.94%.</li>
+          <li style="margin-bottom:6px;">Fidelity International, "Savers lose £17.6bn to inflation — how to beat price rises," 30 January 2026. Assuming 70% of household savings in easy-access accounts and 30% in fixed-rate products.</li>
+          <li style="margin-bottom:6px;">Barclays Equity Gilt Study, 2024 edition. UK equities returned +3.1% per year in real (inflation-adjusted) terms over 20 years; cash returned -1.8% per year in real terms.</li>
+          <li style="margin-bottom:6px;">Fidelity International analysis (via IFA Magazine), "FTSE beats inflation in every 20-year period since 1988," October 2025. Comparing FTSE All Share returns and UK cash savings rates against inflation, 15 January 1988 to 15 August 2025.</li>
+          <li style="margin-bottom:6px;">Ibid. Rolling 10-year periods: UK stocks beat inflation 95% of the time vs 58% for cash.</li>
+          <li style="margin-bottom:6px;">IG Group, "Cash ISA savers have lost out on over £134k in real returns versus investors since 1999," July 2025. Analysis based on maxing out annual ISA allowance each year since 1999, adjusted for inflation.</li>
+          <li style="margin-bottom:6px;">Author calculations. Assumes 7% annual nominal return (roughly in line with long-run global equity averages, consistent with Barclays Equity Gilt Study data showing UK equities at approximately 5-6% nominal real + inflation). Past performance is not a guide to future returns.</li>
+          <li style="margin-bottom:6px;">Schroders, "The £33k cost of trying to time the market," 2021. FTSE 250 analysis: £1,000 invested in 1986, left untouched for 35 years, grew to £43,595. Missing the 30 best days reduced the outcome to £10,627 — a £32,968 difference. Annualised returns: 11.4% (fully invested) vs 7.0% (missing 30 best days).</li>
+          <li style="margin-bottom:6px;">Association of Investment Companies (AIC), "Why it pays to stay invested," May 2024. £10,000 invested in average investment trust for 20 years: £50,633 fully invested vs £28,816 missing the 20 best days — a 43% reduction.</li>
+          <li style="margin-bottom:6px;">This is Money / JP Morgan Personal Investing, "The simple trick that could turbocharge your savings by £17,000," March 2026. Early investor (first day of tax year) had £174,453 vs late investor (last day) at £157,715 over ten years — a £16,738 difference — investing the average UK annual ISA contribution of £7,594 into the MSCI All-Country World Index.</li>
+          <li style="margin-bottom:6px;">Moneybox, "Confidence in investing climbs as younger join in," March 2025. Survey of UK adults: 54% of 25-34 year olds invested in the last year, a 13% increase since 2023.</li>
+          <li style="margin-bottom:6px;">Ibid. Appetite for investing among 25-34 year olds: 18% (2023), 22% (2024), 38% (2025).</li>
+          <li style="margin-bottom:6px;">AJ Bell / Morningstar, Fidelity MSCI World Index GBP P Acc H, annual returns to 31/12/2025: 18.72% in sterling terms for calendar year 2025.</li>
+          <li style="margin-bottom:6px;">Fidelity International, "UK savers lost almost £7bn to inflation while they slept in 2025," January 2026. Estimate: if 25% of UK household cash savings (~£470bn) had been invested, real value could have increased by approximately £44bn after inflation, based on MSCI World Index total return of ~13% in sterling for 2025.</li>
+        </ol>
+      </div>
+
+      <!-- ── Back link ── -->
+      <p style="margin-top: 40px; font-size: 15px;">
+        <a href="/learn/" class="btn btn-ghost">← Back to The Reading Room</a>
+      </p>
+
+    </div><!-- /article-wrap -->
+  </div><!-- /wrap -->
+</article>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="/" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="/app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation. Past performance is not a guide to future returns. The value of investments can go down as well as up.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
