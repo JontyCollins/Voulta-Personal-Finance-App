@@ -505,6 +505,62 @@
     border: 1px solid var(--border) !important;
   }
 
+  /* ── FAQ accordion (matches the pattern used on tool pages) ── */
+  .faq-section .section-title,
+  .faq-section .section-body {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .faq-section .section-title { text-align: center; }
+  .faq-section .section-body { text-align: center; }
+  .faq-list {
+    display: flex; flex-direction: column; gap: 10px;
+    margin: 32px auto 0;
+    max-width: 760px;
+  }
+  details.faq {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+  }
+  details.faq[open] { box-shadow: var(--shadow-soft); }
+  details.faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 22px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { content: '−'; }
+  details.faq .faq-body {
+    padding: 0 22px 20px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  details.faq .faq-body p { margin: 0 0 10px; }
+  details.faq .faq-body p:last-child { margin-bottom: 0; }
+  details.faq .faq-body a {
+    color: var(--text);
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 1px;
+  }
+
   /* ── Footer ── */
   footer {
     border-top: 1px solid var(--border);
@@ -575,10 +631,102 @@
     .site-header .wrap { height: 58px; }
   }
 </style>
+
+<!-- ════════════════════════════════════════════════════════════════
+     FAQ SCHEMA — JSON-LD for rich-result eligibility on Google.
+     Mirror any edits to the FAQ section below this block.
+     ════════════════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vault is a private personal finance tool built for the UK. It runs entirely in your browser and tracks your net worth, spending, financial planning, and tax in one calm, focused interface — without ever asking you to connect a bank account, sign up, or hand over any data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does data privacy work in Vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Everything you enter into Vault is stored in your browser's local storage on your own device. Nothing is sent to a server. There's no account, no cloud sync you didn't ask for, no analytics on your spending, and no third-party trackers. If you close the tab, your data stays on your machine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get updates and new features?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vault is delivered as a single web page — open it in your browser and you're always on the latest version. New features ship as silent updates; the next time you visit, the new version is already live. Your local data carries through versions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Vault's mission?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Real financial education and clarity should not sit behind a paywall, and your financial data should not be the price of admission to using a tool. The mission is to give people a calm, clear, fully private way to understand their own money — without bank logins, without subscriptions, and without selling anyone's data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is Vault free? Will it always be free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vault is free today and will be free tomorrow. Personal finance tools are commodity software — the value is in being able to use them privately and on your terms. If anything ever changes about pricing, the version of Vault you have on your machine will keep working. There are no subscriptions, no expiring access, no upsells."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What special features does Vault have that other apps don't?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multi-currency support for cross-border situations (UK expats, dual-residents, freelancers paid in USD, anyone holding non-GBP assets). UK-first design — ISA & pension headroom, UK tax bands including Scottish rates, Plan 1/2/4/5 student loans, UK-specific mortgage modelling, stamp duty. Property and equity tracking. Financial Storyteller for modelling real decisions. Crypto, investments, and pensions tracked alongside everything else, with the same privacy guarantees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the plan for Vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The roadmap is shaped by what real users find missing or unclear. Recent and upcoming work includes deeper retirement planning, more UK tax scenarios, a richer guided tour, and ongoing accuracy improvements. The core promise — local-first, privacy-first, free — won't change. New features are added when they help people understand their money better, not when they generate revenue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I help spread Vault?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send it to one person who'd benefit — there's a built-in share card on the home page with a one-click copy link. Subscribe to Reasonable Money and forward issues you find useful. Mention Vault to colleagues or in money-focused communities, particularly to people who care about privacy or live in UK situations that off-the-shelf apps don't handle well. Send feedback through the form on the landing page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Vault work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once the page has loaded, most features work offline because the app runs in your browser. Live price updates (crypto, investments, FX rates) require an internet connection, but net worth tracking, spending, planning, and tax all work without one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Vault the right tool for me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vault works best for people who want a clear picture of their finances without bank logins, sign-up flows, or subscriptions. UK-based users get the most out of it because of the UK-first tax and account modelling — but it works for non-UK users too. If you want automated transaction categorisation pulled from your bank, Vault isn't that — by design. Vault is a manual-input tool that gives you total control and total privacy in exchange for a few minutes of setup."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <!-- Placeholder for the shared navbar -->
 <div id="nav-placeholder"></div>
 
@@ -852,6 +1000,105 @@
           </div>
         </form>
       </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 8: FAQ ── -->
+<section class="fade-in faq-section">
+  <div class="wrap">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Questions you might have.</h2>
+    <p class="section-body">Everything you need to know about Vault — what it is, how it handles your data, what's coming next, and how to help spread the word.</p>
+
+    <div class="faq-list">
+
+      <details class="faq">
+        <summary>What is Vault?</summary>
+        <div class="faq-body">
+          <p>Vault is a private personal finance tool built for the UK. It runs entirely in your browser and tracks your <strong>net worth, spending, financial planning, and tax</strong> in one calm, focused interface — without ever asking you to connect a bank account, sign up, or hand over any data.</p>
+          <p>If you've ever wanted a finance app that just shows you what you have and where it's going, that's Vault.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How does data privacy work in Vault?</summary>
+        <div class="faq-body">
+          <p>Everything you enter into Vault is stored in your browser's <strong>local storage</strong> on your own device. Nothing is sent to a server. There's no account, no cloud sync you didn't ask for, no analytics on your spending, and no third-party trackers.</p>
+          <p>If you close the tab, your data stays on your machine. If you clear your browser data, it's gone — there's no backup we can restore from, because we never had it. That's the trade-off, and it's deliberate.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How do I get updates and new features?</summary>
+        <div class="faq-body">
+          <p>Vault is delivered as a single web page — open it in your browser and you're always on the latest version. New features and improvements ship as silent updates; the next time you visit, the new version is already live.</p>
+          <p>Because nothing about your data lives on a server, you don't need to migrate or sync anything when versions change. Your local data carries through.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's Vault's mission?</summary>
+        <div class="faq-body">
+          <p>Real financial education and clarity should not sit behind a paywall, and your financial data should not be the price of admission to using a tool. The mission is to give people a calm, clear, fully private way to understand their own money — without bank logins, without subscriptions, and without selling anyone's data.</p>
+          <p>The thinking behind it goes deeper in <a href="https://reasonablemoney.substack.com" target="_blank" rel="noopener">Reasonable Money</a>, the weekly letter that sits alongside the app.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Why is Vault free? Will it always be free?</summary>
+        <div class="faq-body">
+          <p>Vault is free today and will be free tomorrow. Personal finance tools are commodity software at this point — the value isn't in the calculations, it's in being able to use them privately and on your terms. Charging for that would defeat the point.</p>
+          <p>If anything ever changes about pricing, the version of Vault you have on your machine will keep working. There are no subscriptions, no expiring access, no upsells.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What special features does Vault have that other apps don't?</summary>
+        <div class="faq-body">
+          <p>A few things make Vault unusual:</p>
+          <p><strong>Multi-currency support.</strong> Track accounts and assets in any currency — useful for cross-border situations like UK expats, dual-residents, freelancers paid in USD, or anyone holding non-GBP investments. FX conversion is built in, with prices updated automatically.</p>
+          <p><strong>UK-first design.</strong> ISA &amp; pension headroom, UK tax bands (including Scottish rates), Plan 1/2/4/5 student loans, UK-specific mortgage modelling, and stamp duty calculations. Most finance apps treat the UK as an afterthought; Vault doesn't.</p>
+          <p><strong>Property and equity tracking.</strong> Model property value, mortgage balance, and net equity together — including linking a tracked mortgage account to a property so it isn't double-counted.</p>
+          <p><strong>Financial Storyteller.</strong> Model real decisions in real numbers — compound investing, mortgage overpayments, rent vs buy, debt payoff, sabbatical costs. Every scenario shows what the maths actually says.</p>
+          <p><strong>Crypto, investments, pensions in one place.</strong> All asset types tracked together with live pricing, with the same privacy guarantees as everything else.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>What's the plan for Vault?</summary>
+        <div class="faq-body">
+          <p>The roadmap is shaped by what real users find missing or unclear. Recent and upcoming work includes deeper retirement planning, more UK tax scenarios, a richer guided tour, and ongoing accuracy improvements to the existing calculators.</p>
+          <p>The core promise — local-first, privacy-first, free — won't change. New features are added when they help people understand their money better, not when they generate revenue.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>How can I help spread Vault?</summary>
+        <div class="faq-body">
+          <p>Word of mouth is how Vault grows. If it's been useful to you:</p>
+          <p><strong>Send it to one person</strong> who'd benefit. There's a built-in share card on the home page that gives you a one-click copy link.</p>
+          <p><strong>Subscribe to <a href="https://reasonablemoney.substack.com" target="_blank" rel="noopener">Reasonable Money</a></strong> and forward the issues you find useful. The newsletter is the main place new ideas get road-tested.</p>
+          <p><strong>Mention it to a colleague or in a money-focused community.</strong> The people most likely to benefit are the ones who care about privacy, hate subscriptions, or live in a UK financial situation that off-the-shelf apps don't handle well.</p>
+          <p><strong>Send feedback.</strong> Bug reports, feature requests, weird edge cases — all welcome via the feedback form above. Every email is read.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Does Vault work offline?</summary>
+        <div class="faq-body">
+          <p>Once the page has loaded, most features work offline because the app runs in your browser. Live price updates (crypto, investments, FX rates) require an internet connection, but everything else — net worth tracking, spending, planning, tax — works without one.</p>
+        </div>
+      </details>
+
+      <details class="faq">
+        <summary>Is Vault the right tool for me?</summary>
+        <div class="faq-body">
+          <p>Vault works best for people who want a clear picture of their finances without the friction of bank logins, sign-up flows, or subscriptions. UK-based users get the most out of it because of the UK-first tax and account modelling — but it works for non-UK users too.</p>
+          <p>If you want automated transaction categorisation pulled directly from your bank, Vault isn't that — by design. Vault is a manual-input tool that gives you total control and total privacy in exchange for a few minutes of setup.</p>
+        </div>
+      </details>
 
     </div>
   </div>
