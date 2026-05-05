@@ -1,0 +1,8 @@
+# Robots.txt for thevaultapp.co.uk
+# Allow all search engines to crawl the public site.
+
+User-agent: *
+Allow: /
+
+# Sitemap location — Google + Bing pick this up automatically
+Sitemap: https://thevaultapp.co.uk/sitemap.xml
