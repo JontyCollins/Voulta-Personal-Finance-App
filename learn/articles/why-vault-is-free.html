@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1YZLT5X0C3');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vault is free and always will be. No selling data, no bank logins, no paywalls. Here's the philosophy behind it — and why building something genuinely useful matters more than making money from it." />
+  <title>Why Vault Is Free — and Why It Always Will Be – Vault</title>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Why Vault Is Free — and Why It Always Will Be",
+      "description": "Vault is free and always will be. No selling data, no bank logins, no paywalls. Here's the philosophy behind it — and why building something genuinely useful matters more than making money from it.",
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-01",
+      "author": { "@type": "Person", "name": "Jonty" },
+      "publisher": { "@type": "Organization", "name": "Vault", "url": "https://thevaultapp.co.uk" },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": "https://thevaultapp.co.uk/learn/articles/why-vault-is-free" }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --section-soft: #faf9f5;
+      --founder-card: #f4f2ed;
+      --text: #12110f;
+      --muted: #6b6a65;
+      --border: #e8e6df;
+      --accent: #b8f000;
+      --accent-ink: #12110f;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 1120px;
+      --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+      --article-max: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img, svg { display: block; max-width: 100%; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .article-wrap { max-width: var(--article-max); margin: 0 auto; }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .wordmark {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .wordmark .dot { color: var(--accent); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-left: 32px;
+      margin-right: auto;
+    }
+    .header-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .15s ease;
+      white-space: nowrap;
+    }
+    .header-nav a:hover,
+    .header-nav a.active { color: var(--text); }
+    @media (max-width: 600px) {
+      .header-nav { gap: 18px; margin-left: 18px; }
+      .header-nav a { font-size: 13px; }
+      .header-nav a.hide-on-mobile { display: none; }
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 1;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+    .btn-lg { padding: 14px 26px; font-size: 15px; }
+
+    /* ── Breadcrumb + back link ── */
+    .article-back {
+      padding: 120px 0 0;
+    }
+    .breadcrumb {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumb a { color: var(--muted); border-bottom: 1px solid transparent; transition: border-color .15s; }
+    .breadcrumb a:hover { border-bottom-color: var(--muted); }
+    .breadcrumb .sep { margin: 0 6px; }
+
+    /* ── Article header ── */
+    .article-header {
+      margin-bottom: 40px;
+    }
+    .article-header h1 {
+      font-size: clamp(32px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 12px;
+    }
+    .article-meta {
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Featured image placeholder ── */
+    .article-featured-img {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      height: 280px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* ── Article body ── */
+    .article-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .article-body h2 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 48px 0 16px;
+    }
+    .article-body h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+    }
+    .article-body p {
+      margin: 0 0 20px;
+    }
+    .article-body ul, .article-body ol {
+      margin: 0 0 20px;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .article-body blockquote {
+      margin: 32px 0;
+      padding: 16px 24px;
+      border-left: 4px solid var(--accent);
+      background: var(--section-soft);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .article-body img {
+      border-radius: var(--radius);
+      margin: 32px 0;
+    }
+    .inline-image-placeholder {
+      background: var(--section-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 32px 0;
+    }
+
+    /* ── Tool card (bottom) ── */
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+    .tool-card .tool-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0;
+    }
+    .tool-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .tool-card p {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+    .tool-card .btn {
+      align-self: flex-start;
+      margin-top: 4px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 40px;
+      background: var(--bg);
+      margin-top: 64px;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .footer-disclaimer {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 0 18px;
+    }
+    .footer-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .article-featured-img { height: 200px; }
+      .article-body { font-size: 16px; }
+    }
+    @media (max-width: 480px) {
+      .wrap { padding: 0 20px; }
+      .btn-lg { padding: 12px 20px; font-size: 14px; }
+      .site-header .wrap { height: 58px; }
+      .article-back { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Placeholder for the shared navbar -->
+<div id="nav-placeholder"></div>
+
+<!-- Load the shared navbar script -->
+<script src="/common/navbar.js"></script>
+
+<!-- ── Breadcrumb + back ── -->
+<section class="article-back">
+  <div class="wrap">
+    <div class="article-wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a><span class="sep">/</span><a href="/learn/">The Reading Room</a><span class="sep">/</span><span>Why Vault Is Free</span>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     ARTICLE CONTENT
+     ═══════════════════════════════════════════════════════════════════ -->
+<article>
+  <div class="wrap">
+    <div class="article-wrap">
+
+      <!-- ── Article header ── -->
+      <div class="article-header">
+        <h1>Why Vault Is Free — and Why It Always Will Be</h1>
+        <div class="article-meta">
+          <span>By Jonty</span>
+          <span>·</span>
+          <time datetime="2026-05-01">1 May 2026</time>
+        </div>
+      </div>
+
+      <!-- ── Featured image: privacy / freedom visual ── -->
+      <div class="article-featured-img" style="background:none; border:none; padding:0; height:auto; display:block;">
+        <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:14px;display:block;" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bgHero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf9f5"/>
+      <stop offset="100%" stop-color="#f2f0ea"/>
+    </linearGradient>
+    <linearGradient id="lockGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12110f"/>
+      <stop offset="100%" stop-color="#1e1c19"/>
+    </linearGradient>
+    <filter id="lockShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#12110f" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="760" height="280" fill="url(#bgHero)"/>
+
+  <!-- Visual: A padlock with a keyhole shaped like a house, plus the Vault accent -->
+  <!-- Left side: large lock icon -->
+  <g transform="translate(60,40)">
+    <!-- Lock body -->
+    <rect x="0" y="60" width="120" height="90" rx="16" fill="url(#lockGrad)" filter="url(#lockShadow)"/>
+    <!-- Shackle -->
+    <path d="M20 60 L20 30 A40 40 0 0 1 100 30 L100 60" fill="none" stroke="#12110f" stroke-width="12" stroke-linecap="round"/>
+    <!-- Keyhole -->
+    <circle cx="60" cy="110" r="12" fill="#b8f000"/>
+    <rect x="56" y="118" width="8" height="18" rx="2" fill="#b8f000"/>
+  </g>
+
+  <!-- Right side: message -->
+  <text x="260" y="100" font-size="34" font-weight="700" fill="#12110f" letter-spacing="-0.03em">Private by design.</text>
+  <text x="260" y="130" font-size="34" font-weight="700" fill="#12110f" letter-spacing="-0.03em">Free by choice.</text>
+  <rect x="260" y="140" width="160" height="4" rx="2" fill="#b8f000"/>
+  <text x="260" y="170" font-size="15" fill="#6b6a65">Your data never leaves your device.</text>
+  <text x="260" y="195" font-size="15" fill="#6b6a65">No paywalls. No bank logins required.</text>
+  <text x="260" y="220" font-size="15" fill="#6b6a65">Built for you, not for investors.</text>
+
+  <!-- Vault mark -->
+  <text x="740" y="270" font-size="13" font-weight="700" fill="#12110f" opacity="0.25" text-anchor="end" letter-spacing="-0.01em">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+</svg>
+      </div>
+
+      <!-- ── Article body ── -->
+      <div class="article-body">
+
+        <p>I built Vault because I was annoyed. Annoyed that every finance app I tried either wanted my bank login, sold my data to someone I'd never heard of, or locked the useful features behind a subscription that cost more than the problem it was solving. I wasn't trying to start a company. I was trying to manage my own money without feeling like I was being watched.</p>
+
+        <p>That frustration is where Vault came from. And it's also the reason Vault is free — and will stay that way.</p>
+
+        <h2>The deal most finance apps aren't telling you about</h2>
+
+        <p>Here's something that should make you uncomfortable: <strong>nearly 3 in 4 financial apps share at least some of your data with third parties</strong>.<sup>1</sup> On average, the top finance apps request 20 separate types of personal data from their users. Names. Email addresses. Purchase history. Location data. Some even collect your browsing history, voice recordings, or credit scores — and share it with advertisers, data brokers, and marketing companies.<sup>2</sup></p>
+
+        <p>Rocket Money — one of the most popular budgeting apps — shares 18 types of data across 7 categories.<sup>3</sup> That includes your financial information, payment history, credit score, and various personal identifiers. NerdWallet builds comprehensive profiles of your financial behaviour and uses them to target you with financial products.<sup>4</sup> Even apps that claim to be on your side are quietly monetising the one thing that should be off-limits: the details of your financial life.</p>
+
+        <p>The business model isn't complicated. You're not the customer. You're the product. Your spending habits, your income patterns, your financial anxieties — these are packaged up and sold to the highest bidder. The company makes money. You get a budgeting app. And a small army of strangers knows more about your money than you do.</p>
+
+        <blockquote>
+          The best financial decisions happen when nobody's watching. Vault was built so that you can make them in peace.
+        </blockquote>
+
+        <h2>Build something useful first. Worry about money later.</h2>
+
+        <p>There's a quiet philosophy I've always admired, and it comes from an unlikely place: the crypto world. Bobby Ong, the co-founder of CoinGecko, built the entire platform from scratch with just $200 over 12 years — no venture capital, no external funding, no pressure from investors.<sup>5</sup> When VCs told him that making money from ads "definitely wouldn't work," he ignored them and kept building anyway.</p>
+
+        <p>That refusal to monetise prematurely is what made CoinGecko what it is. They focused on accuracy. On covering coins nobody else tracked. On being genuinely useful to the people who relied on them. The money followed — but only because they put the product first.</p>
+
+        <p>I think about this a lot. Vault doesn't have investors. It doesn't have a growth target. It doesn't have a revenue model that requires extracting value from the people who use it. It has me, building something I believe in, for people who need it.</p>
+
+        <p>Financial education shouldn't sit behind a paywall. The tools you need to understand your money — to budget, to build your net worth, to plan for the future — these are not luxuries. They're the basics. And basics should be free.</p>
+
+        <!-- Inline visual: data privacy comparison -->
+        <div class="inline-image-placeholder" style="background:none; border:none; padding:0;">
+          <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;border-radius:14px;" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="cardBg3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#faf9f5"/>
+    </linearGradient>
+    <filter id="cardShadow3">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#12110f" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="720" height="200" fill="#faf9f5"/>
+  <rect x="20" y="16" width="680" height="170" rx="14" fill="url(#cardBg3)" filter="url(#cardShadow3)" stroke="#e8e6df" stroke-width="1"/>
+
+  <text x="44" y="50" font-size="11" font-weight="600" fill="#6b6a65" letter-spacing="0.1em">DATA PRACTICES</text>
+  <text x="44" y="70" font-size="17" font-weight="700" fill="#12110f" letter-spacing="-0.02em">The average finance app vs. Vault</text>
+  <line x1="44" y1="82" x2="676" y2="82" stroke="#e8e6df" stroke-width="1"/>
+
+  <!-- Left: Typical finance app -->
+  <rect x="44" y="98" width="296" height="72" rx="10" fill="#fff0f0" stroke="#ffd5d5" stroke-width="1"/>
+  <text x="66" y="122" font-size="14" font-weight="700" fill="#cc4444">Typical finance app</text>
+  <text x="66" y="140" font-size="12" fill="#cc4444">Shares data with 3rd parties</text>
+  <text x="66" y="156" font-size="12" fill="#cc4444">Collects 20+ data types</text>
+
+  <!-- Right: Vault -->
+  <rect x="360" y="98" width="320" height="72" rx="10" fill="#b8f000" opacity="0.15" stroke="#b8f000" stroke-width="1"/>
+  <text x="382" y="122" font-size="14" font-weight="700" fill="#12110f">Vault</text>
+  <text x="382" y="140" font-size="12" fill="#2d3a10">Zero data collection</text>
+  <text x="382" y="156" font-size="12" fill="#2d3a10">Everything stays on your device</text>
+
+  <!-- Vault watermark -->
+  <text x="676" y="178" font-size="11" font-weight="700" fill="#12110f" opacity="0.2" text-anchor="end">Vault<tspan fill="#b8f000" opacity="1">.</tspan></text>
+</svg>
+        </div>
+
+        <h2>Privacy and free aren't opposites</h2>
+
+        <p>There's a lazy assumption in fintech that "free" and "private" can't coexist — that if you're not paying for the product, you <em>are</em> the product. I think that's a cop-out. It's a convenient story told by companies that want to justify selling your data.</p>
+
+        <p>Vault doesn't collect your data because it was built not to. Everything runs in your browser. Nothing is sent to a server. No account to create, no analytics tracking your spending, no third-party integrations that leak your information to partners you've never heard of. When you close the tab, your data stays on your machine. It doesn't come with me.</p>
+
+        <p>This wasn't an accident. It was the whole point. I wanted a tool that worked like a notebook — private, personal, and nobody's business but yours. The fact that it's free doesn't change that. The fact that it's private doesn't make it unsustainable. It just means the incentives are aligned differently: I'm not trying to extract anything from you.</p>
+
+        <h2>What Vault will never do</h2>
+
+        <p>I want to be clear about this, because the internet is full of promises that get walked back the moment money gets involved. Here's what Vault will never do:</p>
+
+        <p><strong>Vault will never sell your data.</strong> I wouldn't even know how — the data doesn't leave your device. But even if the architecture changes in the future, this commitment doesn't. Your financial life is not inventory.</p>
+
+        <p><strong>Vault will never require a bank login.</strong> Right now, there's no way to connect your bank account, and that's intentional. I may — <em>may</em> — add the option in the future, because I know some people want it. But it will always be an option, not a requirement. You'll always be able to enter your accounts manually and keep everything local.</p>
+
+        <p><strong>Vault will always be mostly free.</strong> I say "mostly" because I'm not naive. Servers cost money. Features take time. At some point, I might need to cover costs. But if that day comes, it won't look like the apps you're used to. No paywalling the features you already rely on. No "premium tier" that locks the useful stuff behind a monthly fee. Whatever Vault looks like in five years, the core tools — the budget planner, the net worth tracker, the tax calculators — will remain free.</p>
+
+        <h2>Who this is actually for</h2>
+
+        <p>I didn't build Vault for a generic "target audience." I built it because I couldn't find anything that worked for my own situation — managing money across the UK, understanding how ISAs and capital gains tax and council tax actually work, and doing it all without handing over my bank credentials to a company I didn't trust.</p>
+
+        <p>I've since heard from backpackers tracking their savings across currencies, expats figuring out how their UK assets fit into a life abroad, freelancers trying to budget on irregular income, and people who just want to see their full financial picture without being upsold. These are the people Vault exists for. If that sounds like you, you're the reason I built it.</p>
+
+        <p>The dream is simple: anyone who wants the tools to manage their money properly should have access to them. Not just people who can afford £9.99 a month. Not just people comfortable linking their bank accounts. Everyone. That's the whole mission. Everything else is detail.</p>
+
+        <h2>I'm not trying to build a company. I'm trying to build something useful.</h2>
+
+        <p>I didn't set out to be a founder. I set out to fix a problem — mine. The fact that other people find Vault useful is the best thing that's come out of this. But it doesn't change the fundamental reason the app exists: because financial education should be free, private, and available to everyone who wants it.</p>
+
+        <p>If that resonates with you, use Vault. Tell people about it. Or don't. Either way, it'll still be here. Free. Private. Yours.</p>
+
+      </div><!-- /article-body -->
+
+      <!-- ── Tool card ── -->
+      <div class="tool-card">
+        <p class="tool-eyebrow">Try it yourself</p>
+        <h3>Launch Vault — free, private, no sign-up</h3>
+        <p>Budget planner, net worth tracker, financial planning, capital gains tax tools, and more. All free. All running in your browser. Your data never leaves your device.</p>
+        <a href="/app" class="btn btn-primary">Launch Vault →</a>
+      </div>
+
+      <!-- ── References ── -->
+      <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); line-height:1.7;">
+        <p style="font-weight:600; margin-bottom:12px;">References</p>
+        <ol style="padding-left:20px; margin:0;">
+          <li style="margin-bottom:6px;">Creditnews Research, analysis of data safety practices of 60 most-downloaded financial apps for Android, July 2024. Nearly 3 in 4 financial apps share at least some user data with third parties; on average, apps share 6 types of data each. Reported via Mondaq, "Finance Apps Can Be Great For Budgeting. But, Beware Hungry Hackers," 10 July 2024.</li>
+          <li style="margin-bottom:6px;">Merchant Machine, "The Personal Finance Apps That Use The Most Data," September 2025. Analysis of privacy permissions of 204 iOS finance apps with at least 5,000 reviews. The average app among the top 20 data-hungry apps requested 20 separate types of personal data.</li>
+          <li style="margin-bottom:6px;">Creditnews Research via InvestorsObserver, "These are the 'worst' financial apps for your privacy," 23 September 2025. Rocket Money shares 18 types of data across 7 categories with third parties, including financial information, payment info, purchase history, and credit score.</li>
+          <li style="margin-bottom:6px;">Incogni, budgeting app privacy research, 2025. NerdWallet collects browsing history, purchase patterns, and location data, combining them with financial information to create detailed user profiles for product targeting. Reported via AOL, "4 Budgeting Apps That Have Major Privacy Concerns," 16 July 2025.</li>
+          <li style="margin-bottom:6px;">Bobby Ong, CoinGecko co-founder and CEO. Interview compilation by PANews / Felix, published on When Shift Happens podcast, March 2026. CoinGecko built from $200 over 12 years with no venture capital, prioritising product accuracy and community value over monetisation. Reported via HTX Insights and Bitget News.</li>
+        </ol>
+      </div>
+
+      <!-- ── Back link ── -->
+      <p style="margin-top: 40px; font-size: 15px;">
+        <a href="/learn/" class="btn btn-ghost">← Back to The Reading Room</a>
+      </p>
+
+    </div><!-- /article-wrap -->
+  </div><!-- /wrap -->
+</article>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="/" class="wordmark">Vault<span class="dot">.</span></a>
+      <a href="/app" class="btn btn-ghost">Launch Vault</a>
+    </div>
+    <p class="footer-disclaimer">
+      Vault is a personal finance tool, not financial advice. The figures and projections shown are estimates based on the data you enter and should not be relied on for tax, investment, or legal decisions. Please speak to a qualified professional for advice on your individual situation.
+    </p>
+    <div class="footer-meta">Built with curiosity. © Vault 2026.</div>
+  </div>
+</footer>
+
+</body>
+</html>
