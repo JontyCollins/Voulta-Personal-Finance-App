@@ -807,6 +807,28 @@
   canvas { max-height: 180px; }
     #nw-chart { height: 160px; width: 100%; display: block; }
 
+  /* v1.43 Money Out breakdown — single line of muted-pill amounts directly under the headline. */
+  .money-out-breakdown {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 4px;
+    margin-top: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text3);
+    font-family: var(--mono);
+  }
+  .money-out-breakdown .mob-pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    color: var(--text2);
+  }
+  .money-out-breakdown .mob-saved { color: var(--green, #60d28e); }
+  .money-out-breakdown .mob-debt  { color: var(--accent4, #f0a060); }
+  .money-out-breakdown .mob-sep   { color: var(--text3); opacity: 0.7; }
+
   /* TOGGLE PILLS */
 
   .spend-chart-legend {
@@ -815,6 +837,71 @@
     gap: 8px 14px;
     padding: 6px 2px 2px;
     min-height: 0;
+  }
+  /* v1.43: sort + filter bar above the Transactions tab list. */
+  .spend-tx-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: stretch;
+    padding: 8px 10px;
+    margin: 6px 0 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .spend-tx-filter-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 140px;
+  }
+  .spend-tx-filter-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text3);
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+  .spend-tx-filter-select {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .spend-tx-filter-select:focus { outline: none; border-color: var(--accent); }
+  .spend-tx-filter-clear {
+    padding: 6px 12px;
+    background: transparent;
+    color: var(--text3);
+    border: 1px dashed var(--border2);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .spend-tx-filter-clear:hover {
+    color: var(--text);
+    border-color: var(--accent);
+    border-style: solid;
+  }
+  .spend-tx-result-meta {
+    font-size: 10px;
+    color: var(--text3);
+    font-family: var(--mono);
+    margin: 0 2px 6px;
+    min-height: 14px;
   }
   .chart-legend-item {
     display: flex;
@@ -2932,6 +3019,39 @@
   .salary-stale-note {
     font-size: 10px; color: var(--text3); margin: 8px 0 4px; line-height: 1.5;
   }
+  /* v1.43: tax-year selector at the top of the Salary panel.
+     Sets the global default that new jobs inherit; per-job override on each card. */
+  .salary-tax-year-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; margin-bottom: 8px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .salary-tax-year-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); font-family: var(--mono); white-space: nowrap;
+  }
+  .salary-tax-year-row select {
+    flex: 1; max-width: 180px;
+    padding: 6px 8px; font-size: 12px;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    font-family: var(--mono); cursor: pointer;
+  }
+  .salary-tax-year-row select:focus { outline: none; border-color: var(--accent); }
+  .salary-job-tax-year-row {
+    display: flex; align-items: center; gap: 8px;
+    margin: 6px 0 10px;
+  }
+  .salary-job-tax-year-row select {
+    flex: 1; max-width: 200px;
+    padding: 6px 8px; font-size: 11px;
+    background: var(--surface2); color: var(--text);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    font-family: var(--mono); cursor: pointer;
+  }
+  .salary-job-tax-year-row select:focus { outline: none; border-color: var(--accent); }
   .salary-disclaimer {
     font-size: 9px; color: var(--text3); line-height: 1.5; margin-top: 16px;
     padding: 10px 12px; background: var(--surface2);
@@ -5148,6 +5268,21 @@
     font-family: var(--mono);
   }
   .cs-move-select:hover { color: var(--accent); border-color: var(--accent); }
+  /* v1.43 Money Out: subType picker on Goals & Obligations subs only. */
+  .cs-subtype-select {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    padding: 4px 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-family: var(--sans);
+    max-width: 165px;
+  }
+  .cs-subtype-select:focus { outline: none; border-color: var(--accent); }
+  .cs-subtype-select:hover { color: var(--text); border-color: var(--border2); }
 
   /* HISTORY PAGINATION */
   .hist-pagination {
@@ -12717,8 +12852,11 @@
       <div class="chart-container" id="spend-chart-container">
         <div class="chart-header">
           <div>
-            <div class="chart-title" id="spend-chart-title">Total Spend</div>
+            <div class="chart-title" id="spend-chart-title">Money Out</div>
             <div class="chart-big-num" id="spend-total-chart">£0</div>
+            <!-- v1.43 Money Out: optional breakdown line — populated by renderSpending
+                 only when the user has saving/debt-repayment transactions. -->
+            <div class="money-out-breakdown" id="spend-breakdown" style="display:none"></div>
           </div>
           <button class="chart-toggle-btn" id="chart-mode-btn" onclick="toggleChartMode()" title="Switch to pie chart view">
             <svg id="chart-mode-icon-pie" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12838,6 +12976,28 @@
 
     <!-- TRANSACTIONS TAB -->
     <div id="spend-tab-transactions" style="display:none">
+      <!-- v1.43: sort + category filter bar above the list. State is in-memory
+           only (resets between sessions per spec). Clear button shows up only
+           when a non-default selection is active. -->
+      <div class="spend-tx-filter-bar" id="spend-tx-filter-bar">
+        <div class="spend-tx-filter-cell">
+          <span class="spend-tx-filter-label">Sort</span>
+          <select id="spend-tx-sort" class="spend-tx-filter-select" onchange="setSpendTxSort(this.value)">
+            <option value="date-desc">Date · newest first</option>
+            <option value="date-asc">Date · oldest first</option>
+            <option value="amount-desc">Amount · high → low</option>
+            <option value="amount-asc">Amount · low → high</option>
+          </select>
+        </div>
+        <div class="spend-tx-filter-cell">
+          <span class="spend-tx-filter-label">Category</span>
+          <select id="spend-tx-cat" class="spend-tx-filter-select" onchange="setSpendTxCategory(this.value)">
+            <option value="">All categories</option>
+          </select>
+        </div>
+        <button class="spend-tx-filter-clear" id="spend-tx-filter-clear" onclick="clearSpendTxFilters()" style="display:none">Clear</button>
+      </div>
+      <div class="spend-tx-result-meta" id="spend-tx-result-meta"></div>
       <div id="spend-transactions-list" style="margin-top:4px"></div>
     </div>
 
@@ -13245,7 +13405,15 @@
       <!-- SALARY panel -->
       <div id="calc-panel-salary" style="display:none">
         <div style="padding-top:2px">
-          <div class="salary-stale-note">Tax rates and thresholds based on 2025/26 tax year. Rates are updated manually — check GOV.UK for the latest figures.</div>
+          <!-- v1.43: tax-year selector — sets the global default for new jobs.
+               Each job card also exposes a per-job override so users can compare
+               years side-by-side. The label below reflects whichever year the
+               selector is on. -->
+          <div class="salary-tax-year-row" id="salary-tax-year-row">
+            <span class="salary-tax-year-label">Tax year</span>
+            <select id="salary-tax-year-select" class="salary-select" onchange="setTaxYear(this.value)"></select>
+          </div>
+          <div class="salary-stale-note" id="salary-stale-note">Tax rates and thresholds based on the <span id="salary-stale-year">2026/27</span> tax year. Rates are updated manually — check GOV.UK for the latest figures.</div>
           <button class="salary-add-btn" onclick="salaryAddJob()">+ Add Job</button>
           <div class="salary-list" id="salary-list"></div>
           <div id="salary-comparison"></div>
@@ -14187,6 +14355,31 @@ function fmt(n, ccy) {
   const num = abs.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
   return (n < 0 ? '-' : '') + sym + num;
 }
+// v1.43 history-currency fix: render an account-history value with the
+// account's native currency symbol, plus the converted display-currency
+// equivalent in muted muted text when the two differ. Returns an HTML string.
+//   fmtHistoryValue(737, 'AUD')  // when display=GBP  →  "A$737.00 <span…>≈ £384.61</span>"
+//   fmtHistoryValue(737, 'GBP')                       →  "£737.00"
+// If FX rates haven't loaded yet, falls back to native-only with a small
+// "(rates loading)" hint so the user isn't shown a misleading 0.
+function fmtHistoryValue(value, accCurrency, opts) {
+  opts = opts || {};
+  const display = getDisplayCurrency();
+  const native  = accCurrency || display;
+  const v = (typeof value === 'number') ? value : (parseFloat(value) || 0);
+  const nativeStr = fmt(v, native);
+  if (native === display) return nativeStr;
+  const convertedVal = convert(v, native);
+  // convert() returns 0 when fxRates aren't loaded — guard so we don't
+  // confidently render "≈ £0.00" against a real native amount.
+  if (convertedVal === 0 && v !== 0) {
+    return nativeStr + ' <span style="color:var(--text3);font-size:10px;font-family:var(--sans)">(rates loading)</span>';
+  }
+  const convertedStr = fmt(convertedVal, display);
+  const cls  = opts.className  || '';
+  const size = opts.smallSize  || '11px';
+  return nativeStr + ' <span class="' + cls + '" style="color:var(--text3);font-size:' + size + ';font-family:var(--mono)">≈ ' + convertedStr + '</span>';
+}
 // fmtMoney: currency symbol + comma-separated amount, dp decimal places
 function fmtMoney(n, sym, dp) {
   sym = sym !== undefined ? sym : '£';
@@ -14259,6 +14452,9 @@ function load() {
   });
   // Migrate: ensure properties have a currency field
   (state.properties || []).forEach(p => { if (!p.currency) p.currency = 'GBP'; });
+  // v1.43 Money Out: tag Goals & Obligations subcategories with their subType
+  // (savings_investments / debt_repayment / obligation). No-op once migrated.
+  if (typeof migrateGoalsSubTypes === 'function') migrateGoalsSubTypes();
 }
 
 
@@ -14273,9 +14469,57 @@ const DEFAULT_CATEGORIES = [
   { name: 'Self-Care', emoji: '💇', subs: ['Haircuts & Beauty','Clothing & Shoes','Personal Care Products','Spa & Wellness'] },
   { name: 'Health & Fitness', emoji: '💪', subs: ['Gym & Sports','Prescriptions','Dentist & Optician','Private Healthcare','Supplements'] },
   { name: 'Holidays', emoji: '✈️', subs: ['Flights','Accommodation','Car Hire','Activities & Days Out','Travel Insurance','Spending Money'] },
-  { name: 'Financial Goals & Obligations', emoji: '💰', subs: ['Savings Transfer','Investments','Pension Top-up','Debt Repayment','Emergency Fund'] },
+  // v1.43 Money Out: subs for Financial Goals & Obligations are tagged with a
+  // sub-type so the Spending headline can split them. Three sub-types:
+  //   savings_investments → comes out of the headline as "saved"
+  //   debt_repayment      → comes out of the headline as "debt repaid"
+  //   obligation          → counts as normal spending
+  // Other categories' subs remain plain strings — they all default to 'obligation' (i.e. spend).
+  { name: 'Financial Goals & Obligations', emoji: '💰', subs: [
+      { name: 'Savings Transfer', subType: 'savings_investments' },
+      { name: 'Investments',      subType: 'savings_investments' },
+      { name: 'Pension Top-up',   subType: 'savings_investments' },
+      { name: 'Emergency Fund',   subType: 'savings_investments' },
+      { name: 'Debt Repayment',   subType: 'debt_repayment' },
+  ] },
   { name: 'One Off Expenses', emoji: '🎁', subs: ['Gifts','Furniture & Appliances','Tech & Electronics','Home Improvements','Other'] },
 ];
+
+// v1.43 Money Out: name of the only category that uses the subType field.
+const GOALS_CATEGORY_NAME = 'Financial Goals & Obligations';
+// Default mapping for the seeded Goals subcategories — used when migrating
+// existing users so their Savings Transfer / Investments / Debt Repayment etc.
+// pick up the right type without losing data.
+const GOALS_DEFAULT_SUBTYPES = {
+  'Savings Transfer': 'savings_investments',
+  'Investments':      'savings_investments',
+  'Pension Top-up':   'savings_investments',
+  'Emergency Fund':   'savings_investments',
+  'Debt Repayment':   'debt_repayment',
+};
+const VALID_SUBTYPES = ['savings_investments', 'debt_repayment', 'obligation'];
+
+// Returns the effective subType for a subcategory:
+//   - explicit sub.subType wins
+//   - else the GOALS_DEFAULT_SUBTYPES map (for un-migrated default subs)
+//   - else 'obligation' (the safe default — counts as normal spend)
+// Returns null for subs that don't belong to the Goals category.
+function getSubcatSubType(sub, cat) {
+  if (!sub || !cat) return null;
+  if (cat.name !== GOALS_CATEGORY_NAME) return null;
+  if (sub.subType && VALID_SUBTYPES.indexOf(sub.subType) !== -1) return sub.subType;
+  if (GOALS_DEFAULT_SUBTYPES[sub.name]) return GOALS_DEFAULT_SUBTYPES[sub.name];
+  return 'obligation';
+}
+
+// Returns the effective subType for an entry (transaction).
+//   - explicit entry.subType wins (set at log time by quickLogSave)
+//   - else falls back to the subcategory's subType (lets old entries get
+//     classified correctly without a state migration)
+function getEntrySubType(entry, sub, cat) {
+  if (entry && entry.subType && VALID_SUBTYPES.indexOf(entry.subType) !== -1) return entry.subType;
+  return getSubcatSubType(sub, cat);
+}
 
 function seedDefaultCategories() {
   // V1.36: tombstone tracking so user-deleted default subcategories don't resurrect on reload.
@@ -14284,6 +14528,13 @@ function seedDefaultCategories() {
   state.deletedDefaultCats = state.deletedDefaultCats || [];
   const subTombs = new Set(state.deletedDefaultSubs);
   const catTombs = new Set(state.deletedDefaultCats);
+
+  // v1.43 Money Out: DEFAULT_CATEGORIES.subs entries can be either a string
+  // (most categories) or an object { name, subType } (Goals & Obligations
+  // subs). Normalise here so seeding/merging code stays compact.
+  const _normSub = (s) => (typeof s === 'string')
+    ? { name: s }
+    : { name: s.name, subType: s.subType };
 
   // Full seed if no categories at all
   if (state.spendCategories.length === 0) {
@@ -14295,8 +14546,13 @@ function seedDefaultCategories() {
         emoji: c.emoji || '',
         enabled: true,
         subcategories: c.subs
-          .filter(s => !subTombs.has(c.name + '::' + s))
-          .map(s => ({ id: uid(), name: s, entries: {} }))
+          .map(_normSub)
+          .filter(s => !subTombs.has(c.name + '::' + s.name))
+          .map(s => {
+            const out = { id: uid(), name: s.name, entries: {} };
+            if (s.subType) out.subType = s.subType;
+            return out;
+          })
       }));
     save();
     return;
@@ -14311,21 +14567,52 @@ function seedDefaultCategories() {
       state.spendCategories.push({
         id: uid(), name: def.name, emoji: def.emoji || '', enabled: true,
         subcategories: def.subs
-          .filter(s => !subTombs.has(def.name + '::' + s))
-          .map(s => ({ id: uid(), name: s, entries: {} }))
+          .map(_normSub)
+          .filter(s => !subTombs.has(def.name + '::' + s.name))
+          .map(s => {
+            const out = { id: uid(), name: s.name, entries: {} };
+            if (s.subType) out.subType = s.subType;
+            return out;
+          })
       });
       changed = true;
     } else {
       // Backfill emoji if not set
       if (!existing.emoji && def.emoji) { existing.emoji = def.emoji; changed = true; }
-      def.subs.forEach(subName => {
-        if (subTombs.has(def.name + '::' + subName)) return; // user deleted this default
-        if (!existing.subcategories.find(s => s.name === subName)) {
-          existing.subcategories.push({ id: uid(), name: subName, entries: {} });
+      def.subs.forEach(rawSub => {
+        const s = _normSub(rawSub);
+        if (subTombs.has(def.name + '::' + s.name)) return; // user deleted this default
+        const existingSub = existing.subcategories.find(x => x.name === s.name);
+        if (!existingSub) {
+          const out = { id: uid(), name: s.name, entries: {} };
+          if (s.subType) out.subType = s.subType;
+          existing.subcategories.push(out);
+          changed = true;
+        } else if (s.subType && !existingSub.subType) {
+          // Backfill subType on a pre-existing default sub (existing user upgrade path)
+          existingSub.subType = s.subType;
           changed = true;
         }
       });
     }
+  });
+  if (changed) save();
+}
+
+// v1.43 Money Out: migration helper run from load() so existing users get
+// the Goals & Obligations subType tags automatically. Idempotent — only writes
+// when a sub is missing the field.
+function migrateGoalsSubTypes() {
+  if (!state.spendCategories) return;
+  let changed = false;
+  state.spendCategories.forEach(cat => {
+    if (cat.name !== GOALS_CATEGORY_NAME) return;
+    (cat.subcategories || []).forEach(sub => {
+      if (sub.subType && VALID_SUBTYPES.indexOf(sub.subType) !== -1) return;
+      // Tag from the default map; fall back to 'obligation' for user-added subs.
+      sub.subType = GOALS_DEFAULT_SUBTYPES[sub.name] || 'obligation';
+      changed = true;
+    });
   });
   if (changed) save();
 }
@@ -15791,15 +16078,19 @@ function buildFireComfortHelpHtml() {
 }
 
 function buildSalaryHelpHtml() {
+  // v1.43: reflect the active tax year so the help text doesn't go stale
+  // when the user (or default) flips between 2025/26 and 2026/27.
+  const tyLabel = (typeof getTaxYear === 'function' && getTaxYear()) ? getTaxYear().label : '2026/27';
   return `
     <p>The Salary Calculator helps you understand your take-home pay and compare job offers side by side. Enter your gross salary or hourly rate and Vault will calculate your income tax, National Insurance, pension deductions, and student loan repayments automatically.</p>
     <div class="help-steps">
+      <div class="help-step"><span class="help-step-num">·</span><span>Pick the tax year at the top of the calculator (2025/26 or 2026/27) — each job can also override the global setting</span></div>
       <div class="help-step"><span class="help-step-num">·</span><span>Add multiple jobs to compare offers</span></div>
       <div class="help-step"><span class="help-step-num">·</span><span>Salary sacrifice pension reduces your taxable income</span></div>
       <div class="help-step"><span class="help-step-num">·</span><span>Scottish income tax bands applied automatically when Scotland is selected</span></div>
       <div class="help-step"><span class="help-step-num">·</span><span>Personal allowance taper applied correctly for incomes over £100,000</span></div>
     </div>
-    <p style="margin-top:10px;font-size:11px;color:var(--text3)">All calculations use 2025/26 UK tax rates. Results are estimates — always verify with HMRC or a qualified accountant.</p>
+    <p style="margin-top:10px;font-size:11px;color:var(--text3)">Calculations use the selected UK tax year (currently <strong>${tyLabel}</strong>). Results are estimates — always verify with HMRC or a qualified accountant.</p>
   `;
 }
 
@@ -16019,6 +16310,60 @@ function calcWAC(txns) {
 // Total units held after all transactions (buys minus sells)
 function calcUnitsFromTxns(txns) {
   return calcWACFull(txns).netUnits;
+}
+
+// v1.43 fix: seed an "opening position" transaction for holdings that pre-date
+// the txn ledger. Holdings created via saveHolding() set h.units directly with
+// h.txns left undefined. When the user later adds a buy/sell via the Update
+// modal, calcUnitsFromTxns(h.txns) only sees the new transaction and the prior
+// units silently disappear.
+//
+// This helper checks: if there are existing units but no recorded transactions,
+// push one synthetic 'buy' representing the legacy position, dated 1 day before
+// the next transaction so it sits chronologically first. The cost basis prefers
+// h.avgBuy → h.manualPrice → fallbackPrice (typically the new buy's price).
+//
+// Returns the (possibly mutated) holding for chaining; idempotent when txns
+// already exist.
+function seedOpeningTxnIfNeeded(h, fallbackPrice, fallbackCcy, accCcy, refDate) {
+  if (!h) return h;
+  if (h.txns && h.txns.length > 0) return h;
+  // Determine the legacy units count — prefer the explicit h.units, else the
+  // last history entry's units (if the holding was tracked via history only).
+  let legacyUnits = (h.units != null) ? h.units : null;
+  if (legacyUnits == null && h.history && h.history.length > 0) {
+    const last = h.history[h.history.length - 1];
+    if (last && last.units != null) legacyUnits = last.units;
+  }
+  legacyUnits = parseFloat(legacyUnits) || 0;
+  if (legacyUnits <= 0) return h; // nothing to seed
+  // Pick a cost-basis price.
+  let openingPrice = null;
+  if (h.avgBuy && h.avgBuy > 0) openingPrice = h.avgBuy;
+  else if (h.manualPrice && h.manualPrice > 0) openingPrice = h.manualPrice;
+  else if (fallbackPrice && fallbackPrice > 0) openingPrice = fallbackPrice;
+  else openingPrice = 0; // last resort — WAC will be 0 but units survive
+  // Currency for the opening price: prefer the holding's stored manualPriceCcy,
+  // else the account currency, else the fallback.
+  const openingCcy = h.manualPriceCcy || accCcy || fallbackCcy || 'GBP';
+  // Date the opening txn one day before the new txn (or one day before today).
+  const ref = refDate || (typeof today === 'function' ? today() : new Date().toISOString().slice(0,10));
+  const refStr = String(ref).slice(0, 10);
+  const d = new Date(refStr + 'T00:00:00');
+  d.setDate(d.getDate() - 1);
+  const openingDate = d.toISOString().slice(0, 10);
+
+  if (!h.txns) h.txns = [];
+  h.txns.push({
+    id: (typeof uid === 'function' ? uid() : 'op-' + Date.now()),
+    date: openingDate,
+    type: 'buy',
+    units: legacyUnits,
+    price: openingPrice,
+    currency: openingCcy,
+    isOpeningBalance: true,  // marker so future audits/UI can flag this entry
+  });
+  return h;
 }
 
 // Total amount currently invested = remaining cost pool
@@ -19223,7 +19568,7 @@ function renderNetWorth() {
                 const histHtml = manualHistory.length ? manualHistory.slice().reverse().map(h => `
                   <div class="history-entry history-entry-clickable" onclick="openEntryModal('${acc.id}','${h.id || ''}','${h.date}')">
                     <div>
-                      <div class="history-val">${fmt(h.value)}</div>
+                      <div class="history-val">${fmtHistoryValue(h.value, acc.currency)}</div>
                       ${h.units ? `<div class="history-units">${h.units} units</div>` : ''}
                     </div>
                     <div style="display:flex;align-items:center;gap:10px">
@@ -19975,6 +20320,49 @@ function getTotalSpend() {
   return state.spendCategories.reduce((s,c) => s+getCatTotal(c), 0);
 }
 
+// v1.43 Money Out: split the current month's outgoings into three buckets
+// based on the subType tagged on each transaction (or its subcategory as a
+// fallback). Returns:
+//   { total, spent, saved, debtRepaid }
+//   total      = everything that left your wallet (== getTotalSpend())
+//   saved      = sum of savings_investments transactions
+//   debtRepaid = sum of debt_repayment transactions
+//   spent      = total − saved − debtRepaid (== obligation + every non-Goals cat)
+//
+// Honours the same ownership/recurring filters as the rest of the spending UI
+// because it walks getCatTotalForMonth's underlying entry sources.
+function getMoneyOutBreakdown(monthKey) {
+  const m = monthKey || (typeof currentSpendMonth !== 'undefined' ? currentSpendMonth : null);
+  let saved = 0, debtRepaid = 0;
+  (state.spendCategories || []).forEach(cat => {
+    if (cat.name !== GOALS_CATEGORY_NAME) return; // only the Goals category carries subType
+    (cat.subcategories || []).forEach(sub => {
+      const entries = (sub.entries && sub.entries[m]) || [];
+      // Filter + multiplier so the joint/personal toggle keeps the breakdown
+      // consistent with the headline.
+      const filtered = (typeof entryMatchesSpendOwnership === 'function')
+        ? entries.filter(entryMatchesSpendOwnership)
+        : entries;
+      filtered.forEach(e => {
+        const amt = (typeof getEntryDisplayAmount === 'function')
+          ? getEntryDisplayAmount(e)
+          : (parseFloat(e.amount) || 0);
+        const mult = (typeof getOwnershipMultiplier === 'function')
+          ? getOwnershipMultiplier(e)
+          : 1;
+        const line = amt * mult;
+        const st = getEntrySubType(e, sub, cat);
+        if (st === 'savings_investments') saved += line;
+        else if (st === 'debt_repayment') debtRepaid += line;
+        // 'obligation' falls through into normal spending (covered by total)
+      });
+    });
+  });
+  const total = (typeof getTotalSpend === 'function') ? getTotalSpend() : 0;
+  const spent = Math.max(0, total - saved - debtRepaid);
+  return { total, spent, saved, debtRepaid };
+}
+
 function setSpendFilter(filter, el) {
   if (spendFilters.has(filter)) {
     // Don't allow deselecting if it's the only active filter
@@ -20202,6 +20590,65 @@ function setSpendTab(tab) {
   }
 }
 
+// v1.43: in-memory sort/filter state for the Transactions tab.
+// Resets between sessions per user spec — no localStorage persistence.
+// sortKey: 'date' | 'amount' ; sortDir: 'desc' | 'asc' ; categoryName: '' | <cat.name>
+const _spendTxFilterDefault = { sortKey: 'date', sortDir: 'desc', categoryName: '' };
+let _spendTxFilter = { ..._spendTxFilterDefault };
+
+function _spendTxFiltersAtDefault() {
+  return _spendTxFilter.sortKey === _spendTxFilterDefault.sortKey
+    && _spendTxFilter.sortDir === _spendTxFilterDefault.sortDir
+    && _spendTxFilter.categoryName === _spendTxFilterDefault.categoryName;
+}
+
+function setSpendTxSort(value) {
+  // value e.g. 'date-desc' | 'date-asc' | 'amount-desc' | 'amount-asc'
+  const [k, d] = String(value || '').split('-');
+  if (k === 'date' || k === 'amount') _spendTxFilter.sortKey = k;
+  if (d === 'asc' || d === 'desc')    _spendTxFilter.sortDir = d;
+  renderSpendTransactions();
+}
+
+function setSpendTxCategory(name) {
+  _spendTxFilter.categoryName = String(name || '');
+  renderSpendTransactions();
+}
+
+function clearSpendTxFilters() {
+  _spendTxFilter = { ..._spendTxFilterDefault };
+  // Reset the dropdowns visually (renderSpendTransactions also resets them, but
+  // doing it here keeps focus from jumping unexpectedly while the list rebuilds).
+  const sortSel = document.getElementById('spend-tx-sort');
+  if (sortSel) sortSel.value = _spendTxFilter.sortKey + '-' + _spendTxFilter.sortDir;
+  const catSel = document.getElementById('spend-tx-cat');
+  if (catSel) catSel.value = '';
+  renderSpendTransactions();
+}
+
+// Populate the category <select> with every category currently in state.
+// Called from renderSpendTransactions so the dropdown stays in sync after edits.
+function _populateSpendTxCategorySelect(currentValue) {
+  const sel = document.getElementById('spend-tx-cat');
+  if (!sel) return;
+  const cats = (state.spendCategories || []).slice().sort((a, b) =>
+    String(a.name || '').localeCompare(String(b.name || ''))
+  );
+  let html = '<option value="">All categories</option>';
+  cats.forEach(c => {
+    const label = (c.emoji ? c.emoji + ' ' : '') + (c.name || '').replace(/</g, '&lt;');
+    const safeName = String(c.name || '').replace(/"/g, '&quot;');
+    const sel2 = (c.name === currentValue) ? ' selected' : '';
+    html += '<option value="' + safeName + '"' + sel2 + '>' + label + '</option>';
+  });
+  sel.innerHTML = html;
+  // If the previously-selected category was deleted, fall back to "All".
+  if (currentValue && !cats.some(c => c.name === currentValue)) {
+    sel.value = '';
+    _spendTxFilter.categoryName = '';
+  }
+}
+
 function renderSpendTransactions() {
   const el = document.getElementById('spend-transactions-list');
   if (!el) return;
@@ -20209,6 +20656,13 @@ function renderSpendTransactions() {
   const sym = getCurrencySymbol(getDisplayCurrency());
   const monthKey = currentSpendMonth;
   const isYTD = typeof isYTDMode !== 'undefined' && isYTDMode;
+
+  // Sync the controls
+  const sortSel = document.getElementById('spend-tx-sort');
+  if (sortSel) sortSel.value = _spendTxFilter.sortKey + '-' + _spendTxFilter.sortDir;
+  _populateSpendTxCategorySelect(_spendTxFilter.categoryName);
+  const clearBtn = document.getElementById('spend-tx-filter-clear');
+  if (clearBtn) clearBtn.style.display = _spendTxFiltersAtDefault() ? 'none' : '';
 
   // Collect all entries for the current month/YTD
   let allEntries = [];
@@ -20239,41 +20693,67 @@ function renderSpendTransactions() {
     });
   });
 
+  const totalCount = allEntries.length;
+
+  // Apply category filter
+  if (_spendTxFilter.categoryName) {
+    allEntries = allEntries.filter(e => e.catName === _spendTxFilter.categoryName);
+  }
+
+  // Empty + meta line
+  const metaEl = document.getElementById('spend-tx-result-meta');
   if (!allEntries.length) {
-    el.innerHTML = '<div style="padding:32px 20px;text-align:center;color:var(--text3);font-size:13px;font-family:var(--sans)">No transactions for this period.</div>';
+    if (metaEl) metaEl.textContent = totalCount > 0
+      ? 'No transactions match — 0 of ' + totalCount + ' shown.'
+      : '';
+    const emptyMsg = totalCount > 0
+      ? 'No transactions match your filters.'
+      : 'No transactions for this period.';
+    el.innerHTML = '<div style="padding:32px 20px;text-align:center;color:var(--text3);font-size:13px;font-family:var(--sans)">' + emptyMsg + '</div>';
     return;
   }
 
-  // Sort by date descending, then by amount
-  allEntries.sort((a, b) => {
-    if (b.date > a.date) return 1;
-    if (b.date < a.date) return -1;
-    return b.amount - a.amount;
-  });
+  // Apply sort
+  const dir = _spendTxFilter.sortDir === 'asc' ? 1 : -1;
+  if (_spendTxFilter.sortKey === 'amount') {
+    // Amount sort: flat list, dir applied by sign. Tie-break on date desc so
+    // recent transactions naturally float up when amounts match.
+    allEntries.sort((a, b) => {
+      const av = Math.abs(a.amount || 0);
+      const bv = Math.abs(b.amount || 0);
+      if (av !== bv) return (av - bv) * dir;
+      return (b.date || '').localeCompare(a.date || '');
+    });
+  } else {
+    // Date sort: still grouped by date below, but tie-break inside a day by
+    // amount desc so the biggest spend on a given day shows first.
+    allEntries.sort((a, b) => {
+      const ad = a.date || '';
+      const bd = b.date || '';
+      if (ad !== bd) return (ad < bd ? -1 : 1) * dir;
+      return (b.amount || 0) - (a.amount || 0);
+    });
+  }
 
-  // Group by date
-  const byDate = {};
-  allEntries.forEach(e => {
-    const d = e.date || 'No date';
-    if (!byDate[d]) byDate[d] = [];
-    byDate[d].push(e);
-  });
+  // Meta line — count + active-filter summary
+  if (metaEl) {
+    const bits = [];
+    if (allEntries.length === totalCount) bits.push(totalCount + ' transaction' + (totalCount === 1 ? '' : 's'));
+    else bits.push(allEntries.length + ' of ' + totalCount + ' shown');
+    if (_spendTxFilter.categoryName) bits.push('Category: ' + _spendTxFilter.categoryName);
+    metaEl.textContent = bits.join(' · ');
+  }
 
   let html = '';
-  Object.keys(byDate).sort((a, b) => b.localeCompare(a)).forEach(dateKey => {
-    const dayTotal = byDate[dateKey].filter(e => e.type !== 'income').reduce((s, e) => s + e.amount, 0);
-    const fmtDate = dateKey !== 'No date'
-      ? new Date(dateKey + 'T12:00:00').toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short'})
-      : 'No date';
-    html += '<div style="margin-bottom:2px">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px 4px;border-bottom:1px solid var(--border)">' +
-        '<span style="font-size:11px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:0.5px">' + fmtDate + '</span>' +
-        '<span style="font-size:11px;font-family:var(--mono);color:var(--text3)">' + sym + dayTotal.toLocaleString('en-GB',{maximumFractionDigits:2}) + '</span>' +
-      '</div>';
-    byDate[dateKey].forEach(e => {
+  if (_spendTxFilter.sortKey === 'amount') {
+    // Flat list when sorting by amount — date grouping would obscure the order
+    allEntries.forEach(e => {
       const isInc = e.type === 'income';
       const amtColor = isInc ? 'var(--green)' : 'var(--text)';
       const prefix   = isInc ? '+' : '';
+      const fmtDate = e.date
+        ? new Date(e.date + 'T12:00:00').toLocaleDateString('en-GB', {day:'numeric', month:'short'})
+        : 'No date';
       html +=
         '<div style="display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--border2)">' +
           '<div style="flex:1;min-width:0">' +
@@ -20281,15 +20761,60 @@ function renderSpendTransactions() {
               (e.catEmoji ? e.catEmoji + ' ' : '') + (e.catName + (e.subName ? ' · ' + e.subName : '')).replace(/</g,'&lt;') +
             '</div>' +
             (e.note ? '<div style="font-size:12px;color:var(--text2);font-family:var(--sans);margin-top:2px;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + e.note.replace(/</g,'&lt;') + '</div>' : '') +
-            (e.account ? '<div style="font-size:11px;color:var(--text3);font-family:var(--sans);margin-top:1px"><span style="opacity:0.7">' + e.account.replace(/</g,'&lt;') + '</span></div>' : '') +
+            '<div style="font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:1px">' +
+              fmtDate +
+              (e.account ? ' · <span style="opacity:0.7">' + e.account.replace(/</g,'&lt;') + '</span>' : '') +
+            '</div>' +
           '</div>' +
           '<div style="font-size:14px;font-family:var(--mono);color:' + amtColor + ';white-space:nowrap;flex-shrink:0">' +
             prefix + sym + Math.abs(e.amount).toLocaleString('en-GB',{maximumFractionDigits:2}) +
           '</div>' +
         '</div>';
     });
-    html += '</div>';
-  });
+  } else {
+    // Date sort — group by date
+    const byDate = {};
+    allEntries.forEach(e => {
+      const d = e.date || 'No date';
+      if (!byDate[d]) byDate[d] = [];
+      byDate[d].push(e);
+    });
+    const dateKeys = Object.keys(byDate).sort((a, b) => {
+      if (a === 'No date') return 1;
+      if (b === 'No date') return -1;
+      return _spendTxFilter.sortDir === 'asc' ? a.localeCompare(b) : b.localeCompare(a);
+    });
+    dateKeys.forEach(dateKey => {
+      const dayTotal = byDate[dateKey].filter(e => e.type !== 'income').reduce((s, e) => s + e.amount, 0);
+      const fmtDate = dateKey !== 'No date'
+        ? new Date(dateKey + 'T12:00:00').toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short'})
+        : 'No date';
+      html += '<div style="margin-bottom:2px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px 4px;border-bottom:1px solid var(--border)">' +
+          '<span style="font-size:11px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:0.5px">' + fmtDate + '</span>' +
+          '<span style="font-size:11px;font-family:var(--mono);color:var(--text3)">' + sym + dayTotal.toLocaleString('en-GB',{maximumFractionDigits:2}) + '</span>' +
+        '</div>';
+      byDate[dateKey].forEach(e => {
+        const isInc = e.type === 'income';
+        const amtColor = isInc ? 'var(--green)' : 'var(--text)';
+        const prefix   = isInc ? '+' : '';
+        html +=
+          '<div style="display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--border2)">' +
+            '<div style="flex:1;min-width:0">' +
+              '<div style="font-size:13px;color:var(--text);font-family:var(--sans);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' +
+                (e.catEmoji ? e.catEmoji + ' ' : '') + (e.catName + (e.subName ? ' · ' + e.subName : '')).replace(/</g,'&lt;') +
+              '</div>' +
+              (e.note ? '<div style="font-size:12px;color:var(--text2);font-family:var(--sans);margin-top:2px;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + e.note.replace(/</g,'&lt;') + '</div>' : '') +
+              (e.account ? '<div style="font-size:11px;color:var(--text3);font-family:var(--sans);margin-top:1px"><span style="opacity:0.7">' + e.account.replace(/</g,'&lt;') + '</span></div>' : '') +
+            '</div>' +
+            '<div style="font-size:14px;font-family:var(--mono);color:' + amtColor + ';white-space:nowrap;flex-shrink:0">' +
+              prefix + sym + Math.abs(e.amount).toLocaleString('en-GB',{maximumFractionDigits:2}) +
+            '</div>' +
+          '</div>';
+      });
+      html += '</div>';
+    });
+  }
 
   el.innerHTML = html;
 }
@@ -20355,9 +20880,27 @@ function renderSpending() {
       dailyEl.style.fontSize = '16px';
     }
   }
-  // Chart header always shows current month's total spend
-  document.getElementById('spend-chart-title').textContent = 'Spend';
+  // Chart header always shows current month's total — labelled "Money Out"
+  // since v1.43, since saving + debt-repayment also flow through here.
+  document.getElementById('spend-chart-title').textContent = 'Money Out';
   document.getElementById('spend-total-chart').textContent = fmt(totalSpend);
+  // v1.43 Money Out breakdown line — only shown when the user has any
+  // saving/debt-repayment transactions this period.
+  const _bdEl = document.getElementById('spend-breakdown');
+  if (_bdEl) {
+    const bd = (typeof getMoneyOutBreakdown === 'function') ? getMoneyOutBreakdown(currentSpendMonth) : null;
+    if (bd && (bd.saved > 0 || bd.debtRepaid > 0)) {
+      const parts = [];
+      parts.push('<span class="mob-pill mob-spent">' + fmt(bd.spent) + ' spent</span>');
+      if (bd.saved > 0)      parts.push('<span class="mob-pill mob-saved">' + fmt(bd.saved) + ' saved</span>');
+      if (bd.debtRepaid > 0) parts.push('<span class="mob-pill mob-debt">' + fmt(bd.debtRepaid) + ' debt repaid</span>');
+      _bdEl.innerHTML = parts.join('<span class="mob-sep"> · </span>');
+      _bdEl.style.display = '';
+    } else {
+      _bdEl.innerHTML = '';
+      _bdEl.style.display = 'none';
+    }
+  }
 
   // Update filter pills (multi-toggle)
   const pills = document.getElementById('spend-filter-pills');
@@ -20528,7 +21071,12 @@ function addSubcategory(catId) {
   const name = prompt('Sub-category name:');
   if (!name) return;
   const cat = state.spendCategories.find(c => c.id === catId);
-  cat.subcategories.push({ id: uid(), name: name.trim(), entries: {} });
+  // v1.43 Money Out: tag new subs under Goals & Obligations with a subType.
+  const newSub = { id: uid(), name: name.trim(), entries: {} };
+  if (cat && cat.name === GOALS_CATEGORY_NAME) {
+    newSub.subType = GOALS_DEFAULT_SUBTYPES[name.trim()] || 'obligation';
+  }
+  cat.subcategories.push(newSub);
   save();
   renderSpending();
   // reopen
@@ -22330,6 +22878,126 @@ function switchCalcTab(tab) {
 // ════════════════════════════════════════════════════════════════════════════════
 // SALARY CALCULATOR
 // ════════════════════════════════════════════════════════════════════════════════
+//
+// UK TAX YEAR DATA — keyed by tax year. Most thresholds are frozen by HMRC
+// until April 2028, so 2026/27 numbers are largely identical to 2025/26.
+// The main figures that move year-to-year are the Plan 2 student loan
+// threshold (£27,295 → £28,470 from 6 April 2026) and Scottish bands
+// (uprated by Scottish Budget each Dec/Jan).
+//
+// To add a new tax year (e.g. 2027-28), just add an entry below — the rest
+// of the calculator picks up changes via getTaxYear().
+//
+// 2026/27 = the active tax year (6 April 2026 – 5 April 2027).
+// CGT allowance / rates and the £20,000 ISA limit are unchanged for 2026/27
+// (see CGT_ALLOWANCE / ISA_ANNUAL_LIMIT below).
+const TAX_YEARS = {
+  '2025-26': {
+    label:        '2025/26',
+    PA_BASE:      12570,
+    PA_TAPER_FROM: 100000,
+    PA_TAPER_TO:   125140,
+    SCOTTISH_BANDS: [
+      { upTo: 2306,    rate: 0.19 },
+      { upTo: 13991,   rate: 0.20 },
+      { upTo: 31092,   rate: 0.21 },
+      { upTo: 62430,   rate: 0.42 },
+      { upTo: 125140,  rate: 0.45 },
+      { upTo: Infinity, rate: 0.48 },
+    ],
+    REST_UK_BANDS: [
+      { upTo: 50270,   rate: 0.20 },  // basic
+      { upTo: 125140,  rate: 0.40 },  // higher
+      { upTo: Infinity, rate: 0.45 },  // additional
+    ],
+    NI_LOWER:     12570,
+    NI_UPPER:     50270,
+    NI_RATE_MAIN: 0.08,
+    NI_RATE_UPPER: 0.02,
+    SL_PLAN2_THRESHOLD: 27295,
+    SL_PLAN2_RATE:      0.09,
+  },
+  '2026-27': {
+    label:        '2026/27',
+    PA_BASE:      12570,           // FROZEN until April 2028
+    PA_TAPER_FROM: 100000,
+    PA_TAPER_TO:   125140,
+    // Scottish 2026/27 bands as confirmed by the Scottish Budget (Dec 2025) —
+    // starter/basic/intermediate/higher/advanced/top thresholds unchanged from
+    // 2025/26; rates also unchanged.
+    SCOTTISH_BANDS: [
+      { upTo: 2306,    rate: 0.19 },
+      { upTo: 13991,   rate: 0.20 },
+      { upTo: 31092,   rate: 0.21 },
+      { upTo: 62430,   rate: 0.42 },
+      { upTo: 125140,  rate: 0.45 },
+      { upTo: Infinity, rate: 0.48 },
+    ],
+    REST_UK_BANDS: [
+      { upTo: 50270,   rate: 0.20 },  // FROZEN
+      { upTo: 125140,  rate: 0.40 },  // FROZEN
+      { upTo: Infinity, rate: 0.45 },  // FROZEN
+    ],
+    NI_LOWER:     12570,             // FROZEN
+    NI_UPPER:     50270,             // FROZEN
+    NI_RATE_MAIN: 0.08,
+    NI_RATE_UPPER: 0.02,
+    SL_PLAN2_THRESHOLD: 28470,       // UP from £27,295 (effective 6 Apr 2026)
+    SL_PLAN2_RATE:      0.09,
+  },
+};
+// Active default — the tax year users see if they haven't picked one.
+// Bumped from 2025-26 → 2026-27 in v1.43.
+const DEFAULT_TAX_YEAR = '2026-27';
+
+// Resolve the active tax year — reads state.settings.taxYear, falls back to default.
+function getActiveTaxYearKey() {
+  const k = (state && state.settings && state.settings.taxYear) || DEFAULT_TAX_YEAR;
+  return TAX_YEARS[k] ? k : DEFAULT_TAX_YEAR;
+}
+function getTaxYear() {
+  return TAX_YEARS[getActiveTaxYearKey()];
+}
+
+// User-facing tax year setter (called from settings dropdown / per-job override)
+function setTaxYear(key) {
+  if (!TAX_YEARS[key]) return;
+  if (!state.settings) state.settings = {};
+  state.settings.taxYear = key;
+  if (typeof save === 'function') save();
+  if (typeof renderSalaryTab === 'function') renderSalaryTab();
+  if (typeof renderSalaryTaxYearSelector === 'function') renderSalaryTaxYearSelector();
+}
+
+// v1.43: Build the tax-year <option> list (newest first) — shared between
+// the global salary selector and per-job overrides.
+function buildTaxYearOptionsHtml(selectedKey, opts) {
+  opts = opts || {};
+  const sel = selectedKey || getActiveTaxYearKey();
+  // Sort keys descending so the newest year appears at the top.
+  const keys = Object.keys(TAX_YEARS).sort().reverse();
+  let html = '';
+  if (opts.includeGlobalOption) {
+    html += '<option value="">Use global default</option>';
+  }
+  keys.forEach(k => {
+    const ty = TAX_YEARS[k];
+    const isSelected = (k === sel) ? ' selected' : '';
+    html += '<option value="' + k + '"' + isSelected + '>' + ty.label + '</option>';
+  });
+  return html;
+}
+
+// v1.43: Populate the global salary tax-year selector + sync the stale-note label.
+function renderSalaryTaxYearSelector() {
+  const sel = document.getElementById('salary-tax-year-select');
+  if (sel) {
+    sel.innerHTML = buildTaxYearOptionsHtml(getActiveTaxYearKey());
+  }
+  const lbl = document.getElementById('salary-stale-year');
+  if (lbl) lbl.textContent = (getTaxYear().label || '');
+}
+
 let salaryJobs = [];
 let _salaryJobCounter = 0;
 
@@ -22468,67 +23136,54 @@ function calcSalaryTax(job) {
   // Pensionable pay (salary sacrifice — reduces taxable income)
   const pensionablePay = annualGross - pensionEmpPound;
 
-  // Personal allowance with taper for >£100k gross
-  const PA_BASE = 12570;
-  let personalAllowance = PA_BASE;
-  if (annualGross > 100000) {
-    personalAllowance = Math.max(0, PA_BASE - Math.floor((annualGross - 100000) / 2));
+  // ── Active tax-year config ────────────────────────────────────────────────
+  // Per-job override (job.taxYear) wins over the global state.settings.taxYear
+  // so users can compare years side-by-side on the same screen.
+  const TY = (job.taxYear && TAX_YEARS[job.taxYear]) || getTaxYear();
+
+  // Personal allowance with taper for high-income earners
+  let personalAllowance = TY.PA_BASE;
+  if (annualGross > TY.PA_TAPER_FROM) {
+    personalAllowance = Math.max(0, TY.PA_BASE - Math.floor((annualGross - TY.PA_TAPER_FROM) / 2));
   }
 
   // Taxable income
   const taxableIncome = Math.max(0, pensionablePay - personalAllowance);
 
-  // Income tax
-  let incomeTax = 0;
-  if (job.region === 'scotland') {
-    // Scottish bands 2025/26
-    const bands = [
-      [2306,          0.19],
-      [13991 - 2306,  0.20],
-      [31092 - 13991, 0.21],
-      [62430 - 31092, 0.42],
-      [125140 - 62430,0.45],
-      [Infinity,      0.48],
-    ];
-    let rem = taxableIncome;
-    for (const [bw, rate] of bands) {
+  // Income tax — band-walking helper (same formula as before, just driven by TY data)
+  function _applyBands(taxable, bands) {
+    let tax = 0, prev = 0, rem = taxable;
+    for (const b of bands) {
       if (rem <= 0) break;
-      const chunk = Math.min(rem, bw);
-      incomeTax += chunk * rate;
+      const width = (b.upTo === Infinity) ? Infinity : (b.upTo - prev);
+      const chunk = Math.min(rem, width);
+      tax += chunk * b.rate;
       rem -= chunk;
+      prev = b.upTo;
     }
-  } else {
-    // England/Wales/NI 2025/26
-    const bands = [
-      [37700,              0.20],
-      [125140 - 37700,     0.40],
-      [Infinity,           0.45],
-    ];
-    let rem = taxableIncome;
-    for (const [bw, rate] of bands) {
-      if (rem <= 0) break;
-      const chunk = Math.min(rem, bw);
-      incomeTax += chunk * rate;
-      rem -= chunk;
-    }
+    return tax;
   }
+  const isScottish = job.region === 'scotland';
+  const bandsForRegion = isScottish ? TY.SCOTTISH_BANDS : TY.REST_UK_BANDS;
+  const incomeTax = _applyBands(taxableIncome, bandsForRegion);
 
   // NI — applied to gross (not reduced by pension)
-  const NI_LOWER = 12570, NI_UPPER = 50270;
+  const NI_LOWER = TY.NI_LOWER;
+  const NI_UPPER = TY.NI_UPPER;
   let ni = 0;
   if (annualGross > NI_LOWER) {
     const band1 = Math.min(annualGross, NI_UPPER) - NI_LOWER;
-    ni += Math.max(0, band1) * 0.08;
+    ni += Math.max(0, band1) * TY.NI_RATE_MAIN;
   }
   if (annualGross > NI_UPPER) {
-    ni += (annualGross - NI_UPPER) * 0.02;
+    ni += (annualGross - NI_UPPER) * TY.NI_RATE_UPPER;
   }
 
   // Student loan Plan 2
-  const SL_THRESHOLD = 27295;
+  const SL_THRESHOLD = TY.SL_PLAN2_THRESHOLD;
   let studentLoan = 0;
   if (job.studentLoan && annualGross > SL_THRESHOLD) {
-    studentLoan = (annualGross - SL_THRESHOLD) * 0.09;
+    studentLoan = (annualGross - SL_THRESHOLD) * TY.SL_PLAN2_RATE;
   }
 
   const totalDeductions = pensionEmpPound + incomeTax + ni + studentLoan;
@@ -22536,23 +23191,18 @@ function calcSalaryTax(job) {
   const effectiveRate = annualGross > 0 ? (totalDeductions / annualGross) * 100 : 0;
 
   // Marginal rate on next £1 of gross (NI at appropriate band + IT at appropriate band)
-  let marginalNI = annualGross < NI_LOWER ? 0 : (annualGross < NI_UPPER ? 0.08 : 0.02);
+  let marginalNI = annualGross < NI_LOWER ? 0 : (annualGross < NI_UPPER ? TY.NI_RATE_MAIN : TY.NI_RATE_UPPER);
   let marginalIT = 0;
-  if (job.region === 'scotland') {
-    if (taxableIncome <= 0) marginalIT = 0;
-    else if (taxableIncome <= 2306) marginalIT = 0.19;
-    else if (taxableIncome <= 13991) marginalIT = 0.20;
-    else if (taxableIncome <= 31092) marginalIT = 0.21;
-    else if (taxableIncome <= 62430) marginalIT = 0.42;
-    else if (taxableIncome <= 125140) marginalIT = 0.45;
-    else marginalIT = 0.48;
-  } else {
-    if (taxableIncome <= 0) marginalIT = 0;
-    else if (taxableIncome <= 37700) marginalIT = 0.20;
-    else if (taxableIncome <= 125140 - 37700) marginalIT = 0.40;
-    else marginalIT = 0.45;
-    // PA taper zone: between £100k–£125,140 gross the effective marginal IT rate doubles
-    if (annualGross > 100000 && annualGross < 125140) marginalIT = 0.60;
+  // Walk the band table to find the rate the NEXT pound of taxable income would attract.
+  for (const b of bandsForRegion) {
+    if (taxableIncome <= b.upTo) { marginalIT = b.rate; break; }
+  }
+  if (taxableIncome <= 0) marginalIT = 0;
+  // PA taper zone (England/Wales/NI only): between PA_TAPER_FROM and PA_TAPER_TO
+  // gross, the effective marginal IT rate doubles because each extra £1 also
+  // erodes the Personal Allowance by £0.50.
+  if (!isScottish && annualGross > TY.PA_TAPER_FROM && annualGross < TY.PA_TAPER_TO) {
+    marginalIT = 0.60;
   }
   const marginalRate = (marginalIT + marginalNI) * 100;
 
@@ -22583,12 +23233,26 @@ function buildSalaryCardHtml(job) {
     if (g > 0) grossPreview = `<div class="salary-gross-preview">≈ £${g.toLocaleString('en-GB',{minimumFractionDigits:0,maximumFractionDigits:0})} annual gross</div>`;
   }
 
+  // v1.43: per-job tax year override — empty string means "follow the global setting".
+  const jobTYKey = job.taxYear || '';
+  const tyOptionsHtml = buildTaxYearOptionsHtml(jobTYKey, { includeGlobalOption: true });
+  // Active TY for this job — falls back to the global default if no override.
+  const activeTY = (job.taxYear && TAX_YEARS[job.taxYear]) || getTaxYear();
+  const slThresholdLabel = '£' + activeTY.SL_PLAN2_THRESHOLD.toLocaleString('en-GB');
+  const slRateLabel = (activeTY.SL_PLAN2_RATE * 100).toFixed(0) + '%';
+
   return `
     <div class="salary-card" id="${job.id}">
       <div class="salary-card-header">
         <input class="salary-card-name" value="${job.name.replace(/"/g,'&quot;')}"
           oninput="salaryUpdateField('${job.id}','name',this.value)" />
         <button class="salary-card-del" onclick="salaryDeleteJob('${job.id}')" title="Delete">✕</button>
+      </div>
+
+      <!-- v1.43: per-job tax-year override -->
+      <div class="salary-job-tax-year-row">
+        <span class="salary-field-label">Tax year</span>
+        <select onchange="salaryUpdateField('${job.id}','taxYear',this.value)">${tyOptionsHtml}</select>
       </div>
 
       <!-- Region -->
@@ -22686,7 +23350,7 @@ function buildSalaryCardHtml(job) {
       <label class="salary-toggle-check">
         <input type="checkbox" ${job.studentLoan?'checked':''}
           onchange="salaryUpdateField('${job.id}','studentLoan',this.checked)" />
-        <span>Plan 2 repayment (9% above £27,295)</span>
+        <span>Plan 2 repayment (${slRateLabel} above ${slThresholdLabel})</span>
       </label>
       <div class="salary-toggle-help">Currently supports Plan 2. More plans coming soon.</div>
 
@@ -22701,6 +23365,8 @@ function buildSalaryCardHtml(job) {
 }
 
 function renderSalaryTab() {
+  // v1.43: keep the global tax-year selector + stale-note label in sync.
+  if (typeof renderSalaryTaxYearSelector === 'function') renderSalaryTaxYearSelector();
   const list = document.getElementById('salary-list');
   if (!list) return;
   list.innerHTML = salaryJobs.map(buildSalaryCardHtml).join('');
@@ -23131,6 +23797,10 @@ function saveStockUpdate() {
     if (isNaN(addUnits) || addUnits <= 0) { if (errEl) errEl.textContent = 'Enter units purchased.'; return; }
     if (isNaN(addPrice) || addPrice <= 0) { if (errEl) errEl.textContent = 'Enter price paid per unit.'; return; }
     const unitsCcy = document.getElementById('smu-units-ccy')?.value || acc.currency || 'GBP';
+    // v1.43 fix: if this is the first txn but the holding already has units,
+    // seed an opening-balance buy so the prior position isn't wiped when we
+    // recompute net units from txns below.
+    seedOpeningTxnIfNeeded(h, addPrice, unitsCcy, acc.currency, today());
     if (!h.txns) h.txns = [];
     h.txns.push({ id: uid(), date: today(), type: 'buy', units: addUnits, price: addPrice, currency: unitsCcy });
     h.txns.sort((a, b) => a.date.localeCompare(b.date));
@@ -23149,6 +23819,9 @@ function saveStockUpdate() {
     if (isNaN(sellPrice) || sellPrice <= 0) { if (errEl) errEl.textContent = 'Enter price per unit at time of sale.'; return; }
     if (sellUnits > units + 1e-9) { if (errEl) errEl.textContent = `Cannot sell ${sellUnits} — only ${units} held.`; return; }
     const sellCcy = document.getElementById('smu-sell-ccy')?.value || acc.currency || 'GBP';
+    // v1.43 fix: same opening-balance seed as the buy path so the sell can be
+    // applied against the pre-existing position rather than nuking it.
+    seedOpeningTxnIfNeeded(h, sellPrice, sellCcy, acc.currency, today());
     if (!h.txns) h.txns = [];
     h.txns.push({ id: uid(), date: today(), type: 'sell', units: sellUnits, price: sellPrice, currency: sellCcy });
     h.txns.sort((a, b) => a.date.localeCompare(b.date));
@@ -23489,9 +24162,14 @@ function histPageNav(containerId, page) {
 }
 
 function histEntryHtml(accId, h) {
+  // v1.43 history-currency fix: use the account's native currency (not the
+  // display currency) when formatting the entry, then show the converted
+  // display value next to it when they differ.
+  const acc = (state.accounts || []).find(a => a.id === accId);
+  const accCcy = (acc && acc.currency) || getDisplayCurrency();
   return `<div class="history-entry history-entry-clickable" onclick="openEntryModal('${accId}','${h.id || ''}','${h.date}')">
     <div>
-      <div class="history-val">${fmt(h.value)}</div>
+      <div class="history-val">${fmtHistoryValue(h.value, accCcy)}</div>
       ${h.units ? `<div class="history-units">${h.units} units</div>` : ''}
     </div>
     <div style="display:flex;align-items:center;gap:10px">
@@ -23659,12 +24337,17 @@ function quickLogSave() {
   const qlAccEl = document.getElementById('ql-account');
   const qlAccount = qlAccEl ? (qlAccEl.value || '').trim() : '';
 
+  // v1.43 Money Out: copy the subcategory's subType onto the entry so the
+  // headline can split it. Only set for Financial Goals & Obligations subs;
+  // entries elsewhere don't carry the field.
+  const _entrySubType = (typeof getSubcatSubType === 'function') ? getSubcatSubType(sub, cat) : null;
   const newEntry = {
     id: entryId, amount, desc, date, currency: entryCcy,
     account: qlAccount || undefined,
     repeat: isRepeat || undefined,
     recurringId: recurringId,
-    recurringStatus: isRepeat ? 'active' : undefined
+    recurringStatus: isRepeat ? 'active' : undefined,
+    subType: _entrySubType || undefined
   };
   sub.entries[currentSpendMonth].push(newEntry);
   setLastAdded(newEntry, cat.name, sub.name);
@@ -26681,9 +27364,21 @@ function renderCsSubcategories() {
     return;
   }
 
+  // v1.43 Money Out: only the Goals & Obligations category exposes the subType picker.
+  const isGoalsCat = (cat.name === GOALS_CATEGORY_NAME);
+
   const _bud = loadBudgets();
   list.innerHTML = cat.subcategories.map((sub, i) => {
     const budVal = _bud[sub.id] ? _bud[sub.id] : '';
+    const stEffective = isGoalsCat ? (typeof getSubcatSubType === 'function' ? getSubcatSubType(sub, cat) : 'obligation') : null;
+    const subTypeSelect = isGoalsCat ? `
+      <select class="cs-subtype-select" title="How this counts in Money Out"
+        onchange="csSetSubType('${cat.id}','${sub.id}',this.value)">
+        <option value="savings_investments" ${stEffective === 'savings_investments' ? 'selected' : ''}>💰 Saving / Investing</option>
+        <option value="debt_repayment"      ${stEffective === 'debt_repayment'      ? 'selected' : ''}>💳 Debt Repayment</option>
+        <option value="obligation"          ${stEffective === 'obligation'          ? 'selected' : ''}>📌 Obligation (counts as spend)</option>
+      </select>
+    ` : '';
     return `
     <div class="cs-sub-item" draggable="true"
       ondragstart="csDragStart('${cat.id}',${i})"
@@ -26695,6 +27390,7 @@ function renderCsSubcategories() {
       <input class="cs-sub-name" value="${sub.name.replace(/"/g,'&quot;')}"
         onblur="csRenameSub('${cat.id}','${sub.id}',this.value)"
         onkeydown="if(event.key==='Enter')this.blur()" />
+      ${subTypeSelect}
       <input class="cs-budget-input" type="number" min="0" step="1"
         value="${budVal}"
         placeholder="£ limit"
@@ -26711,6 +27407,18 @@ function renderCsSubcategories() {
       <button class="cs-sub-delete" onclick="csDeleteSub('${cat.id}','${sub.id}')">×</button>
     </div>
   `}).join('');
+}
+
+// v1.43 Money Out: setter for the subType picker on Goals & Obligations subs.
+function csSetSubType(catId, subId, value) {
+  if (VALID_SUBTYPES.indexOf(value) === -1) return;
+  const cat = state.spendCategories.find(c => c.id === catId);
+  if (!cat || cat.name !== GOALS_CATEGORY_NAME) return;
+  const sub = cat.subcategories.find(s => s.id === subId);
+  if (!sub) return;
+  sub.subType = value;
+  save();
+  renderSpending(); // refresh headline + breakdown
 }
 
 function csRenameSub(catId, subId, newName) {
@@ -26794,7 +27502,14 @@ function csAddSub() {
   if (!name || !csActiveCatId) return;
   const cat = state.spendCategories.find(c => c.id === csActiveCatId);
   if (!cat) return;
-  cat.subcategories.push({ id: uid(), name, entries: {} });
+  // v1.43 Money Out: new subs under Goals & Obligations get a subType so the
+  // headline split keeps working. Default 'obligation' means it counts as
+  // normal spend; the user can change it via the picker rendered next to it.
+  const newSub = { id: uid(), name, entries: {} };
+  if (cat.name === GOALS_CATEGORY_NAME) {
+    newSub.subType = GOALS_DEFAULT_SUBTYPES[name] || 'obligation';
+  }
+  cat.subcategories.push(newSub);
   // V1.36: re-adding a previously-deleted default sub should remove its tombstone
   if (state.deletedDefaultSubs && state.deletedDefaultSubs.length) {
     const key = cat.name + '::' + name;
@@ -27512,13 +28227,15 @@ function openAccountPanelDetail(accId) {
       }
     } else {
       // Platform total mode: show history
+      // v1.43 history-currency fix: use account-native currency, not display.
+      const accCcy = acc.currency || getDisplayCurrency();
       const history = (acc.history || []).slice().sort((a,b) => (b.date||'').localeCompare(a.date||'')).slice(0,10);
       if (history.length) {
         html += '<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-family:var(--sans)">Balance history</div>';
         history.forEach(h => {
           html += '<div class="dp-entry-row">'
             + '<div class="dp-entry-desc" style="color:var(--text3);font-size:11px">' + (h.date||'').slice(0,10) + (h.note ? ' · ' + h.note : '') + '</div>'
-            + '<div class="dp-entry-amount">' + sym + Math.abs(h.value||0).toLocaleString('en-GB',{maximumFractionDigits:2}) + '</div>'
+            + '<div class="dp-entry-amount">' + fmtHistoryValue(h.value || 0, accCcy) + '</div>'
           + '</div>';
         });
       } else {
@@ -27527,17 +28244,24 @@ function openAccountPanelDetail(accId) {
     }
   } else {
     // Standard account: history list
+    // v1.43 history-currency fix: format each entry in the account's native
+    // currency and show the converted display-currency equivalent next to it.
+    // Deltas are intentionally rendered in display currency (most useful for
+    // "how much did it move" comparison across accounts).
+    const accCcy = acc.currency || getDisplayCurrency();
     const history = (acc.history || []).slice().sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 20);
     if (history.length) {
       html += '<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-family:var(--sans)">History</div>';
       history.forEach((h, i) => {
         const prev = acc.history.find(p => p.date < h.date);
-        const delta = prev ? h.value - prev.value : null;
-        const ds = delta !== null ? ' <span style="color:' + (delta >= 0 ? 'var(--accent2)' : '#e05555') + ';font-size:10px">'
-          + (delta >= 0 ? '+' : '') + sym + Math.abs(delta).toLocaleString('en-GB', {maximumFractionDigits: 0}) + '</span>' : '';
+        const deltaNative   = prev ? (h.value - prev.value) : null;
+        const deltaDisplay  = deltaNative !== null ? convert(deltaNative, accCcy) : null;
+        const ds = deltaDisplay !== null ? ' <span style="color:' + (deltaDisplay >= 0 ? 'var(--accent2)' : '#e05555') + ';font-size:10px">'
+          + (deltaDisplay >= 0 ? '+' : '') + sym + Math.abs(deltaDisplay).toLocaleString('en-GB', {maximumFractionDigits: 0}) + '</span>' : '';
+        const sign = isCredit ? '-' : '';
         html += '<div class="dp-entry-row">'
           + '<div class="dp-entry-desc">' + (h.date || '') + (h.note ? '<span style="font-size:9px;color:var(--text3);margin-left:6px">' + h.note + '</span>' : '') + '</div>'
-          + '<div class="dp-entry-amount">' + (isCredit ? '-' : '') + sym + Math.abs(h.value).toLocaleString('en-GB', {maximumFractionDigits: 2}) + ds + '</div>'
+          + '<div class="dp-entry-amount">' + sign + fmtHistoryValue(Math.abs(h.value || 0), accCcy) + ds + '</div>'
         + '</div>';
       });
     } else {
@@ -28051,18 +28775,23 @@ function openAccountPanel(accId) {
   }
 
   // History entries
+  // v1.43 history-currency fix: render each value in the account's native
+  // currency with the display-currency equivalent next to it. Delta is
+  // converted to display currency so it stays comparable across accounts.
+  const accCcy = acc.currency || getDisplayCurrency();
   const history = (acc.history || []).slice().reverse().slice(0, 24);
   let histHtml = '';
   if (history.length) {
     histHtml = '<div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-family:var(--sans)">History</div>';
     histHtml += history.map(h => {
       const prev = acc.history[acc.history.indexOf(h) + 1];
-      const delta = prev ? h.value - prev.value : null;
-      const sign = delta !== null ? (delta >= 0 ? '+' : '') : '';
-      const deltaStr = delta !== null ? ` <span style="color:${delta >= 0 ? 'var(--accent2)' : '#e05555'};font-size:10px">${sign}${sym}${Math.abs(delta).toLocaleString('en-GB',{maximumFractionDigits:0})}</span>` : '';
+      const deltaNative  = prev ? (h.value - prev.value) : null;
+      const deltaDisplay = deltaNative !== null ? convert(deltaNative, accCcy) : null;
+      const sign = deltaDisplay !== null ? (deltaDisplay >= 0 ? '+' : '') : '';
+      const deltaStr = deltaDisplay !== null ? ` <span style="color:${deltaDisplay >= 0 ? 'var(--accent2)' : '#e05555'};font-size:10px">${sign}${sym}${Math.abs(deltaDisplay).toLocaleString('en-GB',{maximumFractionDigits:0})}</span>` : '';
       return `<div class="dp-entry-row">
         <div class="dp-entry-desc">${h.date || ''}</div>
-        <div class="dp-entry-amount">${isCredit?'-':''}${sym}${Math.abs(h.value).toLocaleString('en-GB',{maximumFractionDigits:2})}${deltaStr}</div>
+        <div class="dp-entry-amount">${isCredit?'-':''}${fmtHistoryValue(Math.abs(h.value || 0), accCcy)}${deltaStr}</div>
       </div>`;
     }).join('');
   } else {
