@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Vault Privacy Policy — what data we hold, what we don't, and how we keep your information yours." />
+<title>Privacy Policy — Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f5;
+    --surface: #ffffff;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 780px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; transition: text-decoration-color .15s ease; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    background: rgba(250,249,245,0.92);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .wordmark {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .back-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .15s ease;
+  }
+  .back-link:hover { color: var(--text); }
+  .back-link .arrow {
+    font-size: 18px;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  main {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .doc-eyebrow {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .lede {
+    font-size: 18px;
+    color: var(--muted);
+    margin: 0 0 8px;
+    line-height: 1.55;
+  }
+  .updated {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 40px;
+    font-feature-settings: "tnum" 1;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    color: var(--text);
+  }
+  h2:first-of-type { margin-top: 32px; }
+  p {
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 16px 0 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card strong { font-weight: 600; }
+  .accent-rule {
+    width: 36px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 32px 0 24px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 32px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .contact-card a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 540px) {
+    h1 { font-size: 30px; }
+    .lede { font-size: 16px; }
+    main { padding: 36px 20px 72px; }
+    .site-header .wrap { padding: 0 20px; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="https://thevaultapp.co.uk/app/" class="wordmark">Vault<span class="dot">.</span></a>
+    <a href="https://thevaultapp.co.uk/app/" class="back-link"><span class="arrow">←</span>Back to Vault</a>
+  </div>
+</header>
+
+<main>
+  <span class="doc-eyebrow">Privacy</span>
+  <h1>Your data is yours.</h1>
+  <p class="lede">Vault is built around a simple idea: your finances are nobody else's business. Here's exactly what that means in practice.</p>
+  <p class="updated">Last updated: 13 May 2026</p>
+
+  <div class="accent-rule"></div>
+
+  <h2>What Vault does not collect</h2>
+  <div class="card">
+    <p>Vault does <strong>not collect or store any personal financial data on its servers</strong>. We don't run an analytics pipeline on your transactions, your net worth, your accounts, or anything else you put into Vault. There is no database we own that contains your financial life.</p>
+  </div>
+
+  <h2>If you sign in</h2>
+  <div class="card">
+    <p>If you choose to sign in (so your data syncs across your devices), Vault encrypts everything <strong>in your browser, before it leaves your computer</strong>. The encrypted payload is stored on <a href="https://www.walrus.xyz" target="_blank" rel="noopener noreferrer">Walrus</a>, a decentralised storage network, using a key derived from your Google sign-in.</p>
+    <p>The practical result: <strong>even Vault cannot read your data</strong>. We hold no decryption key. If you stop using Vault, the encrypted blob is unreadable to anyone, including us.</p>
+    <p>The only personal information processed during sign-in is a <strong>Google account identifier</strong>, used once to derive your cryptographic identity. This is not stored on Vault's servers.</p>
+  </div>
+
+  <h2>If you don't sign in</h2>
+  <div class="card">
+    <p>If you skip the sign-in step, <strong>all your data stays entirely on your own device</strong>, in your browser's local storage. It never leaves your computer. Vault has no idea what you've entered — there's no server call, no upload, no sync.</p>
+    <p>The trade-off is that your data is tied to that one browser on that one device. Clearing your browser data, or switching devices, means starting fresh.</p>
+  </div>
+
+  <h2>Cookies</h2>
+  <div class="card">
+    <p>This site uses cookies <strong>only for Google sign-in functionality</strong>. We don't use tracking cookies, analytics cookies, or advertising cookies. If you don't sign in, no cookies are set for the app's own functionality.</p>
+  </div>
+
+  <h2>Third parties</h2>
+  <div class="card">
+    <p>The handful of third parties Vault touches when you use it:</p>
+    <p>• <strong>Google</strong> — only if you sign in, and only to issue and verify your identity token.<br>
+       • <strong>Walrus</strong> — stores your encrypted blob if you sign in. Walrus cannot read it.<br>
+       • <strong>Anthropic</strong> — only if you use the bank-statement import feature, and only for the duration of one parse request. Your file is sent through a Vault-operated proxy that strips identifying information and passes only the parse result back to your browser. No record of the file is retained.<br>
+       • <strong>Live price feeds</strong> (CoinGecko, FMP, Yahoo Finance) — these are read-only public endpoints that don't know who's calling.</p>
+  </div>
+
+  <h2>Your rights</h2>
+  <div class="card">
+    <p>Because we hold no readable copy of your data, the usual data-access / data-deletion requests don't apply in the typical sense — there is nothing for us to give you or delete on your behalf. You already have everything, and you can delete it yourself from the app's Settings.</p>
+  </div>
+
+  <div class="contact-card">
+    Questions? Email <a href="mailto:hello@thevaultapp.co.uk">hello@thevaultapp.co.uk</a>.
+  </div>
+</main>
+
+</body>
+</html>

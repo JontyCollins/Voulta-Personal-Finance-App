@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Vault Terms of Service — what you can expect from Vault, and what we expect from you." />
+<title>Terms of Service — Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f5;
+    --surface: #ffffff;
+    --text: #12110f;
+    --muted: #6b6a65;
+    --border: #e8e6df;
+    --accent: #b8f000;
+    --accent-ink: #12110f;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --max: 780px;
+    --shadow-soft: 0 1px 2px rgba(18,17,15,.04), 0 8px 24px rgba(18,17,15,.04);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; transition: text-decoration-color .15s ease; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    background: rgba(250,249,245,0.92);
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .wordmark {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .back-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .15s ease;
+  }
+  .back-link:hover { color: var(--text); }
+  .back-link .arrow {
+    font-size: 18px;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  main {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .doc-eyebrow {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .lede {
+    font-size: 18px;
+    color: var(--muted);
+    margin: 0 0 8px;
+    line-height: 1.55;
+  }
+  .updated {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 40px;
+    font-feature-settings: "tnum" 1;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    color: var(--text);
+  }
+  h2:first-of-type { margin-top: 32px; }
+  p {
+    margin: 0 0 16px;
+    color: var(--text);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 16px 0 24px;
+    box-shadow: var(--shadow-soft);
+  }
+  .card p:last-child { margin-bottom: 0; }
+  .card strong { font-weight: 600; }
+  .accent-rule {
+    width: 36px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 32px 0 24px;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 32px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .contact-card a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 540px) {
+    h1 { font-size: 30px; }
+    .lede { font-size: 16px; }
+    main { padding: 36px 20px 72px; }
+    .site-header .wrap { padding: 0 20px; }
+    .card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="https://thevaultapp.co.uk/app/" class="wordmark">Vault<span class="dot">.</span></a>
+    <a href="https://thevaultapp.co.uk/app/" class="back-link"><span class="arrow">←</span>Back to Vault</a>
+  </div>
+</header>
+
+<main>
+  <span class="doc-eyebrow">Terms</span>
+  <h1>The deal, in plain English.</h1>
+  <p class="lede">Vault is a free tool to help you understand your own money. These terms explain what you can expect from it, and what's on you.</p>
+  <p class="updated">Last updated: 13 May 2026</p>
+
+  <div class="accent-rule"></div>
+
+  <h2>What Vault is</h2>
+  <div class="card">
+    <p>Vault is a <strong>personal finance tool</strong> designed to help you track and understand your finances. Think of it as a private notebook for your money — a calculator with memory. It runs in your browser, keeps your data private, and tries to help you see the bigger picture.</p>
+  </div>
+
+  <h2>What Vault is not</h2>
+  <div class="card">
+    <p>Vault is <strong>not a regulated financial product</strong>. We are not authorised by the FCA or any other regulator. We don't hold your money, we don't move money for you, and we don't offer investment services.</p>
+    <p>Nothing in Vault — not the calculators, the projections, the tax estimates, the FIRE planner, or any other feature — constitutes <strong>financial advice, tax advice, or legal advice</strong>. It's information and tooling, not guidance. If you need advice, please speak to a qualified, regulated adviser.</p>
+  </div>
+
+  <h2>Your decisions are yours</h2>
+  <div class="card">
+    <p>You are <strong>solely responsible for any financial decisions you make</strong> using information from Vault. We do our best to make the calculations accurate, but tax rules change, market data can be stale, and you know your circumstances better than any calculator does. Sanity-check anything important against an authoritative source before acting on it.</p>
+  </div>
+
+  <h2>Free, with no guarantees</h2>
+  <div class="card">
+    <p>Vault is provided <strong>free of charge</strong>, on an "as is" basis. We make <strong>no guarantees of availability, accuracy, or fitness for any particular purpose</strong>. The service may change, be redesigned, or be discontinued at any time without notice. If that happens, your data on this device is unaffected — you can always export it to keep a copy.</p>
+  </div>
+
+  <h2>Who can use Vault</h2>
+  <div class="card">
+    <p>You must be <strong>18 or older</strong> to use Vault.</p>
+  </div>
+
+  <h2>Acceptable use</h2>
+  <div class="card">
+    <p>A short list of things not to do: don't try to abuse the sign-in flow, don't try to bypass the rate limits we put in place to keep the service running, and don't use Vault to plan or facilitate anything illegal. If you find a bug or a security issue, please email us instead of exploiting it.</p>
+  </div>
+
+  <h2>Governing law</h2>
+  <div class="card">
+    <p>These terms are governed by the <strong>laws of England and Wales</strong>. Any disputes will be handled by the courts of England and Wales.</p>
+  </div>
+
+  <h2>Changes to these terms</h2>
+  <div class="card">
+    <p>If we update these terms, we'll update the "last updated" date at the top of this page. Significant changes — anything that meaningfully affects what you can expect from Vault — will be noted in the app the next time you use it.</p>
+  </div>
+
+  <div class="contact-card">
+    Questions? Email <a href="mailto:hello@thevaultapp.co.uk">hello@thevaultapp.co.uk</a>.
+  </div>
+</main>
+
+</body>
+</html>
