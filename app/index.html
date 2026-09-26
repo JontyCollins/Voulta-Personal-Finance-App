@@ -4,7 +4,7 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
 <script>
-  window.VAULT_VERSION = '2.01';
+  window.VAULT_VERSION = '2.02';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -667,6 +667,12 @@
     flex-direction: column;
     gap: 2px;
     overflow-y: auto;
+  }
+  /* V2.02: this desktop rule came AFTER the mobile media query and overrode
+     its display:contents, so on phones the bottom bar stacked its items in a
+     column (only "Home" visible). Re-assert the mobile layout here. */
+  @media (max-width: 600px) {
+    .sidebar-nav-items { display: contents; }
   }
 
   /* ── Sidebar bottom (settings, desktop only) ─────────────────────────── */
@@ -2625,6 +2631,8 @@
     box-shadow: -4px 0 32px rgba(0,0,0,0.18);
   }
   #settings-panel.open { transform: translateX(0); }
+  /* V2.02: no shadow bleeding onto the page while the panel is off-screen */
+  #settings-panel:not(.open) { box-shadow: none !important; }
   #settings-backdrop {
     position: fixed;
     inset: 0;
@@ -16093,11 +16101,7 @@
       <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
       <span class="tab-label">Tax</span>
     </button>
-    <button class="tab-item" id="tab-crypto" onclick="showScreen('crypto')">
-      <!-- v1.42: Bitcoin (₿) mark — clean circle + stylised B glyph. -->
-      <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 7.5h4.25a2.25 2.25 0 0 1 0 4.5H9"/><path d="M9 12h4.75a2.25 2.25 0 0 1 0 4.5H9"/><path d="M9 7.5V16.5"/><path d="M11 5.5V7.5"/><path d="M11 16.5V18.5"/><path d="M13 5.5V7.5"/><path d="M13 16.5V18.5"/></svg>
-      <span class="tab-label">Crypto</span>
-    </button>
+    
   </div>
 
   <!-- Settings + About pinned to bottom (desktop only) -->
@@ -16161,10 +16165,7 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
       Tax
     </button>
-    <button class="mobile-drawer-item" onclick="mobileMenuGo('crypto')">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 7.5h4.25a2.25 2.25 0 0 1 0 4.5H9"/><path d="M9 12h4.75a2.25 2.25 0 0 1 0 4.5H9"/><path d="M9 7.5V16.5"/></svg>
-      Crypto
-    </button>
+    
     <div class="mobile-drawer-divider"></div>
     <!-- v1.44: account status indicator (mirrors desktop sidebar) -->
     <div class="sidebar-account" id="mobile-drawer-account"></div>
@@ -18739,6 +18740,38 @@ function fmtDate(str) {
 function uid() {
   return Math.random().toString(36).slice(2,10);
 }
+// V2.02: show WHY a save didn't happen instead of silently doing nothing.
+function vaultFieldError(id, msg) {
+  const el = document.getElementById(id);
+  if (!el) { if (typeof showCelebration === 'function') showCelebration(msg, 3000); return; }
+  el.style.borderColor = 'var(--red, #e05555)';
+  let note = document.getElementById(id + '-err-note');
+  if (!note) {
+    note = document.createElement('div');
+    note.id = id + '-err-note';
+    note.setAttribute('role', 'alert');
+    note.style.cssText = 'font-size:11px;color:var(--red,#e05555);margin-top:4px;font-family:var(--sans)';
+    el.insertAdjacentElement('afterend', note);
+  }
+  note.textContent = msg;
+  try { el.focus(); } catch (e) {}
+  const clear = () => { el.style.borderColor = ''; if (note && note.parentNode) note.parentNode.removeChild(note); el.removeEventListener('input', clear); el.removeEventListener('change', clear); };
+  el.addEventListener('input', clear); el.addEventListener('change', clear);
+}
+
+// V2.02: ONE formatter for headline/summary money so Home, Spending and the
+// category drawer always show the same figure. Under £1,000 → pence
+// (£45.20); £1,000+ → whole pounds (£1,245). Negatives use a real minus.
+function fmtSummary(n, ccy) {
+  const sym = getCurrencySymbol(ccy || getDisplayCurrency());
+  const v = Number(n) || 0;
+  const abs = Math.abs(v);
+  const body = abs >= 1000
+    ? Math.round(abs).toLocaleString('en-GB')
+    : abs.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return (v < -0.004 ? '\u2212' : '') + sym + body;
+}
+
 function fmt(n, ccy) {
   const sym = getCurrencySymbol(ccy || getDisplayCurrency());
   const abs = Math.abs(n);
@@ -20157,9 +20190,10 @@ function renderHomeFirstUse() {
   if (hint) hint.style.display = isNewUser ? 'block' : 'none';
 }
 
-const SECTION_IDS = ['networth', 'spending', 'plan', 'tax', 'crypto'];
+const SECTION_IDS = ['networth', 'spending', 'plan', 'tax'];
 
 function showScreen(id) {
+  if (id === 'crypto') id = 'networth';  // V2.02: Crypto page removed — crypto accounts live in Net Worth
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
@@ -20211,13 +20245,6 @@ function showScreen(id) {
       if (el) el.innerHTML = '<div style="padding:32px 20px;font-size:13px;color:var(--text3);text-align:center">Something went wrong loading this section. Please refresh the page.</div>';
     }
   }
-  if (id === 'crypto') {
-    try { renderCrypto(); } catch (err) {
-      console.error('renderCrypto() failed:', err);
-      const el = document.getElementById('crypto-content');
-      if (el) el.innerHTML = '<div style="padding:32px 20px;font-size:13px;color:var(--text3);text-align:center">Something went wrong loading Crypto. Please refresh the page.</div>';
-    }
-  }
 
   // Scroll to top of new screen
   window.scrollTo(0, 0);
@@ -20253,7 +20280,7 @@ function _highlightActiveDrawerItem() {
   const items = document.querySelectorAll('#mobile-drawer .mobile-drawer-item');
   if (!items.length) return;
   // Determine the active screen by checking the screens that have .active.
-  const screens = ['home','networth','spending','plan','tax','crypto','about-vault'];
+  const screens = ['home','networth','spending','plan','tax','about-vault'];
   let activeId = null;
   for (const sid of screens) {
     const el = document.getElementById(sid);
@@ -21375,7 +21402,10 @@ const SUI_RPC_URL   = 'https://fullnode.mainnet.sui.io:443';
 
 // ===== FMP LIVE STOCK PRICES =====
 // Financial Modeling Prep API — hardcoded key (update here if key changes)
-const FMP_API_KEY = 'r9ExXVhhSRaFhEOf4HwEV5vPgdc2ibjN';
+// V2.02: the FMP key no longer ships in the app — quotes go through the
+// vault-fmp Cloudflare Worker, which holds the key as a secret. If the
+// proxy is unavailable, the existing Yahoo fallback below still runs.
+const FMP_PROXY_URL = 'https://vault-fmp.jontyancollins.workers.dev';
 // Cloudflare Worker proxy for Yahoo Finance — handles CORS and returns { ticker, price, currency }
 // currency='GBX' means pence (divide by 100), currency='GBP' means pounds
 const YAHOO_PROXY_URL = 'https://aged-base-2a20.jontyancollins.workers.dev';
@@ -21447,7 +21477,7 @@ async function refreshStockPrices(accId) {
   try {
     // ── Phase 1: Try FMP batch for all tickers ────────────────────────────────
     const tickers = holdings.map(h => (h.ticker || h.name).toUpperCase()).join(',');
-    const fmpUrl  = `https://financialmodelingprep.com/stable/quote?symbol=${encodeURIComponent(tickers)}&apikey=${FMP_API_KEY}`;
+    const fmpUrl  = `${FMP_PROXY_URL}/?symbols=${encodeURIComponent(tickers)}`;
     let fmpPriceMap = {};
     let fmpFailed = false;
 
@@ -24099,7 +24129,7 @@ window.pc2UpdatePreview = pc2UpdatePreview;
 
 function saveProperty() {
   const name = document.getElementById('prop-name').value.trim();
-  if (!name) return;
+  if (!name) { vaultFieldError('prop-name', 'Give this property a name.'); return; }
   const propCcySel   = document.getElementById('prop-currency');
   const propCcy      = propCcySel ? propCcySel.value : getDisplayCurrency();
   const value        = parseFloat(document.getElementById('prop-value').value) || 0;
@@ -24445,7 +24475,7 @@ function openEditAccountModal(accId) {
 
 function saveAccount() {
   const name = document.getElementById('acc-name').value.trim();
-  if (!name) return;
+  if (!name) { vaultFieldError('acc-name', 'Give this account a name (e.g. "Monzo").'); return; }
   const accCcy = document.getElementById('acc-currency');
   const accType  = document.getElementById('acc-type').value;
   const accIsISA = accType === 'investments' && document.getElementById('acc-isisa') && document.getElementById('acc-isisa').checked;
@@ -25564,7 +25594,7 @@ function selectCatPreset(el) {
 
 function saveCategory() {
   const name = document.getElementById('cat-name').value.trim();
-  if (!name) return;
+  if (!name) { vaultFieldError('cat-name', 'Give the category a name.'); return; }
   const emoji = (document.getElementById('cat-emoji') ? document.getElementById('cat-emoji').value.trim() : '') || '';
   const subsRaw = document.getElementById('cat-subs').value;
   const subs = subsRaw.split(',').map(s=>s.trim()).filter(Boolean).map(s=>({id:uid(),name:s,entries:[]}));
@@ -26436,21 +26466,18 @@ function renderSpendTransactions() {
   let allEntries = [];
   (state.spendCategories || []).forEach(cat => {
     (cat.subcategories || []).forEach(sub => {
+      // V2.02: include scheduled repeats, convert currency, and skip split
+      // "reference" rows (their parts are listed instead) so the list
+      // agrees with the category totals.
       let entries = [];
-      if (isYTD) {
-        // All entries in the current year
-        const year = new Date().getFullYear();
-        Object.entries(sub.entries || {}).forEach(([mk, arr]) => {
-          if (mk.startsWith(year + '-')) entries = entries.concat(arr || []);
-        });
-      } else {
-        entries = (sub.entries || {})[monthKey] || [];
-      }
+      const _months = isYTD && typeof getYTDMonths === 'function' ? getYTDMonths() : [monthKey];
+      _months.forEach(mk => { entries = entries.concat(getSubEntriesWithRecurring(cat, sub, mk)); });
       entries.forEach(e => {
+        if (e.catSplitParent) return;
         allEntries.push({
           date: e.date || '',
-          amount: e.amount || 0,
-          note: e.desc || '',
+          amount: getEntryDisplayAmount(e),
+          note: (e._virtual ? '\u21bb Scheduled \u2014 ' : '') + (e.desc || ''),
           account: e.account || '',
           type: e.type || 'expense',
           catName: cat.name || '',
@@ -26535,7 +26562,7 @@ function renderSpendTransactions() {
             '</div>' +
           '</div>' +
           '<div style="font-size:14px;font-family:var(--mono);color:' + amtColor + ';white-space:nowrap;flex-shrink:0">' +
-            prefix + sym + Math.abs(e.amount).toLocaleString('en-GB',{maximumFractionDigits:2}) +
+            (e.amount < 0 ? '\u2212' : prefix) + fmtSummary(Math.abs(e.amount)) +
           '</div>' +
         '</div>';
     });
@@ -26560,7 +26587,7 @@ function renderSpendTransactions() {
       html += '<div style="margin-bottom:2px">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 4px 4px;border-bottom:1px solid var(--border)">' +
           '<span style="font-size:11px;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:0.5px">' + fmtDate + '</span>' +
-          '<span style="font-size:11px;font-family:var(--mono);color:var(--text3)">' + sym + dayTotal.toLocaleString('en-GB',{maximumFractionDigits:2}) + '</span>' +
+          '<span style="font-size:11px;font-family:var(--mono);color:var(--text3)">' + fmtSummary(dayTotal) + '</span>' +
         '</div>';
       byDate[dateKey].forEach(e => {
         const isInc = e.type === 'income';
@@ -26576,7 +26603,7 @@ function renderSpendTransactions() {
               (e.account ? '<div style="font-size:11px;color:var(--text3);font-family:var(--sans);margin-top:1px"><span style="opacity:0.7">' + e.account.replace(/</g,'&lt;') + '</span></div>' : '') +
             '</div>' +
             '<div style="font-size:14px;font-family:var(--mono);color:' + amtColor + ';white-space:nowrap;flex-shrink:0">' +
-              prefix + sym + Math.abs(e.amount).toLocaleString('en-GB',{maximumFractionDigits:2}) +
+              (e.amount < 0 ? '\u2212' : prefix) + fmtSummary(Math.abs(e.amount)) +
             '</div>' +
           '</div>';
       });
@@ -26620,7 +26647,7 @@ function renderSpending() {
     } else if (existingHint) { existingHint.remove(); }
   }
   const remEl = document.getElementById('remaining-display');
-  remEl.textContent = fmt(remaining);
+  remEl.textContent = fmtSummary(remaining);
   remEl.className = 'income-value' + (remaining >= 0 ? ' positive' : ' negative');
 
   // Show/hide the negative balance hint
@@ -28228,8 +28255,14 @@ function toggleWhatIf(idx) {
 }
 
 // Core: months to reach target given current saved, monthly saving, annual return
+// V2.02: FIRE targets are in today's money, so growth must be REAL (after
+// inflation). The growth cards show nominal rates; convert here.
+const FIRE_INFLATION = 0.025;
+function fireRealRate(nominal) { return (1 + (nominal || 0)) / (1 + FIRE_INFLATION) - 1; }
+
 function monthsToFIRE(saved, monthly, target, annualRate) {
-  if (target <= 0) return 0;
+  if (!(target > 0)) return NaN;   // V2.02: no target yet — not "already there"
+  annualRate = fireRealRate(annualRate);
   if (saved >= target) return 0;
   const r = annualRate / 12;
   if (monthly <= 0 && r === 0) return Infinity;
@@ -28256,15 +28289,18 @@ function fmtDuration(months) {
 
 function calcFIREFull() {
   // Read number inputs
-  const spend   = parseFloat(document.getElementById('fi-spend')?.value)   || 0;
-  const saved   = parseFloat(document.getElementById('fi-saved')?.value)   || 0;
-  const monthly = parseFloat(document.getElementById('fi-monthly')?.value) || 0;
-  const age     = parseFloat(document.getElementById('fi-age')?.value)     || 0;
+  // V2.02: empty fields stay empty (null) in saved state instead of becoming 0.
+  const _num = id => { const v = document.getElementById(id)?.value; return (v === '' || v == null) ? null : (parseFloat(v)); };
+  const _spendIn = _num('fi-spend'), _savedIn = _num('fi-saved'), _monthlyIn = _num('fi-monthly'), _ageIn = _num('fi-age');
+  const spend   = _spendIn   || 0;
+  const saved   = _savedIn   || 0;
+  const monthly = _monthlyIn || 0;
+  const age     = _ageIn     || 0;
 
   // Persist to state — store raw growth/swr values (not the old risk string)
   if (!state.fireInputs) state.fireInputs = {};
   Object.assign(state.fireInputs, {
-    spend, saved, monthly, age,
+    spend: _spendIn, saved: _savedIn, monthly: _monthlyIn, age: _ageIn,
     growthRate:       fireGrowthRate,
     withdrawalRate:   fireWithdrawalRate,
     withdrawalComfort: fireWithdrawalComfort,
@@ -28301,14 +28337,15 @@ function calcFIREFull() {
   const freedomEl = document.getElementById('fi-freedom-val');
   const subEl     = document.getElementById('fi-freedom-sub');
   if (freedomEl) {
-    freedomEl.textContent = isFinite(baseMonths) && baseMonths >= 0
-      ? fmtDuration(baseMonths)
-      : '—';
+    freedomEl.textContent = !(fireNum > 0)
+      ? 'Enter your monthly spending'
+      : (isFinite(baseMonths) && baseMonths >= 0 ? fmtDuration(baseMonths) : 'Never at this rate');
   }
   if (subEl) {
     const parts = [];
     if (freedomYear) parts.push('in ' + freedomYear);
     if (retireAge)   parts.push('age ' + retireAge);
+    if (fireNum > 0) parts.push("in today's money (after " + (FIRE_INFLATION * 100) + '% inflation)');
     subEl.textContent = parts.join(' · ');
   }
 
@@ -28717,6 +28754,19 @@ const TAX_YEARS = {
     SL_PLAN2_RATE:      0.09,
   },
 };
+// V2.02: all student loan plans (thresholds per tax year). Plans 1/2/4/5
+// repay 9% above the threshold; Postgraduate repays 6% above £21,000 and
+// stacks on top of an undergraduate plan.
+const SL_PLANS_BY_YEAR = {
+  '2025-26': { plan1: 26065, plan2: 28470, plan4: 32745, plan5: 25000, pg: 21000 },
+  '2026-27': { plan1: 26900, plan2: 29385, plan4: 33795, plan5: 25000, pg: 21000 },
+};
+const SL_PLAN_LABELS = { none: 'No student loan', plan1: 'Plan 1', plan2: 'Plan 2', plan4: 'Plan 4 (Scotland)', plan5: 'Plan 5' };
+function jobSlPlan(job) {
+  if (job.slPlan) return job.slPlan;
+  return job.studentLoan ? 'plan2' : 'none';   // pre-V2.02 jobs: checkbox meant Plan 2
+}
+
 // Active default — the tax year users see if they haven't picked one.
 // Bumped from 2025-26 → 2026-27 in v1.43.
 const DEFAULT_TAX_YEAR = '2026-27';
@@ -28867,7 +28917,7 @@ function buildSalaryResultsHtml(job) {
       </div>
       ${r.studentLoan > 0 ? `
       <div class="salary-breakdown-row deduction">
-        <div><div class="salary-breakdown-label">Student loan (Plan 2)</div></div>
+        <div><div class="salary-breakdown-label">Student loan (${[jobSlPlan(job) !== 'none' ? SL_PLAN_LABELS[jobSlPlan(job)] : '', job.slPostgrad ? 'Postgraduate' : ''].filter(Boolean).join(' + ')})</div></div>
         <div class="salary-val">−${salaryFmt(r.studentLoan,p)}</div>
       </div>` : ''}
       ${r.pensionEmployerPound > 0 ? `
@@ -28940,23 +28990,32 @@ function calcSalaryTax(job) {
   const bandsForRegion = isScottish ? TY.SCOTTISH_BANDS : TY.REST_UK_BANDS;
   const incomeTax = _applyBands(taxableIncome, bandsForRegion);
 
-  // NI — applied to gross (not reduced by pension)
+  // V2.02: NI and student loan are charged on pay AFTER a salary-sacrifice
+  // pension (the sacrificed amount is never paid to you), but on full gross
+  // for a net-pay pension (which only reduces income tax).
+  const isSacrifice = job.pensionType === 'sacrifice';
+  const niBase = isSacrifice ? pensionablePay : annualGross;
   const NI_LOWER = TY.NI_LOWER;
   const NI_UPPER = TY.NI_UPPER;
   let ni = 0;
-  if (annualGross > NI_LOWER) {
-    const band1 = Math.min(annualGross, NI_UPPER) - NI_LOWER;
+  if (niBase > NI_LOWER) {
+    const band1 = Math.min(niBase, NI_UPPER) - NI_LOWER;
     ni += Math.max(0, band1) * TY.NI_RATE_MAIN;
   }
-  if (annualGross > NI_UPPER) {
-    ni += (annualGross - NI_UPPER) * TY.NI_RATE_UPPER;
+  if (niBase > NI_UPPER) {
+    ni += (niBase - NI_UPPER) * TY.NI_RATE_UPPER;
   }
 
-  // Student loan Plan 2
-  const SL_THRESHOLD = TY.SL_PLAN2_THRESHOLD;
+  // Student loan — any plan, plus Postgraduate on top
+  const _tyKey = Object.keys(TAX_YEARS).find(k => TAX_YEARS[k] === TY) || getActiveTaxYearKey();
+  const SLT = SL_PLANS_BY_YEAR[_tyKey] || SL_PLANS_BY_YEAR['2026-27'];
+  const slPlan = jobSlPlan(job);
   let studentLoan = 0;
-  if (job.studentLoan && annualGross > SL_THRESHOLD) {
-    studentLoan = (annualGross - SL_THRESHOLD) * TY.SL_PLAN2_RATE;
+  if (slPlan !== 'none' && SLT[slPlan] && niBase > SLT[slPlan]) {
+    studentLoan += (niBase - SLT[slPlan]) * 0.09;
+  }
+  if (job.slPostgrad && niBase > SLT.pg) {
+    studentLoan += (niBase - SLT.pg) * 0.06;
   }
 
   const totalDeductions = pensionEmpPound + incomeTax + ni + studentLoan;
@@ -29110,6 +29169,15 @@ function buildSalaryCardHtml(job) {
         </div>
       </div>
       <div class="salary-field-row">
+        <span class="salary-field-label">Pension type</span>
+        <div class="salary-field-input-wrap">
+          <select class="salary-input" onchange="salaryUpdateField('${job.id}','pensionType',this.value)">
+            <option value="netpay" ${job.pensionType!=='sacrifice'?'selected':''}>Net pay (cuts income tax)</option>
+            <option value="sacrifice" ${job.pensionType==='sacrifice'?'selected':''}>Salary sacrifice (cuts tax, NI &amp; loan)</option>
+          </select>
+        </div>
+      </div>
+      <div class="salary-field-row">
         <span class="salary-field-label">Employer contribution</span>
         <div class="salary-field-input-wrap">
           <input class="salary-input" type="number" placeholder="0" step="0.1" inputmode="decimal"
@@ -29121,12 +29189,20 @@ function buildSalaryCardHtml(job) {
 
       <!-- Student loan -->
       <div class="salary-section-label" style="margin-top:12px">Student Loan</div>
+      <div class="salary-field-row">
+        <span class="salary-field-label">Plan</span>
+        <div class="salary-field-input-wrap">
+          <select class="salary-input" onchange="salaryUpdateField('${job.id}','slPlan',this.value)">
+            ${['none','plan1','plan2','plan4','plan5'].map(k => `<option value="${k}" ${jobSlPlan(job)===k?'selected':''}>${SL_PLAN_LABELS[k]}</option>`).join('')}
+          </select>
+        </div>
+      </div>
       <label class="salary-toggle-check">
-        <input type="checkbox" ${job.studentLoan?'checked':''}
-          onchange="salaryUpdateField('${job.id}','studentLoan',this.checked)" />
-        <span>Plan 2 repayment (${slRateLabel} above ${slThresholdLabel})</span>
+        <input type="checkbox" ${job.slPostgrad?'checked':''}
+          onchange="salaryUpdateField('${job.id}','slPostgrad',this.checked)" />
+        <span>Postgraduate loan too (6% above £21,000)</span>
       </label>
-      <div class="salary-toggle-help">Currently supports Plan 2. More plans coming soon.</div>
+      <div class="salary-toggle-help">Not sure which plan? England/Wales, started uni 2012–2023: Plan 2. From Aug 2023: Plan 5. Before 2012: Plan 1. Scotland: Plan 4.</div>
 
       <hr class="salary-divider" />
 
@@ -30087,10 +30163,10 @@ function quickLogSave() {
   const catId = document.getElementById('ql-cat').value;
   const subId = document.getElementById('ql-sub').value;
   if (!amount || amount <= 0 || !catId || !subId) {
-    // Shake the panel to indicate missing fields
-    const panel = document.getElementById('quick-log-panel');
-    panel.style.borderColor = 'var(--red)';
-    setTimeout(() => panel.style.borderColor = '', 800);
+    // V2.02: say what's missing instead of just flashing the border
+    if (!amount || amount <= 0) vaultFieldError('ql-amount', 'Enter an amount.');
+    else if (!catId) vaultFieldError('ql-cat', 'Pick a category.');
+    else vaultFieldError('ql-sub', 'Pick a subcategory.');
     return;
   }
   const desc = document.getElementById('ql-desc').value.trim();
@@ -32805,16 +32881,18 @@ function renderBpSavingsContent() {
     const annualSpend = monthlySpend * 12;
     const fireNum = annualSpend / 0.04;
     const annualSavings = total * 12;
-    const g = 0.07;
+    const g = (typeof fireRealRate === 'function') ? fireRealRate(0.07) : 0.044; // V2.02: 7% growth, after 2.5% inflation
     let years = '—';
     if (annualSavings > 0 && fireNum > 0) {
       const currentSavings = 0; // standalone — no NW data used
-      years = (Math.log(fireNum / Math.max(annualSavings, 1)) / Math.log(1 + g)).toFixed(1);
+      // V2.02: years to grow annual contributions S to F at rate g:
+      // F = S*((1+g)^n - 1)/g  →  n = ln(F*g/S + 1)/ln(1+g)
+      years = (Math.log(fireNum * g / annualSavings + 1) / Math.log(1 + g)).toFixed(1);
       if (isNaN(years) || years < 0) years = '—';
     }
     html += `<div class="bp-fire-callout">
       <span class="bp-fire-years">${years === '—' ? '—' : years + ' years'}</span>
-      At this savings rate, assuming 7% annual growth, you could reach financial independence in approximately ${years} years.
+      At this savings rate, assuming 7% annual growth (about 4.4% after inflation, so the target stays in today's money), you could reach financial independence in approximately ${years} years.
       <div style="font-size:10px;color:var(--text3);margin-top:4px">FIRE number: ${bpFmt(fireNum)} · Annual spend: ${bpFmt(annualSpend)}</div>
     </div>`;
   }
@@ -33704,11 +33782,8 @@ function _wmCommitSetupAndStartTour() {
   _wmPersistSetup();
   closeWelcomeModal();
   // Hand off to the guided tour after the modal's close animation settles
-  setTimeout(function() {
-    try {
-      if (typeof startGuidedTour === 'function') startGuidedTour(true);
-    } catch(e) {}
-  }, 320);
+  // V2.02: no longer auto-starts the 16-step tour (it covered the forms it
+  // described). It's still one tap away from Home ("Take the tour") and About.
 }
 
 // ── v1.44: welcome-modal auth choice handlers ─────────────────────────────
@@ -36425,6 +36500,16 @@ window.renderActualVsPlan = function() {
 };
 
 // ── FIX 6: Debt tracker — add editable inputs ────────────────────────
+// V2.02: persist debt tracker edits on the account (they used to reset).
+window.debtSaveField = function(accId, field, value) {
+  const acc = (state.accounts || []).find(a => a.id === accId);
+  if (!acc) return;
+  const v = parseFloat(value);
+  if (isNaN(v) || v < 0) delete acc[field]; else acc[field] = v;
+  save();
+  window.renderDebtTracker();
+};
+
 window.renderDebtTracker = function() {
   const card    = document.getElementById('debt-tracker-card');
   const summary = document.getElementById('debt-tracker-summary');
@@ -36446,11 +36531,18 @@ window.renderDebtTracker = function() {
     const pmtInput = document.getElementById('debt-pmt-' + a.id);
     const rateInput = document.getElementById('debt-rate-' + a.id);
     const rate = rateInput ? (parseFloat(rateInput.value) || parseFloat(a.interestRate || a.rate || 0)) : parseFloat(a.interestRate || a.rate || 0);
-    const minPmt = pmtInput ? (parseFloat(pmtInput.value) || Math.max(25, balance * 0.02)) : Math.max(25, balance * 0.02);
-    const months  = getDebtPayoffMonths(balance, rate, minPmt);
-    const interest = months && rate > 0 ? Math.max(0, minPmt * months - balance) : 0;
-    return { acc: a, balance, rate, minPmt, months, interest };
+    // V2.02: saved per account; default = 1% + a month's interest (min £25),
+    // so high-APR cards still clear (2% never cleared anything above ~24% APR).
+    const defMin = Math.max(25, balance * 0.01 + balance * (rate / 100 / 12));
+    const minPmt = (pmtInput && parseFloat(pmtInput.value)) || parseFloat(a.minPayment || 0) || defMin;
+    return { acc: a, balance, rate, minPmt, months: null, interest: 0 };
   });
+  // V2.02: month-by-month simulation with the strategy's rollover.
+  const _strat = (typeof debtStrategy !== 'undefined' && debtStrategy) || 'avalanche';
+  const _sim = simulateDebtPayoff(debtData, _strat, true);
+  const _minOnly = simulateDebtPayoff(debtData, _strat, false);
+  debtData.forEach((d, i) => { d.months = _sim.months[i]; d.interest = _sim.interest[i]; });
+  const _rollSaving = Math.max(0, _minOnly.interest.reduce((t, v) => t + v, 0) - _sim.interest.reduce((t, v) => t + v, 0));
 
   // Sort by strategy
   const sorted = [...debtData].sort((a, b) =>
@@ -36461,13 +36553,16 @@ window.renderDebtTracker = function() {
 
   const totalDebt     = debtData.reduce((s, d) => s + d.balance, 0);
   const totalInterest = debtData.reduce((s, d) => s + d.interest, 0);
-  const maxMonths     = debtData.reduce((max, d) => Math.max(max, d.months || 0), 0);
+  const maxMonths     = _sim.allClear ? debtData.reduce((max, d) => Math.max(max, d.months || 0), 0) : 0;
 
   summary.innerHTML = '<div class="debt-total-summary">'
     + '<div class="dts-item"><div class="dts-label">Total Debt</div><div class="dts-val">' + sym + Math.round(totalDebt).toLocaleString('en-GB') + '</div></div>'
     + '<div class="dts-item"><div class="dts-label">Est. Interest</div><div class="dts-val">' + sym + Math.round(totalInterest).toLocaleString('en-GB') + '</div></div>'
-    + '<div class="dts-item"><div class="dts-label">Longest Payoff</div><div class="dts-val">' + (maxMonths ? Math.ceil(maxMonths / 12) + ' yrs' : '—') + '</div></div>'
-  + '</div>';
+    + '<div class="dts-item"><div class="dts-label">Debt-free in</div><div class="dts-val">' + (maxMonths ? fmtMonthsShort(maxMonths) : 'Never at these payments') + '</div></div>'
+  + '</div>'
+  + (debtData.length > 1 && _rollSaving >= 1
+      ? '<div style="font-size:11px;color:var(--text3);margin-top:6px">Rolling each cleared debt\u2019s payment onto the next saves about ' + sym + Math.round(_rollSaving).toLocaleString('en-GB') + ' in interest.</div>'
+      : '');
 
   list.innerHTML = sorted.map((d, i) => {
     const isFirst = i === 0;
@@ -36490,7 +36585,7 @@ window.renderDebtTracker = function() {
             + '<span style="font-size:11px;color:var(--text3);font-family:var(--mono)">' + sym + '</span>'
             + '<input id="debt-pmt-' + d.acc.id + '" type="number" value="' + Math.round(d.minPmt) + '" step="10" min="1" '
               + 'style="width:70px;font-size:12px;padding:3px 6px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:var(--mono)" '
-              + 'oninput="window.renderDebtTracker()" />'
+              + 'onchange="debtSaveField(\'' + d.acc.id + '\',\'minPayment\',this.value)" />'
           + '</div>'
         + '</div>'
         + '<div>'
@@ -36498,14 +36593,14 @@ window.renderDebtTracker = function() {
           + '<div style="display:flex;align-items:center;gap:4px">'
             + '<input id="debt-rate-' + d.acc.id + '" type="number" value="' + d.rate.toFixed(1) + '" step="0.1" min="0" max="100" '
               + 'style="width:60px;font-size:12px;padding:3px 6px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-family:var(--mono)" '
-              + 'oninput="window.renderDebtTracker()" />'
+              + 'onchange="debtSaveField(\'' + d.acc.id + '\',\'interestRate\',this.value)" />'
             + '<span style="font-size:11px;color:var(--text3)">%</span>'
           + '</div>'
         + '</div>'
       + '</div>'
       + '<div class="debt-stats-row" style="margin-top:10px">'
         + '<div class="debt-stat"><div class="debt-stat-label">Payoff</div><div class="debt-stat-val">'
-          + (d.months ? yrs + 'y ' + mos + 'm' : '—') + '</div></div>'
+          + (d.months ? fmtMonthsShort(d.months) : 'Not at this payment') + '</div></div>'
         + '<div class="debt-stat"><div class="debt-stat-label">Total Interest</div><div class="debt-stat-val" style="color:#e05555">'
           + (d.interest > 0 ? sym + Math.round(d.interest).toLocaleString('en-GB') : '—') + '</div></div>'
       + '</div>'
@@ -36928,18 +37023,22 @@ function renderDebtTracker() {
   if (!card || !summary || !list) return;
 
   const sym = getCurrencySymbol(getDisplayCurrency());
+  // V2.02: month-by-month simulation. Default minimum = 1% of balance plus
+  // a month's interest (UK card style, min £25), so high-APR debts still
+  // clear. The chosen strategy now actually ROLLS freed-up payments onto the
+  // next target debt instead of just re-ordering the list.
   const debts = (state.accounts || []).filter(a =>
     (a.type === 'credit' || a.type === 'loan') && getLatestValue(a) > 0
   ).map(a => {
     const balance = getLatestValue(a);
     const rate    = parseFloat(a.interestRate || a.rate || 0);
-    const minPmt  = parseFloat(a.minPayment || a.minimum || 0) || Math.max(25, balance * 0.02);
-    const months  = getDebtPayoffMonths(balance, rate, minPmt);
-    const interest = months && rate > 0
-      ? (minPmt * months - balance)
-      : 0;
-    return { acc: a, balance, rate, minPmt, months, interest };
+    const minPmt  = parseFloat(a.minPayment || a.minimum || 0)
+      || Math.max(25, balance * 0.01 + balance * (rate / 100 / 12));
+    return { acc: a, balance, rate, minPmt, months: null, interest: 0 };
   });
+  const _sim = simulateDebtPayoff(debts, debtStrategy, true);
+  const _simMinOnly = simulateDebtPayoff(debts, debtStrategy, false);
+  debts.forEach((d, i) => { d.months = _sim.months[i]; d.interest = _sim.interest[i]; });
 
   card.style.display = debts.length ? '' : 'none';
   if (!debts.length) return;
@@ -36953,14 +37052,16 @@ function renderDebtTracker() {
 
   const totalDebt     = debts.reduce((s, d) => s + d.balance, 0);
   const totalInterest = debts.reduce((s, d) => s + d.interest, 0);
-  const maxMonths     = debts.reduce((max, d) => Math.max(max, d.months || 0), 0);
+  const maxMonths     = _sim.allClear ? debts.reduce((max, d) => Math.max(max, d.months || 0), 0) : 0;
+  const _rollSaving   = Math.max(0, _simMinOnly.interest.reduce((s, v) => s + v, 0) - totalInterest);
 
   summary.innerHTML = `
     <div class="debt-total-summary">
       <div class="dts-item"><div class="dts-label">Total Debt</div><div class="dts-val">${sym}${Math.round(totalDebt).toLocaleString('en-GB')}</div></div>
       <div class="dts-item"><div class="dts-label">Est. Interest</div><div class="dts-val">${sym}${Math.round(totalInterest).toLocaleString('en-GB')}</div></div>
-      <div class="dts-item"><div class="dts-label">Longest Payoff</div><div class="dts-val">${maxMonths ? Math.ceil(maxMonths/12) + ' yrs' : '—'}</div></div>
-    </div>`;
+      <div class="dts-item"><div class="dts-label">Debt-free in</div><div class="dts-val">${maxMonths ? fmtMonthsShort(maxMonths) : 'Never at minimums'}</div></div>
+    </div>
+    ${debts.length > 1 && _rollSaving >= 1 ? `<div style="font-size:11px;color:var(--text3);margin-top:6px">Rolling each cleared debt's payment onto the next saves about ${sym}${Math.round(_rollSaving).toLocaleString('en-GB')} in interest.</div>` : ''}`;
 
   list.innerHTML = sorted.map((d, i) => {
     const priority = debtStrategy === 'avalanche' ? 'Pay off first (highest rate)' : 'Pay off first (smallest balance)';
@@ -36985,7 +37086,7 @@ function renderDebtTracker() {
           </div>
           <div class="debt-stat">
             <div class="debt-stat-label">Est. Payoff</div>
-            <div class="debt-stat-val">${d.months ? Math.ceil(d.months/12) + ' yrs ' + (d.months%12) + ' mo' : '—'}</div>
+            <div class="debt-stat-val">${d.months ? fmtMonthsShort(d.months) : 'Not at this payment'}</div>
           </div>
           <div class="debt-stat">
             <div class="debt-stat-label">Total Interest</div>
@@ -37015,7 +37116,11 @@ function renderTaxYTDSummary() {
   const totalLoss  = nonISA.filter(x => x.gain < 0).reduce((s, x) => s + Math.abs(x.gain), 0);
 
   const CGT_ALLOW  = typeof CGT_ALLOWANCE !== 'undefined' ? CGT_ALLOWANCE : 3000;
-  const realised   = ((state.taxYear && state.taxYear.entries) || []).reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
+  // V2.02: only gains realised in the CURRENT tax year count toward this year's allowance.
+  const _tyr = ukTaxYearRange(ukTaxYearOf());
+  const realised   = ((state.taxYear && state.taxYear.entries) || [])
+    .filter(e => !e.date || (String(e.date).slice(0, 10) >= _tyr.from && String(e.date).slice(0, 10) <= _tyr.to))
+    .reduce((s, e) => s + (parseFloat(e.amount) || 0), 0);
   const used       = Math.min(realised, CGT_ALLOW);
   const remaining  = Math.max(0, CGT_ALLOW - used);
 
@@ -37522,7 +37627,7 @@ window.renderSpending = function() {
     ytdMonths.forEach(m => { ytdTotal += getCatTotalForMonth(cat, m); });
     const valEl = document.querySelector('#cat-card-' + cat.id + ' .spend-cat-value');
     if (valEl && ytdTotal > 0) {
-      valEl.innerHTML = '<span style="font-size:10px;color:var(--text3)">YTD</span> ' + sym + ytdTotal.toLocaleString('en-GB', {maximumFractionDigits: 0});
+      valEl.innerHTML = '<span style="font-size:10px;color:var(--text3)">YTD</span> ' + fmtSummary(ytdTotal);
     }
   });
 
@@ -37545,10 +37650,10 @@ window.renderSpending = function() {
   });
   const incEl = document.getElementById('income-display');
   const remEl = document.getElementById('remaining-display');
-  if (incEl && ytdIncome > 0) incEl.textContent = sym + ytdIncome.toLocaleString('en-GB', {maximumFractionDigits: 0});
+  if (incEl && ytdIncome > 0) incEl.textContent = fmtSummary(ytdIncome);
   if (remEl) {
     const rem = ytdIncome - ytdSpend;
-    remEl.textContent = (rem < 0 ? '-' : '') + sym + Math.abs(rem).toLocaleString('en-GB', {maximumFractionDigits: 0});
+    remEl.textContent = fmtSummary(rem);
     remEl.style.color = rem < 0 ? '#e05555' : '';
   }
 };
@@ -37585,7 +37690,7 @@ function renderHomeStats() {
       const total = getCurrentNW();
       const sym = getCurrencySymbol(getDisplayCurrency());
       nwEl.style.display = 'flex';
-      nwEl.innerHTML = '<span class="hcs-val ' + (total >= 0 ? 'hcs-pos' : 'hcs-neg') + '">' + sym + Math.abs(total).toLocaleString('en-GB', {maximumFractionDigits:0}) + '</span>';
+      nwEl.innerHTML = '<span class="hcs-val ' + (total >= 0 ? 'hcs-pos' : 'hcs-neg') + '">' + fmtSummary(total) + '</span>';
       // FIRE progress if available
       const fi = state.fireInputs || {};
       if (fi.fireNumber && fi.fireNumber > 0 && total > 0) {
@@ -37608,9 +37713,11 @@ function renderHomeStats() {
       const sym = getCurrencySymbol(getDisplayCurrency());
       spEl.style.display = 'flex';
       const remCls = remaining >= 0 ? 'hcs-pos' : 'hcs-neg';
-      spEl.innerHTML = '<span class="hcs-val ' + remCls + '">' + sym + Math.abs(remaining).toLocaleString('en-GB', {maximumFractionDigits:0}) + ' left</span>';
+      spEl.innerHTML = '<span class="hcs-val ' + remCls + '">' + (remaining < 0 ? fmtSummary(Math.abs(remaining)) + ' over' : fmtSummary(remaining) + ' left') + '</span>';
       if (income > 0) {
-        const rate = Math.round((1 - spent/income)*100);
+        // V2.02: money moved into savings/investments counts as SAVED, not spent.
+        const _savedMo = (typeof getMoneyOutBreakdown === 'function') ? (getMoneyOutBreakdown(monthKey).saved || 0) : 0;
+        const rate = Math.round(((income - spent + _savedMo) / income) * 100);
         const chipCls = rate >= 15 ? 'ok' : rate >= 0 ? 'warn' : 'bad';
         spEl.innerHTML += '<span class="hcs-chip ' + chipCls + '">' + Math.max(0,rate) + '% saved</span>';
       }
@@ -37680,8 +37787,9 @@ function renderForecastOverviewChip() {
   const projTotal   = spentToDate + dailyRate * daysLeft;
   const projBalance = income - projTotal;
 
-  // Savings rate
-  const savings = income - spentToDate;
+  // Savings rate — V2.02: contributions to savings/investments count as saved
+  const _savedThisMonth = (typeof getMoneyOutBreakdown === 'function') ? (getMoneyOutBreakdown(currentSpendMonth).saved || 0) : 0;
+  const savings = income - spentToDate + _savedThisMonth;
   const savingsRate = income > 0 ? Math.round(savings / income * 100) : null;
 
   let parts = [];
@@ -37968,8 +38076,29 @@ function renderISATaxCard() {
     '</div>';
 }
 
+// V2.02: UK tax year label for a date ('2026-27' runs 6 Apr 2026 – 5 Apr 2027).
+function ukTaxYearOf(d) {
+  d = d || new Date();
+  const y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
+  const start = (m > 4 || (m === 4 && day >= 6)) ? y : y - 1;
+  return start + '-' + String(start + 1).slice(2);
+}
+function ukTaxYearRange(label) {
+  const start = parseInt(String(label || ukTaxYearOf()).slice(0, 4), 10);
+  return { from: start + '-04-06', to: (start + 1) + '-04-05' };
+}
+
+// V2.02: the ISA amount is tagged with its tax year, so the allowance resets
+// on 6 April instead of carrying last year's deposits forward forever.
 function getISADeposited() {
-  return parseFloat(vaultLoad('vault_isa_deposited') || '0') || 0;
+  const cur = ukTaxYearOf();
+  const tag = vaultLoad('vault_isa_deposited_year');
+  const val = parseFloat(vaultLoad('vault_isa_deposited') || '0') || 0;
+  if (!tag) {                       // pre-V2.02 value: assume it's for this year
+    if (val > 0) vaultSave('vault_isa_deposited_year', cur);
+    return val;
+  }
+  return tag === cur ? val : 0;
 }
 
 function saveISADeposited() {
@@ -37977,6 +38106,7 @@ function saveISADeposited() {
   if (!el) return;
   const val = parseFloat(el.value) || 0;
   vaultSave('vault_isa_deposited', String(val));
+  vaultSave('vault_isa_deposited_year', ukTaxYearOf());
   renderISABar();
 }
 
@@ -38111,6 +38241,49 @@ function deleteRecurringEntry(idx) {
 }
 
 // ── Debt payoff projection on account cards ────────────────────
+
+// V2.02: "1 yr 2 mo" style (the old code rounded years UP, so 14 months
+// read as "2 yrs 2 mo").
+function fmtMonthsShort(m) {
+  const y = Math.floor(m / 12), mo = m % 12;
+  return [y ? y + (y === 1 ? ' yr' : ' yrs') : '', mo ? mo + ' mo' : ''].filter(Boolean).join(' ') || '0 mo';
+}
+
+// V2.02: simulate paying debts month by month. Each debt gets its minimum;
+// with rollover, a cleared debt's payment moves to the current priority
+// target (avalanche = highest APR, snowball = smallest balance).
+// Returns { months:[], interest:[], allClear }.
+function simulateDebtPayoff(debts, strategy, rollover) {
+  const bal = debts.map(d => d.balance);
+  const r   = debts.map(d => (d.rate || 0) / 100 / 12);
+  const min = debts.map(d => d.minPmt);
+  const budget = min.reduce((s, v) => s + v, 0);
+  const months = debts.map(() => null), interest = debts.map(() => 0);
+  for (let m = 1; m <= 600; m++) {
+    if (bal.every(b => b <= 0.005)) break;
+    bal.forEach((b, i) => { if (b > 0) { const int = b * r[i]; interest[i] += int; bal[i] += int; } });
+    let pool = rollover ? budget : 0;
+    // pay minimums
+    bal.forEach((b, i) => {
+      if (b <= 0) return;
+      const pay = Math.min(b, min[i]);
+      bal[i] -= pay;
+      if (rollover) pool -= pay;
+    });
+    // roll spare budget to the priority debt(s)
+    if (rollover && pool > 0.005) {
+      const order = bal.map((b, i) => i).filter(i => bal[i] > 0)
+        .sort((a, b) => strategy === 'avalanche' ? (r[b] - r[a]) : (bal[a] - bal[b]));
+      for (const i of order) {
+        if (pool <= 0.005) break;
+        const pay = Math.min(bal[i], pool);
+        bal[i] -= pay; pool -= pay;
+      }
+    }
+    bal.forEach((b, i) => { if (b <= 0.005 && months[i] === null) { bal[i] = 0; months[i] = m; } });
+  }
+  return { months, interest, allClear: months.every(v => v !== null) };
+}
 
 function getDebtPayoffMonths(balance, rate, payment) {
   if (!balance || balance <= 0) return null;
@@ -42744,37 +42917,7 @@ renderSpending = function() {
     <div id="tax-content"><div style="padding:32px 20px;font-size:13px;color:var(--text3);text-align:center">Loading tax planning…</div></div>
 </div></div><!-- /tax -->
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- CRYPTO SCREEN                                                               -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<div class="screen" id="crypto">
-  <div class="page-header" style="--hdr-accent:var(--crypto-accent,#9f7aea)">
-    <div class="screen-inner" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <button class="back-btn" onclick="showScreen('home')">←</button>
-      <div class="page-title" style="flex:1">Crypto</div>
-      <div style="display:flex;align-items:center;gap:6px;background:rgba(72,209,116,0.1);border:1px solid rgba(72,209,116,0.25);border-radius:20px;padding:4px 10px">
-        <span style="width:7px;height:7px;border-radius:50%;background:#48d174;display:inline-block;flex-shrink:0"></span>
-        <span style="font-size:11px;color:var(--text2);font-family:var(--mono)">SUI mainnet</span>
-      </div>
-      <button class="btn btn-accent" style="padding:6px 14px;font-size:12px" onclick="openAddWalletModal()">+ Add wallet</button>
-    </div>
-  </div>
-  <div class="crypto-intro-banner">
-    <div class="crypto-intro-inner">
-      <div class="crypto-intro-eyebrow">About this section</div>
-      <h2 class="crypto-intro-title">Crypto, alongside the rest of your money</h2>
-      <p class="crypto-intro-body">Track on-chain balances and activity in the same place as your bank accounts, savings, and investments. Wallet values flow into your Net Worth, swaps and payments appear as spending in your normal categories, and staking income is logged so you have a record for tax.</p>
-      <div class="crypto-intro-wip">
-        <span class="crypto-intro-wip-dot"></span>
-        <span class="crypto-intro-wip-label">Work in progress</span>
-        <span class="crypto-intro-wip-note">SUI is supported today. More chains and automatic categorisation are coming.</span>
-      </div>
-    </div>
-  </div>
-  <div class="page-body" id="crypto-content">
-    <div style="padding:32px 20px;font-size:13px;color:var(--text3);text-align:center">Loading…</div>
-  </div>
-</div><!-- /crypto -->
+
 
 <!-- ═══════════════════════════════════════════════════════════════════════════ -->
 <!-- ABOUT VAULT SCREEN                                                           -->
@@ -42927,7 +43070,7 @@ renderSpending = function() {
       <div class="about-section-eyebrow">How to use it</div>
       <h2 class="about-section-title">The short version.</h2>
       <div class="about-section-body">
-        <p>Add your accounts under Net Worth. Log your spending and income under Spending. Use Planning to model the big decisions — buying a house, cutting expenses, retiring early. Use Tax to understand your CGT position before you sell anything. Use Crypto to bring your on-chain balances into the same picture.</p>
+        <p>Add your accounts under Net Worth. Log your spending and income under Spending. Use Planning to model the big decisions — buying a house, cutting expenses, retiring early. Use Tax to understand your CGT position before you sell anything. Crypto accounts sit alongside everything else in Net Worth.</p>
         <p>The first time you open Vault, the welcome tour will walk you through the core flow end to end. You can restart it any time from the button below.</p>
       </div>
       <div class="about-tour-launch-row">
@@ -43033,13 +43176,7 @@ renderSpending = function() {
             <div class="about-roadmap-desc">Tax rules, ISA/pension equivalents, and mortgage logic localised for other major markets — starting with the ones readers ask for most.</div>
           </div>
         </div>
-        <div class="about-roadmap-item">
-          <span class="about-roadmap-status future">Later</span>
-          <div>
-            <div class="about-roadmap-name">Crypto page with multi-wallet support</div>
-            <div class="about-roadmap-desc">Track multiple wallets across chains, with swaps and payments auto-classified into your normal spending categories.</div>
-          </div>
-        </div>
+        
       </div>
     </div>
 
@@ -43088,58 +43225,10 @@ renderSpending = function() {
 </div><!-- /about-vault -->
 
 <!-- Add Wallet Modal -->
-<div class="modal-overlay" id="modal-add-wallet">
-  <div class="modal" style="max-width:380px">
-    <div class="modal-title">Add wallet <button class="modal-close" onclick="closeModal('modal-add-wallet')">×</button></div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:16px;line-height:1.6">Connect a SUI wallet to track balances, transactions, and staking positions live.</div>
-    <!-- Option 1: Enoki Google Login -->
-    <div id="enoki-option" style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px;cursor:pointer" onclick="connectWithEnoki()">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#4285f4,#34a853);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        </div>
-        <div>
-          <div style="font-size:13px;font-weight:600;color:var(--text)">Connect with Google</div>
-          <div style="font-size:11px;color:var(--text3);margin-top:2px">Via Enoki — creates a SUI address from your Google account</div>
-        </div>
-      </div>
-    </div>
-    <!-- Option 2: Paste address -->
-    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px">
-      <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px">Enter wallet address</div>
-      <div class="input-group" style="margin-bottom:8px">
-        <div class="input-label">Nickname</div>
-        <input type="text" id="wallet-nickname" placeholder="e.g. Main wallet" />
-      </div>
-      <div class="input-group" style="margin-bottom:10px">
-        <div class="input-label">SUI address (0x…)</div>
-        <input type="text" id="wallet-address" placeholder="0x…" style="font-family:var(--mono);font-size:11px" />
-      </div>
-      <button class="btn btn-accent" style="width:100%;font-size:12px;padding:8px" onclick="addWalletByAddress()">Add wallet</button>
-    </div>
-  </div>
-</div><!-- /modal-add-wallet -->
+
 
 <!-- Staking Income Confirmation Modal -->
-<div class="modal-overlay" id="modal-staking-income">
-  <div class="modal" style="max-width:360px">
-    <div class="modal-title">Log staking income <button class="modal-close" onclick="closeModal('modal-staking-income')">×</button></div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.6">HMRC guidance suggests staking rewards may count as income in the period received. Log this amount as income for your records.</div>
-    <div class="input-group" style="margin-bottom:8px">
-      <div class="input-label">Date received</div>
-      <input type="date" id="staking-income-date" />
-    </div>
-    <div class="input-group" style="margin-bottom:8px">
-      <div class="input-label">GBP value</div>
-      <input type="number" id="staking-income-gbp" placeholder="0.00" step="0.01" />
-    </div>
-    <div class="input-group" style="margin-bottom:14px">
-      <div class="input-label">Notes</div>
-      <input type="text" id="staking-income-note" placeholder="e.g. SUI epoch 42 rewards" />
-    </div>
-    <button class="btn btn-accent" style="width:100%;font-size:12px;padding:8px" onclick="confirmStakingIncome()">Log as income</button>
-  </div>
-</div><!-- /modal-staking-income -->
+
 
 <!-- Transaction Modal -->
 <div class="modal-overlay" id="modal-txn">
@@ -43768,8 +43857,7 @@ window.openSpendCatPanel = function(catId) {
 
   document.getElementById('spend-panel-title').textContent = cat.name;
   document.getElementById('spend-panel-subtitle').textContent =
-    sym + catTotal.toLocaleString('en-GB', {maximumFractionDigits: 0}) +
-    ' this ' + (ytd ? 'YTD' : 'month');
+    fmtSummary(catTotal) + ' this ' + (ytd ? 'year' : 'month');
 
   var body    = document.getElementById('spend-panel-body');
   var actions = document.getElementById('spend-panel-actions');
@@ -43777,7 +43865,7 @@ window.openSpendCatPanel = function(catId) {
   var html =
     '<div class="dp-cat-total-row">' +
       '<span class="dp-cat-total-label">Total</span>' +
-      '<span class="dp-cat-total-val">' + sym + catTotal.toLocaleString('en-GB', {maximumFractionDigits: 0}) + '</span>' +
+      '<span class="dp-cat-total-val">' + fmtSummary(catTotal) + '</span>' +
     '</div>';
 
   var subs = cat.subcategories || [];
@@ -43804,7 +43892,7 @@ window.openSpendCatPanel = function(catId) {
         '<div class="dp-sub-section">' +
           '<div class="dp-sub-header">' +
             '<span class="dp-sub-name">' + sub.name + '</span>' +
-            '<span class="dp-sub-total">' + sym + subTotal.toLocaleString('en-GB',{maximumFractionDigits:2}) + '</span>' +
+            '<span class="dp-sub-total">' + fmtSummary(subTotal) + '</span>' +
           '</div>';
 
       if (!allEntries.length) {
@@ -45019,974 +45107,7 @@ window.renderIncomeSources = function() {
 
 </script>
 
-<script>
-// ════════════════════════════════════════════════════════════════════════════
-// VAULT v1.36 — CRYPTO PAGE
-// ════════════════════════════════════════════════════════════════════════════
-
-// ── State helpers ────────────────────────────────────────────────────────────
-function cryptoState() {
-  if (!state.crypto) state.crypto = { wallets: [], transactions: [], stakingIncome: [], defiPositions: [] };
-  if (!state.crypto.wallets)       state.crypto.wallets = [];
-  if (!state.crypto.transactions)  state.crypto.transactions = [];
-  if (!state.crypto.stakingIncome) state.crypto.stakingIncome = [];
-  if (!state.crypto.defiPositions) state.crypto.defiPositions = [];
-  return state.crypto;
-}
-
-// ── UI state ─────────────────────────────────────────────────────────────────
-let _cryptoTab = 'holdings';
-
-function cryptoSetTab(tab) { _cryptoTab = tab; renderCrypto(); }
-
-// ── Wallet address helpers ───────────────────────────────────────────────────
-function truncateAddr(addr) {
-  if (!addr || addr.length < 12) return addr || '';
-  return addr.slice(0, 6) + '…' + addr.slice(-4);
-}
-
-// ── SUI RPC calls ─────────────────────────────────────────────────────────────
-async function suiRpcCall(method, params) {
-  const resp = await fetch(SUI_RPC_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }),
-  });
-  if (!resp.ok) throw new Error('SUI RPC error: ' + resp.status);
-  const data = await resp.json();
-  if (data.error) throw new Error('SUI RPC: ' + JSON.stringify(data.error));
-  return data.result;
-}
-
-// Fetch coin balances for a wallet address
-async function fetchSuiBalances(address) {
-  try {
-    const result = await suiRpcCall('suix_getAllBalances', [address]);
-    return Array.isArray(result) ? result : [];
-  } catch (e) {
-    console.warn('[Crypto] fetchSuiBalances failed:', e.message);
-    return [];
-  }
-}
-
-// Fetch recent transactions for a wallet
-async function fetchSuiTransactions(address, limit = 20) {
-  try {
-    const result = await suiRpcCall('suix_queryTransactionBlocks', [
-      { filter: { FromAddress: address }, options: { showInput: true, showEffects: true, showEvents: true } },
-      null, limit, true
-    ]);
-    return (result && result.data) ? result.data : [];
-  } catch (e) {
-    console.warn('[Crypto] fetchSuiTransactions failed:', e.message);
-    return [];
-  }
-}
-
-// Fetch SUI price in GBP via CoinGecko
-let _suiPriceGBP = null;
-let _suiPriceFetchedAt = 0;
-async function getSuiPriceGBP() {
-  if (_suiPriceGBP !== null && Date.now() - _suiPriceFetchedAt < 60000) return _suiPriceGBP;
-  try {
-    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=sui&vs_currencies=gbp');
-    const d = await r.json();
-    if (d.sui && d.sui.gbp) {
-      _suiPriceGBP = d.sui.gbp;
-      _suiPriceFetchedAt = Date.now();
-    }
-  } catch (e) { console.warn('[Crypto] CoinGecko price fetch failed:', e.message); }
-  return _suiPriceGBP || 0;
-}
-
-// SUI has 9 decimal places (MIST units)
-function suiFromMist(mist) { return (parseInt(mist) || 0) / 1e9; }
-
-// ── Wallet connection ─────────────────────────────────────────────────────────
-function openAddWalletModal() {
-  document.getElementById('wallet-nickname').value = '';
-  document.getElementById('wallet-address').value  = '';
-  // Show/hide Enoki option based on whether API key is configured
-  const enokiEl = document.getElementById('enoki-option');
-  if (enokiEl) enokiEl.style.display = ENOKI_API_KEY === 'YOUR_ENOKI_API_KEY_HERE' ? 'none' : 'block';
-  openModal('modal-add-wallet');
-}
-
-async function addWalletByAddress() {
-  const cs      = cryptoState();
-  const addr    = (document.getElementById('wallet-address').value || '').trim();
-  const nick    = (document.getElementById('wallet-nickname').value || '').trim() || 'My wallet';
-  if (!addr || !addr.startsWith('0x')) {
-    alert('Please enter a valid SUI address starting with 0x');
-    return;
-  }
-  if (cs.wallets.find(w => w.address === addr)) {
-    alert('This wallet is already added.');
-    return;
-  }
-  const wallet = { id: uid(), nickname: nick, address: addr, chain: 'sui', addedAt: new Date().toISOString() };
-  cs.wallets.push(wallet);
-  save();
-  closeModal('modal-add-wallet');
-  renderCrypto();
-  // Fetch data in background
-  await refreshWalletData(wallet.id);
-  renderCrypto();
-}
-
-async function connectWithEnoki() {
-  if (ENOKI_API_KEY === 'YOUR_ENOKI_API_KEY_HERE') {
-    alert('Please configure your Enoki API key in the file first (search for ENOKI_API_KEY).');
-    return;
-  }
-  // Enoki zkLogin requires the @mysten/enoki SDK for ephemeral key generation
-  // and ZK proof computation — this cannot be fully completed in a plain fetch call.
-  // Step 1: request a nonce from Enoki using the correct endpoint.
-  try {
-    // Generate a temporary random value to serve as a minimal ephemeral seed
-    const randomBytes = crypto.getRandomValues(new Uint8Array(32));
-    const ephemeralKey = Array.from(randomBytes).map(b => b.toString(16).padStart(2,'0')).join('');
-
-    const resp = await fetch('https://api.enoki.mystenlabs.com/v1/zklogin/nonce', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + ENOKI_API_KEY,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        network: 'mainnet',
-        ephemeralPublicKey: ephemeralKey,
-        additionalEpochs: 2,
-      }),
-    });
-    const data = await resp.json();
-
-    if (data.nonce) {
-      // Construct Google OAuth URL using Enoki's hosted client
-      const params = new URLSearchParams({
-        client_id: '25769832374-famecqrhe2gkebt5fvqms2263046lj96.apps.googleusercontent.com',
-        redirect_uri: 'https://accounts.enoki.mystenlabs.com/v1/oauth/callback',
-        response_type: 'id_token',
-        scope: 'openid',
-        nonce: data.nonce,
-        state: JSON.stringify({ redirectUrl: window.location.href, apiKey: ENOKI_API_KEY }),
-      });
-      window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth?' + params.toString();
-    } else {
-      // Log the raw error to console for debugging, show a friendly
-      // message to the user.
-      try {
-        console.warn('[Vault] Enoki nonce request failed.', data && data.errors ? data.errors : data);
-      } catch (_) {}
-      alert('We couldn’t start the SUI wallet sign-in just now. Please use “Enter wallet address” below to add your SUI wallet directly, or try again in a moment.');
-    }
-  } catch (e) {
-    try { console.warn('[Vault] Enoki connection error.', e && e.name); } catch (_) {}
-    alert('Couldn’t reach the SUI wallet sign-in service. Please check your connection or use “Enter wallet address” below to add your SUI wallet directly.');
-  }
-}
-
-function removeWallet(walletId) {
-  const cs = cryptoState();
-  cs.wallets = cs.wallets.filter(w => w.id !== walletId);
-  cs.transactions = cs.transactions.filter(t => t.walletId !== walletId);
-  save(); renderCrypto();
-}
-
-// ── Additional SUI RPC fetchers ───────────────────────────────────────────────
-
-// Fetch native SUI staking positions (staked with validators)
-async function fetchSuiStakes(address) {
-  try {
-    const result = await suiRpcCall('suix_getStakes', [address]);
-    return Array.isArray(result) ? result : [];
-  } catch (e) {
-    console.warn('[Crypto] fetchSuiStakes failed:', e.message);
-    return [];
-  }
-}
-
-// Fetch all non-coin objects: NFTs, staked protocol tokens (Walrus, IKA etc.)
-async function fetchSuiObjects(address) {
-  try {
-    const result = await suiRpcCall('suix_getOwnedObjects', [
-      address,
-      {
-        filter: { MatchNone: [{ StructType: '0x2::coin::Coin' }] },
-        options: { showType: true, showDisplay: true, showContent: true },
-      },
-      null,
-      50,
-    ]);
-    return (result && result.data) ? result.data : [];
-  } catch (e) {
-    console.warn('[Crypto] fetchSuiObjects failed:', e.message);
-    return [];
-  }
-}
-
-// Known staked-token type fragments (lowercase match)
-const KNOWN_STAKE_TYPES = [
-  { fragment: 'staked_sui',    label: 'Staked SUI',    symbol: 'stSUI'  },
-  { fragment: 'stakedwal',     label: 'Staked Walrus', symbol: 'stWAL'  },
-  { fragment: 'staked_wal',    label: 'Staked Walrus', symbol: 'stWAL'  },
-  { fragment: 'stakedika',     label: 'Staked IKA',    symbol: 'stIKA'  },
-  { fragment: 'staked_ika',    label: 'Staked IKA',    symbol: 'stIKA'  },
-  { fragment: 'stakedcetus',   label: 'Staked CETUS',  symbol: 'stCETUS'},
-  { fragment: 'stakeddeep',    label: 'Staked DEEP',   symbol: 'stDEEP' },
-  { fragment: 'position',      label: 'DeFi Position', symbol: 'POS'    },
-  { fragment: 'liquidity',     label: 'LP Position',   symbol: 'LP'     },
-];
-
-// Categorise a SUI object by its Move type
-function classifySuiObject(obj) {
-  const type = ((obj.data && obj.data.type) || '').toLowerCase();
-  const display = (obj.data && obj.data.display && obj.data.display.data) || {};
-
-  // NFT: has a display name and/or image
-  const isNFT = !!(display.name || display.image_url);
-  if (isNFT) return { kind: 'nft', label: display.name || 'NFT', image: display.image_url || '', collection: display.collection || '' };
-
-  // Staking/DeFi: match known type fragments
-  for (const k of KNOWN_STAKE_TYPES) {
-    if (type.includes(k.fragment)) return { kind: 'stake', ...k };
-  }
-
-  // Generic staked object
-  if (type.includes('staked') || type.includes('stake')) {
-    // Try to extract protocol name from type string
-    const parts = type.split('::');
-    const label = 'Staked ' + (parts[parts.length - 1] || 'asset').replace(/_/g, ' ');
-    return { kind: 'stake', label, symbol: 'staked' };
-  }
-
-  return { kind: 'other' };
-}
-
-// Extract a human-readable amount from a staked SUI object's content
-function parseStakePrincipal(obj) {
-  try {
-    const fields = obj.data && obj.data.content && obj.data.content.fields;
-    if (!fields) return 0;
-    // StakedSui has `principal` field in MIST
-    if (fields.principal) return suiFromMist(fields.principal);
-    // Generic staked amount
-    if (fields.staked_sui) return suiFromMist(fields.staked_sui);
-    if (fields.balance) return suiFromMist(fields.balance);
-    if (fields.amount) return suiFromMist(fields.amount);
-  } catch (_) {}
-  return 0;
-}
-
-// ── Data refresh ──────────────────────────────────────────────────────────────
-async function refreshWalletData(walletId) {
-  const cs = cryptoState();
-  const w  = cs.wallets.find(ww => ww.id === walletId);
-  if (!w) return;
-
-  // 1. Coin balances (only tokens wallet actually holds)
-  w.balances = await fetchSuiBalances(w.address);
-
-  // 2. Native SUI staking positions
-  w.stakes = await fetchSuiStakes(w.address);
-
-  // 3. All non-coin objects: NFTs + protocol-staked tokens (Walrus, IKA, etc.)
-  w.objects = await fetchSuiObjects(w.address);
-
-  // 4. Transactions
-  const suiPrice  = await getSuiPriceGBP();
-  const rawTxns   = await fetchSuiTransactions(w.address);
-
-  rawTxns.forEach(txn => {
-    const txHash = txn.digest;
-    if (cs.transactions.find(t => t.txHash === txHash)) return;
-
-    const ts  = txn.timestampMs ? new Date(parseInt(txn.timestampMs)).toISOString().slice(0, 10) : '';
-    const events = (txn.events || []);
-
-    // Detect transaction type from events and kind
-    let type = 'unknown';
-    if (events.some(e => e.type && (e.type.includes('StakeEvent') || e.type.includes('staking::stake')))) type = 'staking';
-    else if (events.some(e => e.type && e.type.includes('unstake'))) type = 'unstaking';
-    else if (events.some(e => e.type && e.type.includes('SwapEvent') || e.type.includes('swap'))) type = 'swap';
-    else if (events.some(e => e.type && (e.type.includes('DepositEvent') || e.type.includes('pool::add')))) type = 'defi-dep';
-    else if (events.some(e => e.type && (e.type.includes('WithdrawEvent') || e.type.includes('pool::remove')))) type = 'defi-wd';
-    else if (events.some(e => e.type && e.type.includes('reward'))) type = 'reward';
-    else if (txn.transaction && txn.transaction.data && txn.transaction.data.transaction && txn.transaction.data.transaction.kind === 'PaySui') type = 'payment';
-
-    // Compute SUI balance change from effects
-    let quantity = 0;
-    try {
-      const balChanges = (txn.effects && txn.effects.balanceChanges) || [];
-      const myChange = balChanges.find(bc => bc.owner && bc.owner.AddressOwner === w.address && bc.coinType === '0x2::sui::SUI');
-      if (myChange) quantity = Math.abs(suiFromMist(myChange.amount));
-    } catch (_) {}
-
-    // Fallback to gas
-    if (quantity === 0) {
-      const g = txn.effects && txn.effects.gasUsed;
-      if (g) quantity = suiFromMist((parseInt(g.computationCost)||0) + (parseInt(g.storageCost)||0) - (parseInt(g.storageRebate)||0));
-    }
-
-    const shortType = ((txn.transaction && txn.transaction.data && txn.transaction.data.transaction && txn.transaction.data.transaction.kind) || txHash.slice(0,8));
-
-    cs.transactions.push({
-      id: uid(), walletId: w.id, chain: 'sui', date: ts,
-      rawDescription: shortType + ' · ' + txHash.slice(0, 12) + '…',
-      type, asset: 'SUI', quantity: Math.abs(quantity),
-      priceGBP: suiPrice, valueGBP: Math.abs(quantity) * suiPrice,
-      confirmed: false, txHash,
-    });
-  });
-
-  save();
-}
-
-// ── Computed metrics ──────────────────────────────────────────────────────────
-function cryptoTotalValueGBP() {
-  const cs    = cryptoState();
-  const price = _suiPriceGBP || 0;
-  let total   = 0;
-  cs.wallets.forEach(w => {
-    // Liquid coin balances
-    (w.balances || []).forEach(b => {
-      if (b.coinType && b.coinType.endsWith('::sui::SUI'))
-        total += suiFromMist(b.totalBalance) * price;
-    });
-    // Native SUI staked with validators
-    (w.stakes || []).forEach(pos => {
-      (pos.stakes || []).forEach(s => {
-        total += suiFromMist(s.principal) * price;
-        if (s.estimatedReward) total += suiFromMist(s.estimatedReward) * price;
-      });
-    });
-  });
-  return total;
-}
-
-function cryptoStakingRewardsGBP() {
-  return cryptoState().stakingIncome.reduce((s, e) => s + (parseFloat(e.gbp) || 0), 0);
-}
-
-function cryptoPendingCount() {
-  return cryptoState().transactions.filter(t => !t.confirmed).length;
-}
-
-// ── Holdings: only real wallet assets ────────────────────────────────────────
-function cryptoHoldings() {
-  const cs    = cryptoState();
-  const price = _suiPriceGBP || 0;
-  const byAsset = {};
-
-  cs.wallets.forEach(w => {
-    // Coin balances — deduplicate by coinType
-    (w.balances || []).forEach(b => {
-      const coinType = b.coinType || '';
-      const parts    = coinType.split('::');
-      const rawSym   = parts[parts.length - 1] || coinType;
-      const symbol   = rawSym.toUpperCase();
-      const units    = suiFromMist(b.totalBalance);
-      if (units < 0.000001) return; // skip dust
-      if (!byAsset[symbol]) byAsset[symbol] = { symbol, balance: 0, priceGBP: 0, valueGBP: 0, kind: 'coin', coinType };
-      byAsset[symbol].balance += units;
-      if (symbol === 'SUI') {
-        byAsset[symbol].priceGBP = price;
-        byAsset[symbol].valueGBP += units * price;
-      }
-    });
-  });
-  return Object.values(byAsset).sort((a, b) => (b.valueGBP||0) - (a.valueGBP||0));
-}
-
-// All staking positions across all wallets
-function cryptoAllStakes() {
-  const cs    = cryptoState();
-  const price = _suiPriceGBP || 0;
-  const rows  = [];
-  cs.wallets.forEach(w => {
-    // Native SUI validator stakes
-    (w.stakes || []).forEach(pos => {
-      (pos.stakes || []).forEach(s => {
-        rows.push({
-          walletNick: w.nickname || truncateAddr(w.address),
-          asset: 'SUI',
-          validator: (pos.validatorAddress || '').slice(0, 10) + '…',
-          principal: suiFromMist(s.principal),
-          reward: suiFromMist(s.estimatedReward || 0),
-          status: s.status || 'Active',
-          priceGBP: price,
-        });
-      });
-    });
-    // Protocol-staked objects (Walrus, IKA, etc.)
-    (w.objects || []).forEach(obj => {
-      const cls = classifySuiObject(obj);
-      if (cls.kind !== 'stake') return;
-      const principal = parseStakePrincipal(obj);
-      rows.push({
-        walletNick: w.nickname || truncateAddr(w.address),
-        asset: cls.symbol || 'staked',
-        label: cls.label,
-        validator: '—',
-        principal,
-        reward: 0,
-        status: 'Active',
-        priceGBP: 0, // no price feed for protocol tokens yet
-      });
-    });
-  });
-  return rows;
-}
-
-// All NFTs across all wallets
-function cryptoAllNFTs() {
-  const cs   = cryptoState();
-  const nfts = [];
-  cs.wallets.forEach(w => {
-    (w.objects || []).forEach(obj => {
-      const cls = classifySuiObject(obj);
-      if (cls.kind !== 'nft') return;
-      nfts.push({
-        walletNick: w.nickname || truncateAddr(w.address),
-        name: cls.label,
-        collection: cls.collection || '—',
-        image: cls.image,
-        objectId: (obj.data && obj.data.objectId) || '',
-      });
-    });
-  });
-  return nfts;
-}
-
-// ── Category confirmation & feeds ─────────────────────────────────────────────
-const CRYPTO_TX_TYPES = [
-  'payment','swap','defi-dep','defi-wd','staking','unstaking',
-  'reward','fee','internal','nft-buy','nft-sell','unknown'
-];
-const CRYPTO_TX_LABELS = {
-  'payment':'Payment','swap':'Swap','defi-dep':'DeFi deposit','defi-wd':'DeFi withdrawal',
-  'staking':'Staking','unstaking':'Unstaking','reward':'Staking reward','fee':'Fee',
-  'internal':'Internal transfer','nft-buy':'NFT purchase','nft-sell':'NFT sale','unknown':'Unknown'
-};
-
-function confirmCryptoTx(txId) {
-  const cs  = cryptoState();
-  const tx  = cs.transactions.find(t => t.id === txId);
-  if (!tx) return;
-  const sel = document.getElementById('cat-sel-' + txId);
-  if (sel) tx.type = sel.value;
-  tx.confirmed = true;
-  save();
-  cryptoFeedDownstream(tx);
-  renderCrypto();
-}
-
-function deleteCryptoTx(txId) {
-  const cs = cryptoState();
-  cs.transactions = cs.transactions.filter(t => t.id !== txId);
-  save(); renderCrypto();
-}
-
-function recatCryptoTx(txId, newType) {
-  const cs = cryptoState();
-  const tx = cs.transactions.find(t => t.id === txId);
-  if (!tx) return;
-  tx.type = newType;
-  save();
-  cryptoFeedDownstream(tx);
-  renderCrypto();
-}
-
-// Push confirmed transaction into downstream state
-function cryptoFeedDownstream(tx) {
-  if (!tx.confirmed) return;
-
-  // 1) Net Worth: crypto total is computed live from wallet balances — no extra action needed
-
-  // 2) Spending: Payment transactions → Spending section under "Crypto payments"
-  if (tx.type === 'payment' && tx.valueGBP > 0) {
-    cryptoFeedToSpending(tx);
-  }
-
-  // 3) CGT: Swap / NFT sale (disposal of non-stablecoin) → CGT ledger
-  if (tx.type === 'swap' || tx.type === 'nft-sell') {
-    cryptoFeedToCGT(tx);
-  }
-}
-
-function cryptoFeedToSpending(tx) {
-  // Find or create "Crypto Payments" category
-  let cat = (state.spendCategories || []).find(c => c.name === 'Crypto Payments');
-  if (!cat) {
-    const sub = { id: uid(), name: 'On-chain payments', entries: {} };
-    cat = { id: uid(), name: 'Crypto Payments', emoji: '🔗', enabled: true, subcategories: [sub] };
-    if (!state.spendCategories) state.spendCategories = [];
-    state.spendCategories.push(cat);
-  }
-  let sub = cat.subcategories[0];
-  const monthKey = tx.date ? tx.date.slice(0, 7) : '';
-  if (!monthKey) return;
-  if (!sub.entries) sub.entries = {};
-  if (!sub.entries[monthKey]) sub.entries[monthKey] = [];
-  // Only add if not already added (deduplicate by txHash)
-  const existing = sub.entries[monthKey].find(e => e._txHash === tx.txHash);
-  if (!existing) {
-    sub.entries[monthKey].push({
-      id: uid(), date: tx.date, amount: tx.valueGBP, desc: 'Crypto payment · ' + tx.txHash.slice(0, 10),
-      account: 'Crypto wallet', type: 'expense', _txHash: tx.txHash,
-    });
-  }
-  save();
-}
-
-function cryptoFeedToCGT(tx) {
-  if (!state.cgt) state.cgt = { ledger: [], taxpayerType: 'basic' };
-  if (!state.cgt.ledger) state.cgt.ledger = [];
-  const srcId = 'crypto:' + tx.txHash;
-  if (state.cgt.ledger.find(e => e._sourceId === srcId)) return;
-  state.cgt.ledger.push({
-    id: uid(), _sourceId: srcId,
-    date: tx.date, asset: tx.asset || 'SUI', type: 'sell',
-    units: tx.quantity || 0, priceGBP: tx.priceGBP || 0,
-    totalGBP: tx.valueGBP || 0, note: 'Via Crypto page · ' + tx.txHash.slice(0, 10),
-  });
-  save();
-}
-
-// ── Staking income modal ──────────────────────────────────────────────────────
-function openStakingIncomeModal(gbpHint) {
-  document.getElementById('staking-income-date').value = new Date().toISOString().slice(0, 10);
-  document.getElementById('staking-income-gbp').value  = gbpHint ? gbpHint.toFixed(2) : '';
-  document.getElementById('staking-income-note').value = '';
-  openModal('modal-staking-income');
-}
-
-function confirmStakingIncome() {
-  const cs   = cryptoState();
-  const date = document.getElementById('staking-income-date').value;
-  const gbp  = parseFloat(document.getElementById('staking-income-gbp').value) || 0;
-  const note = document.getElementById('staking-income-note').value.trim();
-  if (!gbp) { alert('Please enter a GBP value.'); return; }
-  cs.stakingIncome.push({ id: uid(), date, gbp, note });
-  save(); closeModal('modal-staking-income'); renderCrypto();
-}
-
-// ── Tab renderers ─────────────────────────────────────────────────────────────
-function renderCryptoHoldings() {
-  const holdings = cryptoHoldings();
-  const stakes   = cryptoAllStakes();
-  const nfts     = cryptoAllNFTs();
-  const cs       = cryptoState();
-  const pending  = cryptoPendingCount();
-  const fmt      = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtUnits = v => v > 0 ? v.toLocaleString('en-GB', { maximumFractionDigits: v < 1 ? 6 : 4 }) : '—';
-
-  const hasData = cs.wallets.some(w => (w.balances||[]).length > 0 || (w.stakes||[]).length > 0 || (w.objects||[]).length > 0);
-
-  const reviewAlert = pending > 0
-    ? `<div class="crypto-alert-banner danger">
-        <span>⚠ ${pending} transaction${pending > 1 ? 's' : ''} need review — categorise before they flow to Spending and CGT</span>
-        <button class="btn" style="font-size:11px;padding:4px 12px;flex-shrink:0" onclick="cryptoSetTab('transactions')">Review now</button>
-      </div>` : '';
-
-  if (!hasData) {
-    return reviewAlert + `<div class="cgt-empty-state">
-      <div style="font-size:28px;margin-bottom:8px">🔗</div>
-      <div style="margin-bottom:6px">No wallet data yet.</div>
-      <div style="color:var(--text3)">Add a wallet above then click ↻ Refresh to load balances, staking positions, and NFTs.</div>
-    </div>`;
-  }
-
-  // ── Coin holdings ──────────────────────────────────────────────────────
-  const coinsHTML = holdings.length === 0
-    ? `<div style="font-size:12px;color:var(--text3);padding:10px 0">No coin balances found.</div>`
-    : `<div class="crypto-table-wrap"><table class="crypto-table">
-        <thead><tr><th>Asset</th><th>Balance</th><th>Price (GBP)</th><th>Value (GBP)</th></tr></thead>
-        <tbody>${holdings.map(h => `<tr>
-          <td style="font-weight:600;font-family:var(--mono)">${h.symbol}</td>
-          <td style="font-family:var(--mono)">${fmtUnits(h.balance)}</td>
-          <td style="font-family:var(--mono)">${h.priceGBP ? fmt(h.priceGBP) : '—'}</td>
-          <td style="font-family:var(--mono);font-weight:700;color:${h.valueGBP>0?'var(--text)':'var(--text3)'}">${h.valueGBP ? fmt(h.valueGBP) : '—'}</td>
-        </tr>`).join('')}</tbody>
-      </table></div>`;
-
-  // ── Staked / protocol positions ────────────────────────────────────────
-  const stakesHTML = stakes.length === 0 ? '' : `
-    <div class="tax-card" style="margin-top:14px">
-      <div class="tax-card-title">🥩 Staked positions</div>
-      <div class="tax-card-body" style="padding:0">
-        <div class="crypto-table-wrap"><table class="crypto-table">
-          <thead><tr><th>Asset</th><th>Validator / Protocol</th><th>Principal</th><th>Est. Reward</th><th>Status</th></tr></thead>
-          <tbody>${stakes.map(s => `<tr>
-            <td style="font-weight:600;font-family:var(--mono)">${s.label || s.asset}</td>
-            <td style="font-size:10px;color:var(--text3);font-family:var(--mono)">${s.validator}</td>
-            <td style="font-family:var(--mono)">${fmtUnits(s.principal)} ${s.asset}</td>
-            <td style="font-family:var(--mono);color:var(--green)">${s.reward > 0 ? fmtUnits(s.reward) + ' ' + s.asset : '—'}</td>
-            <td><span class="txtype-badge txtype-staking">${s.status}</span></td>
-          </tr>`).join('')}</tbody>
-        </table></div>
-      </div>
-    </div>`;
-
-  // ── NFTs ───────────────────────────────────────────────────────────────
-  const nftsHTML = nfts.length === 0 ? '' : `
-    <div class="tax-card" style="margin-top:14px">
-      <div class="tax-card-title">🖼️ NFTs (${nfts.length})</div>
-      <div class="tax-card-body">
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px">
-          ${nfts.map(n => `
-            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer" title="${n.name}">
-              ${n.image
-                ? `<div style="width:100%;aspect-ratio:1;background:var(--surface3);overflow:hidden"><img src="${n.image}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'" loading="lazy" /></div>`
-                : `<div style="width:100%;aspect-ratio:1;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:24px">🖼️</div>`}
-              <div style="padding:6px 8px">
-                <div style="font-size:10px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${n.name.replace(/</g,'&lt;')}</div>
-                <div style="font-size:9px;color:var(--text3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${n.collection.replace(/</g,'&lt;')}</div>
-              </div>
-            </div>`).join('')}
-        </div>
-      </div>
-    </div>`;
-
-  // ── Recent transactions ────────────────────────────────────────────────
-  const recent = cs.transactions.filter(t => t.confirmed).slice(-4).reverse();
-  const recentHTML = recent.length === 0 ? '' : `
-    <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.7px;color:var(--text3);font-family:var(--mono);margin:14px 0 8px">Recent transactions</div>
-    <div class="crypto-table-wrap"><table class="crypto-table">
-      <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Value</th></tr></thead>
-      <tbody>${recent.map(t => `<tr>
-        <td>${t.date||'—'}</td>
-        <td>${cryptoTypeBadge(t.type)}</td>
-        <td style="font-family:var(--mono)">${t.quantity > 0 ? fmtUnits(t.quantity) + ' ' + (t.asset||'') : '—'}</td>
-        <td style="font-family:var(--mono)">${t.valueGBP > 0 ? fmt(t.valueGBP) : '—'}</td>
-      </tr>`).join('')}</tbody>
-    </table></div>`;
-
-  return reviewAlert
-    + `<div class="tax-card"><div class="tax-card-title">💰 Coin balances</div><div class="tax-card-body" style="padding:0">${coinsHTML}</div></div>`
-    + stakesHTML + nftsHTML + recentHTML;
-}
-
-function cryptoTypeBadge(type) {
-  const cls = 'txtype-' + (type||'unknown');
-  const lbl = CRYPTO_TX_LABELS[type] || type || 'Unknown';
-  return `<span class="txtype-badge ${cls}">${lbl}</span>`;
-}
-
-function renderCryptoTransactions() {
-  const cs  = cryptoState();
-  const fmt = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-  const unconfirmed = cs.transactions.filter(t => !t.confirmed);
-  const confirmed   = cs.transactions.filter(t =>  t.confirmed).slice().reverse();
-
-  const typeOptions = CRYPTO_TX_TYPES.map(t =>
-    `<option value="${t}">${CRYPTO_TX_LABELS[t]}</option>`
-  ).join('');
-
-  const queueHTML = unconfirmed.length === 0
-    ? `<div style="font-size:12px;color:var(--text3);padding:16px 0;text-align:center">No pending transactions to review.</div>`
-    : unconfirmed.map(t => `
-        <div class="crypto-review-row">
-          <div style="flex:1;min-width:0">
-            <div style="font-size:11px;color:var(--text);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t.rawDescription}</div>
-            <div style="font-size:10px;color:var(--text3);margin-top:2px">${t.date||'—'} · ${t.chain||'sui'} · wallet ${truncateAddr((cryptoState().wallets.find(w=>w.id===t.walletId)||{}).address||'')}</div>
-          </div>
-          <div style="font-family:var(--mono);font-size:12px;color:var(--text);flex-shrink:0">${t.valueGBP ? fmt(t.valueGBP) : '—'}</div>
-          <select class="crypto-cat-select" id="cat-sel-${t.id}">
-            <option value="${t.type||'unknown'}" selected>${CRYPTO_TX_LABELS[t.type||'unknown']||'Unknown'}</option>
-            ${CRYPTO_TX_TYPES.filter(tt=>tt!==t.type).map(tt=>`<option value="${tt}">${CRYPTO_TX_LABELS[tt]}</option>`).join('')}
-          </select>
-          <button class="btn btn-accent" style="font-size:11px;padding:4px 10px;flex-shrink:0" onclick="confirmCryptoTx('${t.id}')">Confirm</button>
-          <button class="txn-btn danger" onclick="deleteCryptoTx('${t.id}')">✕</button>
-        </div>`).join('');
-
-  const ledgerHTML = confirmed.length === 0
-    ? `<div style="font-size:12px;color:var(--text3);padding:16px 0;text-align:center">No confirmed transactions yet.</div>`
-    : `<div class="crypto-table-wrap"><table class="crypto-table">
-        <thead><tr><th>Date</th><th>Type</th><th>Asset</th><th>Qty</th><th>Value</th><th>Wallet</th></tr></thead>
-        <tbody>${confirmed.map(t => {
-          const wallet = cs.wallets.find(w => w.id === t.walletId);
-          return `<tr>
-            <td>${t.date||'—'}</td>
-            <td><span class="txtype-badge txtype-${t.type}" onclick="cryptoReCatDropdown('${t.id}',this)" style="cursor:pointer" title="Click to re-categorise">${CRYPTO_TX_LABELS[t.type]||t.type}</span></td>
-            <td style="font-family:var(--mono)">${t.asset||'—'}</td>
-            <td style="font-family:var(--mono)">${(t.quantity||0).toLocaleString('en-GB',{maximumFractionDigits:6})}</td>
-            <td style="font-family:var(--mono)">${t.valueGBP ? fmt(t.valueGBP) : '—'}</td>
-            <td style="font-size:10px;color:var(--text3)">${wallet ? truncateAddr(wallet.address) : '—'}</td>
-          </tr>`;
-        }).join('')}</tbody>
-      </table></div>`;
-
-  return `
-    <div class="tax-card">
-      <div class="tax-card-title">📥 Review Queue <span style="background:rgba(240,80,80,0.15);color:var(--red);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:6px;font-family:var(--mono)">${unconfirmed.length}</span></div>
-      <div class="tax-card-body" style="padding:0">${queueHTML}</div>
-    </div>
-    <div class="tax-card">
-      <div class="tax-card-title">📋 Transaction Ledger</div>
-      <div class="tax-card-body" style="padding:0">${ledgerHTML}</div>
-    </div>`;
-}
-
-function cryptoReCatDropdown(txId, badgeEl) {
-  // Create an inline select to re-categorise
-  const select = document.createElement('select');
-  select.className = 'crypto-cat-select';
-  select.style.fontSize = '10px';
-  CRYPTO_TX_TYPES.forEach(t => {
-    const opt = document.createElement('option'); opt.value = t;
-    opt.textContent = CRYPTO_TX_LABELS[t]; select.appendChild(opt);
-  });
-  const cs = cryptoState();
-  const tx = cs.transactions.find(t => t.id === txId);
-  if (tx) select.value = tx.type || 'unknown';
-  select.onchange = () => { recatCryptoTx(txId, select.value); };
-  select.onblur = () => renderCrypto();
-  badgeEl.replaceWith(select);
-  select.focus();
-}
-
-function renderCryptoStaking() {
-  const cs         = cryptoState();
-  const stakes     = cryptoAllStakes();
-  const totalIncome= cs.stakingIncome.reduce((s, e) => s + (parseFloat(e.gbp) || 0), 0);
-  const fmt        = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtUnits   = v => v > 0 ? v.toLocaleString('en-GB', { maximumFractionDigits: v < 1 ? 6 : 4 }) : '—';
-
-  // Total estimated SUI rewards
-  const rewardsTotal = stakes.filter(s => s.asset === 'SUI')
-    .reduce((t, s) => t + (s.reward * (s.priceGBP || 0)), 0);
-
-  const stakingTable = stakes.length === 0
-    ? `<div class="cgt-empty-state"><div style="font-size:24px;margin-bottom:6px">🥩</div>
-        <div>No staking positions found.</div>
-        <div style="margin-top:6px;color:var(--text3)">Refresh your wallet to detect native SUI staking and protocol staking positions (Walrus, IKA, etc.)</div>
-      </div>`
-    : `<div class="crypto-table-wrap"><table class="crypto-table">
-        <thead><tr><th>Asset</th><th>Validator / Protocol</th><th>Principal</th><th>Est. Reward</th><th>GBP value</th><th>Status</th></tr></thead>
-        <tbody>${stakes.map(s => {
-          const gbpVal = s.principal * (s.priceGBP || 0);
-          return `<tr>
-            <td style="font-weight:600">${s.label || s.asset}</td>
-            <td style="font-size:10px;color:var(--text3);font-family:var(--mono)">${s.validator}</td>
-            <td style="font-family:var(--mono)">${fmtUnits(s.principal)} ${s.asset}</td>
-            <td style="font-family:var(--mono);color:var(--green)">${s.reward > 0 ? fmtUnits(s.reward) + ' ' + s.asset : '—'}</td>
-            <td style="font-family:var(--mono)">${gbpVal > 0 ? fmt(gbpVal) : '—'}</td>
-            <td>${cryptoTypeBadge('staking').replace('Staking', s.status || 'Active')}</td>
-          </tr>`;
-        }).join('')}</tbody>
-      </table></div>`;
-
-  const rewardsBanner = `
-    <div class="crypto-staking-income-banner">
-      <strong>⚠ Staking rewards &amp; HMRC</strong><br>
-      HMRC guidance suggests staking rewards may count as miscellaneous income in the period received.
-      ${rewardsTotal > 0 ? `Est. rewards value: <strong>${fmt(rewardsTotal)}</strong>.` : ''}
-      ${cs.stakingIncome.length > 0 ? ` <strong>${fmt(totalIncome)}</strong> already logged as income.` : ''}
-      <br>
-      <button class="btn" style="font-size:11px;padding:5px 14px;margin-top:8px" onclick="openStakingIncomeModal(${rewardsTotal.toFixed(2)})">Review &amp; log income</button>
-    </div>`;
-
-  const incomeLog = cs.stakingIncome.length === 0 ? '' : `
-    <div class="tax-card" style="margin-top:14px">
-      <div class="tax-card-title">📥 Logged staking income</div>
-      <div class="tax-card-body" style="padding:0">
-        ${cs.stakingIncome.map(e => `
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 14px;border-bottom:1px solid var(--border2);font-size:12px">
-            <span style="color:var(--text2)">${e.date} · ${(e.note||'Staking rewards').replace(/</g,'&lt;')}</span>
-            <span style="font-family:var(--mono);color:var(--text)">${fmt(e.gbp)}</span>
-          </div>`).join('')}
-        <div style="display:flex;justify-content:space-between;padding:10px 14px;font-size:12px;font-weight:700;font-family:var(--mono);background:var(--surface2)">
-          <span style="color:var(--text3)">Total logged income</span>
-          <span>${fmt(totalIncome)}</span>
-        </div>
-      </div>
-    </div>`;
-
-  return `<div class="tax-card">
-    <div class="tax-card-title">🥩 Staking positions</div>
-    <div class="tax-card-body" style="padding:0">${stakingTable}</div>
-  </div>` + rewardsBanner + incomeLog;
-}
-
-function renderCryptoDeFi() {
-  const cs = cryptoState();
-  const defi = cs.transactions.filter(t => t.confirmed && (t.type === 'defi-dep' || t.type === 'defi-wd'));
-  const fmt  = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-  if (defi.length === 0) return `
-    <div class="cgt-empty-state" style="padding:40px 20px">
-      <div style="font-size:28px;margin-bottom:10px">🏊</div>
-      <div style="font-size:13px;color:var(--text2);margin-bottom:6px">No DeFi positions found</div>
-      <div style="font-size:12px;color:var(--text3)">DeFi deposits and withdrawals will appear here once transactions are confirmed and categorised.</div>
-    </div>`;
-
-  return `<div class="crypto-table-wrap"><table class="crypto-table">
-    <thead><tr><th>Date</th><th>Type</th><th>Asset</th><th>Value (GBP)</th><th>Tx</th></tr></thead>
-    <tbody>${defi.map(t=>`<tr>
-      <td>${t.date||'—'}</td>
-      <td>${cryptoTypeBadge(t.type)}</td>
-      <td style="font-family:var(--mono)">${t.asset||'—'}</td>
-      <td style="font-family:var(--mono)">${t.valueGBP ? fmt(t.valueGBP) : '—'}</td>
-      <td style="font-size:10px;color:var(--text3);font-family:var(--mono)">${(t.txHash||'').slice(0,10)}</td>
-    </tr>`).join('')}</tbody>
-  </table></div>`;
-}
-
-function renderCryptoDataFlows() {
-  const cs        = cryptoState();
-  const confirmed = cs.transactions.filter(t => t.confirmed);
-  const fmt       = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-  // Net worth: live balance
-  const nwVal = cryptoTotalValueGBP();
-
-  // Spending: Payment transactions this month
-  const thisMonth = new Date().toISOString().slice(0, 7);
-  const spendVal  = confirmed.filter(t => t.type === 'payment' && (t.date || '').startsWith(thisMonth))
-    .reduce((s, t) => s + (t.valueGBP || 0), 0);
-
-  // CGT: disposals auto-logged this tax year
-  const taxStart  = getCurrentTaxYear ? getCurrentTaxYear() : new Date().getFullYear();
-  const cgtCount  = (state.cgt && state.cgt.ledger || []).filter(e =>
-    e._sourceId && e._sourceId.startsWith('crypto:') && cgtInYear && cgtInYear(e.date, taxStart)
-  ).length;
-
-  return `
-    <div style="font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.6">
-      This tab shows exactly what the Crypto page is contributing to the rest of Vault in real time. Data flows automatically as you confirm and categorise transactions.
-    </div>
-    <div class="crypto-flow-grid">
-      <div class="crypto-flow-card">
-        <div class="crypto-flow-label">Net Worth</div>
-        <div class="crypto-flow-val">${fmt(nwVal)}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px">Live wallet balance</div>
-        <div class="crypto-flow-dir">→ Feeds into total net worth</div>
-      </div>
-      <div class="crypto-flow-card">
-        <div class="crypto-flow-label">Spending</div>
-        <div class="crypto-flow-val">${fmt(spendVal)}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px">Payment txns this month</div>
-        <div class="crypto-flow-dir">→ Feeds into Crypto Payments category</div>
-      </div>
-      <div class="crypto-flow-card">
-        <div class="crypto-flow-label">CGT</div>
-        <div class="crypto-flow-val">${cgtCount}</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:2px">Disposals this tax year</div>
-        <div class="crypto-flow-dir">→ Auto-logged in CGT ledger</div>
-      </div>
-    </div>`;
-}
-
-// ── Main render ───────────────────────────────────────────────────────────────
-function renderCrypto() {
-  const el = document.getElementById('crypto-content');
-  if (!el) return;
-
-  const cs      = cryptoState();
-  const pending = cryptoPendingCount();
-  const fmt     = v => '£' + Math.abs(v).toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-  // ── Metric cards ─────────────────────────────────────────────────────────
-  const totalVal   = cryptoTotalValueGBP();
-  const stakingRew = cryptoStakingRewardsGBP();
-  const metrics = `
-    <div class="crypto-metrics">
-      <div class="crypto-metric-card">
-        <div class="crypto-metric-val">${fmt(totalVal)}</div>
-        <div class="crypto-metric-label">Portfolio value</div>
-      </div>
-      <div class="crypto-metric-card">
-        <div class="crypto-metric-val" style="color:var(--text3);font-size:14px">—</div>
-        <div class="crypto-metric-label">24h change</div>
-      </div>
-      <div class="crypto-metric-card">
-        <div class="crypto-metric-val" style="color:rgba(240,200,60,0.9)">${fmt(stakingRew)}</div>
-        <div class="crypto-metric-label">Staking rewards</div>
-      </div>
-      <div class="crypto-metric-card">
-        <div class="crypto-metric-val" style="color:${pending>0?'var(--red)':'var(--text)'}">${pending}</div>
-        <div class="crypto-metric-label">Pending review</div>
-      </div>
-    </div>`;
-
-  // ── Wallet cards ──────────────────────────────────────────────────────────
-  const walletCards = cs.wallets.map(w => {
-    const chainCls = 'chain-' + (w.chain || 'sui');
-    const price = _suiPriceGBP || 0;
-    let walletVal = (w.balances || []).reduce((s, b) => {
-      if (b.coinType && b.coinType.endsWith('::sui::SUI'))
-        return s + suiFromMist(b.totalBalance) * price;
-      return s;
-    }, 0);
-    // Add native staked SUI principal + rewards
-    (w.stakes || []).forEach(pos => (pos.stakes || []).forEach(s => {
-      walletVal += suiFromMist(s.principal) * price;
-      if (s.estimatedReward) walletVal += suiFromMist(s.estimatedReward) * price;
-    }));
-    const hasObjects = (w.objects||[]).length > 0;
-    const nftCount   = (w.objects||[]).filter(o => classifySuiObject(o).kind === 'nft').length;
-    const stakeCount = (w.objects||[]).filter(o => classifySuiObject(o).kind === 'stake').length;
-    const metaPills = [
-      nftCount   > 0 ? `<span style="font-size:9px;background:rgba(240,96,160,0.12);color:#f060a0;padding:1px 6px;border-radius:8px">${nftCount} NFT${nftCount>1?'s':''}</span>` : '',
-      stakeCount > 0 ? `<span style="font-size:9px;background:rgba(240,200,60,0.12);color:rgba(240,200,60,0.9);padding:1px 6px;border-radius:8px">${stakeCount} stake${stakeCount>1?'s':''}</span>` : '',
-    ].filter(Boolean).join(' ');
-    return `<div class="crypto-wallet-card">
-      <div class="crypto-wallet-nick">${(w.nickname||'Wallet').replace(/</g,'&lt;')}</div>
-      <div class="crypto-wallet-addr">${truncateAddr(w.address)}</div>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
-        <span class="crypto-chain-badge ${chainCls}">${w.chain||'SUI'}</span>
-        ${metaPills}
-        <button class="txn-btn danger" onclick="removeWallet('${w.id}')" title="Remove wallet" style="font-size:10px;padding:2px 6px">✕</button>
-      </div>
-      <div class="crypto-wallet-val">${walletVal > 0 ? fmt(walletVal) : '—'}</div>
-      <button class="btn" style="font-size:10px;padding:4px 10px;margin-top:8px;width:100%" onclick="refreshSingleWallet('${w.id}')">↻ Refresh</button>
-    </div>`;
-  }).join('');
-
-  const addCard = `<div class="crypto-wallet-add-card" onclick="openAddWalletModal()">
-    <div style="font-size:22px;color:var(--border)">+</div>
-    <div style="font-size:11px;color:var(--text3)">Add wallet<br>or chain</div>
-  </div>`;
-
-  const walletsRow = cs.wallets.length === 0 && false ? '' :
-    `<div class="crypto-wallets-row">${walletCards}${addCard}</div>`;
-
-  // ── Tab bar ───────────────────────────────────────────────────────────────
-  const tabs = [
-    { id: 'holdings',     label: 'Holdings' },
-    { id: 'transactions', label: 'Transactions', badge: pending > 0 ? pending : 0 },
-    { id: 'staking',      label: 'Staking' },
-    { id: 'defi',         label: 'DeFi' },
-    { id: 'data-flows',   label: 'Data flows' },
-  ];
-  const tabBar = `<div class="cgt-tab-bar">${tabs.map(t => {
-    const badge = t.badge > 0
-      ? `<span style="background:var(--red);color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px">${t.badge}</span>` : '';
-    return `<button class="cgt-tab ${_cryptoTab === t.id ? 'active' : ''}" onclick="cryptoSetTab('${t.id}')">${t.label}${badge}</button>`;
-  }).join('')}</div>`;
-
-  // ── Tab content ───────────────────────────────────────────────────────────
-  let tabContent = '';
-  if      (_cryptoTab === 'holdings')     tabContent = renderCryptoHoldings();
-  else if (_cryptoTab === 'transactions') tabContent = renderCryptoTransactions();
-  else if (_cryptoTab === 'staking')      tabContent = renderCryptoStaking();
-  else if (_cryptoTab === 'defi')         tabContent = renderCryptoDeFi();
-  else if (_cryptoTab === 'data-flows')   tabContent = renderCryptoDataFlows();
-
-  el.innerHTML = metrics + walletsRow + tabBar + `<div>${tabContent}</div>`;
-}
-
-// ── Refresh single wallet (async, non-blocking) ───────────────────────────────
-async function refreshSingleWallet(walletId) {
-  const btn = document.querySelector(`[onclick="refreshSingleWallet('${walletId}')"]`);
-  if (btn) { btn.disabled = true; btn.textContent = '↻ Refreshing…'; }
-  await refreshWalletData(walletId);
-  renderCrypto();
-}
-
-</script>
+<!-- V2.02: Crypto page module removed (Jonty, 26 Sept 2026). state.crypto data is left untouched. -->
 
 <!-- ═══════════════════════════════════════════════════════════════════
      V1.36 ADDITION — "Did you know?" tips on load
@@ -47538,7 +46659,7 @@ window.addEventListener('load', function() {
       try { alreadyWelcomed = vaultLoad('vault_welcomed') === '1'; } catch(e) {}
       if (!alreadyWelcomed) return;
 
-      startGuidedTour(false);
+      // V2.02: the tour is opt-in now (Home → "Take the tour").
     } catch(e) {}
   }, 1800);
 });
