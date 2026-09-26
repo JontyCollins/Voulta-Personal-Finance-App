@@ -4,7 +4,7 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
 <script>
-  window.VAULT_VERSION = '2.03';
+  window.VAULT_VERSION = '2.1';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -16085,23 +16085,22 @@
       <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
       <span class="tab-label">Home</span>
     </button>
+    <button class="tab-item" id="tab-spending" onclick="showScreen('spending')">
+      <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></svg>
+      <span class="tab-label">Money</span>
+    </button>
+    <button class="tab-item tab-add" id="tab-add" onclick="openAddSheet('out')" aria-label="Add a transaction">
+      <svg class="tab-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      <span class="tab-label">Add</span>
+    </button>
     <button class="tab-item" id="tab-networth" onclick="showScreen('networth')">
       <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
       <span class="tab-label">Net Worth</span>
     </button>
-    <button class="tab-item" id="tab-spending" onclick="showScreen('spending')">
-      <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><path d="M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z"/></svg>
-      <span class="tab-label">Spending</span>
-    </button>
     <button class="tab-item" id="tab-plan" onclick="showScreen('plan')">
       <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
-      <span class="tab-label">Planning</span>
+      <span class="tab-label">Plan</span>
     </button>
-    <button class="tab-item" id="tab-tax" onclick="showScreen('tax')">
-      <svg class="tab-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-      <span class="tab-label">Tax</span>
-    </button>
-    
   </div>
 
   <!-- Settings + About pinned to bottom (desktop only) -->
@@ -16155,15 +16154,15 @@
     </button>
     <button class="mobile-drawer-item" onclick="mobileMenuGo('spending')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V7"/><path d="M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8"/><circle cx="12" cy="12" r="10"/></svg>
-      Spending
+      Money
     </button>
     <button class="mobile-drawer-item" onclick="mobileMenuGo('plan')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
-      Planning
+      Plan
     </button>
     <button class="mobile-drawer-item" onclick="mobileMenuGo('tax')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8l6 6v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-      Tax
+      Tax (in Plan)
     </button>
     
     <div class="mobile-drawer-divider"></div>
@@ -16181,77 +16180,10 @@
 </nav>
 
 <div class="screen active" id="home" style="position:relative">
-  <div class="home-inner">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0">
-      <div>
-        <div class="home-heading">Your Financial Overview</div>
-        <div class="home-subheading">Everything in one place. Your data stays on this device only.</div>
-      </div>
-      <!-- Mobile-only settings button -->
-      <button class="settings-btn" onclick="openSettingsModal()" title="Settings" style="display:none" id="home-settings-mobile-btn">⚙</button>
-    </div>
-    <div class="home-privacy-badge" style="margin-bottom:20px">
-      <span class="home-privacy-dot"></span>
-      End-to-end private — stored on this device, never on a server
-    </div>
-    <div class="home-cards">
-      <div class="home-card" onclick="showScreen('networth')" style="--card-accent: var(--accent)">
-        <div class="home-card-left">
-          <div class="home-card-number">01</div>
-          <div class="home-card-title">Net Worth</div>
-          <div class="home-card-desc">Know exactly what you're worth today and tomorrow. Track every account, asset, and investment in one place.</div>
-          <div id="home-nw-stat" class="home-card-stat" style="display:none"></div>
-        </div>
-        <div class="home-card-arrow">→</div>
-      </div>
-      <div class="home-card" onclick="showScreen('spending')" style="--card-accent: var(--accent2)">
-        <div class="home-card-left">
-          <div class="home-card-number">02</div>
-          <div class="home-card-title">Spending <span id="home-start-here-badge" style="display:none;font-size:10px;font-family:var(--sans);background:var(--accent2);color:#0a0a0c;border-radius:20px;padding:2px 8px;font-weight:600;margin-left:6px;vertical-align:middle">Start here →</span></div>
-          <div class="home-card-desc">Log income and transactions. See exactly where your money goes — and how much you have left this month.</div>
-          <div id="home-spend-stat" class="home-card-stat" style="display:none"></div>
-        </div>
-        <div class="home-card-arrow">→</div>
-      </div>
-      <div class="home-card" onclick="showScreen('plan')" style="--card-accent: var(--accent3)">
-        <div class="home-card-left">
-          <div class="home-card-number">03</div>
-          <div class="home-card-title">Financial Plan</div>
-          <div class="home-card-desc">See your FIRE date, build a budget, and model big decisions — like what happens if you invest an extra £200/month.</div>
-          <div id="home-plan-stat" class="home-card-stat" style="display:none"></div>
-        </div>
-        <div class="home-card-arrow">→</div>
-      </div>
-      <div class="home-card" onclick="showScreen('tax')" style="--card-accent: var(--accent4)">
-        <div class="home-card-left">
-          <div class="home-card-number">04</div>
-          <div class="home-card-title">Tax Planning <span style="font-size:9px;font-family:var(--mono);color:#ffd060;opacity:0.7;vertical-align:middle;margin-left:4px">UK</span></div>
-          <div class="home-card-desc">Don't pay more Capital Gains Tax than you have to. Track your gains and know your position before the deadline.</div>
-          <div id="home-tax-stat" class="home-card-stat" style="display:none"></div>
-        </div>
-        <div class="home-card-arrow">→</div>
-      </div>
-    </div>
-    <div id="home-welcome-hint" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-size:13px;color:var(--text2);font-family:var(--sans);margin-top:12px;line-height:1.5">
-      💡 New here? Start by adding your income and first transaction in <strong style="color:var(--accent2)">Spending</strong> — it takes under 30 seconds and you'll immediately see your daily budget.
-    </div>
-    <div id="home-budget-health" style="margin-top:8px"></div>
-
-    <!-- ── Share with one friend ── -->
-    <div class="home-share-card">
-      <div class="home-share-eyebrow">Help Vault grow</div>
-      <div class="home-share-title">Send this to one friend.</div>
-      <p class="home-share-body">Vault is free, private, and spreads by word of mouth. If you've found it useful, share the link with one person who might feel the same. That's all it takes.</p>
-      <div class="home-share-row">
-        <input type="text" id="home-share-url" class="home-share-link" readonly value="https://thevaultapp.co.uk" />
-        <button type="button" class="home-share-btn" id="home-share-btn" onclick="copyShareLink('home-share-url','home-share-btn')">Copy link</button>
-      </div>
-    </div>
-
-    <div class="home-tour-row">
-      <button class="home-about-btn" onclick="startGuidedTour(true)">Take the tour →</button>
-      <button class="home-about-btn home-about-btn-ghost" onclick="showScreen('about-vault')">About Vault</button>
-    </div>
+  <div class="home-inner v21-home-inner">
+    <div id="v21-home" class="v21-home" aria-live="polite"></div>
+    <!-- V2.1: elements older code still writes to; kept off-screen so nothing breaks -->
+    <div id="v21-legacy-home" hidden><div id="home-settings-mobile-btn"></div><div id="home-nw-stat"></div><div id="home-start-here-badge"></div><div id="home-spend-stat"></div><div id="home-plan-stat"></div><div id="home-tax-stat"></div><div id="home-welcome-hint"></div><div id="home-budget-health"></div><div id="home-share-url"></div><div id="home-share-btn"></div></div>
   </div>
   <!-- v1.42 round-7: backup banner is now a floating popup-style card on the
        right edge of the home page, so it reads as a transient nudge rather
@@ -16331,7 +16263,7 @@
 <div class="screen" id="spending">
   <div class="page-header">
     <div class="screen-inner" style="display:flex;align-items:center;gap:16px"><button class="back-btn" onclick="showScreen('home')">←</button>
-    <div class="page-title" style="flex:1">Spending</div><button class="section-help-btn" onclick="openHelpModal('spending')" title="About Spending">ⓘ</button></div>
+    <div class="page-title" style="flex:1">Money</div><button class="section-help-btn" onclick="openHelpModal('spending')" title="About Money">ⓘ</button></div>
   </div>
   <div class="page-body">
     <!-- Row 1: Month navigator -->
@@ -16349,6 +16281,9 @@
       <button class="section-subtab"        id="spend-stab-insights"      onclick="setSpendTab('insights')"      style="padding:7px 14px;margin:0;flex:1">Insights</button>
     </div>
     <div id="spend-month-nav" style="display:none"></div>
+
+    <!-- V2.1: the two ways in. Statement upload first, then one-off adds. -->
+    <div class="v21-money-actions" id="v21-money-actions"></div>
 
     <!-- OVERVIEW TAB -->
     <div id="spend-tab-overview">
@@ -16721,14 +16656,19 @@
     <div id="plan-onboard-slot"></div>
 
     <!-- ── PLAN TAB ROW ── -->
+    <!-- V2.1: five primary tabs; the rest live under "More tools" -->
     <div class="section-subtab-row" id="plan-4tab-row">
-      <button class="section-subtab" id="ptab-habits"      onclick="setPlanTab('habits')">Habits</button>
       <button class="section-subtab active" id="ptab-calculators" onclick="setPlanTab('calculators')">Calculators</button>
       <button class="section-subtab" id="ptab-budget"      onclick="setPlanTab('budget')">Budget</button>
-      <button class="section-subtab" id="ptab-scenarios"   onclick="setPlanTab('scenarios')">Scenarios</button>
-      <button class="section-subtab" id="ptab-tools"       onclick="setPlanTab('tools')">Quick Tools</button>
       <button class="section-subtab" id="ptab-debt"        onclick="setPlanTab('debt')">Debt</button>
-      <button class="section-subtab" id="ptab-redundancy"  onclick="setPlanTab('redundancy')">Redundancy Planner</button>
+      <button class="section-subtab" id="ptab-taxlink"     onclick="showScreen('tax')">Tax</button>
+      <button class="section-subtab" id="ptab-more"        onclick="v21TogglePlanMore()" aria-expanded="false" aria-controls="plan-more-row">More tools ▾</button>
+    </div>
+    <div class="section-subtab-row plan-more-row" id="plan-more-row" hidden>
+      <button class="section-subtab" id="ptab-tools"       onclick="setPlanTab('tools')">Quick tools</button>
+      <button class="section-subtab" id="ptab-habits"      onclick="setPlanTab('habits')">Habits</button>
+      <button class="section-subtab" id="ptab-scenarios"   onclick="setPlanTab('scenarios')">Scenarios</button>
+      <button class="section-subtab" id="ptab-redundancy"  onclick="setPlanTab('redundancy')">Redundancy planner</button>
     </div>
 
     <!-- ── HABITS TAB PANEL: MONTHLY CHECKLIST (below tab row, consistent with all other panels) ── -->
@@ -20205,10 +20145,11 @@ function showScreen(id) {
   const tabs = document.getElementById('section-tabs');
   const inSection = SECTION_IDS.includes(id);
   // Only control display on mobile — desktop uses display:flex !important via CSS
+  // V2.1: the bottom bar (with the + button) shows on every screen, Home included.
   if (tabs && window.innerWidth <= 600) {
-    tabs.style.display = inSection ? 'flex' : 'none';
+    tabs.style.display = 'flex';
   }
-  document.body.classList.toggle('in-section', inSection);
+  document.body.classList.toggle('in-section', true);
 
   // Update active tab (sections + home tab)
   SECTION_IDS.forEach(sid => {
@@ -20218,11 +20159,15 @@ function showScreen(id) {
   // Home tab active state
   const homeTab = document.getElementById('tab-home');
   if (homeTab) homeTab.classList.toggle('active', id === 'home');
+  // V2.1: Tax lives inside Plan
+  const planTab = document.getElementById('tab-plan');
+  if (planTab && id === 'tax') planTab.classList.add('active');
   // v1.40: About tab active state
   const aboutTab = document.getElementById('tab-about');
   if (aboutTab) aboutTab.classList.toggle('active', id === 'about-vault');
 
-  if (id === 'home')     { renderBudgetHealth(); renderHomeFirstUse(); renderHomeStats(); stopCryptoAutoRefresh(); }
+  if (id === 'home')     { try { renderBudgetHealth(); renderHomeFirstUse(); renderHomeStats(); } catch (e) {} stopCryptoAutoRefresh(); if (typeof renderV21Home === 'function') renderV21Home(); }
+  if (id === 'spending' && typeof renderV21MoneyActions === 'function') renderV21MoneyActions();
   if (id === 'networth') {
     // v1.39 bugfix: fire the staggered account-card fade-in exactly once
     // per activation, so that async re-renders (FX, stock, crypto refresh)
@@ -21406,9 +21351,11 @@ const SUI_RPC_URL   = 'https://fullnode.mainnet.sui.io:443';
 
 // ===== FMP LIVE STOCK PRICES =====
 // Financial Modeling Prep API — hardcoded key (update here if key changes)
-// V2.02: the FMP key no longer ships in the app — quotes go through the
-// vault-fmp Cloudflare Worker, which holds the key as a secret. If the
-// proxy is unavailable, the existing Yahoo fallback below still runs.
+// V2.1: the vault-fmp proxy worker isn't deployed yet (Jonty can't rotate the
+// key right now), so quotes go direct to FMP with the existing key again.
+// TODO: once vault-fmp has the FMP_API_KEY secret, switch back to
+// FMP_PROXY_URL and delete this key. See VAULT_WORKLOG.md (B2).
+const FMP_API_KEY = 'r9ExXVhhSRaFhEOf4HwEV5vPgdc2ibjN';
 const FMP_PROXY_URL = 'https://vault-fmp.jontyancollins.workers.dev';
 // Cloudflare Worker proxy for Yahoo Finance — handles CORS and returns { ticker, price, currency }
 // currency='GBX' means pence (divide by 100), currency='GBP' means pounds
@@ -21481,7 +21428,7 @@ async function refreshStockPrices(accId) {
   try {
     // ── Phase 1: Try FMP batch for all tickers ────────────────────────────────
     const tickers = holdings.map(h => (h.ticker || h.name).toUpperCase()).join(',');
-    const fmpUrl  = `${FMP_PROXY_URL}/?symbols=${encodeURIComponent(tickers)}`;
+    const fmpUrl  = `https://financialmodelingprep.com/stable/quote?symbol=${encodeURIComponent(tickers)}&apikey=${FMP_API_KEY}`;
     let fmpPriceMap = {};
     let fmpFailed = false;
 
@@ -26804,6 +26751,9 @@ function renderSpending() {
       const lim = _budgets[sub.id] ? parseFloat(_budgets[sub.id]) : 0;
       if (lim > 0) { catBudgeted += getSubTotal(sub, cat); catBudgetLimit += lim; }
     });
+    // V2.1: a whole-category limit (set in the category drawer) takes precedence
+    const _catLim = (_budgets[cat.id] && typeof _budgets[cat.id] === 'object') ? (parseFloat(_budgets[cat.id].limit) || 0) : 0;
+    if (_catLim > 0) { catBudgeted = catTotal; catBudgetLimit = _catLim; }
     const catBudgetHtml = catBudgetLimit > 0 ? (() => {
       const pct = catBudgeted / catBudgetLimit;
       const cls = pct >= 1 ? 'over' : pct >= 0.8 ? 'warn' : '';
@@ -42971,8 +42921,8 @@ renderSpending = function() {
 <!-- TAX PLANNING SCREEN -->
 <div class="screen" id="tax">
   <div class="page-header">
-    <div class="screen-inner" style="display:flex;align-items:center;gap:16px"><button class="back-btn" onclick="showScreen('home')">←</button>
-    <div class="page-title" style="flex:1">Tax Planning</div><button class="section-help-btn" onclick="openHelpModal('tax')" title="About Tax Planning">ⓘ</button></div>
+    <div class="screen-inner" style="display:flex;align-items:center;gap:16px"><button class="back-btn" onclick="showScreen('plan')" aria-label="Back to Plan">←</button>
+    <div class="page-title" style="flex:1"><span class="v21-crumb">Plan ›</span> Tax</div><button class="section-help-btn" onclick="openHelpModal('tax')" title="About Tax Planning">ⓘ</button></div>
   </div>
   <div class="page-body">
     <div id="tax-content"><div style="padding:32px 20px;font-size:13px;color:var(--text3);text-align:center">Loading tax planning…</div></div>
@@ -43928,6 +43878,8 @@ window.openSpendCatPanel = function(catId) {
       '<span class="dp-cat-total-label">Total</span>' +
       '<span class="dp-cat-total-val">' + fmtSummary(catTotal) + '</span>' +
     '</div>';
+  // V2.1: monthly limit for the whole category, set right here
+  if (!ytd && typeof window.v21CatLimitHtml === 'function') html += window.v21CatLimitHtml(catId, catTotal);
 
   var subs = cat.subcategories || [];
   if (!subs.length) {
@@ -46764,6 +46716,684 @@ window.addEventListener('load', function() {
   <span class="sep">·</span>
   <a href="/app/terms.html">Terms of Service</a>
 </footer>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     VAULT V2.1 — Home dashboard, global add sheet, update-balances sheet,
+     Money actions (statement upload first), category limits, Plan "More".
+     Built on the existing app: saves go through quickLogSave(),
+     ensureIncomeMonth(), account history and vault_budgets, so every
+     existing rule (repeats, splits, sync, GA events) still applies.
+     ═══════════════════════════════════════════════════════════════════ -->
+<style id="v21-styles">
+  /* The app's own CSS sets display on these classes, which would beat the
+     browser's default for the hidden attribute — make hidden always win. */
+  .v21-wrap[hidden],.v21-sheet [hidden],.plan-more-row[hidden],#v21-legacy-home[hidden],.v21-home [hidden]{display:none !important}
+  .v21-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .v21-crumb{font-family:var(--sans);font-size:13px;color:var(--text3);vertical-align:middle;margin-right:2px}
+  .plan-more-row{margin-top:-2px}
+  #ptab-more[aria-expanded="true"]{color:var(--text)}
+
+  /* The inline log form is replaced by the + sheet (its fields stay in the DOM for the save logic). */
+  #spend-log-panel{display:none !important}
+  /* V2.1: one nudge on Home replaces the rotating "Did you know?" pop-up (tips are still browsable in Settings) */
+  #vault-tip-toast{display:none !important}
+
+  /* ── Nav: the Add button ───────────────────────────────────────────── */
+  @media (min-width:601px){
+    #tab-add{background:var(--accent);color:var(--bg);margin:6px 0 8px;font-weight:600}
+    #tab-add:hover{background:var(--accent);color:var(--bg);filter:brightness(1.06)}
+  }
+  @media (max-width:600px){
+    #tab-add .tab-label{display:none}
+    #tab-add{flex:0 0 auto;width:54px;height:54px;border-radius:50%;background:var(--accent);color:var(--bg);align-self:center;transform:translateY(-12px);box-shadow:0 8px 18px -8px rgba(0,0,0,.45);margin:0 4px}
+    #tab-add:hover{background:var(--accent);color:var(--bg)}
+    .v21-home-inner{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px)) !important}
+  }
+  #tab-add:focus-visible,.v21-home button:focus-visible,.v21-sheet button:focus-visible,.v21-sheet input:focus-visible,.v21-sheet select:focus-visible,.v21-money-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* ── Home ──────────────────────────────────────────────────────────── */
+  .v21-home{display:flex;flex-direction:column;gap:16px;max-width:560px}
+  .v21-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .v21-month{font-family:var(--mono);font-size:12px;color:var(--text3);letter-spacing:.04em}
+  .v21-hero{display:flex;flex-direction:column;gap:2px}
+  .v21-big{font-family:var(--serif);font-size:clamp(40px,11vw,56px);line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+  .v21-big.neg{color:var(--red)}
+  .v21-label{font-size:15px;color:var(--text2)}
+  .v21-sub{font-family:var(--mono);font-size:12px;color:var(--text3);margin-top:6px}
+  .v21-bar{height:8px;border-radius:99px;background:var(--surface2);overflow:hidden;margin-top:12px}
+  .v21-bar>span{display:block;height:100%;background:var(--accent);border-radius:99px}
+  .v21-bar.over>span{background:var(--red)}
+  .v21-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+  .v21-card-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .v21-card-h h3{margin:0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);font-weight:600;font-family:var(--sans)}
+  .v21-link{all:unset;cursor:pointer;font-size:13px;color:var(--accent);font-family:var(--sans)}
+  .v21-row{all:unset;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;font-size:14px;color:var(--text);padding:2px 0}
+  .v21-row .amt,.v21-bill .amt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+  .v21-row .mini{grid-column:1 / -1;height:4px;border-radius:99px;background:var(--surface2);overflow:hidden}
+  .v21-row .mini span{display:block;height:100%;border-radius:99px}
+  .v21-bill{display:flex;align-items:center;gap:10px;font-size:14px}
+  .v21-bill .when{font-family:var(--mono);font-size:11.5px;color:var(--text3);width:50px;flex:none}
+  .v21-bill .name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .v21-muted{font-size:13px;color:var(--text3);margin:0}
+  .v21-nw{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .v21-nw .v{font-family:var(--serif);font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+  .v21-nw .d{font-family:var(--mono);font-size:12px;margin-top:4px}
+  .v21-nw .d.up{color:var(--green)} .v21-nw .d.down{color:var(--red)}
+  .v21-ghost{all:unset;cursor:pointer;font-size:13px;font-weight:500;color:var(--text);border:1px solid var(--border);border-radius:99px;padding:10px 16px;font-family:var(--sans)}
+  .v21-primary{all:unset;cursor:pointer;text-align:center;background:var(--accent);color:var(--bg);font-weight:600;font-size:15px;border-radius:14px;padding:13px 18px;font-family:var(--sans)}
+  .v21-nudge{display:flex;gap:10px;align-items:flex-start;background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--text)}
+  .v21-nudge svg{flex:none;margin-top:2px;color:var(--accent)}
+  .v21-nudge .acts{display:flex;gap:16px;margin-top:6px}
+  .v21-nudge .acts button{all:unset;cursor:pointer;font-weight:600;font-size:13px;color:var(--accent);padding:4px 0}
+  .v21-check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .v21-check li{display:flex;align-items:center;gap:12px;font-size:14.5px}
+  .v21-check .tick{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);display:grid;place-items:center;flex:none;font-size:13px;color:var(--bg)}
+  .v21-check li.done .tick{background:var(--accent);border-color:var(--accent)}
+  .v21-check li.done .t{color:var(--text3);text-decoration:line-through}
+  .v21-check .t{flex:1}
+  .v21-foot{display:flex;gap:16px;flex-wrap:wrap}
+
+  /* ── Sheets ────────────────────────────────────────────────────────── */
+  .v21-wrap{position:fixed;inset:0;z-index:900;display:flex;align-items:flex-end;justify-content:center}
+  .v21-scrim{position:absolute;inset:0;background:rgba(20,18,16,.45)}
+  .v21-sheet{position:relative;width:100%;max-width:520px;max-height:92vh;overflow:auto;background:var(--surface);color:var(--text);border-radius:22px 22px 0 0;border:1px solid var(--border);border-bottom:none;padding:10px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;font-family:var(--sans);box-shadow:0 -12px 40px -20px rgba(0,0,0,.4);animation:v21up .22s ease-out}
+  @media (min-width:601px){.v21-wrap{align-items:center}.v21-sheet{border-radius:20px;border-bottom:1px solid var(--border)}}
+  @keyframes v21up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+  @media (prefers-reduced-motion:reduce){.v21-sheet{animation:none}}
+  .v21-sheet-head{display:flex;align-items:center;justify-content:space-between}
+  .v21-sheet-head h2{margin:0;font-family:var(--serif);font-weight:400;font-size:24px}
+  .v21-x{all:unset;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;color:var(--text2);font-size:20px}
+  .v21-seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface2);border-radius:12px;padding:3px}
+  .v21-seg button{all:unset;cursor:pointer;text-align:center;font-size:14px;font-weight:500;padding:9px 0;border-radius:9px;color:var(--text2)}
+  .v21-seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.14)}
+  .v21-amt{display:flex;align-items:baseline;justify-content:center;gap:4px;font-family:var(--serif);padding:4px 0}
+  .v21-amt span{font-size:30px;color:var(--text3)}
+  .v21-amt input{all:unset;font-family:var(--serif);font-size:52px;line-height:1.1;width:6.2ch;text-align:left;color:var(--text);font-variant-numeric:tabular-nums}
+  .v21-amt input::placeholder{color:var(--text3)}
+  .v21-lab{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);font-weight:600}
+  .v21-field{display:flex;flex-direction:column;gap:8px}
+  .v21-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .v21-chip{all:unset;cursor:pointer;font-size:13.5px;padding:9px 13px;border-radius:99px;border:1px solid var(--border);color:var(--text);display:inline-flex;align-items:center;gap:6px}
+  .v21-chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+  .v21-chip.more{color:var(--text2)}
+  .v21-input,.v21-select{width:100%;box-sizing:border-box;padding:11px 12px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:16px;font-family:var(--sans)}
+  .v21-line{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14.5px}
+  .v21-line input[type="checkbox"]{width:22px;height:22px;accent-color:var(--accent)}
+  .v21-err{color:var(--red);font-size:13px;min-height:1em;margin:-4px 0 0}
+  .v21-bal-list{display:flex;flex-direction:column;gap:10px}
+  .v21-bal{display:grid;grid-template-columns:1fr minmax(0,150px);gap:4px 12px;align-items:center}
+  .v21-bal .n{font-size:14.5px}
+  .v21-bal .t{font-size:12px;color:var(--text3)}
+  .v21-bal .in{display:flex;align-items:center;gap:6px;grid-row:1 / span 2;grid-column:2}
+  .v21-bal .in span{color:var(--text3);font-family:var(--mono)}
+
+  /* ── Money actions ─────────────────────────────────────────────────── */
+  .v21-money-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+  .v21-stmt{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px 16px}
+  .v21-stmt b{display:block;font-size:15px}
+  .v21-stmt span{font-size:13px;color:var(--text2)}
+  .v21-stmt .note{font-size:12.5px;color:var(--text3);margin-top:6px}
+
+  /* ── Category limit (drawer) ───────────────────────────────────────── */
+  .v21-limit{display:flex;flex-direction:column;gap:8px;padding:10px 0 12px;border-bottom:1px solid var(--border);margin-bottom:6px}
+  .v21-limit-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
+  .v21-limit-edit{display:flex;gap:8px;align-items:center}
+  .v21-limit-edit input{max-width:130px}
+</style>
+
+<script>
+(function () {
+  'use strict';
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); };
+  var thisMonth = function () { return _localISODate().slice(0, 7); };
+  var monthLong = function (m) { var p = m.split('-').map(Number); return new Date(p[0], p[1] - 1, 1).toLocaleString('en-GB', { month: 'long', year: 'numeric' }); };
+  var monthShort = function (m) { var p = m.split('-').map(Number); return new Date(p[0], p[1] - 1, 1).toLocaleString('en-GB', { month: 'long' }); };
+  var dayMonth = function (d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }); };
+  var isDebt = function (a) { return a && (a.type === 'credit' || a.type === 'loan'); };
+  var isHoldings = function (a) { return (a.type === 'investments' || a.type === 'crypto') && a.trackingMode === 'holdings'; };
+  var store = { get: function (k) { try { return vaultLoad(k); } catch (e) { return null; } }, set: function (k, v) { try { vaultSave(k, v); } catch (e) {} } };
+  var toast = function (msg) { if (typeof showCelebration === 'function') showCelebration(msg, 2600); };
+  var homeActive = function () { var h = document.getElementById('home'); return !!(h && h.classList.contains('active')); };
+  var catColour = ['var(--accent)', 'var(--accent2)', 'var(--accent4)'];
+
+  // ════════════════════════ ADD SHEET ════════════════════════
+  var sheet = { mode: 'out', cat: null, date: 'today', showAll: false };
+
+  function recentCats() {
+    var counts = {};
+    var cutoff = _localISODate(new Date(Date.now() - 60 * 864e5));
+    (state.spendCategories || []).forEach(function (c) {
+      (c.subcategories || []).forEach(function (s) {
+        Object.keys(s.entries || {}).forEach(function (m) {
+          (s.entries[m] || []).forEach(function (e) { if (String(e.date || '') >= cutoff) counts[c.id] = (counts[c.id] || 0) + 1; });
+        });
+      });
+    });
+    var last = null; try { last = JSON.parse(store.get('vault_last_ql_category') || 'null'); } catch (e) {}
+    var cats = (state.spendCategories || []).filter(function (c) { return c.enabled !== false; });
+    var score = function (c) { return ((last && last.catId === c.id) ? 1e6 : 0) + (counts[c.id] || 0); };
+    return cats.map(function (c, i) { return { c: c, i: i }; })
+      .sort(function (a, b) { return (score(b.c) - score(a.c)) || (a.i - b.i); })
+      .map(function (x) { return x.c; });
+  }
+
+  function ensureSheet() {
+    if (document.getElementById('v21-add-wrap')) return;
+    var w = document.createElement('div');
+    w.id = 'v21-add-wrap'; w.className = 'v21-wrap'; w.hidden = true;
+    w.innerHTML =
+      '<div class="v21-scrim" data-v21-close></div>' +
+      '<form class="v21-sheet" id="v21-add" role="dialog" aria-modal="true" aria-labelledby="v21-add-title" novalidate>' +
+        '<div class="v21-sheet-head"><h2 id="v21-add-title">Add</h2><button type="button" class="v21-x" data-v21-close aria-label="Close">×</button></div>' +
+        '<div class="v21-seg" role="group" aria-label="Money out or in">' +
+          '<button type="button" id="v21-mode-out" aria-pressed="true">Money out</button>' +
+          '<button type="button" id="v21-mode-in" aria-pressed="false">Money in</button>' +
+        '</div>' +
+        '<label class="v21-amt" for="v21-amt-in"><span id="v21-amt-sym">£</span><input id="v21-amt-in" type="number" inputmode="decimal" step="0.01" min="0" placeholder="0.00" aria-label="Amount"></label>' +
+        '<div id="v21-out" class="v21-field" style="gap:14px">' +
+          '<div class="v21-field"><span class="v21-lab" id="v21-cat-lab">Category</span><div class="v21-chips" id="v21-cats" role="group" aria-labelledby="v21-cat-lab"></div></div>' +
+          '<div class="v21-field" id="v21-sub-wrap" hidden><label class="v21-lab" for="v21-sub">Detail (optional)</label><select class="v21-select" id="v21-sub"></select></div>' +
+          '<div class="v21-field"><span class="v21-lab" id="v21-date-lab">When</span>' +
+            '<div class="v21-chips" id="v21-dates" role="group" aria-labelledby="v21-date-lab">' +
+              '<button type="button" class="v21-chip" data-d="today" aria-pressed="true">Today</button>' +
+              '<button type="button" class="v21-chip" data-d="yesterday" aria-pressed="false">Yesterday</button>' +
+              '<button type="button" class="v21-chip" data-d="pick" aria-pressed="false">Pick a date</button>' +
+            '</div>' +
+            '<input type="date" class="v21-input" id="v21-date" hidden aria-label="Date">' +
+          '</div>' +
+          '<div class="v21-field" id="v21-acc-wrap"><label class="v21-lab" for="v21-acc">Paid from</label><select class="v21-select" id="v21-acc"></select></div>' +
+          '<label class="v21-line" for="v21-rep"><span>Repeats monthly</span><input type="checkbox" id="v21-rep"></label>' +
+          '<div class="v21-field"><label class="v21-lab" for="v21-note">Note (optional)</label><input class="v21-input" id="v21-note" type="text" maxlength="120" placeholder="e.g. Pret, Tesco"></div>' +
+        '</div>' +
+        '<div id="v21-in" class="v21-field" style="gap:14px" hidden>' +
+          '<div class="v21-field"><label class="v21-lab" for="v21-inc-name">What is it?</label><input class="v21-input" id="v21-inc-name" type="text" maxlength="60" placeholder="Salary"></div>' +
+          '<label class="v21-line" for="v21-inc-rep"><span>Repeats monthly</span><input type="checkbox" id="v21-inc-rep" checked></label>' +
+          '<p class="v21-muted" id="v21-inc-month"></p>' +
+        '</div>' +
+        '<p class="v21-err" id="v21-err" role="alert"></p>' +
+        '<button type="submit" class="v21-primary" id="v21-save">Add</button>' +
+      '</form>';
+    document.body.appendChild(w);
+
+    w.addEventListener('click', function (e) { if (e.target.closest('[data-v21-close]')) closeAddSheet(); });
+    w.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAddSheet(); });
+    document.getElementById('v21-mode-out').addEventListener('click', function () { setMode('out'); });
+    document.getElementById('v21-mode-in').addEventListener('click', function () { setMode('in'); });
+    document.getElementById('v21-amt-in').addEventListener('input', updateSaveLabel);
+    document.getElementById('v21-cats').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      if (b.dataset.more) { sheet.showAll = true; renderChips(); return; }
+      sheet.cat = b.dataset.cat; renderChips(); renderSubs(); updateSaveLabel(); clearErr();
+    });
+    document.getElementById('v21-dates').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      sheet.date = b.dataset.d;
+      this.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      var di = document.getElementById('v21-date');
+      di.hidden = sheet.date !== 'pick';
+      if (sheet.date === 'pick') { if (!di.value) di.value = _localISODate(); di.focus(); }
+    });
+    document.getElementById('v21-add').addEventListener('submit', function (e) { e.preventDefault(); saveAdd(); });
+  }
+
+  function setMode(m) {
+    sheet.mode = m;
+    document.getElementById('v21-mode-out').setAttribute('aria-pressed', String(m === 'out'));
+    document.getElementById('v21-mode-in').setAttribute('aria-pressed', String(m === 'in'));
+    document.getElementById('v21-out').hidden = m !== 'out';
+    document.getElementById('v21-in').hidden = m !== 'in';
+    document.getElementById('v21-add-title').textContent = m === 'out' ? 'Add spending' : 'Add income';
+    document.getElementById('v21-inc-month').textContent = 'Counts from ' + monthLong(incomeMonth()) + (document.getElementById('v21-inc-rep').checked ? ' onwards.' : ' only.');
+    clearErr(); updateSaveLabel();
+  }
+
+  function renderChips() {
+    var el = document.getElementById('v21-cats');
+    var cats = recentCats();
+    var shown = sheet.showAll ? cats : cats.slice(0, 7);
+    if (sheet.cat && !shown.some(function (c) { return c.id === sheet.cat; })) {
+      var sel = cats.find(function (c) { return c.id === sheet.cat; }); if (sel) shown = [sel].concat(shown.slice(0, 6));
+    }
+    el.innerHTML = shown.map(function (c) {
+      return '<button type="button" class="v21-chip" data-cat="' + esc(c.id) + '" aria-pressed="' + (c.id === sheet.cat) + '">' + (c.emoji ? esc(c.emoji) + ' ' : '') + esc(c.name) + '</button>';
+    }).join('') + (!sheet.showAll && cats.length > shown.length ? '<button type="button" class="v21-chip more" data-more="1">More…</button>' : '');
+  }
+
+  function renderSubs() {
+    var wrap = document.getElementById('v21-sub-wrap'), sel = document.getElementById('v21-sub');
+    var cat = (state.spendCategories || []).find(function (c) { return c.id === sheet.cat; });
+    var subs = (cat && cat.subcategories) || [];
+    wrap.hidden = subs.length < 2;
+    sel.innerHTML = '<option value="">No detail</option>' + subs.map(function (s) { return '<option value="' + esc(s.id) + '">' + esc(s.name) + '</option>'; }).join('');
+  }
+
+  function renderAccounts() {
+    var wrap = document.getElementById('v21-acc-wrap'), sel = document.getElementById('v21-acc');
+    var accs = (state.accounts || []).filter(function (a) { return a.name && ['current', 'savings', 'credit'].indexOf(a.type) !== -1; });
+    wrap.hidden = !accs.length;
+    var last = store.get('vault_last_ql_account') || '';
+    sel.innerHTML = '<option value="">Not specified</option>' + accs.map(function (a) {
+      return '<option value="' + esc(a.name) + '"' + (a.name === last ? ' selected' : '') + '>' + esc(a.name) + '</option>';
+    }).join('');
+  }
+
+  function incomeMonth() {
+    var sp = document.getElementById('spending');
+    return (sp && sp.classList.contains('active') && typeof currentSpendMonth !== 'undefined') ? currentSpendMonth : thisMonth();
+  }
+
+  function amountVal() { var v = parseFloat(document.getElementById('v21-amt-in').value); return isFinite(v) ? v : 0; }
+
+  function updateSaveLabel() {
+    var b = document.getElementById('v21-save'); if (!b) return;
+    var a = amountVal(), money = a > 0 ? fmtSummary(a) : '';
+    if (sheet.mode === 'in') { b.textContent = a > 0 ? 'Add ' + money + ' income' : 'Add income'; return; }
+    var cat = (state.spendCategories || []).find(function (c) { return c.id === sheet.cat; });
+    b.textContent = a > 0 && cat ? 'Add ' + money + ' to ' + cat.name : (a > 0 ? 'Add ' + money : 'Add spending');
+  }
+
+  function err(msg, focusId) { var e = document.getElementById('v21-err'); e.textContent = msg; if (focusId) { var f = document.getElementById(focusId); if (f) f.focus(); } }
+  function clearErr() { var e = document.getElementById('v21-err'); if (e) e.textContent = ''; }
+
+  function dateValue() {
+    if (sheet.date === 'yesterday') return _localISODate(new Date(Date.now() - 864e5));
+    if (sheet.date === 'pick') return document.getElementById('v21-date').value || _localISODate();
+    return _localISODate();
+  }
+
+  function entryCount() {
+    var n = 0;
+    (state.spendCategories || []).forEach(function (c) { (c.subcategories || []).forEach(function (s) { Object.keys(s.entries || {}).forEach(function (m) { n += (s.entries[m] || []).length; }); }); });
+    return n;
+  }
+
+  function saveAdd() {
+    var amt = amountVal();
+    if (!(amt > 0)) return err('Enter an amount.', 'v21-amt-in');
+    if (sheet.mode === 'in') {
+      var name = (document.getElementById('v21-inc-name').value || '').trim() || 'Income';
+      var rep = document.getElementById('v21-inc-rep').checked;
+      var m = incomeMonth();
+      ensureIncomeMonth(m).push({ id: uid(), name: name, amount: amt, frequency: rep ? 'monthly' : 'once', currency: getDisplayCurrency() });
+      save();
+      try { if (typeof renderIncomeSources === 'function') renderIncomeSources(); } catch (e) {}
+      afterSave('Added ' + fmtSummary(amt) + ' income for ' + monthShort(m));
+      return;
+    }
+    if (!sheet.cat) return err('Pick a category.');
+    // Reuse the existing save path so repeats, sub-types, GA events and sync all apply.
+    try { if (typeof qlPopulateCategories === 'function') qlPopulateCategories(); } catch (e) {}
+    var qc = document.getElementById('ql-cat'); if (!qc) return err('Couldn’t save — please reload Vault.');
+    qc.value = sheet.cat;
+    try { if (typeof qlUpdateSubs === 'function') qlUpdateSubs(); } catch (e) {}
+    var qs = document.getElementById('ql-sub'); if (qs) qs.value = document.getElementById('v21-sub').value || '';
+    document.getElementById('ql-amount').value = String(amt);
+    var qd = document.getElementById('ql-date'); if (qd) qd.value = dateValue();
+    var qn = document.getElementById('ql-desc'); if (qn) qn.value = (document.getElementById('v21-note').value || '').trim();
+    var qr = document.getElementById('ql-repeat'); if (qr) qr.checked = document.getElementById('v21-rep').checked;
+    var qccy = document.getElementById('ql-ccy'); if (qccy) qccy.value = getDisplayCurrency();
+    var accName = document.getElementById('v21-acc').value;
+    var qa = document.getElementById('ql-account');
+    if (qa) { if (qa.tagName === 'SELECT' && accName && !Array.prototype.some.call(qa.options, function (o) { return o.value === accName; })) { var o = document.createElement('option'); o.value = accName; o.textContent = accName; qa.appendChild(o); } qa.value = accName; }
+    if (accName) store.set('vault_last_ql_account', accName);
+    var before = entryCount();
+    try { window.quickLogSave(); } catch (e) { console.warn('[V2.1] save failed', e); }
+    if (entryCount() <= before) return err('That didn’t save. Check the amount and category and try again.');
+    var cat = (state.spendCategories || []).find(function (c) { return c.id === sheet.cat; });
+    afterSave('Added ' + fmtSummary(amt) + ' to ' + (cat ? cat.name : 'spending'));
+  }
+
+  function afterSave(msg) {
+    closeAddSheet();
+    try { if (typeof renderSpending === 'function') renderSpending(); } catch (e) {}
+    try { if (typeof renderHomeStats === 'function') renderHomeStats(); } catch (e) {}
+    renderV21Home();
+    toast(msg);
+  }
+
+  function openAddSheet(mode) {
+    ensureSheet();
+    sheet.cat = null; sheet.date = 'today'; sheet.showAll = false;
+    document.getElementById('v21-amt-in').value = '';
+    document.getElementById('v21-note').value = '';
+    document.getElementById('v21-rep').checked = false;
+    document.getElementById('v21-inc-name').value = '';
+    document.getElementById('v21-inc-rep').checked = true;
+    document.getElementById('v21-date').hidden = true;
+    document.getElementById('v21-date').value = '';
+    document.querySelectorAll('#v21-dates button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.d === 'today')); });
+    document.getElementById('v21-amt-sym').textContent = getCurrencySymbol(getDisplayCurrency());
+    renderChips(); renderSubs(); renderAccounts();
+    setMode(mode === 'in' ? 'in' : 'out');
+    var w = document.getElementById('v21-add-wrap');
+    w.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { var a = document.getElementById('v21-amt-in'); if (a) a.focus(); }, 60);
+  }
+  function closeAddSheet() {
+    var w = document.getElementById('v21-add-wrap'); if (w) w.hidden = true;
+    document.body.style.overflow = '';
+  }
+  window.openAddSheet = openAddSheet;
+  window.closeAddSheet = closeAddSheet;
+  document.addEventListener('change', function (e) { if (e.target && e.target.id === 'v21-inc-rep') setMode('in'); });
+
+  // ════════════════════════ UPDATE BALANCES SHEET ════════════════════════
+  function openBalancesSheet() {
+    var old = document.getElementById('v21-bal-wrap'); if (old) old.remove();
+    var accs = (state.accounts || []);
+    var w = document.createElement('div');
+    w.id = 'v21-bal-wrap'; w.className = 'v21-wrap';
+    var rows = accs.map(function (a) {
+      var ccy = a.currency || getDisplayCurrency();
+      if (isHoldings(a)) {
+        return '<div class="v21-bal"><span class="n">' + esc(a.name) + '</span><span class="t">Priced from its holdings</span><span class="in"><span>' + fmtSummary(getLatestValue(a)) + '</span></span></div>';
+      }
+      var v = getLatestNativeValue(a);
+      return '<div class="v21-bal"><label class="n" for="v21-bal-' + esc(a.id) + '">' + esc(a.name) + '</label>' +
+        '<span class="t">' + (isDebt(a) ? 'Amount owed' : 'Balance') + '</span>' +
+        '<span class="in"><span>' + esc(getCurrencySymbol(ccy)) + '</span><input class="v21-input" id="v21-bal-' + esc(a.id) + '" data-acc="' + esc(a.id) + '" data-orig="' + v + '" type="number" inputmode="decimal" step="0.01" value="' + (Math.round(v * 100) / 100) + '"></span></div>';
+    }).join('');
+    w.innerHTML = '<div class="v21-scrim" data-v21-close></div>' +
+      '<form class="v21-sheet" role="dialog" aria-modal="true" aria-labelledby="v21-bal-title" novalidate>' +
+        '<div class="v21-sheet-head"><h2 id="v21-bal-title">Update balances</h2><button type="button" class="v21-x" data-v21-close aria-label="Close">×</button></div>' +
+        (accs.length ? '<p class="v21-muted">Change any that have moved. Saved as today’s balance.</p><div class="v21-bal-list">' + rows + '</div>' : '<p class="v21-muted">No accounts yet.</p>') +
+        '<button type="submit" class="v21-primary">' + (accs.length ? 'Save balances' : 'Add an account') + '</button>' +
+      '</form>';
+    document.body.appendChild(w);
+    document.body.style.overflow = 'hidden';
+    var close = function () { w.remove(); document.body.style.overflow = ''; };
+    w.addEventListener('click', function (e) { if (e.target.closest('[data-v21-close]')) close(); });
+    w.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    w.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!accs.length) { close(); if (typeof openAddAccountModal === 'function') openAddAccountModal(); return; }
+      var changed = 0, today = _localISODate();
+      w.querySelectorAll('input[data-acc]').forEach(function (inp) {
+        var v = parseFloat(inp.value), orig = parseFloat(inp.dataset.orig);
+        if (!isFinite(v) || Math.abs(v - orig) < 0.005) return;
+        var acc = state.accounts.find(function (a) { return a.id === inp.dataset.acc; }); if (!acc) return;
+        if (!acc.history) acc.history = [];
+        acc.history.push({ id: uid(), date: today, value: isDebt(acc) ? Math.abs(v) : v, note: 'Updated from Home' });
+        acc.history.sort(function (x, y) { return String(x.date || '').localeCompare(String(y.date || '')); });
+        changed++;
+      });
+      close();
+      if (changed) {
+        save();
+        try { if (typeof renderNetWorth === 'function') renderNetWorth(); } catch (er) {}
+        renderV21Home();
+        toast(changed === 1 ? 'Balance updated' : changed + ' balances updated');
+      }
+    });
+    setTimeout(function () { var f = w.querySelector('input[data-acc]'); if (f) f.focus(); }, 60);
+  }
+  window.openBalancesSheet = openBalancesSheet;
+
+  // ════════════════════════ HOME ════════════════════════
+  function netWorthNow() {
+    var accs = (typeof getAccountsForNW === 'function') ? getAccountsForNW() : (state.accounts || []);
+    var t = accs.reduce(function (s, a) { return s + (getLatestValue(a) || 0) * (isDebt(a) ? -1 : 1); }, 0);
+    try { t += (typeof getPropertyEquity === 'function') ? (getPropertyEquity() || 0) : 0; } catch (e) {}
+    return t;
+  }
+  function netWorthAt(dateStr) {
+    var accs = (typeof getAccountsForNW === 'function') ? getAccountsForNW() : (state.accounts || []);
+    var t = 0;
+    accs.forEach(function (a) {
+      var v;
+      if (isHoldings(a)) v = getLatestValue(a) || 0;
+      else {
+        var h = (a.history || []).filter(function (e) { return e && String(e.date || '') <= dateStr; });
+        var last = h.length ? getLatestHistoryEntry({ history: h }) : getLatestHistoryEntry(a);
+        v = last ? convert(parseFloat(last.value) || 0, a.currency || getDisplayCurrency()) : 0;
+      }
+      t += v * (isDebt(a) ? -1 : 1);
+    });
+    try { t += (typeof getPropertyEquity === 'function') ? (getPropertyEquity() || 0) : 0; } catch (e) {}
+    return t;
+  }
+
+  function nextDue(r) {
+    var start = String(r.createdDate || r.startDate || '').slice(0, 10);
+    if (!start || r.active === false) return null;
+    var today = _localISODate();
+    var f = r.frequency || 'monthly';
+    var sd = parseInt(start.slice(8, 10), 10) || 1;
+    var clamp = function (y, m, d) { var last = new Date(y, m + 1, 0).getDate(); return y + '-' + String(m + 1).padStart(2, '0') + '-' + String(Math.min(d, last)).padStart(2, '0'); };
+    var now = new Date();
+    if (f === 'monthly') {
+      var c = clamp(now.getFullYear(), now.getMonth(), sd);
+      if (c < today) c = clamp(now.getFullYear(), now.getMonth() + 1, sd);
+      return c;
+    }
+    if (f === 'annually') {
+      var sm = parseInt(start.slice(5, 7), 10) - 1;
+      var a = clamp(now.getFullYear(), sm, sd);
+      if (a < today) a = clamp(now.getFullYear() + 1, sm, sd);
+      return a;
+    }
+    var step = f === 'weekly' ? 7 : 14;
+    var d = new Date(start + 'T12:00:00');
+    var guard = 0;
+    while (_localISODate(d) < today && guard++ < 3000) d = new Date(d.getTime() + step * 864e5);
+    return _localISODate(d);
+  }
+
+  function renderChecklist(done) {
+    var steps = [
+      { k: 'acc', t: 'Add an account and its balance', a: "openAddAccountModal()" },
+      { k: 'inc', t: 'Add your monthly income', a: "openAddSheet('in')" },
+      { k: 'spend', t: 'Log something you spent', a: "openAddSheet('out')" }
+    ];
+    var n = steps.filter(function (s) { return done[s.k]; }).length;
+    return '<section class="v21-card" aria-labelledby="v21-setup-h">' +
+      '<div class="v21-card-h"><h3 id="v21-setup-h">Get set up</h3><span class="v21-month">' + n + ' of 3 done</span></div>' +
+      '<ol class="v21-check">' + steps.map(function (s) {
+        return '<li class="' + (done[s.k] ? 'done' : '') + '"><span class="tick" aria-hidden="true">' + (done[s.k] ? '✓' : '') + '</span><span class="t">' + s.t + '</span>' +
+          (done[s.k] ? '<span class="v21-sr">Done</span>' : '<button type="button" class="v21-link" onclick="' + s.a + '">Start</button>') + '</li>';
+      }).join('') + '</ol></section>';
+  }
+
+  function renderV21Home() {
+    var el = document.getElementById('v21-home'); if (!el) return;
+    try {
+      var m = thisMonth();
+      var income = getIncomeForMonthKey(m) || 0;
+      var spent = getSpendForMonthKey(m) || 0;
+      var left = income - spent;
+      var accs = state.accounts || [];
+      var done = { acc: accs.length > 0, inc: income > 0, spend: spent > 0 };
+      var html = '<div class="v21-top"><span class="v21-month">' + esc(monthLong(m)) + '</span></div>';
+
+      // Hero
+      if (income > 0) {
+        var now = new Date();
+        var dim = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        var daysLeft = Math.max(1, dim - now.getDate() + 1);
+        var pct = Math.min(100, Math.round(spent / income * 100));
+        html += '<section class="v21-hero" aria-label="This month">' +
+          '<span class="v21-big' + (left < 0 ? ' neg' : '') + '">' + fmtSummary(Math.abs(left)) + '</span>' +
+          '<span class="v21-label">' + (left < 0 ? 'over this month' : 'left this month') + '</span>' +
+          '<span class="v21-sub">of ' + fmtSummary(income) + ' in · ' + daysLeft + (daysLeft === 1 ? ' day' : ' days') + ' to go' +
+            (left > 0 ? ' · ' + fmtSummary(left / daysLeft) + '/day' : '') + '</span>' +
+          '<div class="v21-bar' + (left < 0 ? ' over' : '') + '" role="img" aria-label="' + pct + '% of income spent"><span style="width:' + pct + '%"></span></div>' +
+        '</section>';
+      } else if (spent > 0) {
+        html += '<section class="v21-hero" aria-label="This month"><span class="v21-big">' + fmtSummary(spent) + '</span><span class="v21-label">spent this month</span>' +
+          '<span class="v21-sub"><button type="button" class="v21-link" onclick="openAddSheet(\'in\')">Add your income</button> to see what’s left.</span></section>';
+      } else {
+        html += '<section class="v21-hero" aria-label="This month"><span class="v21-big" style="font-size:clamp(32px,8vw,44px)">Your month, at a glance.</span>' +
+          '<span class="v21-label">Add your income and what you spend, and this shows what’s left.</span></section>';
+      }
+
+      // Setup checklist (replaces the guided tour)
+      if (!(done.acc && done.inc && done.spend)) html += renderChecklist(done);
+
+      // One nudge: income carried over
+      var src = getIncomeSourcesForMonth(m);
+      if (src.length && src.every(function (s) { return s._carried; })) {
+        var prev = Object.keys(state.income || {}).filter(function (k) { return k < m && Array.isArray(state.income[k]); }).sort().pop();
+        var names = src.map(function (s) { return s.name; }).slice(0, 2).join(' and ');
+        html += '<div class="v21-nudge" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>' +
+          '<div>' + esc(names) + ' (' + fmtSummary(income) + ') carried over from ' + esc(prev ? monthShort(prev) : 'last month') + '.' +
+          '<div class="acts"><button type="button" onclick="v21ConfirmIncome()">Looks right</button><button type="button" onclick="v21EditIncome()">Change</button></div></div></div>';
+      }
+
+      // Where it went
+      var cats = (state.spendCategories || []).filter(function (c) { return c.enabled !== false; })
+        .map(function (c) { return { c: c, t: getCatTotalForMonth(c, m) || 0 }; })
+        .filter(function (x) { return x.t > 0.004; })
+        .sort(function (a, b) { return b.t - a.t; });
+      if (cats.length) {
+        var top = cats[0].t;
+        html += '<section class="v21-card" aria-labelledby="v21-where-h"><div class="v21-card-h"><h3 id="v21-where-h">Where it went</h3><button type="button" class="v21-link" onclick="showScreen(\'spending\')">All categories</button></div>' +
+          cats.slice(0, 3).map(function (x, i) {
+            return '<button type="button" class="v21-row" onclick="v21OpenCat(\'' + esc(x.c.id) + '\')"><span>' + (x.c.emoji ? esc(x.c.emoji) + ' ' : '') + esc(x.c.name) + '</span><span class="amt">' + fmtSummary(x.t) + '</span>' +
+              '<span class="mini"><span style="width:' + Math.max(4, Math.round(x.t / top * 100)) + '%;background:' + catColour[i] + '"></span></span></button>';
+          }).join('') + '</section>';
+      }
+
+      // Coming up
+      var recs = []; try { recs = loadVaultRecurring() || []; } catch (e) {}
+      var horizon = _localISODate(new Date(Date.now() + 31 * 864e5));
+      var upcoming = recs.map(function (r) { return { r: r, d: nextDue(r) }; })
+        .filter(function (x) { return x.d && x.d <= horizon; })
+        .sort(function (a, b) { return a.d.localeCompare(b.d); });
+      html += '<section class="v21-card" aria-labelledby="v21-up-h"><div class="v21-card-h"><h3 id="v21-up-h">Coming up</h3></div>' +
+        (upcoming.length ? upcoming.slice(0, 4).map(function (x) {
+          var amt = convertSpendAmount(Math.abs(x.r.amount || 0), x.r.currency || getDisplayCurrency());
+          var f = x.r.frequency && x.r.frequency !== 'monthly' ? ' · ' + (typeof recurFreqLabel === 'function' ? recurFreqLabel(x.r.frequency).toLowerCase() : x.r.frequency) : '';
+          return '<div class="v21-bill"><span class="when">' + dayMonth(x.d) + '</span><span class="name">' + esc(x.r.desc || ((state.spendCategories || []).find(function (c) { return c.id === x.r.catId; }) || {}).name || 'Repeat') + f + '</span><span class="amt">' + fmtSummary(amt) + '</span></div>';
+        }).join('') : '<p class="v21-muted">No repeats yet. Switch on “Repeats monthly” when you add a bill and it shows here.</p>') +
+        '</section>';
+
+      // Net worth
+      if (accs.length) {
+        var nwNow = netWorthNow();
+        var first = m + '-01';
+        var prevDay = _localISODate(new Date(new Date(first + 'T12:00:00').getTime() - 864e5));
+        var delta = nwNow - netWorthAt(prevDay);
+        html += '<section class="v21-card" aria-labelledby="v21-nw-h"><div class="v21-card-h"><h3 id="v21-nw-h">Net worth</h3><button type="button" class="v21-link" onclick="showScreen(\'networth\')">Accounts</button></div>' +
+          '<div class="v21-nw"><div><div class="v">' + fmtSummary(nwNow) + '</div>' +
+          (Math.abs(delta) >= 1 ? '<div class="d ' + (delta > 0 ? 'up' : 'down') + '">' + (delta > 0 ? '▲ ' : '▼ ') + fmtSummary(Math.abs(delta)) + ' this month</div>' : '<div class="d" style="color:var(--text3)">No change this month</div>') +
+          '</div><button type="button" class="v21-ghost" onclick="openBalancesSheet()">Update balances</button></div></section>';
+      }
+
+      html += '<div class="v21-foot"><button type="button" class="v21-link" onclick="showScreen(\'about-vault\')">About Vault</button><button type="button" class="v21-link" onclick="openSettingsModal()">Settings</button></div>';
+      el.innerHTML = html;
+    } catch (e) {
+      console.warn('[V2.1] home render failed', e);
+      el.innerHTML = '<p class="v21-muted">Couldn’t load your summary. Open Money or Net worth from the menu.</p>';
+    }
+  }
+  window.renderV21Home = renderV21Home;
+
+  window.v21OpenCat = function (catId) {
+    if (typeof currentSpendMonth !== 'undefined') currentSpendMonth = thisMonth();
+    showScreen('spending');
+    try { renderSpending(); } catch (e) {}
+    setTimeout(function () { try { openSpendCatPanel(catId); } catch (e) {} }, 60);
+  };
+  window.v21ConfirmIncome = function () { ensureIncomeMonth(thisMonth()); save(); renderV21Home(); toast('Income confirmed for ' + monthShort(thisMonth())); };
+  window.v21EditIncome = function () {
+    if (typeof currentSpendMonth !== 'undefined') currentSpendMonth = thisMonth();
+    showScreen('spending');
+    try { renderSpending(); } catch (e) {}
+    setTimeout(function () { if (typeof openIncomeModal === 'function') openIncomeModal(); }, 60);
+  };
+
+  // Keep Home fresh after anything that already refreshes the old home stats.
+  var _origHS = window.renderHomeStats;
+  if (typeof _origHS === 'function') {
+    window.renderHomeStats = function () { try { _origHS.apply(this, arguments); } catch (e) {} if (homeActive()) renderV21Home(); };
+  }
+  var _origSaveAccount = window.saveAccount;
+  if (typeof _origSaveAccount === 'function') {
+    window.saveAccount = function () { var r = _origSaveAccount.apply(this, arguments); if (homeActive()) renderV21Home(); return r; };
+  }
+
+  // ════════════════════════ MONEY: statement first ════════════════════════
+  function signedIn() { var s = window.vaultSession; return !!(s && s.idToken); }
+  function renderV21MoneyActions() {
+    var el = document.getElementById('v21-money-actions'); if (!el) return;
+    var inCard = signedIn()
+      ? '<button type="button" class="v21-primary" onclick="openStatementUpload()">Upload statement</button>'
+      : '<button type="button" class="v21-ghost" onclick="signInWithGoogle()">Sign in to upload</button>';
+    el.innerHTML =
+      '<div class="v21-stmt"><div><b>Add a whole month at once</b><span>Upload a bank statement (PDF or screenshot), check the categories, then save.</span>' +
+        (signedIn() ? '' : '<div class="note">Statement upload needs a free Vault account because it reads the statement with AI. Everything else works without one.</div>') +
+      '</div>' + inCard + '</div>' +
+      '<button type="button" class="v21-ghost" style="text-align:center" onclick="openAddSheet(\'out\')">+ Add one transaction</button>';
+  }
+  window.renderV21MoneyActions = renderV21MoneyActions;
+
+  // ════════════════════════ CATEGORY MONTHLY LIMIT ════════════════════════
+  function catLimit(catId) { var b = loadBudgets(); return (b[catId] && parseFloat(b[catId].limit)) || 0; }
+  window.v21CatLimitHtml = function (catId, spent) {
+    var lim = catLimit(catId);
+    if (!lim) return '<div class="v21-limit" id="v21-limit-' + esc(catId) + '"><div class="v21-limit-top"><span>No monthly limit</span><button type="button" class="v21-link" onclick="v21EditCatLimit(\'' + esc(catId) + '\')">Set a monthly limit</button></div></div>';
+    var pct = Math.min(100, Math.round(spent / lim * 100));
+    var over = spent > lim;
+    return '<div class="v21-limit" id="v21-limit-' + esc(catId) + '"><div class="v21-limit-top"><span>' + fmtSummary(spent) + ' of ' + fmtSummary(lim) + ' limit · ' +
+      (over ? '<b style="color:var(--red)">' + fmtSummary(spent - lim) + ' over</b>' : fmtSummary(lim - spent) + ' left') + '</span>' +
+      '<button type="button" class="v21-link" onclick="v21EditCatLimit(\'' + esc(catId) + '\')">Change</button></div>' +
+      '<div class="v21-bar' + (over ? ' over' : '') + '" style="margin-top:0"><span style="width:' + pct + '%"></span></div></div>';
+  };
+  window.v21EditCatLimit = function (catId) {
+    var box = document.getElementById('v21-limit-' + catId); if (!box) return;
+    var lim = catLimit(catId);
+    box.innerHTML = '<label class="v21-lab" for="v21-lim-in">Monthly limit</label><div class="v21-limit-edit"><span>' + esc(getCurrencySymbol(getDisplayCurrency())) + '</span>' +
+      '<input class="v21-input" id="v21-lim-in" type="number" inputmode="decimal" min="0" step="1" value="' + (lim || '') + '" placeholder="e.g. 150">' +
+      '<button type="button" class="v21-ghost" onclick="v21SaveCatLimit(\'' + esc(catId) + '\')">Save</button>' +
+      (lim ? '<button type="button" class="v21-link" onclick="v21SaveCatLimit(\'' + esc(catId) + '\', true)">Remove</button>' : '') + '</div>';
+    var i = document.getElementById('v21-lim-in'); if (i) i.focus();
+  };
+  window.v21SaveCatLimit = function (catId, remove) {
+    var b = loadBudgets();
+    var v = remove ? 0 : parseFloat((document.getElementById('v21-lim-in') || {}).value);
+    if (!remove && !(v > 0)) { var i = document.getElementById('v21-lim-in'); if (i) { i.style.borderColor = 'var(--red)'; i.focus(); } return; }
+    if (remove) delete b[catId]; else b[catId] = Object.assign({}, (typeof b[catId] === 'object' && b[catId]) || {}, { limit: v });
+    saveBudgets(b);
+    try { renderSpending(); } catch (e) {}
+    try { openSpendCatPanel(catId); } catch (e) {}
+    toast(remove ? 'Limit removed' : 'Limit set: ' + fmtSummary(v) + ' a month');
+  };
+
+  // ════════════════════════ PLAN: "More tools" ════════════════════════
+  var MORE = ['tools', 'habits', 'scenarios', 'redundancy'];
+  window.v21TogglePlanMore = function (force) {
+    var row = document.getElementById('plan-more-row'), btn = document.getElementById('ptab-more');
+    if (!row || !btn) return;
+    var open = typeof force === 'boolean' ? force : row.hidden;
+    row.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    if (open && MORE.indexOf(window.activePlanTab || (typeof activePlanTab !== 'undefined' ? activePlanTab : '')) === -1) setPlanTab('tools');
+  };
+  var _origSPT = window.setPlanTab;
+  if (typeof _origSPT === 'function') {
+    window.setPlanTab = function (tab) {
+      _origSPT.apply(this, arguments);
+      var inMore = MORE.indexOf(tab) !== -1;
+      var btn = document.getElementById('ptab-more'), row = document.getElementById('plan-more-row');
+      if (btn) btn.classList.toggle('active', inMore);
+      if (row && inMore) { row.hidden = false; btn && btn.setAttribute('aria-expanded', 'true'); }
+      if (row && !inMore) { row.hidden = true; btn && btn.setAttribute('aria-expanded', 'false'); }
+    };
+  }
+
+  // First paint
+  function boot() {
+    try { renderV21Home(); } catch (e) {}
+    try { renderV21MoneyActions(); } catch (e) {}
+    var tabs = document.getElementById('section-tabs');
+    if (tabs && window.innerWidth <= 600) tabs.style.display = 'flex';
+    document.body.classList.add('in-section');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  setTimeout(boot, 1200); // after late renders (FX, sync)
+})();
+</script>
 
 </body>
 </html>
