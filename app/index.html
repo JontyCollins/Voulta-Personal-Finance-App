@@ -4,6 +4,7 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
 <script>
+  window.VAULT_VERSION = '2.01';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -18588,6 +18589,12 @@ let state = {
 
 // FX globals
 let fxRates = {}; // base USD rates from API
+// V2.01: start from the last rates we saw, so foreign-currency amounts don't
+// count as £0 while offline or before the live fetch finishes.
+try {
+  const _fxc = JSON.parse(localStorage.getItem('vault_fx_cache') || 'null');
+  if (_fxc && _fxc.rates && Object.keys(_fxc.rates).length) fxRates = _fxc.rates;
+} catch (e) {}
 let fxLastUpdated = null;
 let fxLoadFailed = false;
 
@@ -18632,6 +18639,7 @@ async function fetchFXRates() {
     const data = await res.json();
     if (data && data.rates && Object.keys(data.rates).length > 0) {
       fxRates = data.rates;
+      try { localStorage.setItem('vault_fx_cache', JSON.stringify({ rates: data.rates, ts: Date.now() })); } catch (e) {}
       fxLastUpdated = new Date();
       fxLoadFailed = false;
     } else {
@@ -20802,12 +20810,28 @@ function applyManualRate() {
   renderSpending();
 }
 
+// V2.01: display-currency amount → another currency, or null if rates missing.
+function displayToCurrency(amount, ccy) {
+  const disp = getDisplayCurrency();
+  if (!ccy || ccy === disp) return amount;
+  if (!fxRates || !fxRates[ccy] || !fxRates[disp]) return null;
+  return amount / fxRates[disp] * fxRates[ccy];
+}
+// V2.01: true when converting between these currencies is currently possible.
+function fxAvailable(fromCcy, toCcy) {
+  if (!fromCcy || !toCcy || fromCcy === toCcy) return true;
+  return !!(fxRates && fxRates[fromCcy] && fxRates[toCcy]);
+}
+
 // Returns raw (unconverted) value for an account
 function getRawLatestValue(acc) {
   if ((acc.type === 'investments' || acc.type === 'crypto') && acc.trackingMode === 'holdings') {
-    return acc.holdings ? acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0) : 0;
+    const sumDisp = acc.holdings ? acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0) : 0;
+    const nat = displayToCurrency(sumDisp, acc.currency);
+    return nat == null ? sumDisp : nat;
   }
-  return acc.history.length ? acc.history[acc.history.length-1].value : 0;
+  return (typeof getLatestNativeValue === 'function') ? getLatestNativeValue(acc)
+    : (acc.history.length ? acc.history[acc.history.length-1].value : 0);
 }
 
 // Native display string for foreign-currency accounts
@@ -20859,9 +20883,12 @@ function convertSpendAmount(amount, entryCcy) {
 
 // Returns true if a subcategory has any entry whose currency differs from the
 // display currency AND whose FX rate is currently unavailable.
-function subHasFxGap(sub) {
+function subHasFxGap(sub, cat) {
   const disp = getDisplayCurrency();
-  const entries = (sub.entries && sub.entries[currentSpendMonth]) || [];
+  if (!cat) cat = (state.spendCategories || []).find(c => (c.subcategories || []).indexOf(sub) !== -1);
+  const entries = (cat && typeof getSubEntriesWithRecurring === 'function')
+    ? getSubEntriesWithRecurring(cat, sub, currentSpendMonth)
+    : ((sub.entries && sub.entries[currentSpendMonth]) || []);
   return entries.some(e => {
     const ccy = e.currency || disp;
     return ccy !== disp && (!fxRates || !fxRates[ccy]);
@@ -21390,6 +21417,11 @@ function _applyStockPrice(h, price, sourceCurrency, acc) {
   h.fmpPriceDate   = new Date().toISOString();
   h.priceError     = null;
   const units = h.units != null ? h.units : (getHoldingLatestUnits(h) || 0);
+  // V2.01: if rates aren't loaded, convert() returns 0 — don't save that as the value.
+  if (!fxAvailable(ccy, getDisplayCurrency())) {
+    h.priceError = 'Waiting for exchange rates';
+    return finalPrice;
+  }
   const value = convert(finalPrice * units, ccy);
   h.history.push({ id: uid(), date: today(), value, units, fromLive: true });
   return finalPrice;
@@ -22183,8 +22215,11 @@ function saveTxn() {
     const newVal = convert(h.livePrice * h.units, getDisplayCurrency());
     h.history.push({ id: uid(), date: today(), value: newVal, units: h.units, fromLive: true });
   } else if (!isCryptoAcc && h.manualPrice != null && h.units != null) {
-    const newVal = convert(h.manualPrice * h.units, acc.currency || 'GBP');
-    h.history.push({ id: uid(), date: today(), value: newVal, units: h.units });
+    const _pc = h.manualPriceCcy || acc.currency || 'GBP';
+    if (fxAvailable(_pc, getDisplayCurrency())) {  // V2.01: no zero from missing FX; use the price's own currency
+      const newVal = convert(h.manualPrice * h.units, _pc);
+      h.history.push({ id: uid(), date: today(), value: newVal, units: h.units });
+    }
   }
   syncHoldingsTotalToHistory(acc);
 
@@ -22206,8 +22241,11 @@ function deleteTxn(accId, holdingId, txnId) {
     const newValD = convert(h.livePrice * h.units, getDisplayCurrency());
     h.history.push({ id: uid(), date: today(), value: newValD, units: h.units, fromLive: true });
   } else if (acc.type !== 'crypto' && h.manualPrice != null && h.units != null) {
-    const newValD = convert(h.manualPrice * h.units, acc.currency || 'GBP');
-    h.history.push({ id: uid(), date: today(), value: newValD, units: h.units });
+    const _pcD = h.manualPriceCcy || acc.currency || 'GBP';
+    if (fxAvailable(_pcD, getDisplayCurrency())) {  // V2.01
+      const newValD = convert(h.manualPrice * h.units, _pcD);
+      h.history.push({ id: uid(), date: today(), value: newValD, units: h.units });
+    }
   }
   syncHoldingsTotalToHistory(acc);
   save();
@@ -23430,119 +23468,64 @@ function cgtSyncFromHoldings() {
 
 // ─── UK CGT matching: same-day → 30-day → S.104 pool ────────────────────────
 function cgtComputeAssetDisposals(assetTxns) {
-  // assetTxns: array sorted by date, each {date, type, units, totalGBP}
-  const disposals = [];
-  const buys  = assetTxns.filter(t => t.type === 'buy' ).map(t => ({...t, remaining: t.units}));
-  const sells = assetTxns.filter(t => t.type === 'sell').map(t => ({...t, remaining: t.units}));
+  // V2.01 rewrite — HMRC share identification rules, applied ACROSS all
+  // disposals of the asset in date order:
+  //   1. same-day acquisitions, 2. acquisitions in the following 30 days
+  //   (bed & breakfast), 3. the Section 104 pool (running average cost).
+  // Previously the pool was rebuilt from scratch for every sale, so earlier
+  // sales never consumed it and later gains were overstated.
+  const byDate = (x, y) => String(x.date).localeCompare(String(y.date));
+  const txns  = (assetTxns || []).slice().sort(byDate);
+  const buys  = txns.filter(t => t.type === 'buy').map(t => ({ ...t, rem: t.units || 0, cpu: (t.totalGBP || 0) / (t.units || 1) }));
+  const sells = txns.filter(t => t.type === 'sell').map(t => ({ ...t, parts: [], unmatched: t.units || 0, ppu: (t.totalGBP || 0) / (t.units || 1) }));
+  const DAY = 86400000;
+  const take = (s, b, rule) => {
+    const m = Math.min(s.unmatched, b.rem);
+    if (m <= 0) return;
+    s.parts.push({ rule, units: m, cost: m * b.cpu });
+    b.rem -= m; s.unmatched -= m;
+  };
 
-  sells.forEach(sell => {
-    let unitsLeft = sell.remaining;
-    let totalCost = 0;
-    const sellDate = sell.date;
-    const proceedsPerUnit = sell.totalGBP / (sell.units || 1);
-
-    // 1) Same-day rule
-    buys.forEach(buy => {
-      if (buy.remaining <= 0 || buy.date !== sellDate) return;
-      const matched = Math.min(unitsLeft, buy.remaining);
-      if (matched <= 0) return;
-      const costPerUnit = buy.totalGBP / (buy.units || 1);
-      totalCost += matched * costPerUnit;
-      buy.remaining -= matched;
-      unitsLeft -= matched;
-    });
-    const sameDayUnits = (sell.units - unitsLeft);
-    if (sameDayUnits > 0) {
-      const proceeds = sameDayUnits * proceedsPerUnit;
-      const cost     = totalCost; // cost accumulated above for same-day
-      // Reset totalCost for subsequent rules — we'll re-accumulate per rule
-      // Actually let's track rule-by-rule separately
-    }
-
-    // Restart: track matched per rule
-    unitsLeft = sell.units;
-    let ruleBreakdown = [];
-
-    // Same-day
-    {
-      let ruleCost = 0; let ruleUnits = 0;
-      buys.forEach(b => {
-        if (b.date !== sellDate) return;
-        // "remaining" already partially consumed above — reset logic needed
-        // Use fresh clone approach: we'll do it properly below
-      });
-    }
-
-    // Full proper implementation using cloned pool
-    const buyPool = assetTxns.filter(t => t.type === 'buy').map(t => ({...t, rem: t.units}));
-
-    let unmatched = sell.units;
-    let gainParts = [];
-
-    // Pass 1: same-day
-    buyPool.forEach(b => {
-      if (unmatched <= 0 || b.date !== sellDate || b.rem <= 0) return;
-      const m = Math.min(unmatched, b.rem);
-      const costPerU = b.totalGBP / (b.units || 1);
-      gainParts.push({ rule: 'same-day', units: m, cost: m * costPerU, proceeds: m * proceedsPerUnit });
-      b.rem -= m; unmatched -= m;
-    });
-
-    // Pass 2: 30-day (FIFO within window, chronological)
-    if (unmatched > 0) {
-      const sellMs = new Date(sellDate).getTime();
-      const window30 = buyPool.filter(b => {
-        const bMs = new Date(b.date).getTime();
-        return bMs > sellMs && bMs <= sellMs + 30 * 86400000 && b.rem > 0;
-      }).sort((a, b) => a.date.localeCompare(b.date));
-      window30.forEach(b => {
-        if (unmatched <= 0 || b.rem <= 0) return;
-        const m = Math.min(unmatched, b.rem);
-        const costPerU = b.totalGBP / (b.units || 1);
-        gainParts.push({ rule: '30-day', units: m, cost: m * costPerU, proceeds: m * proceedsPerUnit });
-        b.rem -= m; unmatched -= m;
-      });
-    }
-
-    // Pass 3: S.104 pool (weighted average of all remaining buys prior to sell date)
-    if (unmatched > 0) {
-      const priorBuys = buyPool.filter(b => b.date < sellDate && b.rem > 0);
-      const poolUnits = priorBuys.reduce((s, b) => s + b.rem, 0);
-      const poolCost  = priorBuys.reduce((s, b) => s + (b.totalGBP / (b.units || 1)) * b.rem, 0);
-      if (poolUnits > 0) {
-        const m = Math.min(unmatched, poolUnits);
-        const avgCostPerU = poolCost / poolUnits;
-        gainParts.push({ rule: 's104', units: m, cost: m * avgCostPerU, proceeds: m * proceedsPerUnit });
-        // Reduce pool proportionally
-        const ratio = m / poolUnits;
-        priorBuys.forEach(b => { b.rem -= b.rem * ratio; });
-        unmatched -= m;
-      }
-    }
-
-    // Any still unmatched — no cost basis
-    if (unmatched > 0) {
-      gainParts.push({ rule: 's104', units: unmatched, cost: 0, proceeds: unmatched * proceedsPerUnit });
-    }
-
-    // Aggregate into disposal record
-    const totalProceeds = gainParts.reduce((s, p) => s + p.proceeds, 0);
-    const totalCostAgg  = gainParts.reduce((s, p) => s + p.cost,     0);
-    const primaryRule   = gainParts.length > 0 ? gainParts[0].rule : 's104';
-
-    disposals.push({
-      date:     sellDate,
-      asset:    sell.asset,
-      units:    sell.units,
-      proceeds: totalProceeds,
-      cost:     totalCostAgg,
-      gain:     totalProceeds - totalCostAgg,
-      rule:     primaryRule,
-      _txn:     sell,
+  // 1) Same-day
+  sells.forEach(s => buys.forEach(b => { if (b.date === s.date) take(s, b, 'same-day'); }));
+  // 2) 30-day rule (earliest disposal first, earliest acquisition first)
+  sells.forEach(s => {
+    if (s.unmatched <= 0) return;
+    const sMs = Date.parse(s.date);
+    buys.forEach(b => {
+      const bMs = Date.parse(b.date);
+      if (bMs > sMs && bMs <= sMs + 30 * DAY) take(s, b, '30-day');
     });
   });
+  // 3) Section 104 pool, processed chronologically
+  let poolUnits = 0, poolCost = 0, bi = 0;
+  sells.forEach(s => {
+    while (bi < buys.length && String(buys[bi].date) <= String(s.date)) {
+      poolUnits += buys[bi].rem; poolCost += buys[bi].rem * buys[bi].cpu; buys[bi].rem = 0; bi++;
+    }
+    if (s.unmatched > 0 && poolUnits > 1e-12) {
+      const m = Math.min(s.unmatched, poolUnits);
+      const cost = poolCost * (m / poolUnits);
+      s.parts.push({ rule: 's104', units: m, cost });
+      poolUnits -= m; poolCost -= cost; s.unmatched -= m;
+    }
+    if (s.unmatched > 1e-12) {
+      // Sold more than we have a record of buying — no cost basis available.
+      s.parts.push({ rule: 's104', units: s.unmatched, cost: 0 });
+      s.unmatched = 0;
+    }
+  });
 
-  return disposals;
+  return sells.map(s => {
+    const proceeds = s.parts.reduce((t, p) => t + p.units * s.ppu, 0);
+    const cost     = s.parts.reduce((t, p) => t + p.cost, 0);
+    return {
+      date: s.date, asset: s.asset, units: s.units,
+      proceeds, cost, gain: proceeds - cost,
+      rule: s.parts.length ? s.parts[0].rule : 's104',
+      _txn: assetTxns.find(t => t === s || (t.date === s.date && t.type === 'sell' && t.units === s.units && t.totalGBP === s.totalGBP)) || s,
+    };
+  });
 }
 
 // All disposals for a given tax year from the CGT ledger
@@ -24682,11 +24665,31 @@ function getAccountPerformance(acc) {
 function getLatestValue(acc) {
   let raw = 0;
   if ((acc.type === 'investments' || acc.type === 'crypto') && acc.trackingMode === 'holdings') {
-    raw = acc.holdings ? acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0) : 0;
+    // V2.01: holding values are stored in DISPLAY currency already — converting
+    // again (from the account currency) undervalued foreign-currency accounts.
+    return acc.holdings ? acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0) : 0;
   } else {
-    raw = acc.history.length ? acc.history[acc.history.length-1].value : 0;
+    raw = getLatestNativeValue(acc);
   }
   return convert(raw, acc.currency || getDisplayCurrency());
+}
+
+// V2.01: latest balance in the account's OWN currency, chosen by date (ties →
+// the most recently added). Previously the last-pushed entry won, so entering
+// an old balance replaced today's value.
+function getLatestHistoryEntry(acc) {
+  const h = (acc && acc.history) || [];
+  let best = null, bestIdx = -1;
+  h.forEach((e, i) => {
+    if (!e) return;
+    const d = String(e.date || '');
+    if (!best || d > String(best.date || '') || (d === String(best.date || '') && i > bestIdx)) { best = e; bestIdx = i; }
+  });
+  return best;
+}
+function getLatestNativeValue(acc) {
+  const e = getLatestHistoryEntry(acc);
+  return e ? (parseFloat(e.value) || 0) : 0;
 }
 
 function getPropertyEquity() {
@@ -25659,9 +25662,9 @@ function saveSpend() {
   const sub = cat && cat.subcategories.find(s => s.id === activeSubId);
   if (!sub) return;
   if (!sub.entries) sub.entries = {};
-  if (!sub.entries[currentSpendMonth]) sub.entries[currentSpendMonth] = [];
 
   let saved = 0;
+  let _otherMonth = null;
   rows.forEach(row => {
     const amount = parseFloat(row.querySelector('.spend-row-amount').value);
     if (isNaN(amount) || amount <= 0) return;
@@ -25672,7 +25675,10 @@ function saveSpend() {
     const accEl = row.querySelector('.spend-row-account');
     const entryAccount = accEl ? (accEl.value || '').trim() : '';
     const newE = { id: uid(), amount, desc, date, currency: entryCcy, account: entryAccount || undefined };
-    sub.entries[currentSpendMonth].push(newE);
+    const _em = String(date).slice(0, 7) || currentSpendMonth;   // V2.01: file by date
+    if (!sub.entries[_em]) sub.entries[_em] = [];
+    sub.entries[_em].push(newE);
+    if (_em !== currentSpendMonth) _otherMonth = _em;
     setLastAdded(newE, cat.name, sub.name);
     saved++;
   });
@@ -25681,6 +25687,7 @@ function saveSpend() {
   save();
   closeModal('modal-add-spend');
   renderSpending();
+  _noteSavedToOtherMonth(_otherMonth);
 }
 
 function confirmDeleteSpendEntry(catId, subId, entryId, desc, reopenPanel) {
@@ -25733,6 +25740,7 @@ function deleteSpendEntry(catId, subId, entryId) {
   }
 
   // Plain (non-split) entry — simple delete
+  recordRecurringSkip(entry, currentSpendMonth);  // V2.01
   sub.entries[currentSpendMonth] = sub.entries[currentSpendMonth].filter(e => e.id !== entryId);
   save();
   renderSpending();
@@ -25887,6 +25895,51 @@ function migrateMissingGroupIds() {
   }
 }
 
+
+// V2.01: repair splits made through the drawer before V2.01. Those cut the
+// original entry down to the remainder and flagged it as a zero-value parent,
+// so the remainder disappeared from totals. Drawer-made children are
+// recognisable because they carry an explicit `catSplitParent: false` key
+// (the modal path never sets it). Restore the original amount on the parent
+// and add the missing remainder as a child in the parent's own subcategory.
+function repairDrawerSplitsV201() {
+  if (!state || !state.spendCategories) return 0;
+  var groups = {};
+  state.spendCategories.forEach(function(c) {
+    (c.subcategories || []).forEach(function(sb) {
+      Object.keys(sb.entries || {}).forEach(function(m) {
+        (sb.entries[m] || []).forEach(function(e) {
+          if (!e || !e.catSplitGroupId) return;
+          var g = groups[e.catSplitGroupId] || (groups[e.catSplitGroupId] = { parent: null, parentLoc: null, children: [] });
+          if (e.catSplitParent) { g.parent = e; g.parentLoc = { sub: sb, month: m }; }
+          else if (e.catSplitChild) g.children.push(e);
+        });
+      });
+    });
+  });
+  var fixed = 0;
+  Object.keys(groups).forEach(function(gid) {
+    var g = groups[gid], P = g.parent;
+    if (!P || P.splitV2 || P.splitRepairedV201 || !g.children.length) return;
+    var drawerMade = g.children.every(function(ch) { return Object.prototype.hasOwnProperty.call(ch, 'catSplitParent') && ch.catSplitParent === false; });
+    if (!drawerMade) return;
+    var sign = (P.amount || 0) < 0 ? -1 : 1;
+    var remainder = Math.abs(P.amount || 0);
+    var childSum = g.children.reduce(function(s, ch) { return s + Math.abs(ch.amount || 0); }, 0);
+    if (remainder <= 0) { P.splitRepairedV201 = true; return; }
+    g.parentLoc.sub.entries[g.parentLoc.month].push({
+      id: uid(), desc: P.desc || '', date: P.date || '', amount: sign * remainder,
+      currency: P.currency || '', account: P.account,
+      catSplitChild: true, catSplitGroupId: gid, catSplitParentId: P.id
+    });
+    P.amount = sign * (Math.round((remainder + childSum) * 100) / 100);
+    P.splitRepairedV201 = true;
+    fixed++;
+  });
+  if (fixed) { try { save(); } catch (e) {} }
+  return fixed;
+}
+
 function getEntryMyAmount(e) {
   // People split: use the user's own share
   if (e.splitId) {
@@ -25901,39 +25954,109 @@ function getEntryMyAmount(e) {
 }
 
 // Returns virtual recurring entry objects for a given sub/month.
+// V2.01: frequency-aware. Monthly repeats appear once a month on their usual
+// day; annual repeats only in their anniversary month; weekly/fortnightly
+// repeats appear on every due date in the month that has not already been
+// seeded as a real entry. Previously every repeat, whatever its frequency,
+// was injected once in every month (annual subs showed monthly; weekly subs
+// were under-counted in future months).
+function _vRecurDateAdd(dateStr, days) {
+  const d = new Date(dateStr + 'T00:00:00Z');
+  return new Date(d.getTime() + days * 86400000).toISOString().slice(0, 10);
+}
+function _vRecurDayInMonth(month, day) {
+  const parts = month.split('-').map(Number);
+  const last = new Date(Date.UTC(parts[0], parts[1], 0)).getUTCDate();
+  return month + '-' + String(Math.min(Math.max(1, day || 1), last)).padStart(2, '0');
+}
 function getVirtualRecurringEntries(catId, subId, month) {
   const recs = loadVaultRecurring();
-  const real = [];
-  const cat  = state.spendCategories.find(c => c.id === catId);
-  const sub  = cat && cat.subcategories.find(s => s.id === subId);
-  if (sub && sub.entries && sub.entries[month]) {
-    sub.entries[month].forEach(e => { if (e.recurringId) real.push(e.recurringId); });
-  }
+  const cat  = (state.spendCategories || []).find(c => c.id === catId);
+  const sub  = cat && (cat.subcategories || []).find(s => s.id === subId);
+  const realEntries = (sub && sub.entries && sub.entries[month]) || [];
+  const realIds  = new Set();
+  const realKeys = new Set();
+  realEntries.forEach(e => {
+    if (!e.recurringId) return;
+    realIds.add(e.recurringId);
+    realKeys.add(e.recurringId + '|' + String(e.date || '').slice(0, 10));
+  });
   const virtuals = [];
   recs.forEach(r => {
     if (r.catId !== catId || r.subId !== subId) return;
-    const createdMonth = r.createdDate ? r.createdDate.slice(0, 7) : null;
+    const startDate = String(r.createdDate || r.startDate || '').slice(0, 10);
+    const createdMonth = startDate ? startDate.slice(0, 7) : null;
     if (!createdMonth || createdMonth > month) return;
     if (!r.active) {
       // Only inject a virtual row in the exact month it was deleted.
-      // Any other month (before or after) must not show a virtual row.
       const dm = r.deletedMonth || null;
       if (!dm || dm !== month) return;
     }
-    if (real.includes(r.id)) return;
-    virtuals.push({
-      id: 'virt-' + r.id + '-' + month,
+    const freq = r.frequency || 'monthly';
+    const skipped = new Set(r.skipped || []);
+    const make = (date) => ({
+      id: 'virt-' + r.id + '-' + date,
       amount: r.amount,
       desc: r.desc,
-      date: month + '-01',
+      date: date,
       currency: r.currency || getDisplayCurrency(),
       repeat: true,
+      frequency: freq,
       recurringId: r.id,
       recurringStatus: 'active',
       _virtual: true
     });
+    const startDay = parseInt(startDate.slice(8, 10), 10) || 1;
+    if (freq === 'monthly') {
+      if (realIds.has(r.id) || skipped.has(month)) return;
+      virtuals.push(make(_vRecurDayInMonth(month, startDay)));
+    } else if (freq === 'annually') {
+      if (startDate.slice(5, 7) !== month.slice(5, 7)) return;
+      if (realIds.has(r.id) || skipped.has(month)) return;
+      virtuals.push(make(_vRecurDayInMonth(month, startDay)));
+    } else {
+      const interval = freq === 'weekly' ? 7 : 14;
+      const seededUpTo = r.lastSeededDate ? String(r.lastSeededDate).slice(0, 10) : '';
+      let k = 1, d = _vRecurDateAdd(startDate, interval);
+      while (d.slice(0, 7) <= month && k < 2000) {
+        if (d.slice(0, 7) === month && d > seededUpTo && !realKeys.has(r.id + '|' + d) && !skipped.has(d)) {
+          virtuals.push(make(d));
+        }
+        k++; d = _vRecurDateAdd(startDate, interval * k);
+      }
+    }
   });
   return virtuals;
+}
+
+// V2.01: one place to get "everything that counts" for a sub in a month —
+// real entries plus not-yet-materialised repeats. Virtual repeats have no
+// account, so they are treated as personal and left out of the Joint view.
+function getSubEntriesWithRecurring(cat, sub, month) {
+  const real = (sub && sub.entries && sub.entries[month]) || [];
+  if ((window.spendOwnership || 'all') === 'joint' || !cat || !sub) return real.slice();
+  return real.concat(getVirtualRecurringEntries(cat.id, sub.id, month));
+}
+
+// V2.01: deleting one occurrence of a repeat records a skip on the rule, so
+// the virtual copy doesn't reappear. Monthly/annual skip by month (YYYY-MM);
+// weekly/fortnightly skip by exact date (YYYY-MM-DD). Stopping the repeat
+// altogether is still done from the repeat itself.
+function recordRecurringSkip(entry, monthKey) {
+  if (!entry || !entry.recurringId || entry._virtual) return;
+  const recs = loadVaultRecurring();
+  const r = recs.find(x => x.id === entry.recurringId);
+  if (!r) return;
+  const f = r.frequency || 'monthly';
+  const key = (f === 'weekly' || f === 'fortnightly') ? String(entry.date || '').slice(0, 10) : (monthKey || String(entry.date || '').slice(0, 7));
+  if (!key) return;
+  r.skipped = r.skipped || [];
+  if (r.skipped.indexOf(key) === -1) r.skipped.push(key);
+  saveVaultRecurring(recs);
+}
+
+function recurFreqLabel(freq) {
+  return ({ weekly: 'Weekly', fortnightly: 'Fortnightly', annually: 'Yearly' })[freq] || 'Monthly';
 }
 
 function getVirtualRecurringTotalForSub(catId, subId, month) {
@@ -25976,7 +26099,7 @@ function getMoneyOutBreakdown(monthKey) {
   (state.spendCategories || []).forEach(cat => {
     if (cat.name !== GOALS_CATEGORY_NAME) return; // only the Goals category carries subType
     (cat.subcategories || []).forEach(sub => {
-      const entries = (sub.entries && sub.entries[m]) || [];
+      const entries = getSubEntriesWithRecurring(cat, sub, m);
       // Filter + multiplier so the joint/personal toggle keeps the breakdown
       // consistent with the headline.
       const filtered = (typeof entryMatchesSpendOwnership === 'function')
@@ -26677,7 +26800,7 @@ function renderSpending() {
                     <span>${sub.name}</span>
                     ${overIcon}
                   </div>
-                  <div class="subcategory-total ${subTotal === 0 ? 'zero' : ''}" style="pointer-events:none">${fmt(subTotal)}${subHasFxGap(sub) ? '<span title="Some entries are in foreign currencies — totals may be incomplete until exchange rates load." style="font-size:9px;color:var(--accent4);margin-left:3px">⚠</span>' : ''}</div>
+                  <div class="subcategory-total ${subTotal === 0 ? 'zero' : ''}" style="pointer-events:none">${fmt(subTotal)}${subHasFxGap(sub, cat) ? '<span title="Some entries are in foreign currencies — totals may be incomplete until exchange rates load." style="font-size:9px;color:var(--accent4);margin-left:3px">⚠</span>' : ''}</div>
                   <button class="subcategory-add-btn" onclick="event.stopPropagation();openAddSpendModal('${cat.id}','${sub.id}')">+ Add</button>
                   <span class="sub-chevron ${subOpen ? 'open' : ''}" id="subchev-${sub.id}" style="pointer-events:none">›</span>
                 </div>
@@ -28546,15 +28669,15 @@ const TAX_YEARS = {
     PA_TAPER_FROM: 100000,
     PA_TAPER_TO:   125140,
     SCOTTISH_BANDS: [
-      { upTo: 2306,    rate: 0.19 },
-      { upTo: 13991,   rate: 0.20 },
+      { upTo: 2827,    rate: 0.19 },  // V2.01: 2025/26 starter £12,571–£15,397
+      { upTo: 14921,   rate: 0.20 },  // basic £15,398–£27,491
       { upTo: 31092,   rate: 0.21 },
       { upTo: 62430,   rate: 0.42 },
       { upTo: 125140,  rate: 0.45 },
       { upTo: Infinity, rate: 0.48 },
     ],
     REST_UK_BANDS: [
-      { upTo: 50270,   rate: 0.20 },  // basic
+      { upTo: 37700,   rate: 0.20 },  // basic   — V2.01: taxable-income band (was 50270 = gross threshold, over-wide by £12,570)
       { upTo: 125140,  rate: 0.40 },  // higher
       { upTo: Infinity, rate: 0.45 },  // additional
     ],
@@ -28562,7 +28685,7 @@ const TAX_YEARS = {
     NI_UPPER:     50270,
     NI_RATE_MAIN: 0.08,
     NI_RATE_UPPER: 0.02,
-    SL_PLAN2_THRESHOLD: 27295,
+    SL_PLAN2_THRESHOLD: 28470,       // V2.01: 2025/26 figure (27,295 was 2024/25)
     SL_PLAN2_RATE:      0.09,
   },
   '2026-27': {
@@ -28570,19 +28693,19 @@ const TAX_YEARS = {
     PA_BASE:      12570,           // FROZEN until April 2028
     PA_TAPER_FROM: 100000,
     PA_TAPER_TO:   125140,
-    // Scottish 2026/27 bands as confirmed by the Scottish Budget (Dec 2025) —
-    // starter/basic/intermediate/higher/advanced/top thresholds unchanged from
-    // 2025/26; rates also unchanged.
+    // Scottish 2026/27 bands (Scottish Budget, Jan 2026): starter and basic
+    // limits raised; intermediate/higher/advanced/top unchanged; rates unchanged.
+    // Limits below are TAXABLE income (after the personal allowance).
     SCOTTISH_BANDS: [
-      { upTo: 2306,    rate: 0.19 },
-      { upTo: 13991,   rate: 0.20 },
+      { upTo: 3967,    rate: 0.19 },  // V2.01: 2026/27 starter £12,571–£16,537
+      { upTo: 16956,   rate: 0.20 },  // basic £16,538–£29,526
       { upTo: 31092,   rate: 0.21 },
       { upTo: 62430,   rate: 0.42 },
       { upTo: 125140,  rate: 0.45 },
       { upTo: Infinity, rate: 0.48 },
     ],
     REST_UK_BANDS: [
-      { upTo: 50270,   rate: 0.20 },  // FROZEN
+      { upTo: 37700,   rate: 0.20 },  // FROZEN — V2.01: taxable-income band (£12,571–£50,270 gross)
       { upTo: 125140,  rate: 0.40 },  // FROZEN
       { upTo: Infinity, rate: 0.45 },  // FROZEN
     ],
@@ -28590,7 +28713,7 @@ const TAX_YEARS = {
     NI_UPPER:     50270,             // FROZEN
     NI_RATE_MAIN: 0.08,
     NI_RATE_UPPER: 0.02,
-    SL_PLAN2_THRESHOLD: 28470,       // UP from £27,295 (effective 6 Apr 2026)
+    SL_PLAN2_THRESHOLD: 29385,       // V2.01: 2026/27 (was 28,470 = 2025/26 figure)
     SL_PLAN2_RATE:      0.09,
   },
 };
@@ -28790,9 +28913,11 @@ function calcSalaryTax(job) {
   const TY = (job.taxYear && TAX_YEARS[job.taxYear]) || getTaxYear();
 
   // Personal allowance with taper for high-income earners
+  // V2.01: taper uses adjusted net income (gross minus pension contributions),
+  // not gross — a £110k earner sacrificing 10% keeps the full allowance.
   let personalAllowance = TY.PA_BASE;
-  if (annualGross > TY.PA_TAPER_FROM) {
-    personalAllowance = Math.max(0, TY.PA_BASE - Math.floor((annualGross - TY.PA_TAPER_FROM) / 2));
+  if (pensionablePay > TY.PA_TAPER_FROM) {
+    personalAllowance = Math.max(0, TY.PA_BASE - Math.floor((pensionablePay - TY.PA_TAPER_FROM) / 2));
   }
 
   // Taxable income
@@ -28849,8 +28974,9 @@ function calcSalaryTax(job) {
   // PA taper zone (England/Wales/NI only): between PA_TAPER_FROM and PA_TAPER_TO
   // gross, the effective marginal IT rate doubles because each extra £1 also
   // erodes the Personal Allowance by £0.50.
-  if (!isScottish && annualGross > TY.PA_TAPER_FROM && annualGross < TY.PA_TAPER_TO) {
-    marginalIT = 0.60;
+  // V2.01: applies in Scotland too (45% advanced rate → 67.5%).
+  if (pensionablePay > TY.PA_TAPER_FROM && pensionablePay < TY.PA_TAPER_TO) {
+    marginalIT = marginalIT * 1.5;
   }
   const marginalRate = (marginalIT + marginalNI) * 100;
 
@@ -29094,8 +29220,9 @@ function setTrackingMode(accId, mode) {
   } else {
     // Holdings → Total: snapshot the sum of holdings as a flat entry
     if (acc.holdings && acc.holdings.length > 0) {
-      const sum = acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0);
-      if (sum > 0) {
+      const sumDisp = acc.holdings.reduce((s, h) => s + getHoldingLatestValue(h), 0);
+      const sum = displayToCurrency(sumDisp, acc.currency);  // V2.01: history is in account currency
+      if (sum != null && sum > 0) {
         acc.history.push({ id: uid(), date: today(), value: sum, units: null, isModeSwitch: true });
         acc.history.sort((a, b) => a.date.slice(0,10).localeCompare(b.date.slice(0,10)));
       }
@@ -29111,8 +29238,9 @@ function setTrackingMode(accId, mode) {
 
 function syncHoldingsTotalToHistory(acc) {
   if (!acc || !(acc.type === 'investments' || acc.type === 'crypto')) return;
-  const sum = (acc.holdings || []).reduce((s, h) => s + getHoldingLatestValue(h), 0);
-  if (sum > 0) {
+  const sumDisp = (acc.holdings || []).reduce((s, h) => s + getHoldingLatestValue(h), 0);
+  const sum = displayToCurrency(sumDisp, acc.currency);  // V2.01: history is in account currency
+  if (sum != null && sum > 0) {
     acc.history.push({ id: uid(), date: today(), value: sum, units: null, fromHoldings: true });
     acc.history.sort((a, b) => a.date.slice(0,10).localeCompare(b.date.slice(0,10)));
   }
@@ -29942,6 +30070,18 @@ function qlRepeatToggle(checked) {
   if (hint) hint.classList.toggle('visible', checked);
 }
 
+// V2.01: entries are filed under the month of their DATE (previously the
+// month on screen, so a transaction dated 28 Aug logged while viewing
+// September counted in September). Tell the user when it lands elsewhere.
+function _noteSavedToOtherMonth(monthKey) {
+  if (!monthKey || monthKey === currentSpendMonth) return;
+  try {
+    const [y, m] = monthKey.split('-').map(Number);
+    const label = new Date(Date.UTC(y, m - 1, 1)).toLocaleString('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+    if (typeof showCelebration === 'function') showCelebration('Saved to ' + label, 3000);
+  } catch (e) {}
+}
+
 function quickLogSave() {
   const amount = parseFloat(document.getElementById('ql-amount').value);
   const catId = document.getElementById('ql-cat').value;
@@ -29964,7 +30104,8 @@ function quickLogSave() {
   const sub = cat && cat.subcategories.find(s => s.id === subId);
   if (!sub) return;
   if (!sub.entries) sub.entries = {};
-  if (!sub.entries[currentSpendMonth]) sub.entries[currentSpendMonth] = [];
+  const entryMonth = String(date).slice(0, 7) || currentSpendMonth;
+  if (!sub.entries[entryMonth]) sub.entries[entryMonth] = [];
 
   const entryId = uid();
   let recurringId = undefined;
@@ -29974,7 +30115,7 @@ function quickLogSave() {
       currency: entryCcy,
       createdDate: date,
       active: true,
-      lastSeededMonth: currentSpendMonth
+      lastSeededMonth: entryMonth
     };
     const recs = loadVaultRecurring();
     recs.push(newRec);
@@ -29997,7 +30138,8 @@ function quickLogSave() {
     recurringStatus: isRepeat ? 'active' : undefined,
     subType: _entrySubType || undefined
   };
-  sub.entries[currentSpendMonth].push(newEntry);
+  sub.entries[entryMonth].push(newEntry);
+  _noteSavedToOtherMonth(entryMonth);
   setLastAdded(newEntry, cat.name, sub.name);
 
   save();
@@ -30158,7 +30300,7 @@ function renderSubEntries(cat, sub, entries) {
     if (e._virtual) {
       html += '<div class="entry-item" id="eitem-' + e.id + '" data-entry-id="' + e.id + '">'
         + '<div class="entry-desc">'
-          + '<span class="entry-repeat-badge" title="Monthly recurring transaction">&#8635; Monthly</span>'
+          + '<span class="entry-repeat-badge" title="' + recurFreqLabel(e.frequency) + ' repeat — added automatically">&#8635; ' + recurFreqLabel(e.frequency) + '</span>'
           + (e.desc || '&mdash;')
         + '</div>'
         + '<div class="entry-date">' + (e.date ? e.date.slice(0,10) : '') + '</div>'
@@ -30221,8 +30363,12 @@ function getEntryDisplayAmount(e) {
     const mine = sp && sp.people.find(p => p.isMe);
     if (mine) return mine.amount;
   }
-  // All other entries: convert from the entry's own currency to display currency
-  return convertSpendAmount(Math.abs(e.amount || 0), e.currency);
+  // All other entries: convert from the entry's own currency to display currency.
+  // V2.01: keep the sign — a negative entry is a refund and should REDUCE
+  // spending (Math.abs previously made refunds count as extra spend).
+  const _amt = parseFloat(e.amount) || 0;
+  const _conv = convertSpendAmount(Math.abs(_amt), e.currency);
+  return _amt < 0 ? -_conv : _conv;
 }
 
 // Returns the currency code to use when displaying an entry's amount.
@@ -31263,6 +31409,7 @@ function deleteSelectedEntries(catId, subId) {
       ids.forEach(id => {
         const entry = sub.entries[currentSpendMonth].find(e => e.id === id);
         if (entry && entry.catSplitParent) removeCatSplitChildren(catId, subId, id);
+        if (entry) recordRecurringSkip(entry, currentSpendMonth);  // V2.01
       });
       sub.entries[currentSpendMonth] = sub.entries[currentSpendMonth].filter(e => !ids.includes(e.id));
     }
@@ -31790,16 +31937,23 @@ function renderCrystalChart(dayOfMonth, daysInMonth, spentToDate, dailyRate, inc
   const [cy, cm] = currentSpendMonth.split('-').map(Number);
   const actualByDay = new Array(daysInMonth).fill(null);
 
+  // V2.01: include repeats and use the same display amount as the headline
+  // (FX-converted, people-split share, split parents excluded).
+  const _byDay = {};
+  (state.spendCategories || []).forEach(cat => {
+    (cat.subcategories || []).forEach(sub => {
+      getSubEntriesWithRecurring(cat, sub, currentSpendMonth).forEach(e => {
+        if (typeof entryMatchesSpendOwnership === 'function' && !entryMatchesSpendOwnership(e)) return;
+        const k = String(e.date || '').slice(0, 10);
+        const mult = (typeof getOwnershipMultiplier === 'function') ? getOwnershipMultiplier(e) : 1;
+        _byDay[k] = (_byDay[k] || 0) + getEntryDisplayAmount(e) * mult;
+      });
+    });
+  });
   let cumulative = 0;
   for (let d = 1; d <= daysInMonth; d++) {
     const dayStr = `${currentSpendMonth}-${String(d).padStart(2,'0')}`;
-    state.spendCategories.forEach(cat => {
-      cat.subcategories.forEach(sub => {
-        (sub.entries[currentSpendMonth] || []).forEach(e => {
-          if (e.date && e.date.startsWith(dayStr.slice(0,10))) cumulative += (e.amount || 0);
-        });
-      });
-    });
+    cumulative += (_byDay[dayStr] || 0);
     if (isCurrentMonth && d > dayOfMonth) {
       actualByDay[d-1] = null; // future days = null
     } else {
@@ -33311,6 +33465,7 @@ load();
 seedDefaultCategories();
 // Auto-seed active recurring entries due in the current month
 seedRecurringTransactions();
+try { repairDrawerSplitsV201(); } catch (e) {}
 renderBudgetHealth();
 renderHomeStats();
 // If spending screen is already active on load (e.g. page refresh), re-render
@@ -34716,6 +34871,18 @@ async function syncFromWalrusAndApply(opts) {
       try { _showSyncErrorBanner('save'); } catch (e) {}
       return false;
     }
+  }
+
+  // V2.01: never let a pull overwrite edits made on THIS device that haven't
+  // reached the cloud yet (e.g. the tab was reloaded or evicted before the
+  // 20-minute periodic save). Previously the page-reload rehydrate path
+  // pulled unconditionally, the remote snapshot won, and the dirty flag was
+  // cleared — silently discarding those edits. Push first; if the push can't
+  // happen (offline / expired session) keep local data and skip the pull.
+  if (_walrusSaveDirty && !opts.allowMigration && !opts.forcePull) {
+    console.info('[Vault sync] unsynced local edits — pushing before any pull.');
+    try { await _runWalrusSave(); } catch (e) {}
+    return !_walrusSaveDirty;
   }
 
   _setSyncState('syncing');
@@ -36219,8 +36386,8 @@ window.renderActualVsPlan = function() {
     (cat.subcategories || []).forEach(sub => {
       const budget = getBudget(sub.id);
       if (!budget || budget <= 0) return;
-      const entries = (sub.entries && sub.entries[currentSpendMonth]) || [];
-      const actual = entries.reduce((s, e) => s + convertSpendAmount(Math.abs(e.amount || 0), e.currency), 0);
+      const entries = getSubEntriesWithRecurring(cat, sub, currentSpendMonth);
+      const actual = entries.reduce((s, e) => s + getEntryDisplayAmount(e), 0);
       const diff = budget - actual;
       rows.push({ catName: cat.name, subName: sub.name, budget, actual, diff });
     });
@@ -36672,39 +36839,74 @@ function openTransferModal() {
 }
 
 function saveTransfer() {
+  // V2.01 rewrite. Fixes: (1) balances were read in display currency and
+  // written back as the account's own currency; (2) card/loan balances went
+  // UP when you paid them off; (3) with no FX rates a foreign balance read as
+  // 0 and was saved as 0; (4) backdated transfers became "today's" balance.
   const fromId  = document.getElementById('transfer-from').value;
   const toId    = document.getElementById('transfer-to').value;
   const amount  = parseFloat(document.getElementById('transfer-amount').value);
-  const dateVal = document.getElementById('transfer-date').value || new Date().toISOString().slice(0,10);
+  const dateVal = document.getElementById('transfer-date').value || today().slice(0,10);
+  const amtEl   = document.getElementById('transfer-amount');
+  const flag = (msg) => {
+    if (amtEl) { amtEl.style.borderColor = 'var(--red)'; setTimeout(() => amtEl.style.borderColor = '', 1200); }
+    if (msg && typeof showCelebration === 'function') showCelebration(msg, 3500);
+  };
 
-  if (!fromId || !toId || !amount || amount <= 0 || fromId === toId) {
-    const amtEl = document.getElementById('transfer-amount');
-    if (amtEl) { amtEl.style.borderColor = 'var(--red)'; setTimeout(() => amtEl.style.borderColor = '', 800); }
-    return;
-  }
+  if (!fromId || !toId || !amount || amount <= 0 || fromId === toId) { flag(); return; }
 
   const fromAcc = state.accounts.find(a => a.id === fromId);
   const toAcc   = state.accounts.find(a => a.id === toId);
   if (!fromAcc || !toAcc) return;
 
-  const fromLatest = getLatestValue(fromAcc);
-  const toLatest   = getLatestValue(toAcc);
+  const isHoldings = a => (a.type === 'investments' || a.type === 'crypto') && a.trackingMode === 'holdings';
+  if (isHoldings(fromAcc) || isHoldings(toAcc)) {
+    flag('This account is tracked by holdings — add or sell a holding instead.');
+    return;
+  }
 
-  // Add history entries: FROM reduces, TO increases
+  const disp    = getDisplayCurrency();
+  const fromCcy = fromAcc.currency || disp;
+  const toCcy   = toAcc.currency || disp;
+
+  // Amount is entered in the FROM account's currency.
+  let toAmount = amount;
+  if (fromCcy !== toCcy) {
+    // fxRates are USD-based: amount / rate[from] * rate[to]
+    if (!fxRates || !fxRates[fromCcy] || !fxRates[toCcy]) {
+      flag('Exchange rates haven\u2019t loaded yet \u2014 try again in a moment.');
+      return;
+    }
+    toAmount = amount / fxRates[fromCcy] * fxRates[toCcy];
+    if (!(toAmount > 0)) { flag('Couldn’t convert between these currencies.'); return; }
+  }
+
+  const isDebt = a => a.type === 'credit' || a.type === 'loan';
+  // Balance "as at" the transfer date, in each account's own currency.
+  const valueAt = (acc, date) => {
+    const h = (acc.history || []).filter(e => e && String(e.date || '') <= date);
+    return h.length ? (parseFloat(getLatestHistoryEntry({ history: h }).value) || 0) : 0;
+  };
+  const round2 = v => Math.round(v * 100) / 100;
+  const fromNow = valueAt(fromAcc, dateVal);
+  const toNow   = valueAt(toAcc, dateVal);
+  // Debt accounts store what you OWE: money leaving a card increases the debt;
+  // money arriving pays it down.
+  const fromNew = isDebt(fromAcc) ? fromNow + amount : fromNow - amount;
+  const toNew   = isDebt(toAcc) ? Math.max(0, toNow - toAmount) : toNow + toAmount;
+
   if (!fromAcc.history) fromAcc.history = [];
   if (!toAcc.history)   toAcc.history   = [];
-
-  fromAcc.history.push({ id: uid(), date: dateVal, value: Math.max(0, fromLatest - amount), note: 'Transfer to ' + toAcc.name });
-  toAcc.history.push({ id: uid(), date: dateVal, value: toLatest + amount, note: 'Transfer from ' + fromAcc.name });
+  fromAcc.history.push({ id: uid(), date: dateVal, value: round2(fromNew), note: 'Transfer to ' + toAcc.name });
+  toAcc.history.push({ id: uid(), date: dateVal, value: round2(toNew), note: 'Transfer from ' + fromAcc.name });
+  const byDate = (a, b) => String(a.date || '').localeCompare(String(b.date || ''));
+  fromAcc.history.sort(byDate);
+  toAcc.history.sort(byDate);
 
   save();
   closeModal('modal-transfer');
   renderNetWorth();
-
-  // Show confirmation
-  if (typeof showCelebration === 'function') {
-    showCelebration('Transfer recorded ✓', 2000);
-  }
+  if (typeof showCelebration === 'function') showCelebration('Transfer recorded ✓', 2000);
 }
 
 // ── Multi-debt payoff tracker ─────────────────────────────────────────
@@ -37136,8 +37338,8 @@ function renderActualVsPlan() {
     const limit = parseFloat(catBudget.limit) || 0;
     let actual = 0;
     (cat.subcategories || []).forEach(sub => {
-      const entries = (sub.entries && sub.entries[currentSpendMonth]) || [];
-      entries.forEach(e => { actual += convertSpendAmount(Math.abs(e.amount || 0), e.currency); });
+      const entries = getSubEntriesWithRecurring(cat, sub, currentSpendMonth);
+      entries.forEach(e => { actual += getEntryDisplayAmount(e); });
     });
     const diff = limit - actual;
     rows.push({ name: cat.name, budget: limit, actual, diff });
@@ -37181,8 +37383,8 @@ window.renderSpending = function() {
     // Get actual total for this month
     let actual = 0;
     (cat.subcategories || []).forEach(sub => {
-      const entries = (sub.entries && sub.entries[currentSpendMonth]) || [];
-      entries.forEach(e => { actual += convertSpendAmount(Math.abs(e.amount || 0), e.currency); });
+      const entries = getSubEntriesWithRecurring(cat, sub, currentSpendMonth);
+      entries.forEach(e => { actual += getEntryDisplayAmount(e); });
     });
     const chip = getOnsBenchmarkChip(cat.name, actual);
     if (chip) header.insertAdjacentHTML('afterend', chip);
@@ -37317,12 +37519,7 @@ window.renderSpending = function() {
   // Aggregate and show YTD category totals
   (state.spendCategories || []).forEach(cat => {
     let ytdTotal = 0;
-    (cat.subcategories || []).forEach(sub => {
-      ytdMonths.forEach(m => {
-        const entries = (sub.entries && sub.entries[m]) || [];
-        entries.forEach(e => { ytdTotal += convertSpendAmount(Math.abs(e.amount || 0), e.currency); });
-      });
-    });
+    ytdMonths.forEach(m => { ytdTotal += getCatTotalForMonth(cat, m); });
     const valEl = document.querySelector('#cat-card-' + cat.id + ' .spend-cat-value');
     if (valEl && ytdTotal > 0) {
       valEl.innerHTML = '<span style="font-size:10px;color:var(--text3)">YTD</span> ' + sym + ytdTotal.toLocaleString('en-GB', {maximumFractionDigits: 0});
@@ -37332,15 +37529,19 @@ window.renderSpending = function() {
   // Update the income/remaining to YTD
   let ytdIncome = 0;
   let ytdSpend = 0;
+  // V2.01: state.income[m] is an array of income sources; the old code read
+  // `.amount` off the array, so YTD income was always 0 and "remaining" was
+  // just minus YTD spend.
+  const _ownYTD = window.spendOwnership || 'all';
   ytdMonths.forEach(m => {
-    const inc = state.income && state.income[m];
-    ytdIncome += inc ? (typeof inc === 'object' ? (inc.amount || 0) : inc) : 0;
-    (state.spendCategories || []).forEach(cat => {
-      (cat.subcategories || []).forEach(sub => {
-        const entries = (sub.entries && sub.entries[m]) || [];
-        entries.forEach(e => { ytdSpend += convertSpendAmount(Math.abs(e.amount || 0), e.currency); });
-      });
-    });
+    if (_ownYTD === 'joint' && typeof getJointContributionsTotalForMonth === 'function') {
+      ytdIncome += getJointContributionsTotalForMonth(m) || 0;
+    } else {
+      ytdIncome += ((state.income && state.income[m]) || []).reduce(function(s, i) {
+        return s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency());
+      }, 0);
+    }
+    (state.spendCategories || []).forEach(cat => { ytdSpend += getCatTotalForMonth(cat, m); });
   });
   const incEl = document.getElementById('income-display');
   const remEl = document.getElementById('remaining-display');
@@ -43214,7 +43415,7 @@ renderSpending = function() {
         </div>
       </div>
       <div style="margin-bottom:10px">
-        <label style="font-size:10px;color:var(--text3);display:block;margin-bottom:4px">AMOUNT</label>
+        <label style="font-size:10px;color:var(--text3);display:block;margin-bottom:4px">AMOUNT (in the "from" account's currency)</label>
         <input type="number" id="transfer-amount" class="quick-log-amount" placeholder="0.00" style="width:100%;box-sizing:border-box" step="0.01" />
       </div>
       <div>
@@ -43497,10 +43698,20 @@ window.vault129DoSplit = function(catId, subId, entryId) {
   var month = currentSpendMonth;
   var sign  = entry.amount < 0 ? -1 : 1;
 
-  // Reduce original entry
-  entry.amount = sign * (totalAmt - splitVal);
+  // V2.01: keep the original as a full-value reference row and create a child
+  // for EVERY share (remainder stays in this subcategory). Previously the
+  // original was cut to the remainder AND flagged as a zero-value parent, so
+  // the remainder vanished from every total.
   entry.catSplitParent  = true;
   entry.catSplitGroupId = gid;
+  entry.splitV2 = true;
+  if (!sub.entries[month]) sub.entries[month] = [];
+  sub.entries[month].push({
+    id: uid(), desc: entry.desc || '', date: entry.date || '',
+    amount: sign * (Math.round((totalAmt - splitVal) * 100) / 100),
+    currency: entry.currency || '', account: entry.account,
+    catSplitChild: true, catSplitGroupId: gid, catSplitParentId: entryId
+  });
 
   // Create child entry in target subcategory
   if (!tSub.entries) tSub.entries = {};
@@ -43511,6 +43722,7 @@ window.vault129DoSplit = function(catId, subId, entryId) {
     date: entry.date || '',
     amount: sign * splitVal,
     currency: entry.currency || '',
+    account: entry.account,
     catSplitChild:    true,
     catSplitParent:   false,
     catSplitGroupId:  gid,
@@ -43547,7 +43759,7 @@ window.openSpendCatPanel = function(catId) {
 
   (cat.subcategories || []).forEach(function(sub) {
     months.forEach(function(m) {
-      ((sub.entries && sub.entries[m]) || []).forEach(function(e) {
+      getSubEntriesWithRecurring(cat, sub, m).forEach(function(e) {
         if (!ownPass(e)) return;
         catTotal += getEntryDisplayAmount(e) * ownMult(e);
       });
@@ -43576,7 +43788,7 @@ window.openSpendCatPanel = function(catId) {
       var subTotal   = 0;
       var allEntries = [];
       months.forEach(function(m) {
-        ((sub.entries && sub.entries[m]) || []).forEach(function(e) {
+        getSubEntriesWithRecurring(cat, sub, m).forEach(function(e) {
           if (!ownPass(e)) return;
           var m2 = ownMult(e);
           subTotal += getEntryDisplayAmount(e) * m2;
@@ -43606,6 +43818,8 @@ window.openSpendCatPanel = function(catId) {
           var isSplitPar = !!e.catSplitParent;
           var isSplitChi = !!e.catSplitChild;
           var isPeopleSplit = !!e.splitId;
+          var isVirtual = !!e._virtual;
+          var isRepeat  = !!e.recurringId;
           var safeId = e.id || '';
 
           // --- Amount: people-split shows user's share ---
@@ -43626,7 +43840,7 @@ window.openSpendCatPanel = function(catId) {
 
           // --- Registry for delete ---
           if (!window._v132DelCtx) window._v132DelCtx = {};
-          window._v132DelCtx[safeId] = { catId: catId, subId: sub.id, entryId: safeId, desc: e.desc || '' };
+          if (!isVirtual) window._v132DelCtx[safeId] = { catId: catId, subId: sub.id, entryId: safeId, desc: e.desc || '' };
 
           // --- Description + badge ---
           var descHtml = (e.desc || '—').replace(/</g, '&lt;');
@@ -43639,6 +43853,11 @@ window.openSpendCatPanel = function(catId) {
           } else if (isPeopleSplit) {
             badge = '<span style="' + bS + 'rgba(100,200,100,0.4);background:rgba(100,200,100,0.1);color:var(--green)">👥 split</span>';
           }
+          if (isRepeat) {
+            var _rf = e.frequency;
+            if (!_rf) { var _rr = (loadVaultRecurring() || []).find(function(r){ return r.id === e.recurringId; }); _rf = _rr && _rr.frequency; }
+            badge += '<span class="entry-repeat-badge" style="margin-left:4px" title="' + (isVirtual ? 'Repeat — added automatically this month' : 'Repeating transaction') + '">&#8635; ' + recurFreqLabel(_rf) + '</span>';
+          }
 
           // --- Amount column ---
           var amtHtml;
@@ -43647,7 +43866,8 @@ window.openSpendCatPanel = function(catId) {
             amtHtml = '<span style="text-decoration:line-through;color:var(--text3)">'
               + sym + fullDispAmt.toLocaleString('en-GB', {maximumFractionDigits:2}) + '</span>';
           } else {
-            amtHtml = sym + dispAmt.toLocaleString('en-GB', {maximumFractionDigits:2});
+            var _neg = (myShareAmt === null && (parseFloat(e.amount) || 0) < 0);  // V2.01: refunds
+            amtHtml = (_neg ? '−' : '') + sym + dispAmt.toLocaleString('en-GB', {maximumFractionDigits:2});
           }
 
           // --- Info rows (full-width, appear below the main amount row) ---
@@ -43689,12 +43909,18 @@ window.openSpendCatPanel = function(catId) {
           var btnStyle = 'font-size:10px;padding:2px 6px;border-radius:4px;background:var(--surface2);border:1px solid var(--border);color:var(--text3);cursor:pointer';
           var delStyle = 'font-size:10px;padding:2px 6px;border-radius:4px;background:rgba(220,80,80,0.1);border:1px solid rgba(220,80,80,0.3);color:#e05555;cursor:pointer';
 
-          var btns = '<button style="' + btnStyle + '" onclick="openEditSpendEntry(\'' + catId + '\',\'' + sub.id + '\',\'' + safeId + '\')" title="Edit">✎ Edit</button> ';
+          var btns;
+          if (isVirtual) {
+            // Not a stored entry yet — edit the repeat itself.
+            btns = '<button style="' + btnStyle + '" onclick="recurEdit(\'' + e.recurringId + '\')" title="Edit repeat">↺ Edit repeat</button>';
+          } else {
+          btns = '<button style="' + btnStyle + '" onclick="openEditSpendEntry(\'' + catId + '\',\'' + sub.id + '\',\'' + safeId + '\')" title="Edit">✎ Edit</button> ';
           if (!isSplitPar && !isSplitChi && !isPeopleSplit) {
             btns += '<button style="' + btnStyle + '" onclick="openSplitSpendEntryPanel(\'' + catId + '\',\'' + sub.id + '\',\'' + safeId + '\')" title="Split">⚡ Split</button> ';
-            btns += '<button style="' + btnStyle + '" onclick="openMakeRecurringModal(\'' + catId + '\',\'' + sub.id + '\',\'' + safeId + '\')" title="Repeat">↺ Repeat</button> ';
+            if (!isRepeat) btns += '<button style="' + btnStyle + '" onclick="openMakeRecurringModal(\'' + catId + '\',\'' + sub.id + '\',\'' + safeId + '\')" title="Repeat">↺ Repeat</button> ';
           }
           btns += '<button style="' + delStyle + '" onclick="vault132ConfirmDelete(\'' + safeId + '\')" title="Delete">✕ Delete</button>';
+          }
 
           html +=
             '<div class="dp-entry-row" style="flex-wrap:wrap;cursor:default' + (isSplitPar ? ';opacity:0.65' : '') + '">'
@@ -44066,12 +44292,14 @@ window.vault130DoSplitByCategory = function(catId, subId, entryId, totalAmt){
   var tSub=tCat&&tCat.subcategories.find(function(s){return s.id===parts[1];});
   if(!tSub){if(errEl)errEl.textContent='Subcategory not found.';return;}
   var gid=uid(),sign=entry.amount<0?-1:1;
-  entry.amount=sign*(totalAmt-splitVal);
+  // V2.01: original stays full-value reference; remainder becomes a child here.
   entry.catSplitParent=true;
   entry.catSplitGroupId=gid;
+  entry.splitV2=true;
+  sub.entries[entryMonth].push({id:uid(),desc:entry.desc||'',date:entry.date||'',amount:sign*(Math.round((Math.abs(entry.amount)-splitVal)*100)/100),currency:entry.currency||'',account:entry.account,catSplitChild:true,catSplitGroupId:gid,catSplitParentId:entryId});
   if(!tSub.entries)tSub.entries={};
   if(!tSub.entries[entryMonth])tSub.entries[entryMonth]=[];
-  tSub.entries[entryMonth].push({id:uid(),desc:entry.desc||'',date:entry.date||'',amount:sign*splitVal,currency:entry.currency||'',catSplitChild:true,catSplitParent:false,catSplitGroupId:gid,catSplitParentId:entryId});
+  tSub.entries[entryMonth].push({id:uid(),desc:entry.desc||'',date:entry.date||'',amount:sign*splitVal,currency:entry.currency||'',account:entry.account,catSplitChild:true,catSplitParent:false,catSplitGroupId:gid,catSplitParentId:entryId});
   save();renderSpending();
   setTimeout(function(){openSpendCatPanel(catId);},120);
 };
@@ -44161,19 +44389,11 @@ window.showInlineDeleteSpendConfirm = function(catId, subId, entryId, desc){
 
 // Cross-month aware delete — doesn't rely on currentSpendMonth
 window.vault130DeleteEntry = function(catId, subId, entryId){
-  var cat=(state.spendCategories||[]).find(function(c){return c.id===catId;});
-  var sub=cat&&cat.subcategories.find(function(s){return s.id===subId;});
-  if(sub&&sub.entries){
-    Object.keys(sub.entries).forEach(function(m){
-      var arr=sub.entries[m];
-      if(!arr)return;
-      var idx=arr.findIndex(function(e){return e.id===entryId;});
-      if(idx!==-1) arr.splice(idx,1);
-    });
-  }
-  save();
-  if(typeof renderSpending==='function') renderSpending();
-  setTimeout(function(){openSpendCatPanel(catId);},100);
+  // V2.01: route through the split- and repeat-aware delete (this path used
+  // to splice the entry directly, orphaning the other halves of a split).
+  window._v132DelCtx = window._v132DelCtx || {};
+  window._v132DelCtx[entryId] = { catId: catId, subId: subId, entryId: entryId, desc: '' };
+  vault132ExecuteDelete(entryId);
 };
 
 </script>
@@ -44700,10 +44920,12 @@ window.vault132ExecuteDelete = function(entryId) {
         if ((sub.entries[m] || []).some(function(e){ return e.id === entryId; })) entryMonth = m;
       });
     }
+    var _viewMonth = currentSpendMonth;   // V2.01: don't leave the user on a different month
     currentSpendMonth = entryMonth;
     if (typeof deleteWholeSplitGroup === 'function') {
       deleteWholeSplitGroup(entry.catSplitGroupId || null, entry.catSplitParent ? entryId : (entry.catSplitParentId || entryId));
     }
+    currentSpendMonth = _viewMonth;
   } else {
     // Plain entry — remove from whichever month it lives in
     if (sub && sub.entries) {
@@ -44711,7 +44933,7 @@ window.vault132ExecuteDelete = function(entryId) {
         var arr = sub.entries[m];
         if (!arr) return;
         var idx = arr.findIndex(function(e){ return e.id === entryId; });
-        if (idx !== -1) arr.splice(idx, 1);
+        if (idx !== -1) { recordRecurringSkip(arr[idx], m); arr.splice(idx, 1); }  // V2.01
       });
     }
   }
