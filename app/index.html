@@ -4,7 +4,7 @@
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1YZLT5X0C3"></script>
 <script>
-  window.VAULT_VERSION = '2.02';
+  window.VAULT_VERSION = '2.03';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -16473,7 +16473,7 @@
                     <option value="" disabled selected>Category</option>
                   </select>
                   <select id="ql-sub" class="quick-log-select">
-                    <option value="" disabled selected>Subcategory</option>
+                    <option value="" selected>Subcategory (optional)</option>
                   </select>
                 </div>
                 <div class="quick-log-row quick-log-row-2">
@@ -17917,6 +17917,10 @@
           <option value="pension">Pension</option>
           <option value="other">Other</option>
         </select>
+      </div>
+      <div class="input-group" id="acc-balance-row">
+        <div class="input-label" id="acc-balance-label">Current balance (optional)</div>
+        <input type="number" id="acc-balance" placeholder="e.g. 1500" step="0.01" inputmode="decimal" />
       </div>
       <div class="input-group">
         <div class="input-label">Ownership</div>
@@ -21874,7 +21878,7 @@ function buildSpendingEmptyCard() {
     <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-top:4px">
       <div style="font-size:12px;font-weight:600;color:var(--text2);font-family:var(--sans);margin-bottom:6px">No transactions this month yet</div>
       <div style="font-size:11px;color:var(--text3);font-family:var(--sans);line-height:1.6">
-        Use the log form to the right to add your first transaction — pick a category, enter the amount, and tap ✓. Your spending will appear here broken down by category.
+        Use the Log a transaction form to add your first one — enter the amount, pick a category, and tap ✓. Your spending will appear here broken down by category.
       </div>
       <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
         <div style="font-size:10px;color:var(--text3);background:var(--surface3);border:1px solid var(--border);border-radius:4px;padding:3px 8px;font-family:var(--sans)">💡 Tip: tick "Monthly" to repeat a regular bill automatically</div>
@@ -24411,6 +24415,9 @@ function renderPropertySection() {
 // ===== NET WORTH =====
 function toggleAccIsaRow() {
   const type = document.getElementById('acc-type').value;
+  // V2.03: starting balance field — "amount owed" for debts
+  const bl = document.getElementById('acc-balance-label');
+  if (bl) bl.textContent = (type === 'credit' || type === 'loan') ? 'Amount owed now (optional)' : 'Current balance (optional)';
   const row  = document.getElementById('acc-isa-row');
   if (row) row.style.display = type === 'investments' ? 'block' : 'none';
   const cb = document.getElementById('acc-isisa');
@@ -24450,6 +24457,8 @@ function openAddAccountModal() {
   if (partnerInput) partnerInput.value = '';
   const acCcy = document.getElementById('acc-currency');
   if (acCcy) { acCcy.innerHTML = currencyOptsHtml(getDisplayCurrency()); acCcy.value = getDisplayCurrency(); }
+  const balRow = document.getElementById('acc-balance-row'); if (balRow) balRow.style.display = '';
+  const balIn = document.getElementById('acc-balance'); if (balIn) balIn.value = '';
   openModal('modal-add-account');
 }
 
@@ -24470,6 +24479,7 @@ function openEditAccountModal(accId) {
   if (partnerInput) partnerInput.value = acc.partnerName || '';
   const acCcy = document.getElementById('acc-currency');
   if (acCcy) { acCcy.innerHTML = currencyOptsHtml(acc.currency || getDisplayCurrency()); acCcy.value = acc.currency || getDisplayCurrency(); }
+  const balRow = document.getElementById('acc-balance-row'); if (balRow) balRow.style.display = 'none'; // edit balance via "Update Balance"
   openModal('modal-add-account');
 }
 
@@ -24507,7 +24517,12 @@ function saveAccount() {
       ownership: ownership,
       partnerName: ownership === 'joint' ? partnerName : '',
       contributions: ownership === 'joint' ? [] : undefined,
-      history: []
+      // V2.03: starting balance straight from the form (saves 5 taps)
+      history: (function() {
+        const bEl = document.getElementById('acc-balance');
+        const b = bEl && bEl.value !== '' ? parseFloat(bEl.value) : NaN;
+        return isNaN(b) ? [] : [{ id: uid(), date: today().slice(0, 10), value: (accType === 'credit' || accType === 'loan') ? Math.abs(b) : b }];
+      })()
     });
   }
   _editingAccountId = null;
@@ -25500,7 +25515,7 @@ function openIncomeModal() {
 }
 
 function renderIncomeSources() {
-  const sources = (state.income[currentSpendMonth] || []);
+  const sources = getIncomeSourcesForMonth(currentSpendMonth);
   const el = document.getElementById('income-sources-list');
   if (!sources.length) { el.innerHTML = '<div class="text-muted text-sm" style="padding:8px 0">No income sources added yet</div>'; return; }
   el.innerHTML = sources.map(s => {
@@ -25521,6 +25536,28 @@ function renderIncomeSources() {
 }
 
 // Convert any frequency to monthly equivalent
+// V2.03: income RECURS. A month with no income list of its own inherits the
+// recurring sources of the latest earlier month that has one (one-offs don't
+// carry). Editing a month first copies the inherited sources in, so a change
+// applies from that month forward and never rewrites earlier months.
+// Previously every new month started with no income ("−£X remaining").
+function getIncomeSourcesForMonth(m) {
+  const inc = state.income || {};
+  if (Array.isArray(inc[m])) return inc[m];
+  const earlier = Object.keys(inc).filter(k => k < m && Array.isArray(inc[k])).sort();
+  if (!earlier.length) return [];
+  return inc[earlier[earlier.length - 1]]
+    .filter(i => (i.frequency || 'monthly') !== 'once')
+    .map(i => Object.assign({}, i, { _carried: true }));
+}
+function ensureIncomeMonth(m) {
+  if (!state.income) state.income = {};
+  if (!Array.isArray(state.income[m])) {
+    state.income[m] = getIncomeSourcesForMonth(m).map(i => { const c = Object.assign({}, i); delete c._carried; return c; });
+  }
+  return state.income[m];
+}
+
 function toMonthlyAmount(amount, frequency) {
   switch (frequency) {
     case 'weekly':      return amount * 52 / 12;
@@ -25558,8 +25595,7 @@ function saveIncome() {
   const amount = parseFloat(document.getElementById('inc-amount').value);
   const frequency = document.getElementById('inc-frequency').value || 'monthly';
   if (!name || isNaN(amount)) return;
-  if (!state.income[currentSpendMonth]) state.income[currentSpendMonth] = [];
-  state.income[currentSpendMonth].push({ id: uid(), name, amount, frequency });
+  ensureIncomeMonth(currentSpendMonth).push({ id: uid(), name, amount, frequency });
   save();
   document.getElementById('inc-name').value = '';
   document.getElementById('inc-amount').value = '';
@@ -25570,7 +25606,7 @@ function saveIncome() {
 }
 
 function deleteIncome(id) {
-  if (!state.income[currentSpendMonth]) return;
+  ensureIncomeMonth(currentSpendMonth);
   state.income[currentSpendMonth] = state.income[currentSpendMonth].filter(s => s.id !== id);
   save();
   renderIncomeSources();
@@ -26105,7 +26141,7 @@ function getCatTotal(cat) {
 }
 
 function getTotalIncome() {
-  return (state.income[currentSpendMonth] || []).reduce((s,i) => s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency()), 0);
+  return getIncomeSourcesForMonth(currentSpendMonth).reduce((s,i) => s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency()), 0);
 }
 
 function getTotalSpend() {
@@ -26229,7 +26265,7 @@ function renderSpendChart() {
   function getMonthlyIncome(m) {
     return (typeof _vaultIncomeForMonthScoped === 'function')
       ? _vaultIncomeForMonthScoped(m)
-      : (state.income[m] || []).reduce((s, i) => s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency()), 0);
+      : getIncomeSourcesForMonth(m).reduce((s, i) => s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency()), 0);
   }
 
   // "All" total spend line
@@ -30042,7 +30078,23 @@ function holdingEntryHtml(e) {
 
 
 // ===== QUICK LOG =====
+// V2.03: the log form's date is pre-filled — today when viewing the current
+// month, otherwise the 1st of the month on screen. A date the user picked
+// inside the viewed month is left alone.
+function _localISODate(d) {
+  d = d || new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function qlDefaultDate() {
+  const el = document.getElementById('ql-date');
+  if (!el) return;
+  const t = _localISODate();
+  if (el.value && el.value.slice(0, 7) === currentSpendMonth) return;
+  el.value = (t.slice(0, 7) === currentSpendMonth) ? t : currentSpendMonth + '-01';
+}
+
 function qlPopulateCategories() {
+  try { qlDefaultDate(); } catch (e) {}
   const catSel = document.getElementById('ql-cat');
   const subSel = document.getElementById('ql-sub');
   if (!catSel) return;
@@ -30131,10 +30183,10 @@ function qlUpdateSubs(preserveSub) {
   }
   const cat = state.spendCategories.find(c => c.id === catId);
   if (!cat) {
-    subSel.innerHTML = '<option value="" disabled selected>Subcategory</option>';
+    subSel.innerHTML = '<option value="" selected>Subcategory (optional)</option>';
     return;
   }
-  subSel.innerHTML = '<option value="" disabled>Subcategory</option>' +
+  subSel.innerHTML = '<option value="">Subcategory (optional)</option>' +
     cat.subcategories.map(s =>
       `<option value="${s.id}" ${s.id===prevSub?'selected':''}>${s.name}</option>`
     ).join('');
@@ -30161,7 +30213,14 @@ function _noteSavedToOtherMonth(monthKey) {
 function quickLogSave() {
   const amount = parseFloat(document.getElementById('ql-amount').value);
   const catId = document.getElementById('ql-cat').value;
-  const subId = document.getElementById('ql-sub').value;
+  let subId = document.getElementById('ql-sub').value;
+  // V2.03: subcategory is optional — fall back to "Other"/"General", else the first one.
+  if (catId && !subId) {
+    const _c = (state.spendCategories || []).find(c => c.id === catId);
+    const _subs = (_c && _c.subcategories) || [];
+    const _pick = _subs.find(x => /^(other|general|misc)/i.test(x.name || '')) || _subs[0];
+    if (_pick) { subId = _pick.id; const _ss = document.getElementById('ql-sub'); if (_ss) _ss.value = subId; }
+  }
   if (!amount || amount <= 0 || !catId || !subId) {
     // V2.02: say what's missing instead of just flashing the border
     if (!amount || amount <= 0) vaultFieldError('ql-amount', 'Enter an amount.');
@@ -30234,6 +30293,7 @@ function quickLogSave() {
   document.getElementById('ql-repeat').checked = false;
   qlRepeatToggle(false); // hide pre-save hint
   document.getElementById('ql-date').value = '';
+  try { qlDefaultDate(); } catch (e) {}  // V2.03: keep a sensible date ready for the next entry
   const panel = document.getElementById('quick-log-panel');
   panel.classList.add('quick-log-flash');
   setTimeout(() => panel.classList.remove('quick-log-flash'), 350);
@@ -31577,7 +31637,7 @@ function _vaultIncomeForMonthScoped(m) {
       ? getJointContributionsTotalForMonth(m)
       : 0;
   }
-  return (state.income[m] || []).reduce(function(s, i) {
+  return getIncomeSourcesForMonth(m).reduce(function(s, i) {
     return s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency());
   }, 0);
 }
@@ -37364,8 +37424,9 @@ function showMonthlyReview() {
     } catch(e) {}
   });
 
-  const income = state.income && state.income[lastMonthKey];
-  const incomeAmt = income ? (typeof income === 'object' ? (income.amount || 0) : income) : 0;
+  // V2.03: income is a list of sources (the old code read .amount off the array → always 0)
+  const incomeAmt = getIncomeSourcesForMonth(lastMonthKey).reduce((t, i) =>
+    t + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency()), 0);
   const balance = incomeAmt - totalSpend;
 
   const el = document.getElementById('monthly-review-content');
@@ -37642,7 +37703,7 @@ window.renderSpending = function() {
     if (_ownYTD === 'joint' && typeof getJointContributionsTotalForMonth === 'function') {
       ytdIncome += getJointContributionsTotalForMonth(m) || 0;
     } else {
-      ytdIncome += ((state.income && state.income[m]) || []).reduce(function(s, i) {
+      ytdIncome += getIncomeSourcesForMonth(m).reduce(function(s, i) {
         return s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency());
       }, 0);
     }
@@ -40955,7 +41016,7 @@ getTotalIncome = function() {
     return getJointContributionsTotalForMonth(currentSpendMonth);
   }
   if (_origGetTotalIncome) return _origGetTotalIncome();
-  return (state.income && state.income[currentSpendMonth] || []).reduce(function(s, i) {
+  return getIncomeSourcesForMonth(currentSpendMonth).reduce(function(s, i) {
     return s + convert(toMonthlyAmount(i.amount, i.frequency || 'monthly'), i.currency || getDisplayCurrency());
   }, 0);
 };
@@ -45059,8 +45120,7 @@ window.saveIncome = function() {
   var frequency = (document.getElementById('inc-frequency') || {}).value || 'monthly';
   var currency  = (document.getElementById('inc-currency')  || {}).value || getDisplayCurrency();
   if (!name.trim() || isNaN(amount)) return;
-  if (!state.income[currentSpendMonth]) state.income[currentSpendMonth] = [];
-  state.income[currentSpendMonth].push({ id: uid(), name: name.trim(), amount: amount, frequency: frequency, currency: currency });
+  ensureIncomeMonth(currentSpendMonth).push({ id: uid(), name: name.trim(), amount: amount, frequency: frequency, currency: currency });
   save();
   // Reset fields
   ['inc-name','inc-amount'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
@@ -45074,7 +45134,7 @@ window.saveIncome = function() {
 // Override renderIncomeSources to show currency alongside amount
 var _v132OrigRenderIncomeSources = window.renderIncomeSources || (typeof renderIncomeSources === 'function' ? renderIncomeSources : null);
 window.renderIncomeSources = function() {
-  var sources = (state.income && state.income[currentSpendMonth]) || [];
+  var sources = getIncomeSourcesForMonth(currentSpendMonth);
   var el = document.getElementById('income-sources-list');
   if (!el) { if (_v132OrigRenderIncomeSources) _v132OrigRenderIncomeSources(); return; }
   if (!sources.length) {
@@ -45098,9 +45158,10 @@ window.renderIncomeSources = function() {
         + '<div style="font-size:10px;color:var(--text3);margin-top:1px">'
           + amtStr + ' ' + freqLabel
           + (showMo ? ' · ≈ ' + monthlyDisp + '/mo' : '')
+          + (s._carried ? ' · <span title="Carried over from last month — change or remove it here and it updates from this month on">↻ repeats monthly</span>' : '')
         + '</div>'
       + '</div>'
-      + '<button class="btn btn-danger btn-sm" onclick="deleteIncome(\'' + s.id + '\')">×</button>'
+      + '<button class="btn btn-danger btn-sm" title="Remove from this month on" onclick="deleteIncome(\'' + s.id + '\')">×</button>'
       + '</div>';
   }).join('');
 };
