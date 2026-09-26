@@ -33750,6 +33750,16 @@ window._vaultTokenSecondsLeft = _vaultTokenSecondsLeft;
 //                                    HTTP success.
 // Rejects:  Error if the Worker is unreachable, returns non-JSON, returns
 //           a non-2xx status, or returns a body without a `salt` field.
+// ── GA4 usage events (Sept 2026) ─────────────────────────────────────────
+// Anonymous product events only: no email, sub, balances or amounts are sent.
+//   sign_up       — first ever Google sign-in (vault-salt created a new salt)
+//   login         — returning Google sign-in
+//   backup_saved  — encrypted backup written to Walrus (once per session)
+function vaultTrack(name, params) {
+  try { if (typeof gtag === 'function') gtag('event', name, params || {}); } catch (e) {}
+}
+window.vaultTrack = vaultTrack;
+
 async function fetchVaultSalt(idToken) {
   var url = window.VAULT_SALT_WORKER_URL;
   if (!url || /PASTE_VAULT_SALT_WORKER_URL_HERE/.test(url)) {
@@ -34312,6 +34322,7 @@ async function saveToWalrus(vaultData, opts) {
   // without another worker round-trip. Not persisted.
   session.blobId = blobId;
   if (window.vaultSession) window.vaultSession.blobId = blobId;
+  if (!window._vaultBackupTracked) { window._vaultBackupTracked = true; vaultTrack('backup_saved'); }
 
   // Phase 8.5: structured per-phase summary. Lets a developer scan the
   // console after an operation and immediately see which phase dominated.
@@ -35086,6 +35097,7 @@ function _vaultSignInWithGoogleCore(opts) {
     };
 
     return fetchVaultSalt(result.idToken).then(function(saltRes) {
+      vaultTrack(saltRes.created ? 'sign_up' : 'login', { method: 'Google' });
       var session = {
         idToken:     result.idToken,
         salt:        saltRes.salt,
